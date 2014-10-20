@@ -1,9 +1,12 @@
 package ch.room4you.service;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -38,7 +41,7 @@ public class InitDbService {
 	private ImageRepository imageRepository;
 	
 	@PostConstruct
-	public void init() {
+	public void init() throws ParseException {
 		if (roleRepository.findByName("ROLE_ADMIN") == null) {
 			Role roleUser = new Role();
 			roleUser.setName("ROLE_USER");
@@ -75,6 +78,13 @@ public class InitDbService {
 			 ad1.setDescription("Wunderschöne neue Wohnung");
 			   //save image into database
 	         ad1.setUser(userAdmin);
+	         ad1.setStreet("Fabrikstrasse 8");
+	         ad1.setCity("Bern");
+	         ad1.setZip(3007);
+	         Date date = new SimpleDateFormat("DD-MM-yyyy", Locale.ENGLISH).parse("2014-11-01");
+	         ad1.setAvailableFrom(date);
+	         ad1.setNbrRooms((float) 4.5);
+	         ad1.setAdditionalInformation("Some additional Info");
 	         adRepository.save(ad1);
 	         
 	         Image image1 = new Image();  

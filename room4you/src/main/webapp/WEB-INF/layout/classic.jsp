@@ -54,7 +54,6 @@
               	<li class="${current == 'users' ? 'active' : ''}"><a href="<spring:url value="/users.html" />">Users</a></li>
               </security:authorize>
               <li class="${current == 'ads' ? 'active' : ''}"><a href="<spring:url value="/ads.html" />">Ads</a></li>
-              <li class="${current == 'map' ? 'active' : ''}"><a href="<spring:url value="/map.html" />">Map</a></li>
               <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value="/register.html" />">Register</a></li>
               <security:authorize access="! isAuthenticated()">
 	              <li class="${current == 'login' ? 'active' : ''}"><a href="<spring:url value="/login.html" />">Login</a></li>

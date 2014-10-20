@@ -11,7 +11,7 @@
 </button>
 
 
-<form:form commandName="ad" cssClass="form-horizontal adForm">
+<form:form commandName="ad" cssClass="form-horizontal adForm" enctype="multipart/form-data">
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -36,6 +36,57 @@
 				<form:errors path="description" />
 			</div>
 		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Street:</label>
+			<div class="col-sm-10">
+				<form:input path="street" cssClass="form-control" />
+				<form:errors path="street" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">ZIP:</label>
+			<div class="col-sm-10">
+				<form:input path="zip" cssClass="form-control" />
+				<form:errors path="zip" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">City:</label>
+			<div class="col-sm-10">
+				<form:input path="city" cssClass="form-control" />
+				<form:errors path="city" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Number of Rooms:</label>
+			<div class="col-sm-10">
+				<form:input path="nbrRooms" cssClass="form-control" />
+				<form:errors path="nbrRooms" />
+			</div>
+		</div>
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="name" class="col-sm-2 control-label">Available from:</label> -->
+<!-- 			<div class="col-sm-10"> -->
+<%-- 				<form:input path="availableFrom" cssClass="form-control" /> --%>
+<%-- 				<form:errors path="availableFrom" /> --%>
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="name" class="col-sm-2 control-label">Rent per month (CHF):</label> -->
+<!-- 			<div class="col-sm-10"> -->
+<%-- 				<form:input path="rentPerMonth" cssClass="form-control" /> --%>
+<%-- 				<form:errors path="rentPerMonth" /> --%>
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
+<!-- 				<div class="col-sm-10"> -->
+<%-- 					<form:input type="file" path="images" cssClass="form-control" /> --%>
+<%-- 					<form:errors path="images" /> --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
+		
+<!-- 		<input type="file" name="file"/> -->
 
       </div>
       <div class="modal-footer">

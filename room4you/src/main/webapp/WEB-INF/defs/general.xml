@@ -24,11 +24,10 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/ads.jsp" />
 		<put-attribute name="current" value="ads" />
 	</definition>
-	
-	<definition name="map" extends="common">
-		<put-attribute name="title" value="Map" />
-		<put-attribute name="body" value="/WEB-INF/jsp/map.jsp" />
-		<put-attribute name="current" value="map" />
+	<definition name="adDetail" extends="common">
+		<put-attribute name="title" value="AdDetail" />
+		<put-attribute name="body" value="/WEB-INF/jsp/adDetail.jsp" />
+		<put-attribute name="current" value="ad" />
 	</definition>
 
 	<definition name="user-detail" extends="common">

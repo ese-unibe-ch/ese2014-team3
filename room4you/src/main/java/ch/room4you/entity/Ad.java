@@ -2,6 +2,7 @@ package ch.room4you.entity;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +41,24 @@ public class Ad {
 	@Column(name = "published_date")
 	private Date publishedDate;
 
+	private String street;
+	
+	private int zip;
+	
+	private String city;
+	
+	private float nbrRooms;
+	
+	private Date availableFrom;
+	
+	private Currency rentPerMonth;
+	
+	@Lob
+	@Type(type = "org.hibernate.type.StringClobType")
+	@Column(length = Integer.MAX_VALUE)
+	private String additionalInformation;
+	
+	
 
 	@Lob
 	@Column(name="ROOM_IMAGE", nullable=false, columnDefinition="mediumblob")
@@ -120,5 +139,61 @@ public class Ad {
 	
 	public void removeAllImage(){
 		this.images.removeAll(images);
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public int getZip() {
+		return zip;
+	}
+
+	public void setZip(int zip) {
+		this.zip = zip;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public float getNbrRooms() {
+		return nbrRooms;
+	}
+
+	public void setNbrRooms(float nbrRooms) {
+		this.nbrRooms = nbrRooms;
+	}
+
+	public Date getAvailableFrom() {
+		return availableFrom;
+	}
+
+	public void setAvailableFrom(Date availableFrom) {
+		this.availableFrom = availableFrom;
+	}
+
+	public Currency getRentPerMonth() {
+		return rentPerMonth;
+	}
+
+	public void setRentPerMonth(Currency rentPerMonth) {
+		this.rentPerMonth = rentPerMonth;
+	}
+
+	public String getAdditionalInformation() {
+		return additionalInformation;
+	}
+
+	public void setAdditionalInformation(String additionalInformation) {
+		this.additionalInformation = additionalInformation;
 	}
 }
