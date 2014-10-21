@@ -1,44 +1,48 @@
-package ch.room4you.entity;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import java.io.File;
-import java.util.ArrayList;
+package ch.room4you.pojos;
+
+import java.sql.Timestamp;
 import java.util.Currency;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.CascadeType;
 
 import org.hibernate.annotations.Type;
 
-@Entity
-public class Ad {
+import ch.room4you.entity.Image;
+import ch.room4you.entity.User;
+
+
+
+/**
+ *
+ * @author namibrider
+ */
+public class AdForm {
+
+	private Long id;
 	
-	@Id
-	@GeneratedValue
-	private Integer id;
+	private Timestamp timeStampTeamCreation; 
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
 	private User user;
 
-	@Column(length = 1000)
 	private String title;
 
-	@Lob
-	@Type(type = "org.hibernate.type.StringClobType")
-	@Column(length = Integer.MAX_VALUE)
 	private String description;
 
-	@Column(name = "published_date")
 	private Date publishedDate;
 
 	private String street;
@@ -53,25 +57,37 @@ public class Ad {
 	
 	private String rentPerMonth;
 	
-	@Lob
-	@Type(type = "org.hibernate.type.StringClobType")
-	@Column(length = Integer.MAX_VALUE)
 	private String additionalInformation;
-	
-	
 
-	@Lob
-	@Column(name="ROOM_IMAGE", nullable=false, columnDefinition="mediumblob")
-	@OneToMany(mappedBy = "ad", cascade = CascadeType.REMOVE)
 	private List<Image> images;
-	 
+	
+	
+    
+    public Timestamp getTimeStampTeamCreation() {
+        return timeStampTeamCreation;
+    }
 
-	public Integer getId() {
-		return id;
+    public void setTimeStampTeamCreation() {
+        Date date= new java.util.Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+        this.timeStampTeamCreation = timestamp;
+    }   
+     
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getTitle() {
@@ -96,49 +112,6 @@ public class Ad {
 
 	public void setPublishedDate(Date publishedDate) {
 		this.publishedDate = publishedDate;
-	}
-	
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
-	public List<Image> getImages() {
-		return images;
-	}
-
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
-	
-//	public void addImageFromPath(String filePath) {
-//	   	 File file = new File(filePath);
-//	   	 Image image = new Image();
-//	   	 image.setImage(file);
-//	   	 addImage(image);
-//	}
-	
-	
-	
-	public void addImage(Image image){
-		this.images.add(image);
-	}
-	
-	public void removeImage(Image image){
-		this.images.remove(image);
-	}
-	
-	public void removeImage(int imageIdx){
-		this.images.remove(imageIdx);
-	}
-	
-	public void removeAllImage(){
-		this.images.removeAll(images);
 	}
 
 	public String getStreet() {
@@ -188,6 +161,7 @@ public class Ad {
 	public void setRentPerMonth(String rentPerMonth) {
 		this.rentPerMonth = rentPerMonth;
 	}
+	
 
 	public String getAdditionalInformation() {
 		return additionalInformation;
@@ -196,4 +170,13 @@ public class Ad {
 	public void setAdditionalInformation(String additionalInformation) {
 		this.additionalInformation = additionalInformation;
 	}
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+    
 }

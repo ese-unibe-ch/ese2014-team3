@@ -1,6 +1,8 @@
 package ch.room4you.service;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,9 +13,13 @@ import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Image;
@@ -41,7 +47,7 @@ public class InitDbService {
 	private ImageRepository imageRepository;
 	
 	@PostConstruct
-	public void init() throws ParseException {
+	public void init() throws ParseException, IOException {
 		if (roleRepository.findByName("ROLE_ADMIN") == null) {
 			Role roleUser = new Role();
 			roleUser.setName("ROLE_USER");
@@ -92,9 +98,23 @@ public class InitDbService {
 	         image1.setImage("Soon here will be an image");
 	         image1.setAd(ad1);
 //	         imageRepository.save(image1);
+	         
+//	         ad1.addImage(image1);
+	         adRepository.save(ad1);
+	         
+
 			 
 		}
 
+	}
+	
+	public MultipartFile convert(File file) throws IOException
+	{    
+		   	File newFile = file;
+		    DiskFileItem fileItem = new DiskFileItem("file", "text/plain", false, newFile.getName(), (int) newFile.length() , newFile.getParentFile());
+		    fileItem.getOutputStream();
+		    MultipartFile multipartFile = new CommonsMultipartFile(fileItem);
+		    return multipartFile;
 	}
 
 	private void encryptPassword(User user, String password) {
