@@ -78,6 +78,13 @@
 				<form:errors path="rentPerMonth" />
 			</div>
 		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Additional Information:</label>
+			<div class="col-sm-10">
+				<form:input path="additionalInformation" cssClass="form-control" />
+				<form:errors path="additionalInformation" />
+			</div>
+		</div>
 <!-- 			<div class="form-group"> -->
 <!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
 <!-- 				<div class="col-sm-10"> -->
