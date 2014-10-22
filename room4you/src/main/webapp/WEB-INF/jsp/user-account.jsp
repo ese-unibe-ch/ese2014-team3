@@ -64,20 +64,20 @@
 				<form:errors path="nbrRooms" />
 			</div>
 		</div>
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="name" class="col-sm-2 control-label">Available from:</label> -->
-<!-- 			<div class="col-sm-10"> -->
-<%-- 				<form:input path="availableFrom" cssClass="form-control" /> --%>
-<%-- 				<form:errors path="availableFrom" /> --%>
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="name" class="col-sm-2 control-label">Rent per month (CHF):</label> -->
-<!-- 			<div class="col-sm-10"> -->
-<%-- 				<form:input path="rentPerMonth" cssClass="form-control" /> --%>
-<%-- 				<form:errors path="rentPerMonth" /> --%>
-<!-- 			</div> -->
-<!-- 		</div> -->
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Available from:</label>
+			<div class="col-sm-10">
+				<form:input path="availableFrom" cssClass="form-control" />
+				<form:errors path="availableFrom" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Rent per month (CHF):</label>
+			<div class="col-sm-10">
+				<form:input path="rentPerMonth" cssClass="form-control" />
+				<form:errors path="rentPerMonth" />
+			</div>
+		</div>
 <!-- 			<div class="form-group"> -->
 <!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
 <!-- 				<div class="col-sm-10"> -->
