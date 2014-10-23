@@ -1,5 +1,8 @@
 package ch.room4you.service;
 
+/**
+ * Database operation service for adRepository interface
+ */
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,6 +38,9 @@ public class AdService{
 	private UserRepository userRepository;
 	
 	
+	/**
+	 * Not in use yet. Scheduler template for later notifications
+	 */
 	// 1 hour = 60 seconds * 60 minutes * 1000
 	@Scheduled(fixedDelay=3600000)
 	public void reloadAds() {
@@ -42,6 +48,11 @@ public class AdService{
 	}
 	
 
+	/**
+	 * Saves the ad in the database
+	 * @param ad
+	 * @param name
+	 */
 	public void save(Ad ad, String name) {
 		User user = userRepository.findByName(name);
 		ad.setUser(user);

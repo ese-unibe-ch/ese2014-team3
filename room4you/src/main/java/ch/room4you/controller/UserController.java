@@ -39,12 +39,26 @@ public class UserController {
 	private AdService adService;
 	
 	
+
+	/**
+	 * Instantiates an ad object which is mapped to the spring form in 
+	 * user-account.jsp
+	 * 
+	 * @return
+	 */
 	@ModelAttribute("ad")
 	public Ad constructAd() {
 		return new Ad();
 	}
 
 	
+	/**
+	 * Maps the request url /account to the page account.jsp and provides the model "user"
+	 * with the current user 
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/account")
 	public String account(Model model, Principal principal) {
 		String name = principal.getName();
@@ -52,6 +66,14 @@ public class UserController {
 		return "account";
 	}
 
+	/**
+	 * Receives the data from user-account form and adds the data to the
+	 * ad object and saves the ad to the current user in the database.
+	 * Provides model ad.
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
 	public String doAddAd(Model model,
 			@Valid @ModelAttribute("ad") Ad ad, BindingResult result,
@@ -65,6 +87,13 @@ public class UserController {
 	}
 	
 	
+	/**
+	 * Removes the ad with the id={id} and redirects to account.html
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/ad/remove/{id}")
 	public String removeAd(@PathVariable int id) {
 		Ad ad = adService.findOne(id);
@@ -72,6 +101,10 @@ public class UserController {
 		return "redirect:/account.html";
 	}
 	
+	/**
+	 * Maps the date format to the convenient date format for the database
+	 * @param binder
+	 */
 	@InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

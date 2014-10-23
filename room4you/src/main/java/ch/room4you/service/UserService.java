@@ -1,5 +1,8 @@
 package ch.room4you.service;
 
+/**
+ * Database operation service for userRepository interface
+ */
 import java.util.ArrayList;
 import java.util.List;
 

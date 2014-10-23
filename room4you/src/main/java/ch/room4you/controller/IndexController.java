@@ -13,6 +13,11 @@ public class IndexController {
 	@Autowired
 	private AdService adService;
 
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/index")
 	public String index(Model model) {
 //		model.addAttribute("ads", adService.);

@@ -1,5 +1,8 @@
 package ch.room4you.service;
 
+/**
+ * Initializes the database after startup with admin-user, user1 and ad1
+ */
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -1,5 +1,8 @@
 package ch.room4you.service;
 
+/**
+ * Database operation service for imageRepository interface
+ */
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
