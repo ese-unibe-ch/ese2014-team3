@@ -1,5 +1,8 @@
 package ch.room4you.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,9 +27,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.room4you.entity.Ad;
+import ch.room4you.entity.Image;
 import ch.room4you.exception.InvalidUserException;
 import ch.room4you.pojos.AdForm;
 import ch.room4you.service.AdService;
+import ch.room4you.service.ImageService;
 import ch.room4you.service.UserService;
 
 @Controller
@@ -37,6 +42,9 @@ public class UserController {
 	
 	@Autowired
 	private AdService adService;
+	
+	@Autowired
+	private ImageService imageService;
 	
 	
 
@@ -100,6 +108,56 @@ public class UserController {
 		adService.delete(ad);
 		return "redirect:/account.html";
 	}
+	
+	
+	/**
+	 * Removes the ad with the id={id} and redirects to account.html
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+//	@RequestMapping("/ad/add/{id}")
+//	public String addAdImage(@PathVariable int id) {
+//		Ad ad = adService.findOne(id);
+//		return "redirect:/account.html";
+//	}
+	
+    @RequestMapping(value="/upload", method=RequestMethod.GET)
+    public @ResponseBody String provideUploadInfo() {
+        return "You can upload a file by posting to this same URL.";
+    }
+    
+  
+
+    @RequestMapping(value="/upload", method=RequestMethod.POST)
+    public String handleFileUpload(Model model, @RequestParam("name") String name,
+            @RequestParam("file") MultipartFile file){
+    	
+    	Image image = new Image();
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                BufferedOutputStream stream =
+                        new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
+                stream.write(bytes);
+                stream.close();
+                model.addAttribute("name", name);
+                image.setImage(bytes);
+                image.setName(name);
+                System.out.println("Got image:"+ name);
+            //	Ad ad = adService.findOne(id);
+            //	ad.addImage(image);
+            //    image.setAd(ad);
+//        		imageService.save(image);
+        		return "redirect:/account.html";
+            } catch (Exception e) {
+                return "You failed to upload " + name + " => " + e.getMessage();
+            }
+        } else {
+            return "You failed to upload " + name + " because the file was empty.";
+        }
+    }
 	
 	/**
 	 * Maps the date format to the convenient date format for the database

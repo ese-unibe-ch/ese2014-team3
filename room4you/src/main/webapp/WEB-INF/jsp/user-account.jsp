@@ -85,16 +85,6 @@
 				<form:errors path="additionalInformation" />
 			</div>
 		</div>
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
-<!-- 				<div class="col-sm-10"> -->
-<%-- 					<form:input type="file" path="images" cssClass="form-control" /> --%>
-<%-- 					<form:errors path="images" /> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
-		
-<!-- 		<input type="file" name="file"/> -->
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -107,13 +97,80 @@
 
 <br /><br />
 
+
+<!-- Modal -->
+<form:form method="POST" cssClass="form-horizontal imageForm" enctype="multipart/form-data" action="/room4you/upload.html" >
+	<div class="modal fade" id="myImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">New Ad</h4>
+	      </div>
+	      <div class="modal-body">
+	
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">Image:</label>
+				<div class="col-sm-10">
+					<input type="file" name="file" cssClass="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">Name:</label>
+				<div class="col-sm-10">
+					<input type="text" name="name" cssClass="form-control" />
+				</div>
+			</div>
+			
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <input type="submit" class="btn btn-primary" value="Save" />
+	      </div>
+	    </div>
+	  </div>
+	</div>	
+</form:form> 
+<!-- <div class="modal fade" id="myImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!--   <div class="modal-dialog"> -->
+<!--     <div class="modal-content"> -->
+<!--       <div class="modal-header"> -->
+<!--         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+<!--         <h4 class="modal-title" id="myModalLabel">New Image</h4> -->
+<!--       </div> -->
+<%-- <%--       <input type="hidden" name="ad" value="${user.ad.id}">  --%>
+<!--       <div class="modal-body"> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
+<%-- 				<div href="<spring:url value="/ads/1.html" />" class="col-sm-10"> --%>
+<%-- <%-- 					<form:input type="file" path="image" cssClass="form-control" /> --%>
+<%-- 					<form:errors path="image" /> --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
+
+<!--       </div> -->
+<!--       <div class="modal-footer"> -->
+<!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!--         <input type="submit" class="btn btn-primary" value="Save" /> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
+<%-- </form:form> --%>
+
+<br /><br />
+
 <script type="text/javascript">
 $(document).ready(function() {
-	$('.nav-tabs a:first').tab('show'); // Select first tab
 	$(".triggerRemove").click(function(e) {
 		e.preventDefault();
 		$("#modalRemove .removeBtn").attr("href", $(this).attr("href"));
 		$("#modalRemove").modal();
+	});
+	$(".triggerAdImage").click(function(e) {
+		e.preventDefault();
+		$("#myImageModal .adBtn").attr("href", $(this).attr("href"));
+		$("#myImageModal").modal();
 	});
 	$(".adForm").validate(
 			{
@@ -162,43 +219,40 @@ $(document).ready(function() {
 	</tbody>
 </table>
 
-<!-- Nav tabs -->
-<ul class="nav nav-tabs">
-	<c:forEach items="${user.ads}" var="ad">
-	  <li><a href="#ad_${ad.id}" data-toggle="tab"><c:out value="${ad.title}" /></a></li>
-	</c:forEach>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content">
-<c:forEach items="${user.ads}" var="ad">
-  <div class="tab-pane" id="ad_${ad.id}">
-	<h1><c:out value="${ad.title}" /></h1>
-	<p>
-	<h2><c:out value="${ad.description}" /></h1>
-	<p>
-	
-	<a href="<spring:url value="/ad/remove/${ad.id}.html" />" class="btn btn-danger triggerRemove">remove ad</a>
-
-<!-- 	<table class="table table-bordered table-hover table-striped"> -->
-<!-- 		<thead> -->
-<!-- 			<tr> -->
-<!-- 				<th>ID</th> -->
-<!-- 				<th>Image</th> -->
-<!-- 			</tr> -->
-<!-- 		</thead> -->
-<!-- 		<tbody> -->
-<%-- 			<c:forEach items="${ads.images}" var="image"> --%>
-<!-- 				<tr> -->
-<%-- 					<td><c:out value="${image.id}" /></td> --%>
-<%-- 					<td><c:out value="${image.image}" /></td> --%>
-<!-- 				</tr> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</tbody> -->
-<!-- 	</table> -->
-  </div>
-</c:forEach>
-</div>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Add Image</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${user.ads}" var="ad">
+			<tr>
+				<td id="ad_${ad.id}">
+					<a href="<spring:url value="/ads/${ad.id}.html" />">
+						<c:out value="${ad.title}" />
+					</a>
+				</td>
+				<td>
+					<a><c:out value="${ad.description}" /></a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ad/add/${ad.id}.html" />" class="btn btn-default triggerAdImage">
+						add image
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ad/remove/${ad.id}.html" />" class="btn btn-danger triggerRemove">
+						remove ad
+					</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
 
 
 <!-- Modal -->
@@ -215,6 +269,25 @@ $(document).ready(function() {
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <a href="" class="btn btn-danger removeBtn">Remove</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ad Image-->
+<div class="modal fade" id="modalAdImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Ad Image</h4>
+      </div>
+      <div class="modal-body">
+        Really ad?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <a href="" class="btn btn-danger adBtn">Ad</a>
       </div>
     </div>
   </div>

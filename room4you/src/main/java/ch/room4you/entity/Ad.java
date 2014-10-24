@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 
 import org.hibernate.annotations.Type;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Ad {
@@ -61,10 +62,10 @@ public class Ad {
 	
 
 	@Lob
-	@Column(name="ROOM_IMAGE", nullable=false, columnDefinition="mediumblob")
+	@Column(name="ROOM_IMAGES", nullable=false, columnDefinition="mediumblob")
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.REMOVE)
 	private List<Image> images;
-	 
+	
 
 	public Integer getId() {
 		return id;
@@ -108,13 +109,13 @@ public class Ad {
 	}
 
 
-	public List<Image> getImages() {
-		return images;
-	}
-
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
+//	public List<Image> getImages() {
+//		return images;
+//	}
+//
+//	public void setImages(List<Image> images) {
+//		this.images = images;
+//	}
 	
 //	public void addImageFromPath(String filePath) {
 //	   	 File file = new File(filePath);

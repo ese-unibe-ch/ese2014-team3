@@ -98,7 +98,7 @@ public class InitDbService {
 	         
 	         Image image1 = new Image();  
 //	         image1.setImageFromPath("/Users/Sven/Qsync/Studium/Informatik/ESE/ESEGit/ese2014-team3/ese2014-team3/room4you/images/wohnung1.JPG");
-	         image1.setImage("Soon here will be an image");
+//	         image1.setImage("Soon here will be an image");
 	         image1.setAd(ad1);
 //	         imageRepository.save(image1);
 	         

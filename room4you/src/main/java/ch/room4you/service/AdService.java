@@ -57,18 +57,24 @@ public class AdService{
 		User user = userRepository.findByName(name);
 		ad.setUser(user);
 		adRepository.save(ad);
-		saveImages(ad);
+//		ad.addImage(ad.getImage());
 	}
 	
 
 	
 	public void saveImages(Ad ad) {
-		List<Image> images = imageRepository.findByAd(ad);
+		List<Image> images = imageRepository.findByAd(ad);		
 		for(Image image : images){
 			image.setAd(ad);
 			imageRepository.save(image);
 		}
 	
+	}
+	
+	public void saveImage(Ad ad){
+		
+		
+		
 	}
 
 	

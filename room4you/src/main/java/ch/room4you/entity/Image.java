@@ -26,12 +26,31 @@ public class Image {
 	private Ad ad;
 
 
-//	@Lob
-//	@Column(name="ROOM_IMAGE", nullable=false, columnDefinition="mediumblob")
-//	private byte[] image;
+	@Lob
+	@Column(name="ROOM_IMAGE", nullable=false, columnDefinition="mediumblob")
+	private byte[] image;
+	 
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 	
-	@Column(name="ROOM_IMAGE", nullable=false)
-	private String image;
+	
+//	@Column(name="ROOM_IMAGE", nullable=false)
+//	private String image;
 
 	public Integer getId() {
 		return id;
@@ -63,13 +82,13 @@ public class Image {
 //	   	 setImage(file);
 //	}
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
+//	public String getImage() {
+//		return image;
+//	}
+//
+//	public void setImage(String image) {
+//		this.image = image;
+//	}
 
 //	public void setImage(File image) {
 //		byte[] bFile = new byte[(int) image.length()];
