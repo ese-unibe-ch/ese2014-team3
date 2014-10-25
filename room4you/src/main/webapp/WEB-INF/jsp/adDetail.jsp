@@ -16,6 +16,8 @@
 			<th>Ad Street</th>
 			<th>ZIP</th>
 			<th>City</th>
+			<th>Image</th>
+			<th>imageToString</th>
 			
 		</tr>
 	</thead>
@@ -35,6 +37,12 @@
 				</td>
 				<td>
 					${ad.city}
+				</td>
+				<td>
+					<img src="data:image/jpeg;base64,${imageForJSP}" alt="..." width="200" height="200">
+				</td>
+					<td>
+<%-- 					${ad.image} --%>
 				</td>
 			</tr>
 	</tbody>

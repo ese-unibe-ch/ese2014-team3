@@ -10,6 +10,7 @@ import java.util.Date;
 
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -81,26 +82,31 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
 	public String doAddAd(Model model, @ModelAttribute("ad") Ad ad, BindingResult result, 
-			Principal principal, @RequestParam("image") MultipartFile image) {
+			Principal principal, @RequestParam("image1") MultipartFile image1) {
 
 
-			System.out.println("doAddAd touched");
-			System.out.println("adTitle: "+ad.getTitle());
-			System.out.println("adImage: "+image.getSize());
-			System.out.println("result"+ result.toString());	
+		if (result.hasErrors()) {		
+			return account(model, principal);
+		}else{
             
 			byte[] bytes;
 			
 			try {
-				bytes = image.getBytes();
-				ad.setImage(bytes);
+				bytes = image1.getBytes();
+				ad.setImage(bytes);		
+				byte[] encoded=Base64.encodeBase64(bytes);
+				String encodedString = new String(encoded);	
+				System.out.println("encodedString: "+encodedString);
+				System.out.println("Model TestString: "+ model.toString());
+				System.out.println("Model contains imageForJSP: "+model.containsAttribute("imageForJSP"));
 				System.out.println("adGetImageBytes: "+ad.getImage().length);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-           
-           
+
+		}
+
 		String name = principal.getName();
 		adService.save(ad, name);
 		return "redirect:/account.html";

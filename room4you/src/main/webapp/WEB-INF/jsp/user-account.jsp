@@ -88,7 +88,7 @@
 		<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Image:</label>
 				<div class="col-sm-10">
-					<form:input type="file" path="image" name="image" cssClass="form-control" />
+					<input type="file" name="image1" cssClass="form-control" />
 				</div>
 			</div>
       </div>

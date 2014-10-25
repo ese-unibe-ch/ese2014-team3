@@ -1,5 +1,6 @@
 package ch.room4you.controller;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +42,13 @@ public class AdController {
 	@RequestMapping("/ads/{id}")
 	public String detail(Model model, @PathVariable int id) {
 		model.addAttribute("ad", adService.findOne(id));
+		byte[] image = adService.findOne(id).getImage();
+		byte[] encoded=Base64.encodeBase64(image);
+		String encodedString = new String(encoded);	
+		model.addAttribute("imageForJSP", encodedString); 
+		model.addAttribute("testString", "Test String");
+		System.out.println("Model TestString: "+ model.toString());
+		System.out.println("Model contains imageForJSP: "+model.containsAttribute("imageForJSP"));
 		return "adDetail";
 	}
 	
