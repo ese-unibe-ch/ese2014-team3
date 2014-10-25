@@ -11,7 +11,7 @@
 </button>
 
 
-<form:form commandName="ad" cssClass="form-horizontal adForm" enctype="multipart/form-data">
+<form:form method="post" modelAttribute="ad" cssClass="form-horizontal adForm" enctype="multipart/form-data">
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -85,6 +85,12 @@
 				<form:errors path="additionalInformation" />
 			</div>
 		</div>
+		<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">Image:</label>
+				<div class="col-sm-10">
+					<form:input type="file" path="image" name="image" cssClass="form-control" />
+				</div>
+			</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -99,38 +105,38 @@
 
 
 <!-- Modal -->
-<form:form method="POST" cssClass="form-horizontal imageForm" enctype="multipart/form-data" action="/room4you/upload.html" >
-	<div class="modal fade" id="myImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel">New Ad</h4>
-	      </div>
-	      <div class="modal-body">
+<%-- <form:form  cssClass="form-horizontal imageForm" enctype="multipart/form-data" > --%>
+<!-- <div class="modal fade" id="modalAddImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!-- 	  <div class="modal-dialog"> -->
+<!-- 	    <div class="modal-content"> -->
+<!-- 	      <div class="modal-header"> -->
+<!-- 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+<!-- 	        <h4 class="modal-title" id="myModalLabel">New Ad</h4> -->
+<!-- 	      </div> -->
+<!-- 	      <div class="modal-body"> -->
 	
-			<div class="form-group">
-				<label for="name" class="col-sm-2 control-label">Image:</label>
-				<div class="col-sm-10">
-					<input type="file" name="file" cssClass="form-control" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="name" class="col-sm-2 control-label">Name:</label>
-				<div class="col-sm-10">
-					<input type="text" name="name" cssClass="form-control" />
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
+<!-- 				<div class="col-sm-10"> -->
+<!-- 					<input type="file" name="file" cssClass="form-control" /> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="name" class="col-sm-2 control-label">Name:</label> -->
+<!-- 				<div class="col-sm-10"> -->
+<!-- 					<input type="text" name="name" cssClass="form-control" /> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <input type="submit" class="btn btn-primary" value="Save" />
-	      </div>
-	    </div>
-	  </div>
-	</div>	
-</form:form> 
+<!-- 	      </div> -->
+<!-- 	      <div class="modal-footer"> -->
+<!-- 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!-- 	        <input type="submit" class="btn btn-primary" value="Save" /> -->
+<!-- 	      </div> -->
+<!-- 	    </div> -->
+<!-- 	  </div> -->
+<!-- 	</div>	 -->
+<%-- </form:form>  --%>
 <!-- <div class="modal fade" id="myImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
 <!--   <div class="modal-dialog"> -->
 <!--     <div class="modal-content"> -->
@@ -167,11 +173,11 @@ $(document).ready(function() {
 		$("#modalRemove .removeBtn").attr("href", $(this).attr("href"));
 		$("#modalRemove").modal();
 	});
-	$(".triggerAdImage").click(function(e) {
-		e.preventDefault();
-		$("#myImageModal .adBtn").attr("href", $(this).attr("href"));
-		$("#myImageModal").modal();
-	});
+// 	$(".triggerAdImage").click(function(e) {
+// 		e.preventDefault();
+// 		$("#modalAddImage .adBtn").attr("href", $(this).attr("href"));
+// 		$("#modalAddImage").modal();
+// 	});
 	$(".adForm").validate(
 			{
 				rules: {
@@ -224,7 +230,6 @@ $(document).ready(function() {
 		<tr>
 			<th>Title</th>
 			<th>Description</th>
-			<th>Add Image</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
@@ -238,11 +243,6 @@ $(document).ready(function() {
 				</td>
 				<td>
 					<a><c:out value="${ad.description}" /></a>
-				</td>
-				<td>
-					<a href="<spring:url value="/ad/add/${ad.id}.html" />" class="btn btn-default triggerAdImage">
-						add image
-					</a>
 				</td>
 				<td>
 					<a href="<spring:url value="/ad/remove/${ad.id}.html" />" class="btn btn-danger triggerRemove">
@@ -274,21 +274,36 @@ $(document).ready(function() {
   </div>
 </div>
 
-<!-- Modal ad Image-->
-<div class="modal fade" id="modalAdImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Ad Image</h4>
-      </div>
-      <div class="modal-body">
-        Really ad?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <a href="" class="btn btn-danger adBtn">Ad</a>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- <!-- Modal ad Image--> 
+<!-- <div commandName="image" class="modal fade" id="modalAddImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<%-- <form:form cssClass="form-horizontal imageForm" enctype="multipart/form-data" > --%>
+<!-- 	  <div class="modal-dialog"> -->
+<!-- 	    <div class="modal-content"> -->
+<!-- 	      <div class="modal-header"> -->
+<!-- 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+<!-- 	        <h4 class="modal-title" id="myModalLabel">New Ad</h4> -->
+<!-- 	      </div> -->
+<!-- 	      <div class="modal-body"> -->
+	
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
+<!-- 				<div class="col-sm-10"> -->
+<!-- 					<input type="file" name="file" cssClass="form-control" /> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="name" class="col-sm-2 control-label">Name:</label> -->
+<!-- 				<div class="col-sm-10"> -->
+<!-- 					<input type="text" name="name" cssClass="form-control" /> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			
+<!-- 	      </div> -->
+<!-- 	      <div class="modal-footer"> -->
+<!-- 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!-- 	        <a href="" class="btn btn-danger removeBtn">Save</a> -->
+<!-- 	      </div> -->
+<!-- 	    </div> -->
+<!-- 	  </div> -->
+<%-- </form:form>  --%>
+<!-- </div> -->

@@ -15,13 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ch.room4you.entity.Ad;
-import ch.room4you.entity.Image;
 import ch.room4you.entity.Role;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
 import ch.room4you.repository.RoleRepository;
 import ch.room4you.repository.UserRepository;
-import ch.room4you.repository.ImageRepository;
 
 @Service
 @Transactional
@@ -36,8 +34,6 @@ public class UserService {
 	@Autowired
 	private AdRepository adRepository;
 	
-	@Autowired
-	private ImageRepository imageRepository;
 
 
 	public List<User> findAll() {

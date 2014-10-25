@@ -19,11 +19,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import ch.room4you.entity.Ad;
-import ch.room4you.entity.Image;
 import ch.room4you.entity.User;
-import ch.room4you.pojos.AdForm;
 import ch.room4you.repository.AdRepository;
-import ch.room4you.repository.ImageRepository;
 import ch.room4you.repository.UserRepository;
 
 @Service
@@ -31,9 +28,7 @@ public class AdService{
 	@Autowired
 	private AdRepository adRepository;
 	
-	@Autowired
-	private ImageRepository imageRepository;
-
+	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -62,20 +57,20 @@ public class AdService{
 	
 
 	
-	public void saveImages(Ad ad) {
-		List<Image> images = imageRepository.findByAd(ad);		
-		for(Image image : images){
-			image.setAd(ad);
-			imageRepository.save(image);
-		}
+//	public void saveImages(Ad ad) {
+//		List<Image> images = imageRepository.findByAd(ad);		
+//		for(Image image : images){
+//			image.setAd(ad);
+//			imageRepository.save(image);
+//		}
+//	
+//	}
 	
-	}
-	
-	public void saveImage(Ad ad){
-		
-		
-		
-	}
+//	public void saveImage(Ad ad){
+//		
+//		
+//		
+//	}
 
 	
 

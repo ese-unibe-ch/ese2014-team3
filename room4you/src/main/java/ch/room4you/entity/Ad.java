@@ -1,13 +1,16 @@
 package ch.room4you.entity;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -16,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 import org.springframework.web.multipart.MultipartFile;
@@ -61,11 +65,55 @@ public class Ad {
 	
 	
 
-	@Lob
-	@Column(name="ROOM_IMAGES", nullable=false, columnDefinition="mediumblob")
-	@OneToMany(mappedBy = "ad", cascade = CascadeType.REMOVE)
-	private List<Image> images;
+//	@Lob
+//	@Column(name="ROOM_IMAGES", columnDefinition="mediumblob")
+//	@OneToMany(mappedBy = "ad", cascade = CascadeType.REMOVE)
+//	private List<Image> images;
+//	
 	
+//	@Lob
+//	@Type(type="org.hibernate.type.BinaryType") 
+//	@Column(name="ROOM_IMAGE", columnDefinition="mediumblob")
+//	private byte[] image;
+
+
+	
+    @Transient
+    private MultipartFile multipartFile;
+
+    public MultipartFile getMultipartFile() {
+		return multipartFile;
+	}
+
+	public void setMultipartFile(MultipartFile multipartFile) {
+		this.multipartFile = multipartFile;
+	}
+
+	@Lob
+    @Basic(fetch=FetchType.LAZY, optional=true)
+    byte[] image;
+    
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	
+//	@Lob
+//	@Column(name="ROOM_IMAGE", columnDefinition="mediumblob")
+//	private MultipartFile image;
+//	
+//	
+//
+//	public MultipartFile getImage() {
+//		return image;
+//	}
+//
+//	public void setImage(MultipartFile image) {
+//		this.image = image;
+//	}
 
 	public Integer getId() {
 		return id;
@@ -125,22 +173,22 @@ public class Ad {
 //	}
 	
 	
-	
-	public void addImage(Image image){
-		this.images.add(image);
-	}
-	
-	public void removeImage(Image image){
-		this.images.remove(image);
-	}
-	
-	public void removeImage(int imageIdx){
-		this.images.remove(imageIdx);
-	}
-	
-	public void removeAllImage(){
-		this.images.removeAll(images);
-	}
+//	
+//	public void addImage(Image image){
+//		this.images.add(image);
+//	}
+//	
+//	public void removeImage(Image image){
+//		this.images.remove(image);
+//	}
+//	
+//	public void removeImage(int imageIdx){
+//		this.images.remove(imageIdx);
+//	}
+//	
+//	public void removeAllImage(){
+//		this.images.removeAll(images);
+//	}
 
 	public String getStreet() {
 		return street;

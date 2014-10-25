@@ -3,6 +3,7 @@ package ch.room4you.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,11 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.room4you.entity.Ad;
-import ch.room4you.entity.Image;
-import ch.room4you.exception.InvalidUserException;
-import ch.room4you.pojos.AdForm;
 import ch.room4you.service.AdService;
-import ch.room4you.service.ImageService;
 import ch.room4you.service.UserService;
 
 @Controller
@@ -43,9 +40,7 @@ public class UserController {
 	@Autowired
 	private AdService adService;
 	
-	@Autowired
-	private ImageService imageService;
-	
+
 	
 
 	/**
@@ -58,6 +53,8 @@ public class UserController {
 	public Ad constructAd() {
 		return new Ad();
 	}
+	
+
 
 	
 	/**
@@ -83,12 +80,27 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
-	public String doAddAd(Model model,
-			@Valid @ModelAttribute("ad") Ad ad, BindingResult result,
-			Principal principal) {
-		if (result.hasErrors()) {
-			return account(model, principal);
-		}
+	public String doAddAd(Model model, @ModelAttribute("ad") Ad ad, BindingResult result, 
+			Principal principal, @RequestParam("image") MultipartFile image) {
+
+
+			System.out.println("doAddAd touched");
+			System.out.println("adTitle: "+ad.getTitle());
+			System.out.println("adImage: "+image.getSize());
+			System.out.println("result"+ result.toString());	
+            
+			byte[] bytes;
+			
+			try {
+				bytes = image.getBytes();
+				ad.setImage(bytes);
+				System.out.println("adGetImageBytes: "+ad.getImage().length);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+           
+           
 		String name = principal.getName();
 		adService.save(ad, name);
 		return "redirect:/account.html";
@@ -104,60 +116,80 @@ public class UserController {
 	 */
 	@RequestMapping("/ad/remove/{id}")
 	public String removeAd(@PathVariable int id) {
+		System.out.println("remove ist touched");
 		Ad ad = adService.findOne(id);
 		adService.delete(ad);
 		return "redirect:/account.html";
 	}
 	
 	
-	/**
-	 * Removes the ad with the id={id} and redirects to account.html
-	 * 
-	 * @param model
-	 * @param id
-	 * @return
-	 */
+//	/**
+//	 * Removes the ad with the id={id} and redirects to account.html
+//	 * 
+//	 * @param model
+//	 * @param id
+//	 * @return
+//	 */
 //	@RequestMapping("/ad/add/{id}")
-//	public String addAdImage(@PathVariable int id) {
+//	public String addAdImage(BindingResult result,
+//			@PathVariable int id, @RequestParam("name") String name,
+//            @RequestParam("file") MultipartFile file) {
 //		Ad ad = adService.findOne(id);
-//		return "redirect:/account.html";
-//	}
-	
-    @RequestMapping(value="/upload", method=RequestMethod.GET)
-    public @ResponseBody String provideUploadInfo() {
-        return "You can upload a file by posting to this same URL.";
-    }
-    
-  
-
-    @RequestMapping(value="/upload", method=RequestMethod.POST)
-    public String handleFileUpload(Model model, @RequestParam("name") String name,
-            @RequestParam("file") MultipartFile file){
-    	
-    	Image image = new Image();
-        if (!file.isEmpty()) {
-            try {
-                byte[] bytes = file.getBytes();
-                BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
-                stream.write(bytes);
-                stream.close();
-                model.addAttribute("name", name);
-                image.setImage(bytes);
-                image.setName(name);
-                System.out.println("Got image:"+ name);
-            //	Ad ad = adService.findOne(id);
-            //	ad.addImage(image);
-            //    image.setAd(ad);
-//        		imageService.save(image);
-        		return "redirect:/account.html";
-            } catch (Exception e) {
-                return "You failed to upload " + name + " => " + e.getMessage();
-            }
-        } else {
-            return "You failed to upload " + name + " because the file was empty.";
-        }
-    }
+//		System.out.println("/ad/add/ touched");
+//		  if (!file.isEmpty()) {
+//	            try {
+//	                byte[] bytes = file.getBytes();
+//	                BufferedOutputStream stream =
+//	                        new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
+//	                stream.write(bytes);
+//	                stream.close();
+//	                System.out.println("Got image:"+ name + id);
+////	            	ad.addImage(image);
+////	                image.setAd(ad);
+//	        		return "redirect:/account.html";
+//	            } catch (Exception e) {
+//	                return "You failed to upload " + name + " => " + e.getMessage();
+//	            }
+//	        } else {
+//	            return "You failed to upload " + name + " because the file was empty.";
+//	        }
+//	    }
+//	
+//    @RequestMapping(value="/upload", method=RequestMethod.GET)
+//    public @ResponseBody String provideUploadInfo() {
+//        return "You can upload a file by posting to this same URL.";
+//    }
+//    
+//  
+//
+//    @RequestMapping(value="/upload", method=RequestMethod.POST)
+//    public String handleFileUpload(Model model, @RequestParam("name") String name,
+//            @RequestParam("file") MultipartFile file, @PathVariable int adId){
+//    	
+////    	Image image = new Image();
+//        if (!file.isEmpty()) {
+//            try {
+//                byte[] bytes = file.getBytes();
+//                BufferedOutputStream stream =
+//                        new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
+//                stream.write(bytes);
+//                stream.close();
+//                model.addAttribute("name", name);
+////                image.setImage(bytes);
+////                image.setName(name);
+//                System.out.println("Got image:"+ name + adId);
+//            //	Ad ad = adService.findOne(id);
+//            //	ad.addImage(image);
+//            //    image.setAd(ad);
+////        		imageService.save(image);
+//        		return "redirect:/account.html";
+//            } catch (Exception e) {
+//                return "You failed to upload " + name + " => " + e.getMessage();
+//            }
+//        } else {
+//            return "You failed to upload " + name + " because the file was empty.";
+//        }
+//    }
 	
 	/**
 	 * Maps the date format to the convenient date format for the database
