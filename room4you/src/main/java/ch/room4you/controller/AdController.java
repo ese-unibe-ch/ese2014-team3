@@ -46,9 +46,6 @@ public class AdController {
 		byte[] encoded=Base64.encodeBase64(image);
 		String encodedString = new String(encoded);	
 		model.addAttribute("imageForJSP", encodedString); 
-		model.addAttribute("testString", "Test String");
-		System.out.println("Model TestString: "+ model.toString());
-		System.out.println("Model contains imageForJSP: "+model.containsAttribute("imageForJSP"));
 		return "adDetail";
 	}
 	

@@ -86,9 +86,10 @@ public class InitDbService {
 	         ad1.setStreet("Fabrikstrasse 8");
 	         ad1.setCity("Bern");
 	         ad1.setZip(3007);
-	         Date date = new SimpleDateFormat("DD-MM-yyyy", Locale.ENGLISH).parse("2014-11-01");
+	         Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse("2014-11-01");
 	         ad1.setAvailableFrom(date);
 	         ad1.setNbrRooms((float) 4.5);
+	         ad1.setRentPerMonth("CHF 1'200.-");
 	         ad1.setAdditionalInformation("Some additional Info");
 	         byte[] image = "Any String you want".getBytes();
 	         ad1.setImage(image);

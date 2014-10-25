@@ -94,12 +94,9 @@ public class UserController {
 			try {
 				bytes = image1.getBytes();
 				ad.setImage(bytes);		
-				byte[] encoded=Base64.encodeBase64(bytes);
-				String encodedString = new String(encoded);	
-				System.out.println("encodedString: "+encodedString);
-				System.out.println("Model TestString: "+ model.toString());
-				System.out.println("Model contains imageForJSP: "+model.containsAttribute("imageForJSP"));
-				System.out.println("adGetImageBytes: "+ad.getImage().length);
+//				byte[] encoded=Base64.encodeBase64(bytes);
+//				String encodedString = new String(encoded);	
+				System.out.println("Rootpath: "+new File(".").getAbsolutePath());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
