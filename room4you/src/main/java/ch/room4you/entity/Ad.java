@@ -77,43 +77,36 @@ public class Ad {
 //	private byte[] image;
 
 
-	
-    @Transient
-    private MultipartFile multipartFile;
-
-    public MultipartFile getMultipartFile() {
-		return multipartFile;
-	}
-
-	public void setMultipartFile(MultipartFile multipartFile) {
-		this.multipartFile = multipartFile;
-	}
-
 	@Lob
-    @Basic(fetch=FetchType.LAZY, optional=true)
-    byte[] image;
-    
-	public byte[] getImage() {
-		return image;
-	}
-
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
+	@Column(name="ROOM_IMAGES")
+	@OneToMany(mappedBy = "ad", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private List<Image> images;
 	
-//	@Lob
-//	@Column(name="ROOM_IMAGE", columnDefinition="mediumblob")
-//	private MultipartFile image;
-//	
-//	
 //
-//	public MultipartFile getImage() {
+//
+//	@Transient
+//    private MultipartFile multipartFile;
+//
+//    public MultipartFile getMultipartFile() {
+//		return multipartFile;
+//	}
+//
+//	public void setMultipartFile(MultipartFile multipartFile) {
+//		this.multipartFile = multipartFile;
+//	}
+//
+//	@Lob
+//    @Basic(fetch=FetchType.LAZY, optional=true)
+//    byte[] image;
+    
+//	public byte[] getImage() {
 //		return image;
 //	}
 //
-//	public void setImage(MultipartFile image) {
+//	public void setImage(byte[] image) {
 //		this.image = image;
 //	}
+	
 
 	public Integer getId() {
 		return id;
@@ -155,40 +148,32 @@ public class Ad {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+    public List<Image> getImages() {
+		return images;
+	}
 
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+	
+	
+	public void addImage(Image image){
+		this.images.add(image);
+	}
 
-//	public List<Image> getImages() {
-//		return images;
-//	}
-//
-//	public void setImages(List<Image> images) {
-//		this.images = images;
-//	}
+	public void removeImage(Image image){
+		this.images.remove(image);
+	}
 	
-//	public void addImageFromPath(String filePath) {
-//	   	 File file = new File(filePath);
-//	   	 Image image = new Image();
-//	   	 image.setImage(file);
-//	   	 addImage(image);
-//	}
+	public void removeImage(int imageIdx){
+		this.images.remove(imageIdx);
+	}
 	
+	public void removeAllImage(){
+		this.images.removeAll(images);
+	}
 	
-//	
-//	public void addImage(Image image){
-//		this.images.add(image);
-//	}
-//	
-//	public void removeImage(Image image){
-//		this.images.remove(image);
-//	}
-//	
-//	public void removeImage(int imageIdx){
-//		this.images.remove(imageIdx);
-//	}
-//	
-//	public void removeAllImage(){
-//		this.images.removeAll(images);
-//	}
 
 	public String getStreet() {
 		return street;

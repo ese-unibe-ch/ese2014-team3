@@ -42,7 +42,7 @@ public class AdController {
 	@RequestMapping("/ads/{id}")
 	public String detail(Model model, @PathVariable int id) {
 		model.addAttribute("ad", adService.findOne(id));
-		byte[] image = adService.findOne(id).getImage();
+		byte[] image = adService.findOne(id).getImages().get(0).getImage();
 		byte[] encoded=Base64.encodeBase64(image);
 		String encodedString = new String(encoded);	
 		model.addAttribute("imageForJSP", encodedString); 

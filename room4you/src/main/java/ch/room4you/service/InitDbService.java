@@ -25,9 +25,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import ch.room4you.entity.Ad;
+import ch.room4you.entity.Image;
 import ch.room4you.entity.Role;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
+import ch.room4you.repository.ImageRepository;
 import ch.room4you.repository.RoleRepository;
 import ch.room4you.repository.UserRepository;
 
@@ -43,6 +45,9 @@ public class InitDbService {
 
 	@Autowired
 	private AdRepository adRepository;
+	
+	@Autowired
+	private ImageRepository imageRepository;
 	
 		
 	@PostConstruct
@@ -91,18 +96,15 @@ public class InitDbService {
 	         ad1.setNbrRooms((float) 4.5);
 	         ad1.setRentPerMonth("CHF 1'200.-");
 	         ad1.setAdditionalInformation("Some additional Info");
-	         byte[] image = "Any String you want".getBytes();
-	         ad1.setImage(image);
+	         
 	         adRepository.save(ad1);
 	         
-//	         Image image1 = new Image();  
-//	         image1.setImageFromPath("/Users/Sven/Qsync/Studium/Informatik/ESE/ESEGit/ese2014-team3/ese2014-team3/room4you/images/wohnung1.JPG");
-//	         image1.setImage("Soon here will be an image");
-//	         image1.setAd(ad1);
-//	         imageRepository.save(image1);
-	         
-//	         ad1.addImage(image1);
-//	         adRepository.save(ad1);
+	         Image image1 = new Image();  
+	         byte[] image = "Any String you want".getBytes();
+	         image1.setImage(image);
+	         image1.setAd(ad1);
+	         imageRepository.save(image1);
+
 	         
 
 			 

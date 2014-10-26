@@ -29,7 +29,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.room4you.entity.Ad;
+import ch.room4you.entity.Image;
 import ch.room4you.service.AdService;
+import ch.room4you.service.ImageService;
 import ch.room4you.service.UserService;
 
 @Controller
@@ -40,6 +42,11 @@ public class UserController {
 	
 	@Autowired
 	private AdService adService;
+	
+	@Autowired
+	private ImageService imageService;
+	
+
 	
 
 	
@@ -55,7 +62,6 @@ public class UserController {
 		return new Ad();
 	}
 	
-
 
 	
 	/**
@@ -88,24 +94,25 @@ public class UserController {
 		if (result.hasErrors()) {		
 			return account(model, principal);
 		}else{
+					
             
 			byte[] bytes;
 			
 			try {
+				String name = principal.getName();
+				adService.save(ad, name);
+				
+				Image image = new Image();
 				bytes = image1.getBytes();
-				ad.setImage(bytes);		
-//				byte[] encoded=Base64.encodeBase64(bytes);
-//				String encodedString = new String(encoded);	
-				System.out.println("Rootpath: "+new File(".").getAbsolutePath());
+				image.setImage(bytes);
+				image.setAd(ad);
+				imageService.save(image);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 		}
-
-		String name = principal.getName();
-		adService.save(ad, name);
 		return "redirect:/account.html";
 	}
 	
