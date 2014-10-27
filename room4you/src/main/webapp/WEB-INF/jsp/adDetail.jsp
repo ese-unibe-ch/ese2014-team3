@@ -84,13 +84,29 @@
 				
 				</td>			
 			</tr>
+						<tr>
+				<td>
+					<p><strong>Show images</strong></p>
+				</td>
+				<td>
+						<button id="toggleImagesBtn" type="button" class="btn btn-default btn-md">
+  							<span class="glyphicon glyphicon-film"></span>
+						</button>
+				
+				</td>			
+			</tr>
 	</tbody>
 </table>
+
+<div id="adImages" style="display:none">
 
 		<c:forEach items="${images}" var="image">
 			<img src="data:image/jpeg;base64,${image}" alt="image" class="img-thumbnail">
 
 		</c:forEach>
+
+</div>
+
 
 
 
@@ -144,6 +160,13 @@
   	$("#locationModal").on('shown.bs.modal', function () {
   		 google.maps.event.trigger(map, "resize");
   		 map.setCenter(mapCenter);
+  	});
+  	
+  	//Toggle images
+  	$( "#toggleImagesBtn" ).click(function() {
+  	  $( "#adImages" ).toggle( "slow", function() {
+  	    // Animation complete.
+  	  });
   	});
  	});
  	

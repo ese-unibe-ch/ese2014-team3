@@ -93,7 +93,7 @@
 		<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Image:</label>
 				<div class="col-sm-10">
-					<input type="file" name="image[0]" cssClass="form-control" />
+					<input type="file" name="image[]" cssClass="form-control" />
 						<button id="addFile" type="button" class="btn btn-default btn-sm right-block">
 				 			 <span class="glyphicon glyphicon-plus"></span>
 						</button>	
