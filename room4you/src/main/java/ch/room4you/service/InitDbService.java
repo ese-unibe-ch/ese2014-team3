@@ -27,10 +27,12 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Image;
 import ch.room4you.entity.Role;
+import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
 import ch.room4you.repository.ImageRepository;
 import ch.room4you.repository.RoleRepository;
+import ch.room4you.repository.RoomMateRepository;
 import ch.room4you.repository.UserRepository;
 
 @Transactional
@@ -48,6 +50,9 @@ public class InitDbService {
 	
 	@Autowired
 	private ImageRepository imageRepository;
+	
+	@Autowired
+	private RoomMateRepository roomMateRepository;
 	
 		
 	@PostConstruct
@@ -96,16 +101,25 @@ public class InitDbService {
 	         ad1.setNbrRooms((float) 4.5);
 	         ad1.setRentPerMonth("CHF 1'200.-");
 	         ad1.setAdditionalInformation("Some additional Info");
-	         
 	         adRepository.save(ad1);
 	         
+	         RoomMate roomMate = new RoomMate();
+	         roomMate.setUser(userAdmin);
+	         roomMate.setAd(ad1);
+	         roomMateRepository.save(roomMate);
+	         
+	         RoomMate roomMate2 = new RoomMate();
+	         roomMate2.setUser(user1);
+	         roomMate2.setAd(ad1);
+	         roomMateRepository.save(roomMate2);
+	         
+	         	         
+	         	         
 	         Image image1 = new Image();  
 	         byte[] image = "Any String you want".getBytes();
 	         image1.setImage(image);
 	         image1.setAd(ad1);
-	         imageRepository.save(image1);
-
-	         
+	         imageRepository.save(image1);       
 
 			 
 		}

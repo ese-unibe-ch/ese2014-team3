@@ -41,9 +41,8 @@ public class ImageService{
 	
 
 	/**
-	 * Saves the ad in the database
-	 * @param ad
-	 * @param name
+	 * Saves the image in the database
+	 * @param image
 	 */
 	public void save(Image image, int id) {
 		Ad ad = adRepository.findOne(id);

@@ -81,7 +81,13 @@ public class Ad {
 	@OneToMany(mappedBy = "ad", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Image> images;
 	
+
+	@Column(name="ROOM_MATES")
+	@OneToMany(mappedBy = "ad", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private List<RoomMate> roomMates;
 	
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -203,5 +209,17 @@ public class Ad {
 
 	public void setAdditionalInformation(String additionalInformation) {
 		this.additionalInformation = additionalInformation;
+	}
+	
+	public List<RoomMate> getRoomMates() {
+		return roomMates;
+	}
+
+	public void setRoomMates(List<RoomMate> roomMates) {
+		this.roomMates = roomMates;
+	}
+	
+	public void addRoomMate(RoomMate roomMate){
+		roomMates.add(roomMate);
 	}
 }
