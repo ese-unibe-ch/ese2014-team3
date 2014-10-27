@@ -86,9 +86,10 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">RoomMates:</label>
 			<div class="col-sm-10">
-
-				</div>
+				<form:select multiple="true" path="roomMates" items="${users}" itemLabel="name"  />
+			</div>
 		</div>
 		<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Image:</label>

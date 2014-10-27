@@ -1,16 +1,11 @@
 package ch.room4you.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+
 import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.validation.Valid;
-
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -23,15 +18,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Image;
+import ch.room4you.entity.RoomMate;
 import ch.room4you.service.AdService;
 import ch.room4you.service.ImageService;
+import ch.room4you.service.RoomMateService;
 import ch.room4you.service.UserService;
 
 @Controller
@@ -45,6 +39,9 @@ public class UserController {
 	
 	@Autowired
 	private ImageService imageService;
+	
+	@Autowired
+	private RoomMateService roomMateService;
 	
 
 	
@@ -75,6 +72,7 @@ public class UserController {
 	public String account(Model model, Principal principal) {
 		String name = principal.getName();
 		model.addAttribute("user", userService.findOneWithAds(name));
+		model.addAttribute("users", userService.findAll());
 		return "account";
 	}
 
@@ -88,7 +86,9 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
 	public String doAddAd(Model model, @ModelAttribute("ad") Ad ad, BindingResult result, 
-			Principal principal, @RequestParam("image[]") MultipartFile[] images) {
+			Principal principal, @RequestParam("image[]") MultipartFile[] images
+//			,@RequestParam("roomMates") int[] roomMatesIds
+			) {
 
 
 		if (result.hasErrors()) {		
@@ -100,16 +100,29 @@ public class UserController {
 			
 			try {
 				String name = principal.getName();
+				
 				adService.save(ad, name);
 				
+				System.out.println("roomMate size: " );
+				
+				//save images
 				for(MultipartFile imageMPF : images){
-					System.out.println("Images Size: ");
 					Image image = new Image();
 					bytes = imageMPF.getBytes();
 					image.setImage(bytes);
 					image.setAd(ad);
 					imageService.save(image);
 				}
+				
+				//save roommates
+//				for(int id : roomMatesIds){
+//				      RoomMate rm = new RoomMate();
+//				      rm.setUser(userService.findOne(id));
+//				      System.out.println(rm.getUser().getName());
+//				      rm.setAd(ad);
+//				      roomMateService.save(rm, ad.getId());
+//				}
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
