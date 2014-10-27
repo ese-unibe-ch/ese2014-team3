@@ -1,5 +1,8 @@
 package ch.room4you.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,10 +45,16 @@ public class AdController {
 	@RequestMapping("/ads/{id}")
 	public String detail(Model model, @PathVariable int id) {
 		model.addAttribute("ad", adService.findOne(id));
-		byte[] image = adService.findOne(id).getImages().get(0).getImage();
-		byte[] encoded=Base64.encodeBase64(image);
-		String encodedString = new String(encoded);	
-		model.addAttribute("imageForJSP", encodedString); 
+		List<String> encodedImages = new ArrayList();
+		for(int i = 0; i < adService.findOne(id).getImages().size(); i++){
+			byte[] image = adService.findOne(id).getImages().get(i).getImage();
+			byte[] encoded=Base64.encodeBase64(image);
+			String encodedString = new String(encoded);
+			encodedImages.add(encodedString);
+			
+		}
+		model.addAttribute("images", encodedImages); 
+
 		return "adDetail";
 	}
 	

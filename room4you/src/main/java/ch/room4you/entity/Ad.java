@@ -62,8 +62,7 @@ public class Ad {
 	@Type(type = "org.hibernate.type.StringClobType")
 	@Column(length = Integer.MAX_VALUE)
 	private String additionalInformation;
-	
-	
+
 
 //	@Lob
 //	@Column(name="ROOM_IMAGES", columnDefinition="mediumblob")
@@ -82,32 +81,7 @@ public class Ad {
 	@OneToMany(mappedBy = "ad", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Image> images;
 	
-//
-//
-//	@Transient
-//    private MultipartFile multipartFile;
-//
-//    public MultipartFile getMultipartFile() {
-//		return multipartFile;
-//	}
-//
-//	public void setMultipartFile(MultipartFile multipartFile) {
-//		this.multipartFile = multipartFile;
-//	}
-//
-//	@Lob
-//    @Basic(fetch=FetchType.LAZY, optional=true)
-//    byte[] image;
-    
-//	public byte[] getImage() {
-//		return image;
-//	}
-//
-//	public void setImage(byte[] image) {
-//		this.image = image;
-//	}
 	
-
 	public Integer getId() {
 		return id;
 	}

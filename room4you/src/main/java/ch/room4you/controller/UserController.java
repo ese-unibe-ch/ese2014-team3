@@ -88,7 +88,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
 	public String doAddAd(Model model, @ModelAttribute("ad") Ad ad, BindingResult result, 
-			Principal principal, @RequestParam("image1") MultipartFile image1) {
+			Principal principal, @RequestParam("image[]") MultipartFile[] images) {
 
 
 		if (result.hasErrors()) {		
@@ -102,11 +102,14 @@ public class UserController {
 				String name = principal.getName();
 				adService.save(ad, name);
 				
-				Image image = new Image();
-				bytes = image1.getBytes();
-				image.setImage(bytes);
-				image.setAd(ad);
-				imageService.save(image);
+				for(MultipartFile imageMPF : images){
+					System.out.println("Images Size: ");
+					Image image = new Image();
+					bytes = imageMPF.getBytes();
+					image.setImage(bytes);
+					image.setAd(ad);
+					imageService.save(image);
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

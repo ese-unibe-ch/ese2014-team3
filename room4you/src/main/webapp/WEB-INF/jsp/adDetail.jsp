@@ -87,7 +87,12 @@
 	</tbody>
 </table>
 
-<img src="data:image/jpeg;base64,${imageForJSP}" alt="image1" class="img-thumbnail">
+		<c:forEach items="${images}" var="image">
+			<img src="data:image/jpeg;base64,${image}" alt="image" class="img-thumbnail">
+
+		</c:forEach>
+
+
 
 </div>
 

@@ -15,12 +15,12 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div  class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">New Ad</h4>
       </div>
-      <div class="modal-body">
+      <div id="myModalContent" class="modal-body">
 
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Title:</label>
@@ -86,83 +86,28 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<div class="col-sm-10">
+
+				</div>
+		</div>
+		<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Image:</label>
 				<div class="col-sm-10">
-					<input type="file" name="image1" cssClass="form-control" />
+					<input type="file" name="image[0]" cssClass="form-control" />
+						<button id="addFile" type="button" class="btn btn-default btn-sm right-block">
+				 			 <span class="glyphicon glyphicon-plus"></span>
+						</button>	
 				</div>
 			</div>
-      </div>
+		</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <input type="submit" class="btn btn-primary" value="Save" />
+      </div>     
       </div>
     </div>
   </div>
-</div>
 </form:form>
-
-<br /><br />
-
-
-<!-- Modal -->
-<%-- <form:form  cssClass="form-horizontal imageForm" enctype="multipart/form-data" > --%>
-<!-- <div class="modal fade" id="modalAddImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
-<!-- 	  <div class="modal-dialog"> -->
-<!-- 	    <div class="modal-content"> -->
-<!-- 	      <div class="modal-header"> -->
-<!-- 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-<!-- 	        <h4 class="modal-title" id="myModalLabel">New Ad</h4> -->
-<!-- 	      </div> -->
-<!-- 	      <div class="modal-body"> -->
-	
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
-<!-- 				<div class="col-sm-10"> -->
-<!-- 					<input type="file" name="file" cssClass="form-control" /> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="name" class="col-sm-2 control-label">Name:</label> -->
-<!-- 				<div class="col-sm-10"> -->
-<!-- 					<input type="text" name="name" cssClass="form-control" /> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			
-<!-- 	      </div> -->
-<!-- 	      <div class="modal-footer"> -->
-<!-- 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-<!-- 	        <input type="submit" class="btn btn-primary" value="Save" /> -->
-<!-- 	      </div> -->
-<!-- 	    </div> -->
-<!-- 	  </div> -->
-<!-- 	</div>	 -->
-<%-- </form:form>  --%>
-<!-- <div class="modal fade" id="myImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
-<!--   <div class="modal-dialog"> -->
-<!--     <div class="modal-content"> -->
-<!--       <div class="modal-header"> -->
-<!--         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-<!--         <h4 class="modal-title" id="myModalLabel">New Image</h4> -->
-<!--       </div> -->
-<%-- <%--       <input type="hidden" name="ad" value="${user.ad.id}">  --%>
-<!--       <div class="modal-body"> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
-<%-- 				<div href="<spring:url value="/ads/1.html" />" class="col-sm-10"> --%>
-<%-- <%-- 					<form:input type="file" path="image" cssClass="form-control" /> --%>
-<%-- 					<form:errors path="image" /> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
-
-<!--       </div> -->
-<!--       <div class="modal-footer"> -->
-<!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-<!--         <input type="submit" class="btn btn-primary" value="Save" /> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
-<%-- </form:form> --%>
 
 <br /><br />
 
@@ -274,36 +219,19 @@ $(document).ready(function() {
   </div>
 </div>
 
-<!-- <!-- Modal ad Image--> 
-<!-- <div commandName="image" class="modal fade" id="modalAddImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
-<%-- <form:form cssClass="form-horizontal imageForm" enctype="multipart/form-data" > --%>
-<!-- 	  <div class="modal-dialog"> -->
-<!-- 	    <div class="modal-content"> -->
-<!-- 	      <div class="modal-header"> -->
-<!-- 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-<!-- 	        <h4 class="modal-title" id="myModalLabel">New Ad</h4> -->
-<!-- 	      </div> -->
-<!-- 	      <div class="modal-body"> -->
-	
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="name" class="col-sm-2 control-label">Image:</label> -->
-<!-- 				<div class="col-sm-10"> -->
-<!-- 					<input type="file" name="file" cssClass="form-control" /> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="name" class="col-sm-2 control-label">Name:</label> -->
-<!-- 				<div class="col-sm-10"> -->
-<!-- 					<input type="text" name="name" cssClass="form-control" /> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			
-<!-- 	      </div> -->
-<!-- 	      <div class="modal-footer"> -->
-<!-- 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-<!-- 	        <a href="" class="btn btn-danger removeBtn">Save</a> -->
-<!-- 	      </div> -->
-<!-- 	    </div> -->
-<!-- 	  </div> -->
-<%-- </form:form>  --%>
-<!-- </div> -->
+<!-- adding more fileinputs -->
+<script>
+$(document).ready(function() {
+    //add more file components if Add is clicked
+    $('#addFile').click(function() {
+        var fileIndex = $('#fileTable tr').children().length - 1;
+        $('#myModalContent').append(
+        		'<div class="form-group">'+
+				'<label for="name" class="col-sm-2 control-label">Image:</label>'+
+				'<div class="col-sm-10">'+
+					'<input type="file" name="image[]" cssClass="form-control" />'+
+				'</div>');
+    });
+     
+});
+</script>
