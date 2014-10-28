@@ -67,8 +67,9 @@ public class AdController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String currentUser = auth.getName();
 		User user = userService.findOneByName(currentUser);
-		System.out.println(user.isBookmarkedAd(ad));
-		System.out.println(!user.isBookmarkedAd(ad));
+	//	System.out.println(user.isBookmarkedAd(ad));
+	//	System.out.println(!user.isBookmarkedAd(ad));
+		
 		//contains method doesn't work in isBookmarked
 		if (!user.isBookmarkedAd(ad)) {
 			user.setBookmarkedAd(ad);

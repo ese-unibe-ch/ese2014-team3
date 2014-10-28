@@ -227,7 +227,7 @@ $(document).ready(function() {
 		<tr>
 			<th>Title</th>
 			<th>Description</th>
-			<th>Unboomark Ad</th>
+			<th>Unbookmark Ad</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -243,7 +243,7 @@ $(document).ready(function() {
 				</td>
 				<td>
 					<a href="<spring:url value="/ad/unBookmarkAd/${ad.id}.html" />" class="btn btn-danger triggerRemove">
-						unboomark Ad
+						Unbookmark Ad
 					</a>
 				</td>
 			</tr>
