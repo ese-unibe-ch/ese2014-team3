@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/images"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java/images/images"/>
         <property name="context-root" value="room4you"/>
         <property name="java-output-path" value="/room4you/target/classes"/>
     </wb-module>

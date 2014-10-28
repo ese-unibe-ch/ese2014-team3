@@ -104,13 +104,15 @@ public class UserController {
 			try {
 				
 				//save roommates
-				List<String> roomMates = Arrays.asList(roomMate.split(","));
-				for(String roomM : roomMates){
-					RoomMate rm = new RoomMate();
-					rm.setUser(userService.findOne(Integer.parseInt(roomM)));
-					rm.setAd(ad);	      
-					roomMateService.save(rm);
-				}
+				if(roomMate!=null){
+					List<String> roomMates = Arrays.asList(roomMate.split(","));
+					for(String roomM : roomMates){
+						RoomMate rm = new RoomMate();
+						rm.setUser(userService.findOne(Integer.parseInt(roomM)));
+						rm.setAd(ad);	      
+						roomMateService.save(rm);
+					}
+				}				
 				
 				
 				//save imagesAsString
