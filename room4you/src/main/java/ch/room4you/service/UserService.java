@@ -87,7 +87,6 @@ public class UserService {
 		List<Ad> ads = adRepository.findByUser(user);
 		user.setAds(ads);
 		return user;
-	}
-	
+	}	
 
 }
