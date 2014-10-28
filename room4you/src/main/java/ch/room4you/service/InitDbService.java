@@ -116,8 +116,7 @@ public class InitDbService {
 	         	         
 	         	         
 	         Image image1 = new Image();  
-	         byte[] image = "Any String you want".getBytes();
-	         image1.setImage(image);
+	         image1.setImageAsString("Test");
 	         image1.setAd(ad1);
 	         imageRepository.save(image1);       
 

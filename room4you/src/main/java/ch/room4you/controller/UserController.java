@@ -4,15 +4,16 @@ package ch.room4you.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Image;
 import ch.room4you.entity.RoomMate;
-import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
 import ch.room4you.service.ImageService;
 import ch.room4you.service.RoomMateService;
@@ -93,28 +93,34 @@ public class UserController {
 			,@RequestParam("roomMates") String roomMate
 			) {	
 				
-			String name = principal.getName();
-			
+			String name = principal.getName();			
 			adService.save(ad, name);
             
-			byte[] bytes;
+			
 			
 			try {
 				
 				//save roommates
-				RoomMate rm = new RoomMate();
-				rm.setUser(userService.findOne(Integer.parseInt(roomMate)));
-				rm.setAd(ad);	      
-				roomMateService.save(rm);
+				List<String> roomMates = Arrays.asList(roomMate.split(","));
+				for(String roomM : roomMates){
+					RoomMate rm = new RoomMate();
+					rm.setUser(userService.findOne(Integer.parseInt(roomM)));
+					rm.setAd(ad);	      
+					roomMateService.save(rm);
+				}
 				
-				//save images
+				
+				//save imagesAsString
+				byte[] bytes;
 				for(MultipartFile imageMPF : images){
 					Image image = new Image();
 					bytes = imageMPF.getBytes();
-					image.setImage(bytes);
+					byte[] encoded=Base64.encodeBase64(bytes);
+					String encodedString = new String(encoded);
+					image.setImageAsString(encodedString);
 					image.setAd(ad);
 					imageService.save(image);
-				}			
+				}
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

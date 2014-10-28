@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ch.room4you.entity.Ad;
-import ch.room4you.entity.Image;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.repository.AdRepository;
 import ch.room4you.repository.RoomMateRepository;

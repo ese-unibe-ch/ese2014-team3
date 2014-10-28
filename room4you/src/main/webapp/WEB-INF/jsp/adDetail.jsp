@@ -106,8 +106,8 @@
 
 <div id="adImages" style="display:none">
 
-		<c:forEach items="${images}" var="image">
-			<img src="data:image/jpeg;base64,${image}" alt="image" class="img-thumbnail">
+		<c:forEach items="${ad.images}" var="image">
+			<img src="data:image/jpeg;base64,${image.imageAsString}" alt="image" class="img-thumbnail">
 
 		</c:forEach>
 

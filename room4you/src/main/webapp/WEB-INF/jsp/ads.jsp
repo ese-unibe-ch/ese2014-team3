@@ -8,7 +8,7 @@
 	<c:forEach items="${ads}" var="ad">
 		  <div class="col-sm-6 col-md-4">
 		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" src="http://openphoto.net/volumes/sizes/taluda/21138/2.jpg"  alt="images/wohnung1.JPG" height="300" width="300">
+		      <img data-src="holder.js/300x300" src="data:image/jpeg;base64,${ad.images[0].imageAsString}"  alt="images/wohnung.JPG" height="300" width="300">
 		      <div class="caption">
 		        <h3>${ad.title}</h3>
 		        <p>${ad.description}</p>
@@ -17,4 +17,7 @@
 		    </div>
 		  </div>
 	</c:forEach>
+	
+
+	
 </div>
