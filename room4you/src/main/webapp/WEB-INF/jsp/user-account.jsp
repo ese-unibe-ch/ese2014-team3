@@ -67,17 +67,23 @@
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Available from:</label>
 			<div class="col-sm-10">
-				<form:input path="availableFrom" cssClass="form-control" />
+				<form:input type="date" path="availableFrom" cssClass="form-control" />
 				<form:errors path="availableFrom" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">Rent per month (CHF):</label>
+			<label for="name" class="col-sm-2 control-label">Rent per month:</label>
 			<div class="col-sm-10">
-				<form:input path="rentPerMonth" cssClass="form-control" />
-				<form:errors path="rentPerMonth" />
+			<div class="input-group">
+				<span class="input-group-addon">CHF</span>
+ 					<form:input path="rentPerMonth" cssClass="form-control" />
+					<form:errors path="rentPerMonth" />
+  				<span class="input-group-addon">.00</span>		
+  			</div>		
 			</div>
 		</div>
+		
+
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Additional Information:</label>
 			<div class="col-sm-10">
@@ -88,7 +94,7 @@
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">RoomMates:</label>
 			<div class="col-sm-10">
-				 <form:select path="roomMates">         
+				  <form:select class="form-control" path="roomMates">         
                     <form:options items="${users}" var="users" itemValue="id" itemLabel="name"/>
                   </form:select>
 			</div>
@@ -121,11 +127,7 @@ $(document).ready(function() {
 		$("#modalRemove .removeBtn").attr("href", $(this).attr("href"));
 		$("#modalRemove").modal();
 	});
-// 	$(".triggerAdImage").click(function(e) {
-// 		e.preventDefault();
-// 		$("#modalAddImage .adBtn").attr("href", $(this).attr("href"));
-// 		$("#modalAddImage").modal();
-// 	});
+
 	$(".adForm").validate(
 			{
 				rules: {

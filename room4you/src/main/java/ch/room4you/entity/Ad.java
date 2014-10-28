@@ -64,18 +64,6 @@ public class Ad {
 	private String additionalInformation;
 
 
-//	@Lob
-//	@Column(name="ROOM_IMAGES", columnDefinition="mediumblob")
-//	@OneToMany(mappedBy = "ad", cascade = CascadeType.REMOVE)
-//	private List<Image> images;
-//	
-	
-//	@Lob
-//	@Type(type="org.hibernate.type.BinaryType") 
-//	@Column(name="ROOM_IMAGE", columnDefinition="mediumblob")
-//	private byte[] image;
-
-
 	@Lob
 	@Column(name="ROOM_IMAGES")
 	@OneToMany(mappedBy = "ad", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)

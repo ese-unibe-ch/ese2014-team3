@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import ch.room4you.entity.RoomMate;
 import ch.room4you.service.AdService;
 
@@ -27,6 +29,19 @@ public class AdController {
 	@RequestMapping("/ads")
 	public String ads(Model model) {
 		model.addAttribute("ads", adService.findAll());
+		return "ads";
+	}
+	
+	/**
+	 * Maps the request url /ads to the page ads.jsp and provides the model "ads"
+	 * with all ads in the repository
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/searchAds", method = RequestMethod.POST)
+	public String search(Model model) {
+		model.addAttribute("searchedAds", adService.findOne(1));
 		return "ads";
 	}
 	
