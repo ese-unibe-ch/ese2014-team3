@@ -40,7 +40,11 @@ public class RoomMateService{
 		ad.addRoomMate(roomMate);
 		adRepository.save(ad);
 	}
-
+	
+	public void save(RoomMate roomMate) {
+		roomMateRepository.save(roomMate);
+		
+	}
 	
 
 

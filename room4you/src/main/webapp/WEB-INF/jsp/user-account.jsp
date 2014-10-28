@@ -88,7 +88,9 @@
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">RoomMates:</label>
 			<div class="col-sm-10">
-				<form:select multiple="true" path="roomMates" items="${users}" itemLabel="name"  />
+				 <form:select path="roomMates">         
+                    <form:options items="${users}" var="users" itemValue="id" itemLabel="name"/>
+                  </form:select>
 			</div>
 		</div>
 		<div class="form-group">

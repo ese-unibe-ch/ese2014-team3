@@ -70,7 +70,13 @@
 					<p><strong>We are</strong></p>
 				</td>
 				<td>
-					<p>TODO...</p>					
+					<p>
+							<c:forEach items="${roomMates}" var="roomMate">
+							<a href="<spring:url value="/users/${roomMate.user.id}.html" />">
+								<c:out value="${roomMate.user.name}" />
+							</a>	
+							</c:forEach>					
+					</p>					
 				</td>		
 			</tr>
 			<tr>

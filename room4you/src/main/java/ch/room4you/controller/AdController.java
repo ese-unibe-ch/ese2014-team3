@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import ch.room4you.entity.RoomMate;
 import ch.room4you.service.AdService;
 
 @Controller
@@ -54,6 +55,13 @@ public class AdController {
 			
 		}
 		model.addAttribute("images", encodedImages); 
+		
+		List<RoomMate> roomMates = new ArrayList();
+		for(int i = 0; i < adService.findOne(id).getRoomMates().size(); i++){
+			roomMates.add(adService.findOne(id).getRoomMates().get(i));			
+		}
+		
+		model.addAttribute("roomMates", roomMates); 
 
 		return "adDetail";
 	}
