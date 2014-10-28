@@ -1,0 +1,24 @@
+package ch.room4you.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import ch.room4you.service.AdService;
+
+
+@Controller
+public class MessageController {
+	
+	@Autowired
+	private AdService adService;
+	
+	@RequestMapping("/message/{id}")
+	public String message(Model model, @PathVariable int id) {
+		model.addAttribute("ad", adService.findOne(id));
+		model.addAttribute("command", new Message());
+		return "message";
+	}
+}

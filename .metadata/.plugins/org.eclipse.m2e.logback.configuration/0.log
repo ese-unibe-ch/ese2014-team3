@@ -1,0 +1,470 @@
+2014-10-27 17:29:47,208 [Worker-0] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: ch.room4you:room4you:0.0.1-SNAPSHOT @ /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/pom.xml.
+2014-10-27 17:29:51,395 [Worker-9] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: ch.room4you:room4you:0.0.1-SNAPSHOT @ /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/pom.xml.
+2014-10-27 17:29:51,400 [Worker-0] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /room4you/src/main/java
+2014-10-27 17:29:51,401 [Worker-0] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /room4you/src/test/java
+2014-10-27 17:29:55,903 [Worker-0] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 14 sec
+2014-10-27 17:30:00,718 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: ch.room4you:room4you:0.0.1-SNAPSHOT @ /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/pom.xml.
+2014-10-27 17:30:02,265 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:30:02,276 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:30:02,280 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:30:02,281 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:31:16,270 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:31:16,278 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:31:16,280 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:31:16,283 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:36:32,104 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:36:32,113 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:36:32,126 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:36:32,127 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:36:50,864 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:36:50,867 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:36:50,869 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:36:50,870 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:37:27,778 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:37:27,782 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:37:27,784 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:37:27,785 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:37:49,161 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:37:49,163 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:37:49,166 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:37:49,167 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:39:03,052 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:39:03,053 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:39:03,056 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:39:03,057 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:39:13,120 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:39:13,120 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:39:13,124 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:39:13,125 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:39:32,940 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:39:32,942 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:39:32,944 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:39:32,945 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:39:39,364 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:39:39,366 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:39:39,369 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:39:39,370 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:42:37,032 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:42:37,093 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:42:37,131 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:42:37,134 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:43:05,534 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:43:05,536 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:43:05,538 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:43:05,539 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:43:26,762 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:43:26,764 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:43:26,766 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:43:26,766 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:43:57,952 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:43:57,955 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:43:57,957 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:43:57,958 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:45:42,794 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:45:42,798 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:45:42,803 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:45:42,805 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:45:54,572 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:45:54,575 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:45:54,581 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:45:54,581 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:51:11,617 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:51:11,621 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:51:11,625 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:51:11,626 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:51:39,264 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:51:39,266 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:51:39,270 [Worker-11] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:51:39,271 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 17:55:18,750 [Worker-1] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you
+2014-10-27 17:55:18,753 [Worker-1] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B install
+2014-10-27 17:55:26,085 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:55:26,087 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 17:55:26,091 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 17:55:26,092 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:02:45,578 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:02:45,581 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:02:45,584 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:02:45,585 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:03:15,711 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:03:15,712 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:03:15,714 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:03:15,715 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:05:31,414 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:05:31,417 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:05:31,419 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:05:31,424 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:05:36,325 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:05:36,326 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:05:36,327 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:05:36,329 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:06:08,752 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:06:08,756 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:06:08,758 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:06:08,758 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:06:13,777 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:06:13,778 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:06:13,780 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:06:13,781 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:06:22,759 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:06:22,764 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:06:22,766 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:06:22,767 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:06:56,667 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:06:56,676 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:06:56,677 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:06:56,678 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:07:09,971 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:07:09,972 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:07:09,974 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:07:09,975 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:08:02,024 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:08:02,029 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:08:02,032 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:08:02,033 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:15:21,058 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:15:21,062 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:15:21,064 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:15:21,064 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:15:50,667 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:15:50,672 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:15:50,674 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:15:50,675 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:15:56,120 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:15:56,121 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:15:56,122 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:15:56,123 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:16:40,507 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:16:40,512 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:16:40,514 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:16:40,518 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:16:55,328 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:16:55,332 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:16:55,337 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:16:55,338 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:45:20,061 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:45:20,065 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:45:20,066 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:45:20,067 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:48:27,749 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:48:27,753 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:48:27,756 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:48:27,756 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:48:32,202 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:48:32,203 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:48:32,204 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:48:32,205 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:55:35,115 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:55:35,119 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:55:35,121 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:55:35,123 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:55:48,955 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:55:48,956 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:55:48,958 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:55:48,959 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:59:01,149 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:59:01,155 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:59:01,162 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:59:01,163 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 18:59:44,224 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:59:44,227 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 18:59:44,228 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 18:59:44,229 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:00:28,870 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:00:28,882 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:00:28,884 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:00:28,885 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:01:28,828 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:01:28,832 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:01:28,833 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:01:28,834 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:01:38,255 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:01:38,257 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:01:38,258 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:01:38,259 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:04:55,314 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:04:55,318 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:04:55,322 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:04:55,323 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:05:50,116 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:05:50,118 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:05:50,119 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:05:50,120 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:05:54,536 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:05:54,536 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:05:54,538 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:05:54,542 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:07:48,177 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:07:48,180 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:07:48,183 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:07:48,183 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:07:55,770 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:07:55,772 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:07:55,773 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:07:55,773 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:08:15,230 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:08:15,232 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:08:15,233 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:08:15,234 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:08:32,784 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:08:32,791 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:08:32,792 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:08:32,793 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:10:40,729 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:10:40,732 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:10:40,734 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:10:40,734 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:10:45,867 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:10:45,867 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:10:45,868 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:10:45,869 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:12:30,210 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:12:30,217 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:12:30,219 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:12:30,219 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:13:00,348 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you
+2014-10-27 19:13:00,349 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B clean
+2014-10-27 19:13:03,525 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:13:03,526 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:13:03,527 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:13:03,528 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:13:09,582 [Worker-15] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you
+2014-10-27 19:13:09,583 [Worker-15] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B install
+2014-10-27 19:13:16,520 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:13:16,522 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:13:16,524 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:13:16,525 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:14:12,087 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:14:12,089 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:14:12,090 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:14:12,091 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:14:54,980 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:14:54,983 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:14:54,985 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:14:54,985 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:18:55,670 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:18:55,689 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:18:55,694 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:18:55,695 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 19:59:42,963 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:59:42,977 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 19:59:42,981 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 19:59:42,982 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:01:47,212 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:01:47,238 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:01:47,250 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:01:47,251 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:02:36,551 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:02:36,553 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:02:36,556 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:02:36,557 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:03:33,475 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:03:33,478 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:03:33,480 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:03:33,482 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:06:59,654 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:06:59,690 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:06:59,696 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:06:59,697 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:07:56,310 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:07:56,313 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:07:56,324 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:07:56,325 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:08:22,884 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:08:22,895 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:08:22,898 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:08:22,899 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:08:55,740 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:08:55,742 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:08:55,744 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:08:55,745 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:09:08,351 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:09:08,352 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:09:08,355 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:09:08,355 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:10:31,243 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:10:31,252 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:10:31,254 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:10:31,260 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:13:12,773 [Worker-5] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you
+2014-10-27 20:13:12,774 [Worker-5] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B clean
+2014-10-27 20:13:16,443 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:13:16,444 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:13:16,448 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:13:16,450 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:15:11,684 [Worker-8] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you
+2014-10-27 20:15:11,685 [Worker-8] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B install
+2014-10-27 20:15:18,428 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:15:18,432 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:15:18,436 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:15:18,437 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:15:39,326 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:15:39,327 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:15:39,329 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:15:39,329 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:15:42,559 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:15:42,560 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:15:42,562 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:15:42,563 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:17:58,628 [Worker-7] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: ch.room4you:room4you:0.0.1-SNAPSHOT @ /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/pom.xml.
+2014-10-27 20:18:00,685 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:18:00,685 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:18:00,687 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:18:00,688 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:18:00,689 [Worker-7] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of room4you
+2014-10-27 20:18:00,691 [Worker-7] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for room4you
+2014-10-27 20:18:00,709 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:22:06,770 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:22:06,777 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:22:06,781 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:22:06,781 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:22:28,356 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:22:28,357 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:22:28,360 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:22:28,361 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:30:49,954 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:30:49,959 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:30:49,963 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:30:49,964 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:30:51,988 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:30:51,989 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:30:51,991 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:30:51,991 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:34:26,505 [Worker-12] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you
+2014-10-27 20:34:26,507 [Worker-12] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B clean
+2014-10-27 20:34:29,864 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:34:29,867 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:34:29,872 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:34:29,873 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:34:50,887 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:34:50,891 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:34:50,895 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:34:50,896 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:37:11,245 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:37:11,259 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:37:11,261 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:37:11,262 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:37:43,632 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:37:43,634 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:37:43,636 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:37:43,637 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:38:52,208 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:38:52,211 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:38:52,213 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:38:52,214 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-27 20:41:43,057 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:41:43,059 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-27 20:41:43,061 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-27 20:41:43,061 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:16:04,273 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:16:04,305 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:16:04,314 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:16:04,317 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:17:49,883 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:17:49,887 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:17:49,891 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:17:49,893 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:19:44,226 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:19:44,228 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:19:44,230 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:19:44,231 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:19:53,171 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:19:53,177 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:19:53,179 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:19:53,180 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:22:59,568 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:22:59,569 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:22:59,571 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:22:59,572 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:23:31,793 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:23:31,794 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:23:31,796 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:23:31,797 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:25:04,458 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:25:04,459 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:25:04,461 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:25:04,461 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:25:57,559 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:25:57,560 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:25:57,564 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:25:57,565 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:26:06,058 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:26:06,059 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:26:06,061 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:26:06,061 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:28:12,855 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:28:12,858 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:28:12,860 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:28:12,861 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:28:15,977 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:28:15,978 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:28:15,979 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:28:15,980 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:28:48,159 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:28:48,162 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:28:48,164 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:28:48,164 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:29:25,032 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:29:25,034 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:29:25,036 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:29:25,038 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:30:15,775 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:30:15,778 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:30:15,780 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:30:15,781 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:30:47,289 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:30:47,294 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:30:47,296 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:30:47,296 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:32:08,757 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:32:08,759 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:32:08,763 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:32:08,764 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:42:16,595 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:42:16,599 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:42:16,601 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:42:16,602 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:42:25,261 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:42:25,264 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:42:25,266 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:42:25,267 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:42:33,473 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:42:33,474 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:42:33,476 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:42:33,476 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:44:12,267 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:44:12,276 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:44:12,278 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:44:12,278 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:44:21,223 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:44:21,224 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:44:21,226 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:44:21,227 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:45:02,897 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:45:02,903 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:45:02,905 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:45:02,906 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:46:02,476 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:46:02,478 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:46:02,480 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:46:02,480 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:47:02,399 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:47:02,405 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:47:02,407 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:47:02,408 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:48:39,805 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:48:39,811 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:48:39,813 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:48:39,813 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:50:25,404 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:50:25,414 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:50:25,417 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:50:25,417 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:50:36,386 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:50:36,388 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:50:36,390 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:50:36,390 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
+2014-10-28 14:50:40,584 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:50:40,585 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/main/resources
+2014-10-28 14:50:40,587 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2014-10-28 14:50:40,587 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/room4you/src/test/resources
