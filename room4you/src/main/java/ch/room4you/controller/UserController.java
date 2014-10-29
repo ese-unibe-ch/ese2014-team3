@@ -101,7 +101,7 @@ public class UserController {
 			try {
 				
 				//save roommates
-				if(roomMate!=null){
+				if(!roomMate.isEmpty()){
 					List<String> roomMates = Arrays.asList(roomMate.split(","));
 					for(String roomM : roomMates){
 						RoomMate rm = new RoomMate();
@@ -109,7 +109,7 @@ public class UserController {
 						rm.setAd(ad);	      
 						roomMateService.save(rm);
 					}
-				}				
+				}
 				
 				
 				//save imagesAsString

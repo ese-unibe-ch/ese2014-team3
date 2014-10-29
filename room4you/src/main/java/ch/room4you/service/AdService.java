@@ -6,6 +6,8 @@ package ch.room4you.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.method.P;
@@ -13,8 +15,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import ch.room4you.entity.Ad;
+import ch.room4you.entity.Image;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
+import ch.room4you.repository.ImageRepository;
 import ch.room4you.repository.UserRepository;
 
 @Service
@@ -25,6 +29,9 @@ public class AdService{
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private ImageRepository imageRepository;
 	
 
 	/**
@@ -51,6 +58,18 @@ public class AdService{
 	
 	public List<Ad> findAll() {
 		return adRepository.findAll();
+	}
+
+	
+	@Transactional
+	public List<Ad> findByCity(String city) {		
+		List<Ad> ads = adRepository.findByCity(city);	
+		for (Ad ad : ads) {
+			List<Image> images = imageRepository.findByAd(ad);
+			ad.setImages(images);
+		}
+	return ads;	
+
 	}
 
 }

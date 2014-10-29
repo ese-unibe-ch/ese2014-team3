@@ -15,4 +15,6 @@ public interface AdRepository extends JpaRepository<Ad, Integer> {
 
 	List<Ad> findByUser(User user);
 	
+	List<Ad> findByCity(String City);
+	
 }

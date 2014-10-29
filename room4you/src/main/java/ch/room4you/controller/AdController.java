@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import ch.room4you.entity.Ad;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.service.AdService;
 
@@ -40,8 +42,8 @@ public class AdController {
 	 * @return
 	 */
 	@RequestMapping(value="/searchAds", method = RequestMethod.POST)
-	public String search(Model model) {
-		model.addAttribute("searchedAds", adService.findOne(1));
+	public String search(Model model, @RequestParam("searchTextCity") String searchTextCity) {
+		model.addAttribute("ads", adService.findByCity(searchTextCity));
 		return "ads";
 	}
 	

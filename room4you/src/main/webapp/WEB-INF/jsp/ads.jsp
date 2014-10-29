@@ -10,7 +10,7 @@
   </div> 
   <div class="form-group">
     <label class="sr-only" for="searchTextCity">City</label>
-    <input type="text" class="form-control" id="searchTextCity" placeholder="City">
+    <input type="text" class="form-control" name="searchTextCity" id="searchTextCity" placeholder="City">
   </div>
   <div class="form-group">
     <label class="sr-only" for="searchTextMaxPrice">Max. price</label>
