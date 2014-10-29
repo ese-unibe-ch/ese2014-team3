@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import ch.room4you.entity.Ad;
@@ -93,8 +94,11 @@ public class UserController {
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
 	public String doAddAd(Model model, @ModelAttribute("ad") Ad ad, BindingResult result, 
 			Principal principal, @RequestParam("image[]") MultipartFile[] images
-			,@RequestParam("roomMates") String roomMate
+	//		,@RequestParam("roomMates") String roomMate
+			,org.springframework.web.context.request.WebRequest webRequest
 			) {	
+		
+			String roomMate = webRequest.getParameter("roomMates");
 				
 			String name = principal.getName();			
 			adService.save(ad, name);
@@ -104,7 +108,7 @@ public class UserController {
 			try {
 				
 				//save roommates
-				if(!roomMate.isEmpty()){
+				if(roomMate!=null){
 					List<String> roomMates = Arrays.asList(roomMate.split(","));
 					for(String roomM : roomMates){
 						RoomMate rm = new RoomMate();

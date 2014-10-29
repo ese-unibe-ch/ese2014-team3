@@ -51,7 +51,7 @@ public class AdController {
 	 */
 	@RequestMapping(value="/searchAds", method = RequestMethod.POST)
 	public String search(Model model, @RequestParam("searchTextCity") String searchTextCity) {
-		model.addAttribute("ads", adService.findByCity(searchTextCity));
+		model.addAttribute("ads", adService.findAdsWithFormCriteria(searchTextCity));
 		return "ads";
 	}
 	

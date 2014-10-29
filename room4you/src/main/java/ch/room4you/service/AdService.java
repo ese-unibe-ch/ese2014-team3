@@ -61,9 +61,11 @@ public class AdService{
 	}
 
 	
+
+	
 	@Transactional
-	public List<Ad> findByCity(String city) {		
-		List<Ad> ads = adRepository.findByCity(city);	
+	public List<Ad> findAdsWithFormCriteria(String city) {	
+		List<Ad> ads = adRepository.findAdsWithFormCriteria(city);	
 		for (Ad ad : ads) {
 			List<Image> images = imageRepository.findByAd(ad);
 			ad.setImages(images);
