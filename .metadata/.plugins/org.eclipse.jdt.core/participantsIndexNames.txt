@@ -1,5 +1,0 @@
-INDEX VERSION 1.127
-/Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/597105551.index
-/room4you/src/main/java
-/Users/Nic/Documents/Development/Websites/room4you/ese2014-team3/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/632263695.index
-/room4you/src/main/java
