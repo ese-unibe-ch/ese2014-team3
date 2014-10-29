@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
@@ -47,9 +46,6 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Ad> ads = new ArrayList<Ad>();
-	
-	@ManyToMany (fetch = FetchType.EAGER)
-	private List<Ad> bookmarkedAds = new ArrayList<Ad>();
 	
 
 	public boolean isEnabled() {
@@ -108,19 +104,4 @@ public class User {
 		this.password = password;
 	}
 
-	public void setBookmarkedAd(Ad ad) {
-		bookmarkedAds.add(ad);
-	}
-
-	public boolean isBookmarkedAd(Ad ad) {
-		return bookmarkedAds.contains(ad);
-	}
-	
-	public void unBookmarkAd(Ad ad) {
-		bookmarkedAds.remove(ad);
-	}
-	
-	public List<Ad> getBookmarkedAds(){
-		return bookmarkedAds;
-	}
 }

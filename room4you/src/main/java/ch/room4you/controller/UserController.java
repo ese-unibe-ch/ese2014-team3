@@ -11,8 +11,6 @@ import java.util.List;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Image;
 import ch.room4you.entity.RoomMate;
-import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
 import ch.room4you.service.ImageService;
 import ch.room4you.service.RoomMateService;
@@ -148,16 +145,6 @@ public class UserController {
 		System.out.println("remove ist touched");
 		Ad ad = adService.findOne(id);
 		adService.delete(ad);
-		return "redirect:/account.html";
-	}
-	//Not working correctly, doesn't remove
-	@RequestMapping("/ad/unBookmarkAd/{id}")  
-	public String unBookmarkAd(@PathVariable int id) {
-		Ad ad = adService.findOne(id);
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String currentUser = auth.getName();
-		User user = userService.findOneByName(currentUser);
-		user.unBookmarkAd(ad);
 		return "redirect:/account.html";
 	}
 	

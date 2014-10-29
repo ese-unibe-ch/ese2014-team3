@@ -2,17 +2,10 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 
 
 
 <h1><c:out value="${ad.title}" /></h1>
-
-<sec:authorize access="isAuthenticated()">
-    <a href="<spring:url value="/ad/bookmarkAd/${ad.id}.html" />" class="btn btn-primary"> Bookmark Ad </a>
-</sec:authorize>
-<p></p>
 
 
 <div class="container-fluid">
