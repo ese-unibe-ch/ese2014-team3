@@ -1,0 +1,15 @@
+package ch.room4you.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+public class MessageService {
+	
+	public void save(Message message) {
+		List<Role> roles = new ArrayList<Role>();
+
+		userRepository.save(user);
+	}
+}

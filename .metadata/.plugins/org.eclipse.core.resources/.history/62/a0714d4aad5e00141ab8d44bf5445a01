@@ -1,0 +1,16 @@
+package ch.room4you.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ch.room4you.entity.Message;
+import ch.room4you.repository.MessageRepository;
+
+public class MessageService {
+	
+	@Autowired
+	private MessageRepository messageRepository;
+	
+	public void save(Message message) {
+		messageRepository.save(message);
+	}
+}
