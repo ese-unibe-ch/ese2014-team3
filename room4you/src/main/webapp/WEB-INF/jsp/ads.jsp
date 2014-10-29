@@ -21,11 +21,32 @@
     <label>
       <input type="checkbox" name="searchSharedApartment" id="searchSharedApartment"> Shared apartments
     </label>
+  </div>  
+  <button  type="submit" class="btn btn-default">Search</button>
+  <button id="toggleMoreSearchCriteriaBtn" type="button" class="btn btn-default">More criteria</button>
+  <p>
+  <div id="moreSearchCriteria" style="display:none">
+  <div  class="form-group">
+    <label class="sr-only" for="searchTextZIP">ZIP</label>
+    <input type="text" class="form-control" name="searchTextZip" id="searchTextZip" placeholder="ZIP">
+  </div> 
+  <div class="form-group">
+    <label class="sr-only" for="searchTextCity">City</label>
+    <input type="text" class="form-control" name="searchTextCity" id="searchTextCity" placeholder="City">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="searchTextMaxPrice">Max. price</label>
+    <input type="text" class="form-control" name="searchTextMaxPrice" id="searchTextMaxPrice" placeholder="Max. price in CHF">
   </div>
 
-  <button  type="submit" class="btn btn-default">Search</button>
-  <button type="button" class="btn btn-default">More criteria</button>
+   <div class="checkbox">
+    <label>
+      <input type="checkbox" name="searchSharedApartment" id="searchSharedApartment"> Shared apartments
+    </label>
+  </div>
+  </div> 
 </form:form>
+
 <hr>
 <div class="row">
 	<c:forEach items="${ads}" var="ad">
@@ -39,8 +60,20 @@
 		      </div>
 		    </div>
 		  </div>
-	</c:forEach>
-	
-
-	
+	</c:forEach>	
 </div>
+
+
+<script>
+
+	$(document).ready(function(){
+	
+	//Toggle search criteria
+	$( "#toggleMoreSearchCriteriaBtn" ).click(function() {
+	  $( "#moreSearchCriteria" ).toggle( "slow", function() {
+	    // Animation complete.
+	  });
+	});
+	});
+
+</script>

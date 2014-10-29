@@ -61,7 +61,6 @@ public class AdController {
 			
 			//handle sharedApartment checkbox
 			boolean searchSharedApartment = false;
-			System.out.println("Shared Apartment as String: "+searchSharedApartmentAsString);
 			if(searchSharedApartmentAsString!=null && searchSharedApartmentAsString.equals("on")){
 				searchSharedApartment = true;
 			}
