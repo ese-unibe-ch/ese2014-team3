@@ -2,10 +2,17 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 
 
 <h1><c:out value="${ad.title}" /></h1>
+
+<sec:authorize access="isAuthenticated()">
+    <a href="<spring:url value="/ad/bookmarkAd/${ad.id}.html" />" class="btn btn-primary"> Bookmark Ad </a>
+</sec:authorize>
+<p></p>
 
 
 <div class="container-fluid">
@@ -70,7 +77,13 @@
 					<p><strong>We are</strong></p>
 				</td>
 				<td>
-					<p>TODO...</p>					
+					<p>
+							<c:forEach items="${roomMates}" var="roomMate">
+							<a href="<spring:url value="/users/${roomMate.user.id}.html" />">
+								<c:out value="${roomMate.user.name}" />
+							</a>	
+							</c:forEach>					
+					</p>					
 				</td>		
 			</tr>
 			<tr>
@@ -83,10 +96,31 @@
 					</a>
 				</td>			
 			</tr>
+						<tr>
+				<td>
+					<p><strong>Show images</strong></p>
+				</td>
+				<td>
+						<button id="toggleImagesBtn" type="button" class="btn btn-default btn-md">
+  							<span class="glyphicon glyphicon-film"></span>
+						</button>
+				
+				</td>			
+			</tr>
 	</tbody>
 </table>
 
-<img src="data:image/jpeg;base64,${imageForJSP}" alt="image1" class="img-thumbnail">
+<div id="adImages" style="display:none">
+
+		<c:forEach items="${ad.images}" var="image">
+			<img src="data:image/jpeg;base64,${image.imageAsString}" alt="image" class="img-thumbnail">
+
+		</c:forEach>
+
+</div>
+
+
+
 
 </div>
 
@@ -138,6 +172,13 @@
   	$("#locationModal").on('shown.bs.modal', function () {
   		 google.maps.event.trigger(map, "resize");
   		 map.setCenter(mapCenter);
+  	});
+  	
+  	//Toggle images
+  	$( "#toggleImagesBtn" ).click(function() {
+  	  $( "#adImages" ).toggle( "slow", function() {
+  	    // Animation complete.
+  	  });
   	});
  	});
  	

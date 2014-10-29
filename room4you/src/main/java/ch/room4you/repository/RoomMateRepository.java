@@ -7,14 +7,14 @@ package ch.room4you.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import ch.room4you.entity.Ad;
+import ch.room4you.entity.Image;
+import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 
 import java.util.List;
 
-public interface AdRepository extends JpaRepository<Ad, Integer> {
+public interface RoomMateRepository extends JpaRepository<RoomMate, Integer> {
 
-	List<Ad> findByUser(User user);
-	
-	List<Ad> findByCity(String City);
+	List<RoomMate> findByAd(Ad ad);
 	
 }

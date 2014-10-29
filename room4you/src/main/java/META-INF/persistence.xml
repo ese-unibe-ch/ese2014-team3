@@ -4,5 +4,6 @@
 		<class>ch.room4you.entity.Ad</class>
 		<class>ch.room4you.entity.Role</class>
 		<class>ch.room4you.entity.User</class>
+		<class>ch.room4you.entity.RoomMate</class>
 	</persistence-unit>
 </persistence>

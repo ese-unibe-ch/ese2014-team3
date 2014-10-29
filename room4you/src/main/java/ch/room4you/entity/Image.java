@@ -1,11 +1,6 @@
 package ch.room4you.entity;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Date;
-
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,12 +23,21 @@ public class Image {
 	@JoinColumn(name = "ad_id")
 	private Ad ad;
 	
+	
 	@Lob
     @Basic(fetch=FetchType.EAGER, optional=true)
-    byte[] image;
+    String imageAsString;
 	
 	
-    @Transient
+    public String getImageAsString() {
+		return imageAsString;
+	}
+
+	public void setImageAsString(String imageAsString) {
+		this.imageAsString = imageAsString;
+	}
+
+	@Transient
     private MultipartFile multipartFile;
 
     public MultipartFile getMultipartFile() {
@@ -42,9 +46,7 @@ public class Image {
 
 	public void setMultipartFile(MultipartFile multipartFile) {
 		this.multipartFile = multipartFile;
-	}
-
-   
+	} 
 
 
 	public Integer getId() {
@@ -55,10 +57,6 @@ public class Image {
 		this.id = id;
 	}
 
-
-	public byte[] getImage() {
-		return image;
-	}
 	
 	public Ad getAd() {
 		return ad;
@@ -68,28 +66,5 @@ public class Image {
 		this.ad = ad;
 	}
 
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
-	
-	public void setImageFromPath(String filePath) {
-	   	 File file = new File(filePath);
-	   	 setImage(file);
-	}
-
-	public void setImage(File image) {
-		byte[] bFile = new byte[(int) image.length()];
-	    try {
-	    	
-		     FileInputStream fileInputStream = new FileInputStream(image);
-		     //convert file into array of bytes
-		     fileInputStream.read(bFile);
-		     fileInputStream.close();
-	        } catch (Exception e) {
-		     e.printStackTrace();
-	        }
-		this.image = bFile;
-	}
-	
 	
 }
