@@ -48,7 +48,7 @@ public class Ad {
 
 	private String street;
 	
-	private int zip;
+	private String zip;
 	
 	private String city;
 	
@@ -56,8 +56,11 @@ public class Ad {
 	
 	private Date availableFrom;
 	
-	private String rentPerMonth;
+	private int rentPerMonth;
 	
+	private boolean sharedApartment;
+	
+
 	@Lob
 	@Type(type = "org.hibernate.type.StringClobType")
 	@Column(length = Integer.MAX_VALUE)
@@ -151,11 +154,11 @@ public class Ad {
 		this.street = street;
 	}
 
-	public int getZip() {
+	public String getZip() {
 		return zip;
 	}
 
-	public void setZip(int zip) {
+	public void setZip(String zip) {
 		this.zip = zip;
 	}
 
@@ -183,11 +186,11 @@ public class Ad {
 		this.availableFrom = availableFrom;
 	}
 
-	public String getRentPerMonth() {
+	public int getRentPerMonth() {
 		return rentPerMonth;
 	}
 
-	public void setRentPerMonth(String rentPerMonth) {
+	public void setRentPerMonth(int rentPerMonth) {
 		this.rentPerMonth = rentPerMonth;
 	}
 
@@ -209,5 +212,12 @@ public class Ad {
 	
 	public void addRoomMate(RoomMate roomMate){
 		roomMates.add(roomMate);
+	}
+	public boolean isSharedApartment() {
+		return sharedApartment;
+	}
+
+	public void setSharedApartment(boolean sharedApartment) {
+		this.sharedApartment = sharedApartment;
 	}
 }

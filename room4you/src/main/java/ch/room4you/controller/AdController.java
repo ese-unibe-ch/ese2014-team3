@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.room4you.entity.Ad;
+
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
@@ -50,8 +52,27 @@ public class AdController {
 	 * @return
 	 */
 	@RequestMapping(value="/searchAds", method = RequestMethod.POST)
-	public String search(Model model, @RequestParam("searchTextCity") String searchTextCity) {
-		model.addAttribute("ads", adService.findAdsWithFormCriteria(searchTextCity));
+	public String search(Model model, org.springframework.web.context.request.WebRequest webRequest) {	
+		
+			//Get posted form parameters
+			String searchTextCity = webRequest.getParameter("searchTextCity");
+			String searchTextZip= webRequest.getParameter("searchTextZip");
+			String searchSharedApartmentAsString = webRequest.getParameter("searchSharedApartment");
+			
+			//handle sharedApartment checkbox
+			boolean searchSharedApartment = false;
+			System.out.println("Shared Apartment as String: "+searchSharedApartmentAsString);
+			if(searchSharedApartmentAsString!=null && searchSharedApartmentAsString.equals("on")){
+				searchSharedApartment = true;
+			}
+			
+			//handle max. rent per month
+			int searchTextMaxPrice = Integer.MAX_VALUE;
+			if(!webRequest.getParameter("searchTextMaxPrice").isEmpty()){
+				searchTextMaxPrice = Integer.parseInt(webRequest.getParameter("searchTextMaxPrice"));
+			}
+
+		model.addAttribute("ads", adService.findAdsWithFormCriteria(searchTextCity, searchTextZip, searchTextMaxPrice, searchSharedApartment));
 		return "ads";
 	}
 	

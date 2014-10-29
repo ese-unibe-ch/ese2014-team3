@@ -17,7 +17,7 @@ public interface AdRepository extends JpaRepository<Ad, Integer> {
 
 	List<Ad> findByUser(User user);
 	
-	List<Ad> findByCityIgnoreCase(String city);
+	//List<Ad> findByCityIgnoreCase(String city);
 	
       /**
 	  * Finds an ad by using the city as a search criteria.
@@ -25,7 +25,12 @@ public interface AdRepository extends JpaRepository<Ad, Integer> {
 	  * @return  A list of ads whose city is an exact match with the given city.
 	  *          If no persons is found, this method returns an empty list.
 	  */
-	 @Query("SELECT ad FROM Ad ad WHERE LOWER(ad.city) = LOWER(:city)")
-	 public List<Ad> findAdsWithFormCriteria(@Param("city") String city);
+	 @Query("SELECT ad FROM Ad ad WHERE LOWER(ad.city) LIKE LOWER(:city) AND ad.zip LIKE :zip AND ad.rentPerMonth < :rentPerMonth AND ad.sharedApartment = :sharedApartment")
+	 public List<Ad> findAdsWithFormCriteria(
+			 @Param("city") String city, 
+			 @Param("zip") String zip, 
+			 @Param("rentPerMonth") int rentPerMonth, 
+			 @Param("sharedApartment") boolean sharedApartment
+			 );
 	
 }

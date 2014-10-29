@@ -5,8 +5,8 @@
 
 <form:form action="searchAds.html" class="form-inline" role="form" method="post" >
     <div class="form-group">
-    <label class="sr-only" for="searchTextZIP">City</label>
-    <input type="text" class="form-control" id="searchTextZIP" placeholder="ZIP">
+    <label class="sr-only" for="searchTextZIP">ZIP</label>
+    <input type="text" class="form-control" name="searchTextZip" id="searchTextZip" placeholder="ZIP">
   </div> 
   <div class="form-group">
     <label class="sr-only" for="searchTextCity">City</label>
@@ -14,13 +14,12 @@
   </div>
   <div class="form-group">
     <label class="sr-only" for="searchTextMaxPrice">Max. price</label>
-    <input type="text" class="form-control" id="searchTextMaxPrice" placeholder="Max. price">
+    <input type="text" class="form-control" name="searchTextMaxPrice" id="searchTextMaxPrice" placeholder="Max. price in CHF">
   </div>
-  
 
    <div class="checkbox">
     <label>
-      <input type="checkbox"> Shared appartments
+      <input type="checkbox" name="searchSharedApartment" id="searchSharedApartment"> Shared apartments
     </label>
   </div>
 

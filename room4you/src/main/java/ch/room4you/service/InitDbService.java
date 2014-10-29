@@ -89,16 +89,16 @@ public class InitDbService {
 			 ad1.setTitle("Wohnung1");
 			 ad1.setPublishedDate(new Date());
 			 ad1.setDescription("Wunderschöne neue Wohnung");
-			   //save image into database
 	         ad1.setUser(userAdmin);
 	         ad1.setStreet("Fabrikstrasse 8");
 	         ad1.setCity("Bern");
-	         ad1.setZip(3007);
+	         ad1.setZip("3007");
 	         Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse("2014-11-01");
 	         ad1.setAvailableFrom(date);
 	         ad1.setNbrRooms((float) 4.5);
-	         ad1.setRentPerMonth("CHF 1'200.-");
+	         ad1.setRentPerMonth(1200);
 	         ad1.setAdditionalInformation("Some additional Info");
+	         ad1.setSharedApartment(false);
 	         adRepository.save(ad1);
 	         
 	         RoomMate roomMate = new RoomMate();
