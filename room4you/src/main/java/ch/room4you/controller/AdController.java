@@ -4,22 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ch.room4you.entity.Ad;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import ch.room4you.entity.Ad;
 import ch.room4you.entity.RoomMate;
+import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
+import ch.room4you.service.UserService;
 
 @Controller
 public class AdController {
 	
 	@Autowired
 	private AdService adService;
+	
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * Maps the request url /ads to the page ads.jsp and provides the model "ads"
@@ -69,5 +75,21 @@ public class AdController {
 		return "adDetail";
 	}
 	
+	@RequestMapping("/ad/bookmarkAd/{id}")
+	public String bookmarkAd(@PathVariable int id) {
+		Ad ad = adService.findOne(id);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String currentUser = auth.getName();
+		User user = userService.findOneByName(currentUser);
+	//	System.out.println(user.isBookmarkedAd(ad));
+	//	System.out.println(!user.isBookmarkedAd(ad));
+		
+		//contains method doesn't work in isBookmarked
+		if (!user.isBookmarkedAd(ad)) {
+			user.setBookmarkedAd(ad);
+			userService.save(user);
+		 }
+		return "redirect:/ads/{id}.html";
+	}
 	
 }

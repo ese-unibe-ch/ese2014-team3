@@ -224,6 +224,36 @@ $(document).ready(function() {
   </div>
 </div>
 
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Unbookmark Ad</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${user.bookmarkedAds}" var="ad">
+			<tr>
+				<td id="ad_${ad.id}">
+					<a href="<spring:url value="/ads/${ad.id}.html" />">
+						<c:out value="${ad.title}" />
+					</a>
+				</td>
+				<td>
+					<a><c:out value="${ad.description}" /></a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ad/unBookmarkAd/${ad.id}.html" />" class="btn btn-danger triggerRemove">
+						Unbookmark Ad
+					</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+
+
 <!-- adding more fileinputs -->
 <script>
 $(document).ready(function() {
