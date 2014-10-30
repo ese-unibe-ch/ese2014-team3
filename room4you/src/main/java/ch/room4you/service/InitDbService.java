@@ -100,7 +100,9 @@ public class InitDbService {
 	         ad1.setAdditionalInformation("Some additional Info");
 	         ad1.setSharedApartment(true);
 	         ad1.setNbrRoomsMates(3);
+	         ad1.setWeAreLookingFor("For a person aged between 20 and 22 years. No pets and no instruments.");
 	         adRepository.save(ad1);
+	         
 	         
 	         RoomMate roomMate = new RoomMate();
 	         roomMate.setUser(userAdmin);

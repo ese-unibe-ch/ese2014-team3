@@ -42,6 +42,11 @@ public class Ad {
 	@Type(type = "org.hibernate.type.StringClobType")
 	@Column(length = Integer.MAX_VALUE)
 	private String description;
+	
+	@Lob
+	@Type(type = "org.hibernate.type.StringClobType")
+	@Column(length = Integer.MAX_VALUE)
+	private String weAreLookingFor;
 
 	@Column(name = "published_date")
 	private Date publishedDate;
@@ -229,5 +234,14 @@ public class Ad {
 
 	public void setNbrRoomsMates(int nbrRoomsMates) {
 		this.nbrRoomsMates = nbrRoomsMates;
+	}
+	
+
+	public String getWeAreLookingFor() {
+		return weAreLookingFor;
+	}
+
+	public void setWeAreLookingFor(String weAreLookingFor) {
+		this.weAreLookingFor = weAreLookingFor;
 	}
 }

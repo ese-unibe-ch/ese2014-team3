@@ -5,110 +5,110 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
-
-
-<h1><c:out value="${ad.title}" /></h1>
-
-<sec:authorize access="isAuthenticated()">
-    <a href="<spring:url value="/ad/bookmarkAd/${ad.id}.html" />" class="btn btn-primary"> Bookmark Ad </a>
-</sec:authorize>
-<p></p>
-
-
 <div class="container-fluid">
 
-<table class="table table-bordered table-hover table-striped">
-	<tbody>
-			<tr>
-				<td>
-					<p>
-						<strong>From</strong>
-					</p>
-				</td>
-				<td>
-					<p>${ad.availableFrom}</p>
-				</td>	
-			</tr>
-			<tr>
-				<td>
-					<p>
-						<strong>Rent</strong>
-					</p>
-				</td>
-				<td>
-					<p>${ad.rentPerMonth}</p>
-				</td>	
-			</tr>
+<div class="row">
+  <div class="col-md-6">
+  
+  	<sec:authorize access="isAuthenticated()">
+	    <a href="<spring:url value="/ad/bookmarkAd/${ad.id}.html" />" class="btn btn-primary pull-right"> Bookmark Ad </a>
+	</sec:authorize>
+
+  
+  <h1><c:out value="${ad.title}" /></h1>
+  <p></p>		
+		
+		<form class="form-horizontal" role="form">
+		  <div class="form-group">
+		    <label for="availableFrom" class="col-sm-4">Available from</label>
+		    <div class="col-sm-8">
+		      <fmt:formatDate type="date" value="${ad.availableFrom}" />
+		    </div>
+		  </div>
+		
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Rent per month:</label>
+				<div class="col-sm-8">
+				<div class="input-group">
+					<fmt:formatNumber value="${ad.rentPerMonth}" type="currency" currencySymbol="CHF"/>
+				</div>
+				</div>
+			</div>
 			
-			<tr>
-				<td>
-					<p><strong>Address</strong></p>
-				</td>
-				<td>
-					<address >
-					<a href="" data-toggle="modal" data-target="#locationModal">${ad.street}<br>
-					${ad.zip} ${ad.city}<br>
-					</a>								
-					</address>					
-				</td>		
-			</tr>
-					<tr>
-				<td>
-					<p><strong>Description</strong></p>
-				</td>
-				<td>
-					<p>${ad.description}								
-					</p>		
-				
-				</td>			
-			</tr>
-			</tr>
-			<tr>
-				<td>
-					<p><strong>We are looking for</strong></p>
-				</td>
-				<td>
-					<p>TODO...</p>	
-				
-				</td>		
-			</tr>
-			<tr>
-				<td>
-					<p><strong>We are</strong></p>
-				</td>
-				<td>
-					<p>
-							<c:forEach items="${roomMates}" var="roomMate">
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Address:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<address>
+						<a>${ad.street}<br>
+						${ad.zip} ${ad.city}<br>
+						</a>								
+						</address>							
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Description:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<p>${ad.description}</p>							
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">We are looking for:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<p>${ad.weAreLookingFor}</p>							
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Your future room mates:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<c:forEach items="${roomMates}" var="roomMate">
 							<a href="<spring:url value="/users/${roomMate.user.id}.html" />">
 								<c:out value="${roomMate.user.name}" />
 							</a>	
-							</c:forEach>					
-					</p>					
-				</td>		
-			</tr>
-			<tr>
-				<td>
-					<p><strong>Contact</strong></p>
-				</td>
-				<td>
-					<a href="<spring:url value="/message/${ad.id}.html"/>" class="btn btn-default btn-md" role="button">
-						<span class="glyphicon glyphicon-envelope"></span>
-					</a>
-				</td>			
-			</tr>
-						<tr>
-				<td>
-					<p><strong>Show images</strong></p>
-				</td>
-				<td>
+						</c:forEach>								
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Contact us:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<a href="<spring:url value="/message/${ad.id}.html"/>" class="btn btn-default btn-md" role="button">
+							<span class="glyphicon glyphicon-envelope"></span>
+						</a>						
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">See images of your future room:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
 						<button id="toggleImagesBtn" type="button" class="btn btn-default btn-md">
   							<span class="glyphicon glyphicon-film"></span>
-						</button>
-				
-				</td>			
-			</tr>
-	</tbody>
-</table>
+						</button>						
+					</div>
+				</div>
+			</div>
+		  
+		</form>
+	</div> <!-- end col-md-6 -->
+	
+	<div class="col-md-6">
+		<div id="googleMap"  style="width:450px;height:380px;"></div>
+	</div>
+</div>
+
 
 <div id="adImages" style="display:none">
 
@@ -198,7 +198,7 @@
       <div class="modal-body">
       <div class="container">
                     <div class="row">                        
-          				<div id="googleMap"  style="width:450px;height:380px;"></div>
+          				<div id="googleMap1"  style="width:450px;height:380px;"></div>
                     </div>
       </div>
       <div class="modal-footer">
@@ -206,6 +206,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 			
 
