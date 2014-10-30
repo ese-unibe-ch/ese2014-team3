@@ -98,7 +98,8 @@ public class InitDbService {
 	         ad1.setNbrRooms((float) 4.5);
 	         ad1.setRentPerMonth(1200);
 	         ad1.setAdditionalInformation("Some additional Info");
-	         ad1.setSharedApartment(false);
+	         ad1.setSharedApartment(true);
+	         ad1.setNbrRoomsMates(3);
 	         adRepository.save(ad1);
 	         
 	         RoomMate roomMate = new RoomMate();

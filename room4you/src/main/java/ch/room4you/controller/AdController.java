@@ -65,13 +65,44 @@ public class AdController {
 				searchSharedApartment = true;
 			}
 			
-			//handle max. rent per month
+			//handle rent per month
 			int searchTextMaxPrice = Integer.MAX_VALUE;
 			if(!webRequest.getParameter("searchTextMaxPrice").isEmpty()){
 				searchTextMaxPrice = Integer.parseInt(webRequest.getParameter("searchTextMaxPrice"));
 			}
 
-		model.addAttribute("ads", adService.findAdsWithFormCriteria(searchTextCity, searchTextZip, searchTextMaxPrice, searchSharedApartment));
+			int searchTextMinPrice = 0;
+			if(!webRequest.getParameter("searchTextMinPrice").isEmpty()){
+				searchTextMinPrice = Integer.parseInt(webRequest.getParameter("searchTextMinPrice"));
+			}
+			
+			//handle number of room mates
+			int searchTextNbrRoomMatesMax = Integer.MAX_VALUE;
+			if(!webRequest.getParameter("searchTextNbrRoomMatesMax").isEmpty()){
+				searchTextNbrRoomMatesMax = Integer.parseInt(webRequest.getParameter("searchTextNbrRoomMatesMax"));
+			}
+
+			int searchTextNbrRoomMatesMin = 0;
+			if(!webRequest.getParameter("searchTextNbrRoomMatesMin").isEmpty()){
+				searchTextNbrRoomMatesMin = Integer.parseInt(webRequest.getParameter("searchTextNbrRoomMatesMin"));
+			}
+			
+			//handle number of rooms
+			float searchTextNbrRoomsMax = Integer.MAX_VALUE;
+			if(!webRequest.getParameter("searchTextNbrRoomsMax").isEmpty()){
+				searchTextNbrRoomsMax = Integer.parseInt(webRequest.getParameter("searchTextNbrRoomsMax"));
+			}
+
+			float searchTextNbrRoomsMin = 0;
+			if(!webRequest.getParameter("searchTextNbrRoomsMin").isEmpty()){
+				searchTextNbrRoomsMin = Integer.parseInt(webRequest.getParameter("searchTextNbrRoomsMin"));
+			}
+
+		model.addAttribute("ads", adService.findAdsWithFormCriteria(searchTextCity, searchTextZip, 
+				searchTextMinPrice, searchTextMaxPrice, 
+				searchTextNbrRoomMatesMin,searchTextNbrRoomMatesMax,
+				searchTextNbrRoomsMin, searchTextNbrRoomsMax,
+				searchSharedApartment));
 		return "ads";
 	}
 	

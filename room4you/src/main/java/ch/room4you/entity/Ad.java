@@ -54,6 +54,8 @@ public class Ad {
 	
 	private float nbrRooms;
 	
+	private int nbrRoomsMates;
+
 	private Date availableFrom;
 	
 	private int rentPerMonth;
@@ -219,5 +221,13 @@ public class Ad {
 
 	public void setSharedApartment(boolean sharedApartment) {
 		this.sharedApartment = sharedApartment;
+	}
+	
+	public int getNbrRoomsMates() {
+		return nbrRoomsMates;
+	}
+
+	public void setNbrRoomsMates(int nbrRoomsMates) {
+		this.nbrRoomsMates = nbrRoomsMates;
 	}
 }

@@ -58,9 +58,16 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">Number of Rooms:</label>
+			<label for="name" class="col-sm-2 control-label">Number of rooms:</label>
 			<div class="col-sm-10">
-				<form:input path="nbrRooms" cssClass="form-control" />
+				<form:input type="number" path="nbrRooms" cssClass="form-control" />
+				<form:errors path="nbrRooms" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Number of room mates:</label>
+			<div class="col-sm-10">
+				<form:input type="number" path="nbrRooms" cssClass="form-control" />
 				<form:errors path="nbrRooms" />
 			</div>
 		</div>
