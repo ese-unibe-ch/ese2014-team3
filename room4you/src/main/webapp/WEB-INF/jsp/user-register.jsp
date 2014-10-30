@@ -36,6 +36,16 @@
 			<input type="password" name="password_again" id="password_again" class="form-control" />
 		</div>
 	</div>
+
+	<div class="form-group">
+		<label for="name" class="col-sm-2 control-label">About me:</label>
+		<div class="col-sm-10">
+<%-- 			<form:input path="aboutMe" cssClass="form-control" /> --%>
+<%-- 			<form:errors path="aboutMe" /> --%>
+			<textarea name="aboutMe" path="aboutMe" id="txtArea" rows="10" cols="70">
+			</textarea>
+		</div>
+	</div>
 	<div class="form-group">
 		<div class="pager">
 			<input type="submit" value="Save" class="btn btn-lg btn-primary" />

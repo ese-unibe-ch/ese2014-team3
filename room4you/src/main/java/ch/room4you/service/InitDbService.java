@@ -72,6 +72,7 @@ public class InitDbService {
 			roles.add(roleAdmin);
 			roles.add(roleUser);
 			userAdmin.setRoles(roles);
+			userAdmin.setAboutMe("I am the admin of room4you and I am 12 years old");
 			userRepository.save(userAdmin);
 			
 			User user1 = new User();
@@ -82,6 +83,7 @@ public class InitDbService {
 			List<Role> rolesUser = new ArrayList<Role>();
 			rolesUser.add(roleUser);
 			user1.setRoles(rolesUser);
+			user1.setAboutMe("I work in a kindergarden and like concerts and sunrises");
 			userRepository.save(user1);
 		
 			 
