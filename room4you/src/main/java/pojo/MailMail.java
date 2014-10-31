@@ -132,7 +132,7 @@ public class MailMail
 			Session session = Session.getDefaultInstance(props,
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication("namibrider@gmail.com","sniper11");
+						return new PasswordAuthentication("ese2014team3@gmail.com","room4you");
 					}
 				});
 			return session;
