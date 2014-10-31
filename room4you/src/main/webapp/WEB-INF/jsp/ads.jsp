@@ -49,21 +49,32 @@
 </form:form>
 
 <hr>
-<div class="row">
-	<c:forEach items="${ads}" var="ad">
-		  <div class="col-sm-6 col-md-4">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" src="data:image/jpeg;base64,${ad.images[0].imageAsString}"  alt="images/wohnung.JPG" height="300" width="300">
-		      <div class="caption">
-		        <h3>${ad.title}</h3>
-		        <p>${ad.description}</p>
-		        <p><a href="<spring:url value="/ads/${ad.id}.html"/>" class="btn btn-primary" role="button">View Details</a></p>
-		      </div>
-		    </div>
-		  </div>
-	</c:forEach>	
-</div>
 
+ <div id="Layout" class="container">
+            <div class="row">
+
+<c:forEach items="${ads}" var="ad">
+		<div class="col-sm-6 col-md-4 col-lg-3">
+			<div id="thumbnail" class="thumbnail" style="padding-bottom:10px">
+				
+				<a href="<spring:url value="/ads/${ad.id}.html"/>"> <img src="data:image/jpeg;base64,${ad.images[0].imageAsString}" class="img-responsive"></img></a>
+				
+				<div class="caption" >
+					<h4>${ad.title}</h4>
+					<p>${ad.description}</p>
+					<p>City: ${ad.city}</p>
+					<p>Rent per month: <fmt:formatNumber value="${ad.rentPerMonth}" type="currency" currencySymbol="CHF"/></p>
+					
+					<a href="<spring:url value="/ads/${ad.id}.html"/>"  class="btn btn-primary" role="button">
+					View Details
+					</a>
+					
+				</div>
+			</div>
+			</div>
+</c:forEach>	
+</div>
+</div>
 
 <script>
 

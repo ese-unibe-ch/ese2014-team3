@@ -1,13 +1,9 @@
 package ch.room4you.entity;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Currency;
+
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,12 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
-import javax.persistence.Transient;
-
 import org.hibernate.annotations.Type;
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Ad {

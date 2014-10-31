@@ -11,11 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.room4you.entity.Ad;
-
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
