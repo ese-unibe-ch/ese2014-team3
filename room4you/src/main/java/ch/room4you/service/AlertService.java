@@ -4,12 +4,16 @@ package ch.room4you.service;
  * Database operation service for roomMateRepository interface
  */
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pojo.MailMail;
+import ch.room4you.entity.Ad;
 import ch.room4you.entity.Alert;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
@@ -51,6 +55,44 @@ public class AlertService{
 	
 	public List<Alert> findAll() {
 		return alertRepository.findAll();
+	}
+	
+	public List<MailMail> findMatchingAds(){
+		List<Alert> alerts = alertRepository.findAll();
+		List<MailMail> mails = new ArrayList<MailMail>();
+		for(Alert alert : alerts){
+			List<Ad> matchingAds = alertRepository.findAdsWithFormCriteria(alert.getCity(), 
+					alert.getZip(), 
+					alert.getRentPerMonthMin(), 
+					alert.getRentPerMonthMax(), alert.getNbrRoomsMatesMin(), alert.getNbrRoomsMatesMax(), 
+					alert.getNbrRoomsMin(),
+					alert.getNbrRoomsMax());
+			
+			if(!matchingAds.isEmpty()){
+				for(Ad matchingAd : matchingAds){
+					long actualTime = new Date().getTime();
+				    long ageOfAd = matchingAd.getPublishedDate().getTime();
+				    //check if ad is older than a day
+//					if((actualTime-ageOfAd)>(24 * 60 * 60 * 1000)){
+				    if((actualTime-ageOfAd)>(60 * 1000)){
+				    	MailMail mail = new MailMail();
+			    		mail.setFrom("namibrider@gmail.com");
+			    		mail.setRecipients(alert.getUser().getEmail());
+			    		mail.setSubject("New interesting room for you");
+			    		mail.setText("Hi,\n"
+			    				+ "We have found a new interesting room for you. \n"
+			    				+ "www.google.ch \n"			    				
+			    				+ "Checkout your profile");
+			    		mails.add(mail);
+												
+					}
+				}
+				
+			}
+		}
+		
+		return mails;
+		
 	}
 	
 }
