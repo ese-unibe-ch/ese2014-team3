@@ -37,11 +37,8 @@ public class MailService{
  
     public void sendAlerts() throws AddressException, MessagingException{
     	List<MailMail> mails = alertService.findMatchingAds();
-    	System.out.println("Number of Mails found: "+mails.size());
+    	System.out.println("Size of mails foundMatchingAds: "+mails.size());
     	for(MailMail mail : mails){
-    		System.out.println("Mail sent: "+ mail.getRecipients()
-    				+ "");
-    		
     		mail.sendMail();
     		
     	}

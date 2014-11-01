@@ -1,7 +1,5 @@
 package ch.room4you.entity;
 
-
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -118,6 +116,16 @@ public class Alert {
 
 	public void setRentPerMonthMax(int rentPerMonthMax) {
 		this.rentPerMonthMax = rentPerMonthMax;
+	}
+
+	@Override
+	public String toString() {
+		return "Alert [id=" + id + ", user=" + user + ", zip=" + zip
+				+ ", city=" + city + ", nbrRoomsMin=" + nbrRoomsMin
+				+ ", nbrRoomsMax=" + nbrRoomsMax + ", nbrRoomsMatesMin="
+				+ nbrRoomsMatesMin + ", nbrRoomsMatesMax=" + nbrRoomsMatesMax
+				+ ", rentPerMonthMin=" + rentPerMonthMin + ", rentPerMonthMax="
+				+ rentPerMonthMax + "]";
 	}
 
 }

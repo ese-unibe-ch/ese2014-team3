@@ -57,9 +57,9 @@ public class AdController {
 			String searchSharedApartmentAsString = webRequest.getParameter("searchSharedApartment");
 			
 			//handle sharedApartment checkbox
-			boolean searchSharedApartment = false;
-			if(searchSharedApartmentAsString!=null && searchSharedApartmentAsString.equals("on")){
-				searchSharedApartment = true;
+			boolean searchSharedApartment = true;
+			if(searchSharedApartmentAsString!=null && !searchSharedApartmentAsString.equals("on")){
+				searchSharedApartment = false;
 			}
 			
 			//handle rent per month
@@ -87,12 +87,12 @@ public class AdController {
 			//handle number of rooms
 			float searchTextNbrRoomsMax = Integer.MAX_VALUE;
 			if(!webRequest.getParameter("searchTextNbrRoomsMax").isEmpty()){
-				searchTextNbrRoomsMax = Integer.parseInt(webRequest.getParameter("searchTextNbrRoomsMax"));
+				searchTextNbrRoomsMax = Float.parseFloat(webRequest.getParameter("searchTextNbrRoomsMax"));
 			}
 
 			float searchTextNbrRoomsMin = 0;
 			if(!webRequest.getParameter("searchTextNbrRoomsMin").isEmpty()){
-				searchTextNbrRoomsMin = Integer.parseInt(webRequest.getParameter("searchTextNbrRoomsMin"));
+				searchTextNbrRoomsMin = Float.parseFloat(webRequest.getParameter("searchTextNbrRoomsMin"));
 			}
 
 		model.addAttribute("ads", adService.findAdsWithFormCriteria(searchTextCity, searchTextZip, 

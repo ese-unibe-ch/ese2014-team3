@@ -26,7 +26,6 @@
 	<jpa:repositories base-package="ch.room4you.repository" />
 
 	<import resource="springSecurity.xml" />
-	
 
 	<task:annotation-driven />
 	

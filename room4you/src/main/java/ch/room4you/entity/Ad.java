@@ -57,7 +57,7 @@ public class Ad {
 	
 	private int rentPerMonth;
 	
-	private boolean sharedApartment;
+	private boolean sharedApartment=true;
 	
 
 	@Lob

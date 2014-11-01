@@ -55,13 +55,9 @@ public class MailMail
 		}
 
 
-
-
 		public void setSession(Session session) {
 			this.session = session;
 		}
-
-
 
 
 		public String getFrom() {
@@ -69,13 +65,9 @@ public class MailMail
 		}
 
 
-
-
 		public void setFrom(String from) {
 			this.from = from;
 		}
-
-
 
 
 		public String getRecipients() {
@@ -132,7 +124,7 @@ public class MailMail
 			Session session = Session.getDefaultInstance(props,
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication("ese2014team3@gmail.com","room4you");
+						return new PasswordAuthentication("namibrider@gmail.com","sniper11");
 					}
 				});
 			return session;
