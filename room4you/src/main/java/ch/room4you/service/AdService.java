@@ -9,7 +9,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -64,8 +63,8 @@ public class AdService{
 
 	
 	@Transactional
-	public List<Ad> findAdsWithFormCriteria(String city, String zip, int price, boolean sharedApartment) {	
-		List<Ad> ads = adRepository.findAdsWithFormCriteria("%"+city+"%", "%"+zip+"%", price, sharedApartment);	
+	public List<Ad> findAdsWithFormCriteria(String city, String zip, int priceMin, int priceMax, int searchTextNbrRoomMatesMin, int searchTextNbrRoomMatesMax, float searchTextNbrRoomsMin, float searchTextNbrRoomsMax, boolean sharedApartment) {	
+		List<Ad> ads = adRepository.findAdsWithFormCriteria("%"+city+"%", "%"+zip+"%", priceMin, priceMax, searchTextNbrRoomMatesMin, searchTextNbrRoomMatesMax, searchTextNbrRoomsMin, searchTextNbrRoomsMax, sharedApartment);	
 		for (Ad ad : ads) {
 			List<Image> images = imageRepository.findByAd(ad);
 			ad.setImages(images);
@@ -73,5 +72,6 @@ public class AdService{
 	return ads;	
 
 	}
+
 
 }

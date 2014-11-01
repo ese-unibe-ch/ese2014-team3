@@ -1,13 +1,9 @@
 package ch.room4you.entity;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Currency;
+
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,12 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
-import javax.persistence.Transient;
-
 import org.hibernate.annotations.Type;
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Ad {
@@ -42,6 +34,11 @@ public class Ad {
 	@Type(type = "org.hibernate.type.StringClobType")
 	@Column(length = Integer.MAX_VALUE)
 	private String description;
+	
+	@Lob
+	@Type(type = "org.hibernate.type.StringClobType")
+	@Column(length = Integer.MAX_VALUE)
+	private String weAreLookingFor;
 
 	@Column(name = "published_date")
 	private Date publishedDate;
@@ -54,11 +51,13 @@ public class Ad {
 	
 	private float nbrRooms;
 	
+	private int nbrRoomsMates;
+
 	private Date availableFrom;
 	
 	private int rentPerMonth;
 	
-	private boolean sharedApartment;
+	private boolean sharedApartment=true;
 	
 
 	@Lob
@@ -219,5 +218,22 @@ public class Ad {
 
 	public void setSharedApartment(boolean sharedApartment) {
 		this.sharedApartment = sharedApartment;
+	}
+	
+	public int getNbrRoomsMates() {
+		return nbrRoomsMates;
+	}
+
+	public void setNbrRoomsMates(int nbrRoomsMates) {
+		this.nbrRoomsMates = nbrRoomsMates;
+	}
+	
+
+	public String getWeAreLookingFor() {
+		return weAreLookingFor;
+	}
+
+	public void setWeAreLookingFor(String weAreLookingFor) {
+		this.weAreLookingFor = weAreLookingFor;
 	}
 }

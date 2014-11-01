@@ -11,11 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.room4you.entity.Ad;
-
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
@@ -54,26 +51,11 @@ public class AdController {
 	@RequestMapping(value="/searchAds", method = RequestMethod.POST)
 	public String search(Model model, org.springframework.web.context.request.WebRequest webRequest) {	
 		
-			//Get posted form parameters
-			String searchTextCity = webRequest.getParameter("searchTextCity");
-			String searchTextZip= webRequest.getParameter("searchTextZip");
-			String searchSharedApartmentAsString = webRequest.getParameter("searchSharedApartment");
-			
-			//handle sharedApartment checkbox
-			boolean searchSharedApartment = false;
-			if(searchSharedApartmentAsString!=null && searchSharedApartmentAsString.equals("on")){
-				searchSharedApartment = true;
-			}
-			
-			//handle max. rent per month
-			int searchTextMaxPrice = Integer.MAX_VALUE;
-			if(!webRequest.getParameter("searchTextMaxPrice").isEmpty()){
-				searchTextMaxPrice = Integer.parseInt(webRequest.getParameter("searchTextMaxPrice"));
-			}
+			setModelAttributeAds(model, webRequest);
 
-		model.addAttribute("ads", adService.findAdsWithFormCriteria(searchTextCity, searchTextZip, searchTextMaxPrice, searchSharedApartment));
 		return "ads";
 	}
+
 	
 	/**
 	 * Maps the request url /ads{id} (with an ad id) to the page adDetail.jsp and provides the model "ad"
@@ -112,6 +94,110 @@ public class AdController {
 			userService.save(user);
 		 }
 		return "redirect:/ads/{id}.html";
+	}
+	
+	private void setModelAttributeAds(Model model,
+			org.springframework.web.context.request.WebRequest webRequest) {
+		
+		//Get posted form parameters
+		String searchTextCity = getSearchedCity(webRequest);
+		String searchTextZip = getSearchedZIP(webRequest);
+		String searchSharedApartmentAsString = getSearchForSharedApartment(webRequest);
+		boolean searchSharedApartment = getSharedApartmentValue(searchSharedApartmentAsString);		
+		int searchTextMaxPrice = getSearchedRentPerMonthMax(webRequest);
+		int searchTextMinPrice = getSearchedRentPerMonthMin(webRequest);	
+		int searchTextNbrRoomMatesMax = getSearchedNbrRoomMatesMax(webRequest);
+		int searchTextNbrRoomMatesMin = getSearchedNbrRoomMatesMin(webRequest);		
+		float searchTextNbrRoomsMax = getSearchedNbrOfRoomsMax(webRequest);
+		float searchTextNbrRoomsMin = getSearchedNbrOfRoomsMin(webRequest);
+		model.addAttribute("ads", adService.findAdsWithFormCriteria(searchTextCity, searchTextZip, 
+			searchTextMinPrice, searchTextMaxPrice, 
+			searchTextNbrRoomMatesMin,searchTextNbrRoomMatesMax,
+			searchTextNbrRoomsMin, searchTextNbrRoomsMax,
+			searchSharedApartment));
+	}
+
+	private float getSearchedNbrOfRoomsMin(
+			org.springframework.web.context.request.WebRequest webRequest) {
+		float searchTextNbrRoomsMin = 0;
+		if(!webRequest.getParameter("searchTextNbrRoomsMin").isEmpty()){
+			searchTextNbrRoomsMin = Float.parseFloat(webRequest.getParameter("searchTextNbrRoomsMin"));
+		}
+		return searchTextNbrRoomsMin;
+	}
+
+	private float getSearchedNbrOfRoomsMax(
+			org.springframework.web.context.request.WebRequest webRequest) {
+		//handle number of rooms
+		float searchTextNbrRoomsMax = Integer.MAX_VALUE;
+		if(!webRequest.getParameter("searchTextNbrRoomsMax").isEmpty()){
+			searchTextNbrRoomsMax = Float.parseFloat(webRequest.getParameter("searchTextNbrRoomsMax"));
+		}
+		return searchTextNbrRoomsMax;
+	}
+
+	private int getSearchedNbrRoomMatesMin(
+			org.springframework.web.context.request.WebRequest webRequest) {
+		int searchTextNbrRoomMatesMin = 0;
+		if(!webRequest.getParameter("searchTextNbrRoomMatesMin").isEmpty()){
+			searchTextNbrRoomMatesMin = Integer.parseInt(webRequest.getParameter("searchTextNbrRoomMatesMin"));
+		}
+		return searchTextNbrRoomMatesMin;
+	}
+
+	private int getSearchedNbrRoomMatesMax(
+			org.springframework.web.context.request.WebRequest webRequest) {
+		//handle number of room mates
+		int searchTextNbrRoomMatesMax = Integer.MAX_VALUE;
+		if(!webRequest.getParameter("searchTextNbrRoomMatesMax").isEmpty()){
+			searchTextNbrRoomMatesMax = Integer.parseInt(webRequest.getParameter("searchTextNbrRoomMatesMax"));
+		}
+		return searchTextNbrRoomMatesMax;
+	}
+
+	private int getSearchedRentPerMonthMin(
+			org.springframework.web.context.request.WebRequest webRequest) {
+		int searchTextMinPrice = 0;
+		if(!webRequest.getParameter("searchTextMinPrice").isEmpty()){
+			searchTextMinPrice = Integer.parseInt(webRequest.getParameter("searchTextMinPrice"));
+		}
+		return searchTextMinPrice;
+	}
+
+	private int getSearchedRentPerMonthMax(
+			org.springframework.web.context.request.WebRequest webRequest) {
+		//handle rent per month
+		int searchTextMaxPrice = Integer.MAX_VALUE;
+		if(!webRequest.getParameter("searchTextMaxPrice").isEmpty()){
+			searchTextMaxPrice = Integer.parseInt(webRequest.getParameter("searchTextMaxPrice"));
+		}
+		return searchTextMaxPrice;
+	}
+
+	private String getSearchForSharedApartment(
+			org.springframework.web.context.request.WebRequest webRequest) {
+		String searchSharedApartmentAsString = webRequest.getParameter("searchSharedApartment");
+		return searchSharedApartmentAsString;
+	}
+
+	private String getSearchedZIP(
+			org.springframework.web.context.request.WebRequest webRequest) {
+		String searchTextZip= webRequest.getParameter("searchTextZip");
+		return searchTextZip;
+	}
+
+	private String getSearchedCity(
+			org.springframework.web.context.request.WebRequest webRequest) {
+		String searchTextCity = webRequest.getParameter("searchTextCity");
+		return searchTextCity;
+	}
+
+	private boolean getSharedApartmentValue(String searchSharedApartmentAsString) {
+		boolean searchSharedApartment = true;
+		if(searchSharedApartmentAsString!=null && !searchSharedApartmentAsString.equals("on")){
+			searchSharedApartment = false;
+		}
+		return searchSharedApartment;
 	}
 	
 }

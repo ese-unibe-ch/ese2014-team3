@@ -54,13 +54,14 @@
               	<li class="${current == 'users' ? 'active' : ''}"><a href="<spring:url value="/users.html" />">Users</a></li>
               </security:authorize>
               <li class="${current == 'ads' ? 'active' : ''}"><a href="<spring:url value="/ads.html" />">Ads</a></li>
-              <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value="/register.html" />">Register</a></li>
               <security:authorize access="! isAuthenticated()">
 	              <li class="${current == 'login' ? 'active' : ''}"><a href="<spring:url value="/login.html" />">Login</a></li>
+	              <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value="/register.html" />">Register</a></li>
               </security:authorize>
-              <security:authorize access="isAuthenticated()">
-              	<li class="${current == 'account' ? 'active' : ''}"><a href="<spring:url value="/account.html" />">My account</a></li>
-              	<li><a href="<spring:url value="/logout" />">Logout</a></li>
+              <security:authorize access="isAuthenticated()">              
+              	<li class="${current == 'alert' ? 'active' : ''}"><a href="<spring:url value="/alert.html" />">Subscribe alerts</a></li>               	
+              	<li class="${current == 'account' ? 'active' : ''}"><a href="<spring:url value="/account.html" />">My account</a></li>  
+              	<li><a href="<spring:url value="/logout" />">Logout</a></li>           	
               </security:authorize>
             </ul>
           </div><!--/.nav-collapse -->

@@ -3,6 +3,7 @@ package ch.room4you.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,12 +11,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 
 import ch.room4you.annotation.UniqueUsername;
@@ -42,6 +45,15 @@ public class User {
 
 	private boolean enabled;
 	
+	@Lob
+	@Type(type = "org.hibernate.type.StringClobType")
+	@Column(length = Integer.MAX_VALUE)
+	private String aboutMe;
+	
+	@Lob
+    @Basic(optional=true)
+    String image;
+	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy ="sender", cascade = CascadeType.ALL)
 	private Message sender;
 	
@@ -54,6 +66,9 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Ad> ads = new ArrayList<Ad>();
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<Alert> alerts = new ArrayList<Alert>();
 	
 	@ManyToMany (fetch = FetchType.EAGER)
 	private List<Ad> bookmarkedAds = new ArrayList<Ad>();
@@ -129,5 +144,51 @@ public class User {
 	
 	public List<Ad> getBookmarkedAds(){
 		return bookmarkedAds;
+	}
+
+
+
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
+
+	public Message getSender() {
+		return sender;
+	}
+
+	public void setSender(Message sender) {
+		this.sender = sender;
+	}
+
+	public Message getRecipient() {
+		return recipient;
+	}
+
+	public void setRecipient(Message recipient) {
+		this.recipient = recipient;
+	}
+
+	public void setBookmarkedAds(List<Ad> bookmarkedAds) {
+		this.bookmarkedAds = bookmarkedAds;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public List<Alert> getAlerts() {
+		return alerts;
+	}
+
+	public void setAlerts(List<Alert> alerts) {
+		this.alerts = alerts;
 	}
 }

@@ -89,5 +89,37 @@ public class UserService {
 		return user;
 	}
 	
+	public void bookmarkAd(User user, Ad ad) {
+		user.setBookmarkedAd(ad);
+		userRepository.save(user);
+	}
+	
+	public boolean isBookmarkedAd(User user, int adId) {
+		List<Ad> bookmarkedAds = user.getBookmarkedAds();
+		boolean isBookmarkedAd = false;
+		for (Ad a: bookmarkedAds) {
+			if (a.getId() == adId)
+				isBookmarkedAd = true;
+		}
+		return isBookmarkedAd;
+	}
+	
+	public void unBookmarkAd(User user, int adId) {
+		List <Ad> bookmarkedAds = user.getBookmarkedAds();
+		List<Ad> updatedBookmarks = removeBookmarkAdById(bookmarkedAds, adId);
+		user.setBookmarkedAds(updatedBookmarks);
+		userRepository.save(user);
+	}
+	
+	public List<Ad> removeBookmarkAdById(List<Ad> bookmarkedAds, int adId) {
+		int size = bookmarkedAds.size();
+		for (int i=0; i<size; i++) {
+			Ad a = bookmarkedAds.get(i);
+			if (a.getId() == adId)
+				bookmarkedAds.remove(a);
+			}
+		return bookmarkedAds;
+	}
+	
 
 }
