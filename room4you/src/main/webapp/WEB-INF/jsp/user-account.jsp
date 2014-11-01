@@ -3,12 +3,95 @@
 
 <%@ include file="../layout/taglib.jsp"%>
 
-<h1><c:out value="${user.name}" /></h1>
+<h1>My account</h1>
 
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  New Ad
+<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">
+  Place new ad
 </button>
+
+<h2>Currently placed ads</h2>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${user.ads}" var="ad">
+			<tr>
+				<td id="ad_${ad.id}">
+					<a href="<spring:url value="/ads/${ad.id}.html" />">
+						<c:out value="${ad.title}" />
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ads/${ad.id}.html" />">
+					<c:out value="${ad.description}" /></a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ad/remove/${ad.id}.html" />" class="btn btn-danger triggerRemove">
+						remove ad
+					</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+
+
+<h2>User details</h2>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>User Name</th>
+			<th>User Email</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr>
+				<td>
+					${user.name}
+				</td>
+				<td>
+					${user.email}
+				</td>
+			</tr>
+	</tbody>
+</table>
+
+
+<h2>Currently bookmarked ads</h2>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Unbookmark Ad</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${user.bookmarkedAds}" var="ad">
+			<tr>
+				<td id="ad_${ad.id}">
+					<a href="<spring:url value="/ads/${ad.id}.html" />">
+						<c:out value="${ad.title}" />
+					</a>
+				</td>
+				<td>
+					<a><c:out value="${ad.description}" /></a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ad/unBookmarkAd/${ad.id}.html" />" class="btn btn-danger triggerRemove">
+						Unbookmark Ad
+					</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
 
 
 <form:form method="post" modelAttribute="ad" cssClass="form-horizontal adForm" enctype="multipart/form-data">
@@ -159,59 +242,6 @@ $(document).ready(function() {
 </script>
 
 
-<table class="table table-bordered table-hover table-striped">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>User Name</th>
-			<th>User Email</th>
-		</tr>
-	</thead>
-	<tbody>
-			<tr>
-				<td>
-					${user.id}
-				</td>
-				<td>
-					${user.name}
-				</td>
-				<td>
-					${user.email}
-				</td>
-			</tr>
-	</tbody>
-</table>
-
-<table class="table table-bordered table-hover table-striped">
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Description</th>
-			<th>Delete</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${user.ads}" var="ad">
-			<tr>
-				<td id="ad_${ad.id}">
-					<a href="<spring:url value="/ads/${ad.id}.html" />">
-						<c:out value="${ad.title}" />
-					</a>
-				</td>
-				<td>
-					<a><c:out value="${ad.description}" /></a>
-				</td>
-				<td>
-					<a href="<spring:url value="/ad/remove/${ad.id}.html" />" class="btn btn-danger triggerRemove">
-						remove ad
-					</a>
-				</td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
-
-
 <!-- Modal -->
 <div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -231,34 +261,7 @@ $(document).ready(function() {
   </div>
 </div>
 
-<table class="table table-bordered table-hover table-striped">
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Description</th>
-			<th>Unbookmark Ad</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${user.bookmarkedAds}" var="ad">
-			<tr>
-				<td id="ad_${ad.id}">
-					<a href="<spring:url value="/ads/${ad.id}.html" />">
-						<c:out value="${ad.title}" />
-					</a>
-				</td>
-				<td>
-					<a><c:out value="${ad.description}" /></a>
-				</td>
-				<td>
-					<a href="<spring:url value="/ad/unBookmarkAd/${ad.id}.html" />" class="btn btn-danger triggerRemove">
-						Unbookmark Ad
-					</a>
-				</td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
+
 
 
 <!-- adding more fileinputs -->

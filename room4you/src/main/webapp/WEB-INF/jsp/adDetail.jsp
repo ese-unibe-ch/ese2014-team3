@@ -25,6 +25,24 @@
 		      <fmt:formatDate type="date" value="${ad.availableFrom}" />
 		    </div>
 		  </div>
+		  
+			  <div class="form-group">
+			    <label for="numberOfRooms" class="col-sm-4">Number of rooms</label>
+			    <div class="col-sm-8">
+			      	<div class="input-group">
+						<p>${ad.nbrRooms}</p>							
+					</div>
+			    </div>
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="numberOfRooms" class="col-sm-4">Number of room mates</label>
+			    <div class="col-sm-8">
+			    	<div class="input-group">
+						<p>${ad.nbrRoomsMates}</p>							
+					</div>
+			    </div>
+			  </div>
 		
 			<div class="form-group">
 				<label for="name" class="col-sm-4 ">Rent per month:</label>
@@ -44,6 +62,16 @@
 						${ad.zip} ${ad.city}<br>
 						</a>								
 						</address>							
+					</div>
+				</div>
+			</div>
+			
+
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Shared Apartment:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+					<input type="checkbox" checked="${ad.sharedApartment}" onclick="return false">						
 					</div>
 				</div>
 			</div>

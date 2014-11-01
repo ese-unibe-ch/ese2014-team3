@@ -4,9 +4,13 @@ package ch.room4you.service;
  * Database operation service for roomMateRepository interface
  */
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +27,8 @@ import ch.room4you.repository.UserRepository;
 @Service
 public class AlertService{
 	
-	private final String LOCALHOSTNAME = "http://localhost:8080";
-	private final String HOSTNAMEPRODUCTION = "http://localhost:8080";
-	
 	@Autowired
-	private AdRepository adRepository;
-	
+	private AdRepository adRepository;	
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -87,13 +87,12 @@ public class AlertService{
 					    //check if ad is older than a day
 						if((actualTime-ageOfAd)<(24 * 60 * 60 * 1000)){
 					    	MailMail mail = new MailMail();
-				    		mail.setFrom("ese2014team3@gmail.com");
+				    		mail.setFrom(getHostNameFromProperties().getProperty("emailAccount"));
 				    		mail.setRecipients(alert.getUser().getEmail());
 				    		mail.setSubject("New interesting room for you");
 				    		mail.setText("Hi,\n"
 				    				+ "We have found a new interesting room for you. \n"
-				    				+ LOCALHOSTNAME+"/room4you/ads/"+ad.getId()+".html \n"			    				
-
+				    				+ getHostNameFromProperties().getProperty("hostName")+"/room4you/ads/"+ad.getId()+".html \n"			    				
 				    				+ "Checkout it out!");
 				    		mails.add(mail);
 													
@@ -108,9 +107,6 @@ public class AlertService{
 	
 	}
 
-	
-
-
 
 	private boolean alertMatchesAd(Alert alert, Ad ad) {
 		return 	(alert.getCity().toLowerCase().equals(ad.getCity().toLowerCase()) &&
@@ -121,5 +117,33 @@ public class AlertService{
 				alert.getNbrRoomsMax()>=ad.getNbrRooms() &&
 				alert.getRentPerMonthMin()<=ad.getRentPerMonth() &&
 				alert.getRentPerMonthMax()>=ad.getRentPerMonth());
+	}
+	
+	private Properties getHostNameFromProperties(){
+		Properties prop = new Properties();
+		InputStream input = null;
+	 
+		try {
+	 
+			input = new FileInputStream("config.properties");
+	 
+			// load a properties file
+			prop.load(input);
+
+	 
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return prop;
+		
 	}
 }

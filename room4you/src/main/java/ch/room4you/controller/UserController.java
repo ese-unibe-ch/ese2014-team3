@@ -51,10 +51,6 @@ public class UserController {
 	private RoomMateService roomMateService;
 	
 
-	
-
-	
-
 	/**
 	 * Instantiates an ad object which is mapped to the spring form in 
 	 * user-account.jsp
@@ -101,35 +97,17 @@ public class UserController {
 			String roomMate = webRequest.getParameter("roomMates");
 				
 			String name = principal.getName();			
-			adService.save(ad, name);
-            
-			
+			adService.save(ad, name);     
 			
 			try {
 				
 				//save roommates
 				if(roomMate!=null){
-					List<String> roomMates = Arrays.asList(roomMate.split(","));
-					for(String roomM : roomMates){
-						RoomMate rm = new RoomMate();
-						rm.setUser(userService.findOne(Integer.parseInt(roomM)));
-						rm.setAd(ad);	      
-						roomMateService.save(rm);
-					}
-				}
-				
+					saveRoomMates(ad, roomMate);
+				}		
 				
 				//save imagesAsString
-				byte[] bytes;
-				for(MultipartFile imageMPF : images){
-					Image image = new Image();
-					bytes = imageMPF.getBytes();
-					byte[] encoded=Base64.encodeBase64(bytes);
-					String encodedString = new String(encoded);
-					image.setImageAsString(encodedString);
-					image.setAd(ad);
-					imageService.save(image);
-				}
+				saveImages(ad, images);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -138,7 +116,7 @@ public class UserController {
 
 		return "redirect:/account.html";
 	}
-	
+
 	
 	/**
 	 * Removes the ad with the id={id} and redirects to account.html
@@ -165,6 +143,30 @@ public class UserController {
 		return "redirect:/account.html";
 	}
 	
+	
+
+	private void saveRoomMates(Ad ad, String roomMate) {
+		List<String> roomMates = Arrays.asList(roomMate.split(","));
+		for(String roomM : roomMates){
+			RoomMate rm = new RoomMate();
+			rm.setUser(userService.findOne(Integer.parseInt(roomM)));
+			rm.setAd(ad);	      
+			roomMateService.save(rm);
+		}
+	}
+	
+	private void saveImages(Ad ad, MultipartFile[] images) throws IOException {
+		byte[] bytes;
+		for(MultipartFile imageMPF : images){
+			Image image = new Image();
+			bytes = imageMPF.getBytes();
+			byte[] encoded=Base64.encodeBase64(bytes);
+			String encodedString = new String(encoded);
+			image.setImageAsString(encodedString);
+			image.setAd(ad);
+			imageService.save(image);
+		}
+	}
 	
 	/**
 	 * Maps the date format to the convenient date format for the database
