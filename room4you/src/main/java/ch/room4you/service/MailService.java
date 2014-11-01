@@ -27,7 +27,7 @@ public class MailService{
 	private AlertRepository alertRepository;
 	
 
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 24 * 60 * 60 * 1000)
 	public void sendMailAlertScheduler() throws AddressException, MessagingException{
 		System.out.println("Sending mails");
 		sendAlerts();

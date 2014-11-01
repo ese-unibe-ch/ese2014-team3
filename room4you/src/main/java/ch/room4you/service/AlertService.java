@@ -22,6 +22,10 @@ import ch.room4you.repository.UserRepository;
 
 @Service
 public class AlertService{
+	
+	private final String LOCALHOSTNAME = "http://localhost:8080";
+	private final String HOSTNAMEPRODUCTION = "http://localhost:8080";
+	
 	@Autowired
 	private AdRepository adRepository;
 	
@@ -62,37 +66,40 @@ public class AlertService{
 	public List<MailMail> findMatchingAds(){
 		List<Alert> alerts = alertRepository.findAll();
 		System.out.println("Alerts size: "+alerts.size());
+		List<Ad> ads = adService.findAll();
 		List<MailMail> mails = new ArrayList<MailMail>();
 		for(Alert alert : alerts){
-			System.out.println("Alert: "+alert);
-			List<Ad> matchingAds = new ArrayList<Ad>();
-				matchingAds = adService.findAdsWithFormCriteria(alert.getCity(), alert.getZip(), 
-					alert.getRentPerMonthMin(), alert.getRentPerMonthMax(), 
-					alert.getNbrRoomsMatesMin(),alert.getNbrRoomsMatesMax(),
-					alert.getNbrRoomsMin(), alert.getNbrRoomsMax(),
-					true||false);
-			
-			System.out.println("number of matching Ads: "+ matchingAds.size());
-			
-			if(!matchingAds.isEmpty()){
-				for(Ad matchingAd : matchingAds){
-					long actualTime = new Date().getTime();
-				    long ageOfAd = matchingAd.getPublishedDate().getTime();
-				    //check if ad is older than a day
-					if((actualTime-ageOfAd)<(24 * 60 * 60 * 1000)){
-				    	MailMail mail = new MailMail();
-			    		mail.setFrom("ese2014team3@gmail.com");
-			    		mail.setRecipients(alert.getUser().getEmail());
-			    		mail.setSubject("New interesting room for you");
-			    		mail.setText("Hi,\n"
-			    				+ "We have found a new interesting room for you. \n"
-			    				+ "www.google.ch \n"			    				
-			    				+ "Checkout your profile");
-			    		mails.add(mail);
-												
-					}
+			for(Ad ad : ads){
+				
+				List<Ad> matchingAds = new ArrayList<Ad>();
+					
+				if(alertMatchesAd(alert, ad)){					
+					matchingAds.add(ad);
+				
 				}
 				
+				System.out.println("number of matching Ads: "+ matchingAds.size());
+				
+				if(!matchingAds.isEmpty()){
+					for(Ad matchingAd : matchingAds){
+						long actualTime = new Date().getTime();
+					    long ageOfAd = matchingAd.getPublishedDate().getTime();
+					    //check if ad is older than a day
+						if((actualTime-ageOfAd)<(24 * 60 * 60 * 1000)){
+					    	MailMail mail = new MailMail();
+				    		mail.setFrom("ese2014team3@gmail.com");
+				    		mail.setRecipients(alert.getUser().getEmail());
+				    		mail.setSubject("New interesting room for you");
+				    		mail.setText("Hi,\n"
+				    				+ "We have found a new interesting room for you. \n"
+				    				+ LOCALHOSTNAME+"/room4you/ads/"+ad.getId()+".html \n"			    				
+				    				+ "Checkout it out!");
+				    		mails.add(mail);
+													
+						}
+					}
+					
+				}
 			}
 	}
 	
@@ -101,4 +108,17 @@ public class AlertService{
 	}
 
 	
+
+
+
+	private boolean alertMatchesAd(Alert alert, Ad ad) {
+		return 	(alert.getCity().toLowerCase().equals(ad.getCity().toLowerCase()) &&
+				alert.getZip().equals(ad.getZip()) &&
+				alert.getNbrRoomsMatesMin()<=ad.getNbrRoomsMates() &&
+				alert.getNbrRoomsMatesMax()>=ad.getNbrRoomsMates() &&
+				alert.getNbrRoomsMin()<=ad.getNbrRooms() &&
+				alert.getNbrRoomsMax()>=ad.getNbrRooms() &&
+				alert.getRentPerMonthMin()<=ad.getRentPerMonth() &&
+				alert.getRentPerMonthMax()>=ad.getRentPerMonth());
+	}
 }
