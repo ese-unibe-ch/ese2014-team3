@@ -29,7 +29,8 @@ public class AlertTest {
 
 	    @Test
 		public void test() {
-			Timestamp timestamp = Timestamp.valueOf("2014-10-31 15:00:00.0");
+	    	Date date = new Date();
+			Timestamp timestamp = new java.sql.Timestamp(date.getTime()-1000); 
 			Ad ad = createNewAd(timestamp);		
 			long actualTime = new Date().getTime();
 		    long ageOfAd = ad.getPublishedDate().getTime();		
