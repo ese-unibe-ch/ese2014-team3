@@ -44,7 +44,11 @@ import ch.room4you.repository.UserRepository;
 @Service
 public class AppInitService {
 	
-	private final String HOSTNAME = "http://localhost:8080";
+	//production
+//	private final String HOSTNAME ="https://room4you2.herokuapp.com";
+	
+	//localhost
+	private final String HOSTNAME = "http://localhost:8080/room4you";
 	private final String EMAILACCOUNT = "ese2014team3@gmail.com";
 
 	@Autowired

@@ -92,7 +92,7 @@ public class AlertService{
 				    		mail.setSubject("New interesting room for you");
 				    		mail.setText("Hi,\n"
 				    				+ "We have found a new interesting room for you. \n"
-				    				+ getHostNameFromProperties().getProperty("hostName")+"/room4you/ads/"+ad.getId()+".html \n"			    				
+				    				+ getHostNameFromProperties().getProperty("hostName")+"/ads/"+ad.getId()+".html \n"			    				
 				    				+ "Checkout it out!");
 				    		mails.add(mail);
 													
