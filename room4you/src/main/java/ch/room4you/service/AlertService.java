@@ -74,8 +74,7 @@ public class AlertService{
 				List<Ad> matchingAds = new ArrayList<Ad>();
 					
 				if(alertMatchesAd(alert, ad)){					
-					matchingAds.add(ad);
-				
+					matchingAds.add(ad);				
 				}
 				
 				System.out.println("number of matching Ads: "+ matchingAds.size());
@@ -109,14 +108,47 @@ public class AlertService{
 
 
 	private boolean alertMatchesAd(Alert alert, Ad ad) {
-		return 	(alert.getCity().toLowerCase().equals(ad.getCity().toLowerCase()) &&
-				alert.getZip().equals(ad.getZip()) &&
-				alert.getNbrRoomsMatesMin()<=ad.getNbrRoomsMates() &&
-				alert.getNbrRoomsMatesMax()>=ad.getNbrRoomsMates() &&
-				alert.getNbrRoomsMin()<=ad.getNbrRooms() &&
-				alert.getNbrRoomsMax()>=ad.getNbrRooms() &&
-				alert.getRentPerMonthMin()<=ad.getRentPerMonth() &&
-				alert.getRentPerMonthMax()>=ad.getRentPerMonth());
+		String alertCity = "";
+		String alertZip = "";
+		int alertRoomMatesMin = 0;
+		int alertRoomMatesMax = Integer.MAX_VALUE;
+		float alertRoomsMin = 0;
+		float alertRoomsMax = Integer.MAX_VALUE;
+		int alertRentMin = 0;
+		int alertRentMax = Integer.MAX_VALUE;
+		
+		if(!alert.getCity().isEmpty() || alert.getCity()!=null)
+		alertCity = alert.getCity();
+		
+		if(!alert.getZip().isEmpty() || alert.getZip()!=null)
+		alertZip = alert.getZip();
+		
+		if(alert.getNbrRoomsMatesMin() > 0)
+		alertRoomMatesMin = alert.getNbrRoomsMatesMin();
+		
+		if(alert.getNbrRoomsMatesMax()<Integer.MAX_VALUE);
+		alertRoomMatesMax = alert.getNbrRoomsMatesMax();
+		
+		if(alert.getNbrRoomsMin() > 0)
+		alertRoomsMin = alert.getNbrRoomsMin();
+		
+		if(alert.getNbrRoomsMax() < Integer.MAX_VALUE)
+		alertRoomsMax = alert.getNbrRoomsMax();
+		
+		if(alert.getRentPerMonthMin() > 0)
+		alertRentMin = alert.getRentPerMonthMin();
+		
+		if(alert.getRentPerMonthMax()< Integer.MAX_VALUE)
+		alertRentMax = alert.getRentPerMonthMax();
+		
+		return 	(alertCity.toLowerCase().equals(ad.getCity().toLowerCase()) &&
+				alertZip.equals(ad.getZip()) &&
+				alertRoomMatesMin<=ad.getNbrRoomsMates() &&
+				alertRoomMatesMax>=ad.getNbrRoomsMates() &&
+				alertRoomsMin<=ad.getNbrRooms() &&
+				alertRoomsMax>=ad.getNbrRooms() &&
+				alertRentMin<=ad.getRentPerMonth() &&
+				alertRentMax>=ad.getRentPerMonth());
 	}
 	
 	private Properties getHostNameFromProperties(){

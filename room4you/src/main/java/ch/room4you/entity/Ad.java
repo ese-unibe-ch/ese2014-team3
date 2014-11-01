@@ -41,7 +41,7 @@ public class Ad {
 	private String weAreLookingFor;
 
 	@Column(name = "published_date")
-	private Date publishedDate;
+	private Date publishedDate = new Date();
 
 	private String street;
 	
