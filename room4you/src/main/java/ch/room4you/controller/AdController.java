@@ -100,6 +100,7 @@ public class AdController {
 				searchTextNbrRoomMatesMin,searchTextNbrRoomMatesMax,
 				searchTextNbrRoomsMin, searchTextNbrRoomsMax,
 				searchSharedApartment));
+
 		return "ads";
 	}
 	

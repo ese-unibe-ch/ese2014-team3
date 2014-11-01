@@ -40,6 +40,7 @@ public class MailService{
     	System.out.println("Size of mails foundMatchingAds: "+mails.size());
     	for(MailMail mail : mails){
     		mail.sendMail();
+    		System.out.println("Mail sent!!");
     		
     	}
     	

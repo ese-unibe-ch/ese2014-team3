@@ -15,6 +15,7 @@ import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,11 +24,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import ch.room4you.entity.Ad;
+import ch.room4you.entity.Alert;
 import ch.room4you.entity.Image;
 import ch.room4you.entity.Role;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
+import ch.room4you.repository.AlertRepository;
 import ch.room4you.repository.ImageRepository;
 import ch.room4you.repository.RoleRepository;
 import ch.room4you.repository.RoomMateRepository;
@@ -52,6 +55,9 @@ public class InitDbService {
 	@Autowired
 	private RoomMateRepository roomMateRepository;
 	
+	@Autowired
+	private AlertRepository alertRepository;
+	
 		
 	@PostConstruct
 	public void init() throws ParseException, IOException {
@@ -67,6 +73,7 @@ public class InitDbService {
 			User userAdmin = new User();
 			userAdmin.setEnabled(true);
 			userAdmin.setName("admin");
+			userAdmin.setEmail("namibrider@gmx.net");
 			encryptPassword(userAdmin, "admin");
 			List<Role> roles = new ArrayList<Role>();
 			roles.add(roleAdmin);
@@ -123,7 +130,19 @@ public class InitDbService {
 
 			 image1.setImageAsString(getfirstPictureAsStringHelper());
 			 image1.setAd(ad1);
-	         imageRepository.save(image1);       
+	         imageRepository.save(image1);     
+	         
+	         Alert alert1 = new Alert();
+	         alert1.setCity("Bern");
+	         alert1.setZip("3007");
+	         alert1.setNbrRoomsMatesMin(1);
+	         alert1.setNbrRoomsMatesMax(4);
+	         alert1.setNbrRoomsMin(1);
+	         alert1.setNbrRoomsMax(5);
+	         alert1.setRentPerMonthMin(100);
+	         alert1.setRentPerMonthMax(1900);
+	         alert1.setUser(userAdmin);
+	         alertRepository.save(alert1);
 
 			 
 		}

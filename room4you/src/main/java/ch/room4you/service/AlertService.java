@@ -35,6 +35,9 @@ public class AlertService{
 	@Autowired
 	private AlertRepository alertRepository;
 	
+	@Autowired
+	private AdRepository adService;
+	
 	
 	/**
 	 * Saves the ad in the database
@@ -57,38 +60,40 @@ public class AlertService{
 	}
 	
 	public List<MailMail> findMatchingAds(){
-	List<Alert> alerts = alertRepository.findAll();
-	List<MailMail> mails = new ArrayList<MailMail>();
-	for(Alert alert : alerts){
-		List<Ad> matchingAds = adRepository.findAdsWithFormCriteria(alert.getCity(), 
-				alert.getZip(), 
-				alert.getRentPerMonthMin(), 
-				alert.getRentPerMonthMax(), alert.getNbrRoomsMatesMin(), alert.getNbrRoomsMatesMax(), 
-				alert.getNbrRoomsMin(),
-				alert.getNbrRoomsMax(), true || false);
-		
-		System.out.println("number of matching Ads: "+ matchingAds.size());
-		
-		if(!matchingAds.isEmpty()){
-			for(Ad matchingAd : matchingAds){
-				long actualTime = new Date().getTime();
-			    long ageOfAd = matchingAd.getPublishedDate().getTime();
-			    //check if ad is older than a day
-				if((actualTime-ageOfAd)<(24 * 60 * 60 * 1000)){
-			    	MailMail mail = new MailMail();
-		    		mail.setFrom("ese2014team3@gmail.com");
-		    		mail.setRecipients(alert.getUser().getEmail());
-		    		mail.setSubject("New interesting room for you");
-		    		mail.setText("Hi,\n"
-		    				+ "We have found a new interesting room for you. \n"
-		    				+ "www.google.ch \n"			    				
-		    				+ "Checkout your profile");
-		    		mails.add(mail);
-											
-				}
-			}
+		List<Alert> alerts = alertRepository.findAll();
+		System.out.println("Alerts size: "+alerts.size());
+		List<MailMail> mails = new ArrayList<MailMail>();
+		for(Alert alert : alerts){
+			System.out.println("Alert: "+alert);
+			List<Ad> matchingAds = new ArrayList<Ad>();
+				matchingAds = adService.findAdsWithFormCriteria(alert.getCity(), alert.getZip(), 
+					alert.getRentPerMonthMin(), alert.getRentPerMonthMax(), 
+					alert.getNbrRoomsMatesMin(),alert.getNbrRoomsMatesMax(),
+					alert.getNbrRoomsMin(), alert.getNbrRoomsMax(),
+					true||false);
 			
-		}
+			System.out.println("number of matching Ads: "+ matchingAds.size());
+			
+			if(!matchingAds.isEmpty()){
+				for(Ad matchingAd : matchingAds){
+					long actualTime = new Date().getTime();
+				    long ageOfAd = matchingAd.getPublishedDate().getTime();
+				    //check if ad is older than a day
+					if((actualTime-ageOfAd)<(24 * 60 * 60 * 1000)){
+				    	MailMail mail = new MailMail();
+			    		mail.setFrom("ese2014team3@gmail.com");
+			    		mail.setRecipients(alert.getUser().getEmail());
+			    		mail.setSubject("New interesting room for you");
+			    		mail.setText("Hi,\n"
+			    				+ "We have found a new interesting room for you. \n"
+			    				+ "www.google.ch \n"			    				
+			    				+ "Checkout your profile");
+			    		mails.add(mail);
+												
+					}
+				}
+				
+			}
 	}
 	
 	return mails;
