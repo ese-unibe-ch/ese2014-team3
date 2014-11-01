@@ -93,6 +93,7 @@ public class AlertService{
 				    		mail.setText("Hi,\n"
 				    				+ "We have found a new interesting room for you. \n"
 				    				+ LOCALHOSTNAME+"/room4you/ads/"+ad.getId()+".html \n"			    				
+
 				    				+ "Checkout it out!");
 				    		mails.add(mail);
 													
