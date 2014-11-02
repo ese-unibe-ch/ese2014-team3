@@ -40,7 +40,7 @@
 	
 <!-- 	production -->
 <!-- 	<beans profile="prod"> -->
-<!-- 		<import resource="database-prod.xml"/> -->
+<!-- 		<import resource="databaseForProduction.xml"/> -->
 <!-- 	</beans> -->
 
 </beans>
