@@ -20,6 +20,7 @@ import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,9 @@ import ch.room4you.repository.UserRepository;
 @Transactional
 @Service
 public class AppInitService {
+	
+	  static Logger log = Logger.getLogger(
+              AppInitService.class.getName());
 	
 	//production
 //	private final String HOSTNAME ="https://room4you2.herokuapp.com";
@@ -72,6 +76,7 @@ public class AppInitService {
 		
 	@PostConstruct
 	public void init() throws ParseException, IOException {
+		log.info("Initializing application...");
 		initializeApplication();
 		initializeDB();	
 
@@ -134,6 +139,7 @@ public class AppInitService {
 		 alert1.setRentPerMonthMax(1900);
 		 alert1.setUser(userAdmin);
 		 alertRepository.save(alert1);
+		 log.info("First alert created!");
 	}
 
 	private void createFirstImage(Ad ad1) {
@@ -148,6 +154,7 @@ public class AppInitService {
 		 roomMate.setUser(userAdmin);
 		 roomMate.setAd(ad1);
 		 roomMateRepository.save(roomMate);
+		 log.info("First room mate created!");
 	}
 
 	private Ad createFirstAd(User userAdmin) throws ParseException {
@@ -168,6 +175,7 @@ public class AppInitService {
 		 ad1.setNbrRoomsMates(3);
 		 ad1.setWeAreLookingFor("For a person aged between 20 and 22 years. No pets and no instruments.");
 		 adRepository.save(ad1);
+		 log.info("First ad created!");
 		return ad1;
 	}
 
@@ -183,6 +191,7 @@ public class AppInitService {
 		userAdmin.setRoles(roles);
 		userAdmin.setAboutMe("I am the admin of room4you and I am 12 years old");
 		userRepository.save(userAdmin);
+		log.info("Admin user created!");
 		return userAdmin;
 	}
 

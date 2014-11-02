@@ -29,7 +29,7 @@ import ch.room4you.repository.AlertRepository;
 import ch.room4you.repository.UserRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AlertTest {
+public class AdTest {
  
  
     @Autowired
@@ -81,46 +81,48 @@ public class AlertTest {
 		ad = createNewAd(timestamp);
 		user = createUser();
 		adRepository.save(ad);
-		alert = createNewAlert();	
-		mail = createNewMail();
 		
 	}
-
-	    @Test
-		public void test() {
-			long actualTime = new Date().getTime();
-		    long ageOfAd = ad.getPublishedDate().getTime();
-			assertTrue(ad!=null);
-			assertTrue((actualTime-ageOfAd)<(24 * 60 * 60 * 1000));	
-							
-		}
-
     
 	    
-		@Test
-		public void findAdsMatchingToAlertCriteria() {
-	        List<MailMail> mailList = new ArrayList<MailMail>();
-	        mailList.add(mail);	   	
-	        
+	    /**
+	     * Checks if Ad can be saved
+	     */
+	    @Test
+	    public void saveAd() {
+	        // given
+	    	Date date = new Date();
+		    Timestamp timestamp = new java.sql.Timestamp(date.getTime()-1000);
+	        final Ad ad = createNewAd(timestamp);
+	        // when
+	        adRepository.save(ad);
+	        // then
+	        Mockito.verify(adRepository, Mockito.times(1)).save(ad);
+	    }
+	    
+
+	    /**
+	     * Checks if Ad can be found by User
+	     */
+	    @Test
+	    public void findAdByUser() {
+	        // given
 	        List<Ad> adList = new ArrayList<Ad>();
 	        adList.add(ad);
-	        Mockito.doReturn(adList).when(adRepository).findAll();	 
-	        
-	        List<Alert> alertList = new ArrayList<Alert>();
-	        alertList.add(alert);	
-	        
-	        Mockito.doReturn(alertList).when(alertRepository).findAll();	        
-	        Mockito.doReturn((mailList)).when(alertService).findMatchingAds();	
-	        	        
-			assertEquals(mailList, alertService.findMatchingAds());
-			
-		}
+	        Mockito.doReturn(adList).when(adRepository).findByUser(user);
+	 	        // then
+	        assertTrue(adList.get(0).getUser()==user);
+	    }	
 
 
-		
+	    /**
+	     * Checks if new ad is created correctly
+	     */
 		@Test
-		public void createNewAlertTest() {
-			createNewAlert();
+		public void testNewAdCreation() {
+			assertTrue(ad.getPublishedDate()==timestamp);
+			assertEquals("Bern", ad.getCity());
+			
 		}
 		
 		
@@ -128,8 +130,8 @@ public class AlertTest {
 	    public void tearDown() {
 	        System.out.println("@After - tearDown");
 	    }
-
-				
+		
+			
 
 		private Ad createNewAd(Timestamp timestamp) {
 			Ad ad = new Ad();
@@ -142,32 +144,12 @@ public class AlertTest {
 			ad.setUser(user);
 			return ad;
 		}
-		
-		private MailMail createNewMail() {
-			MailMail mail = new MailMail();
-			mail.setFrom("Test");
-			return mail;
-		}
+
 
 		private User createUser() {
 			user.setEmail("test@b.ch");
 			user.setName("TestUser");
 			return user;
-		}
-		
-
-
-		private Alert createNewAlert() {
-			Alert alert = new Alert();
-			alert.setCity("Bern");
-			alert.setZip("3007");
-			alert.setNbrRoomsMatesMin(1);
-			alert.setNbrRoomsMatesMax(4);
-			alert.setNbrRoomsMin(2);
-			alert.setNbrRoomsMax(5);
-			alert.setRentPerMonthMin(300);
-			alert.setRentPerMonthMax(1900);
-			return alert;
 		}
 		
 }

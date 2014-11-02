@@ -65,7 +65,6 @@ public class AlertService{
 	
 	public List<MailMail> findMatchingAds(){
 		List<Alert> alerts = alertRepository.findAll();
-		System.out.println("Alerts size: "+alerts.size());
 		List<Ad> ads = adService.findAll();
 		List<MailMail> mails = new ArrayList<MailMail>();
 		for(Alert alert : alerts){
@@ -76,9 +75,7 @@ public class AlertService{
 				if(alertMatchesAd(alert, ad)){					
 					matchingAds.add(ad);				
 				}
-				
-				System.out.println("number of matching Ads: "+ matchingAds.size());
-				
+						
 				if(!matchingAds.isEmpty()){
 					for(Ad matchingAd : matchingAds){
 						long actualTime = new Date().getTime();

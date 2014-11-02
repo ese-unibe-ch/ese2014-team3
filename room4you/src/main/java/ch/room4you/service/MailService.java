@@ -5,6 +5,7 @@ import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ import ch.room4you.repository.AlertRepository;
 
 @Service("mailService")
 public class MailService{
+	
+	  static Logger log = Logger.getLogger(
+              MailService.class.getName());
 	
 	@Autowired
 	private AdRepository adRepository;
@@ -29,7 +33,7 @@ public class MailService{
 
 	@Scheduled(fixedDelay = 24 * 60 * 60 * 1000)
 	public void sendMailAlertScheduler() throws AddressException, MessagingException{
-		System.out.println("Sending mails");
+		log.info("sending mails...");
 		sendAlerts();
 	}
     
@@ -37,10 +41,9 @@ public class MailService{
  
     public void sendAlerts() throws AddressException, MessagingException{
     	List<MailMail> mails = alertService.findMatchingAds();
-    	System.out.println("Size of mails foundMatchingAds: "+mails.size());
     	for(MailMail mail : mails){
     		mail.sendMail();
-    		System.out.println("Mail sent!!");
+    		log.info("Mail sent to: "+ mail.getRecipients());
     		
     	}
     	
