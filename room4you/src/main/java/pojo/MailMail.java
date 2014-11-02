@@ -113,6 +113,10 @@ public class MailMail
 		
 		
 		private Session setMailProperties() {
+			final String username = "ese2014team3@gmail.com";
+			final String password = "room4you";
+
+ 
 			Properties props = new Properties();
 			props.put("mail.smtp.host", "smtp.gmail.com");
 			props.put("mail.smtp.socketFactory.port", "465");
@@ -124,7 +128,7 @@ public class MailMail
 			Session session = Session.getDefaultInstance(props,
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication("ese2014team3@gmail.com","room4you");
+						return new PasswordAuthentication(username,password);
 					}
 				});
 			return session;

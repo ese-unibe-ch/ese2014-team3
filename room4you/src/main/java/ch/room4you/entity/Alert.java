@@ -120,12 +120,12 @@ public class Alert {
 
 	@Override
 	public String toString() {
-		return "Alert [id=" + id + ", user=" + user + ", zip=" + zip
-				+ ", city=" + city + ", nbrRoomsMin=" + nbrRoomsMin
-				+ ", nbrRoomsMax=" + nbrRoomsMax + ", nbrRoomsMatesMin="
-				+ nbrRoomsMatesMin + ", nbrRoomsMatesMax=" + nbrRoomsMatesMax
-				+ ", rentPerMonthMin=" + rentPerMonthMin + ", rentPerMonthMax="
-				+ rentPerMonthMax + "]";
+		return "ZIP: " + zip
+				+ ", City: " + city + ", Rooms: " + nbrRoomsMin+" to "+nbrRoomsMax
+				+ ", Room mates: "
+				+ nbrRoomsMatesMin + " to " + nbrRoomsMatesMax
+				+ ", Rent: " + rentPerMonthMin + " to "
+				+ rentPerMonthMax;
 	}
 
 }
