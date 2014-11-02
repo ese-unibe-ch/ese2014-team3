@@ -67,7 +67,7 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Ad> ads = new ArrayList<Ad>();
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Alert> alerts = new ArrayList<Alert>();
 	
 	@ManyToMany (fetch = FetchType.EAGER)

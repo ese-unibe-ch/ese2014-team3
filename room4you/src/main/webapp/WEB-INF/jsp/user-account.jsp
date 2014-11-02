@@ -94,6 +94,37 @@
 </table>
 
 
+<h2>Currently subscribed alerts</h2>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${user.alerts}" var="alert">
+			<tr>
+				<td id="alert_${alert.id}">
+					<a>
+						<c:out value="${alert}" />
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/alert/remove/${alert.id}.html" />" class="btn btn-danger triggerRemove">
+						remove alert
+					</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+
+
+<a href="<spring:url value="/account/remove/${user.id}.html" />" class="btn btn-danger btn-large pull-right triggerRemove">
+	Delete my account
+</a>
+
 <form:form method="post" modelAttribute="ad" cssClass="form-horizontal adForm" enctype="multipart/form-data">
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

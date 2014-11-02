@@ -132,6 +132,20 @@ public class UserController {
 		adService.delete(ad);
 		return "redirect:/account.html";
 	}
+	
+	
+	/**
+	 * Removes the user with id = {id} and logs the user out
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/account/remove/{id}")
+	public String removeUser(@PathVariable int id) {
+		userService.delete(id);
+		return "redirect:/logout";
+	}
+	
 	//Not working correctly, doesn't remove
 	@RequestMapping("/ad/unBookmarkAd/{id}")  
 	public String unBookmarkAd(@PathVariable int id) {

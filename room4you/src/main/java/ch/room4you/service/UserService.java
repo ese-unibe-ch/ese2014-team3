@@ -9,8 +9,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -48,10 +46,6 @@ public class UserService {
 	public User findOneWithAds(int id) {
 		User user = findOne(id);
 		List<Ad> ads = adRepository.findByUser(user);
-//		for (Ad ad : ads) {
-//			List<Image> images = imageRepository.findByAd(ad);
-//			ad.setImages(images);
-//		}
 		user.setAds(ads);
 		return user;
 	}

@@ -52,11 +52,6 @@ public class AdminController {
 		return "user-detail";
 	}
 	
-//	@RequestMapping("/{id}")
-//	public String userProfile(Model model, @PathVariable int id) {
-//		model.addAttribute("userProfile", userService.findOneWithAds(id));
-//		return "userProfile";
-//	}
 
 	/**
 	 * Removes the user with id = {id} and redirects to users.html

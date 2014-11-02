@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -72,6 +73,18 @@ public class AlertController {
 		String name = principal.getName();
 		alertService.save(alert, name);
 		return "redirect:/subscribeAlerts.html?success=true";
+	}
+	
+	/**
+	 * Removes the alert with id = {id} and redirects to account.html
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/alert/remove/{id}")
+	public String removeAlert(@PathVariable int id) {
+		alertService.delete(id);
+		return "redirect:/account.html";
 	}
 	
 

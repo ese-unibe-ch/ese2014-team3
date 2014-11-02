@@ -175,4 +175,9 @@ public class AlertService{
 		return prop;
 		
 	}
+
+
+	public void delete(int id) {
+		alertRepository.delete(id);
+	}
 }
