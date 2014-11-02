@@ -120,6 +120,7 @@ public class AppInitService {
 		}
 		
 	}
+	
 
 	private void createFirstAlert(User userAdmin) {
 		Alert alert1 = new Alert();
