@@ -76,6 +76,7 @@ public class UserController {
 		String name = principal.getName();
 		model.addAttribute("user", userService.findOneWithAds(name));
 		model.addAttribute("users", userService.findAll());
+		model.addAttribute("userm", userService.findOneWithMessages(name));
 		return "account";
 	}
 

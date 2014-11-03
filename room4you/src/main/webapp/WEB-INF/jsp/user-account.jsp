@@ -93,6 +93,38 @@
 	</tbody>
 </table>
 
+<h2>Messages</h2>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>From</th>
+			<th>Regarding Ad</th>
+			<th>Details</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${userm.messages}" var="message">
+			<tr>
+				<td id="message_${message.id}">
+					<a>
+						<c:out value="${message.sender.name}" />
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ads/${message.messageAd.id}.html" />">
+						<c:out value="${message.messageAd.title}" />
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/showmessage/${message.id}.html" />">
+						Show Message
+					</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+
 
 <h2>Currently subscribed alerts</h2>
 <table class="table table-bordered table-hover table-striped">

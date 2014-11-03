@@ -48,6 +48,20 @@ public class MessageController {
 		}
 	}
 	
+	@RequestMapping("/showmessage/{id}")
+	public String showMessage(Model model, @PathVariable int id) {
+		model.addAttribute("message", messageService.findOne(id));
+		return "showmessage";
+	}
+	
+	@RequestMapping("/reply/{ad}/{snd}/{rcp}")
+	public String reply(Model model, @PathVariable("ad") int ad, @PathVariable("snd") int snd, @PathVariable("rcp") int rcp) {
+		model.addAttribute("ad", adService.findOne(ad));
+		model.addAttribute("sender", userService.findOne(snd));
+		model.addAttribute("recipient", userService.findOne(rcp));
+		return "message";
+	}
+	
 	@RequestMapping(value="/message/{id}", method = RequestMethod.POST)
 	public String sendMessage(@Valid @ModelAttribute("newmessage") Message message, BindingResult result, @PathVariable int id, Principal principal) {
 		if (result.hasErrors()) {
@@ -55,7 +69,8 @@ public class MessageController {
 		}
 		message.setRecipient(adService.findOne(id).getUser());
 		message.setSender(userService.findOneByName(principal.getName()));
+		message.setMessageAd(adService.findOne(id));
 		messageService.save(message);
-		return "redirect:/message/{id}.html?success=true";
+		return "redirect:/ads/{id}.html?success=true";
 	}
 }

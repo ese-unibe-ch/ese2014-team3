@@ -15,4 +15,8 @@ public class MessageService {
 	public void save(Message message) {
 		messageRepository.save(message);
 	}
+	
+	public Message findOne(int id) {
+		return messageRepository.findOne(id);
+	}
 }

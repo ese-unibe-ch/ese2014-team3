@@ -13,9 +13,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ch.room4you.entity.Ad;
+import ch.room4you.entity.Message;
 import ch.room4you.entity.Role;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
+import ch.room4you.repository.MessageRepository;
 import ch.room4you.repository.RoleRepository;
 import ch.room4you.repository.UserRepository;
 
@@ -32,6 +34,9 @@ public class UserService {
 	@Autowired
 	private AdRepository adRepository;
 	
+	@Autowired
+	private MessageRepository messageRepository;
+	
 
 
 	public List<User> findAll() {
@@ -47,6 +52,13 @@ public class UserService {
 		User user = findOne(id);
 		List<Ad> ads = adRepository.findByUser(user);
 		user.setAds(ads);
+		return user;
+	}
+	
+	public User findOneWithMessages(String name) {
+		User user = userRepository.findByName(name);
+		List<Message> messages = messageRepository.findByRecipient(user);
+		user.setMessages(messages);
 		return user;
 	}
 	
