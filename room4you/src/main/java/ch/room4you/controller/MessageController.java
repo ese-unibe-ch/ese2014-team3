@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ch.room4you.entity.Message;
 import ch.room4you.service.AdService;
 import ch.room4you.service.MessageService;
+import ch.room4you.service.UserService;
 
 
 @Controller
@@ -27,6 +28,9 @@ public class MessageController {
 	@Autowired
 	private AdService adService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@ModelAttribute("newmessage")
 	public Message constructMessage() {
 		return new Message();
@@ -34,16 +38,23 @@ public class MessageController {
 	
 	@RequestMapping("/message/{id}")
 	public String message(Model model, @PathVariable int id, Principal principal) {
-		model.addAttribute("ad", adService.findOne(id));
-		model.addAttribute("principal", principal.getName());
-		return "message";
+		if (principal != null) {
+			model.addAttribute("ad", adService.findOne(id));
+			model.addAttribute("principal", principal.getName());
+			return "message";
+		}
+		else {
+			return "login";
+		}
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public String sendMessage(@Valid @ModelAttribute("newmessage") Message message, BindingResult result, @PathVariable int id) {
+	@RequestMapping(value="/message/{id}", method = RequestMethod.POST)
+	public String sendMessage(@Valid @ModelAttribute("newmessage") Message message, BindingResult result, @PathVariable int id, Principal principal) {
 		if (result.hasErrors()) {
 			return "message";
 		}
+		message.setRecipient(adService.findOne(id).getUser());
+		message.setSender(userService.findOneByName(principal.getName()));
 		messageService.save(message);
 		return "redirect:/message/{id}.html?success=true";
 	}
