@@ -1,5 +1,6 @@
 package ch.room4you.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch.room4you.entity.Ad;
-
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
@@ -79,22 +79,20 @@ public class AdController {
 		return "adDetail";
 	}
 	
+	
 	@RequestMapping("/ad/bookmarkAd/{id}")
-	public String bookmarkAd(@PathVariable int id) {
+	public String bookmarkAd(@PathVariable int id, Principal principal) {
 		Ad ad = adService.findOne(id);
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String currentUser = auth.getName();
-		User user = userService.findOneByName(currentUser);
-	//	System.out.println(user.isBookmarkedAd(ad));
-	//	System.out.println(!user.isBookmarkedAd(ad));
+		String userName = principal.getName();
+		User currentUser = userService.findOneByName(userName);
+	
+		if (!userService.isBookmarkedAd(currentUser, id)) {
+			userService.bookmarkAd(currentUser, ad);
+		}
 		
-		//contains method doesn't work in isBookmarked
-		if (!user.isBookmarkedAd(ad)) {
-			user.setBookmarkedAd(ad);
-			userService.save(user);
-		 }
 		return "redirect:/ads/{id}.html";
 	}
+	
 	
 	private void setModelAttributeAds(Model model,
 			org.springframework.web.context.request.WebRequest webRequest) {

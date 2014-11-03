@@ -146,17 +146,13 @@ public class UserController {
 		return "redirect:/logout";
 	}
 	
-	//Not working correctly, doesn't remove
 	@RequestMapping("/ad/unBookmarkAd/{id}")  
-	public String unBookmarkAd(@PathVariable int id) {
-		Ad ad = adService.findOne(id);
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String currentUser = auth.getName();
-		User user = userService.findOneByName(currentUser);
-		user.unBookmarkAd(ad);
+	public String unBookmarkAd(@PathVariable int id, Principal principal) {
+		String userName = principal.getName();
+		User user = userService.findOneByName(userName);
+		userService.unBookmarkAd(user, id);
 		return "redirect:/account.html";
 	}
-	
 	
 
 	private void saveRoomMates(Ad ad, String roomMate) {
