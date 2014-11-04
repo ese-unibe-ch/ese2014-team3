@@ -117,7 +117,8 @@ public class AppInitService {
 			Role roleUser = createUserRole();
 			Role roleAdmin = createAdminRole();
 			User userAdmin = createAdminUser(roleUser, roleAdmin);
-			Ad ad1 = createFirstAd(userAdmin);     
+			createTestUser(roleUser);
+			Ad ad1 = createFirstAd(userAdmin);
 	        createRoomMate(userAdmin, ad1);         
 	        createFirstImage(ad1); 
 			 
@@ -156,6 +157,9 @@ public class AppInitService {
 		 ad1.setRentPerMonth(1200);
 		 ad1.setAdditionalInformation("Some additional Info");
 		 ad1.setSharedApartment(true);
+		 ad1.setSmokingAllowed(false);
+		 ad1.setInstrumentsAllowed(true);
+		 ad1.setPetsAllowed(true);
 		 ad1.setNbrRoomsMates(3);
 		 ad1.setWeAreLookingFor("For a person aged between 20 and 22 years. No pets and no instruments.");
 		 adRepository.save(ad1);
@@ -167,7 +171,7 @@ public class AppInitService {
 		User userAdmin = new User();
 		userAdmin.setEnabled(true);
 		userAdmin.setName("admin");
-		userAdmin.setEmail("namibrider@gmx.net");
+		userAdmin.setEmail("ese2014team3@gmail.com");
 		encryptPassword(userAdmin, "admin");
 		List<Role> roles = new ArrayList<Role>();
 		roles.add(roleAdmin);
@@ -177,6 +181,21 @@ public class AppInitService {
 		userRepository.save(userAdmin);
 		log.info("Admin user created!");
 		return userAdmin;
+	}
+	
+	private User createTestUser(Role roleUser) {
+		User user1 = new User();
+		user1.setEnabled(true);
+		user1.setName("user1");
+		user1.setEmail("ese2014team3@gmail.com");
+		encryptPassword(user1, "user1");
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(roleUser);
+		user1.setRoles(roles);
+		user1.setAboutMe("My hobbies are reading and taking a walk at sunset");
+		userRepository.save(user1);
+		log.info("user1 created!");
+		return user1;
 	}
 
 	private Role createAdminRole() {

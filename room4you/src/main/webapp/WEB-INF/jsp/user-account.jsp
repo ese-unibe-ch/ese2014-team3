@@ -10,7 +10,9 @@
 </c:if>
 
 <!-- Button trigger modal -->
-<a class="btn btn-primary btn-lg pull-right" href="newAd.html" role="button">Place new Ad</a>
+<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">
+  Place new ad
+</button>
 
 <h2>Currently placed ads</h2>
 <table class="table table-bordered table-hover table-striped">
@@ -144,7 +146,7 @@
 <table class="table table-bordered table-hover table-striped">
 	<thead>
 		<tr>
-			<th>Title</th>
+			<th>Criteria</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
@@ -183,23 +185,23 @@
       <div id="myModalContent" class="modal-body">
 
 		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label" >Title:</label>
+			<label for="name" class="col-sm-2 control-label">Title:</label>
 			<div class="col-sm-10">
-				<form:input path="title" cssClass="form-control"/>
+				<form:input path="title" cssClass="form-control" />
 				<form:errors path="title" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Description:</label>
 			<div class="col-sm-10">
-				<form:input placeholder="Enter title" path="description" cssClass="form-control" />
+				<form:input path="description" cssClass="form-control" />
 				<form:errors path="description" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Street:</label>
 			<div class="col-sm-10">
-				<form:input path="street" cssClass="form-control" />
+				<form:input path="street" cssClass="form-control"/>
 				<form:errors path="street" />
 			</div>
 		</div>
@@ -217,26 +219,59 @@
 				<form:errors path="city" />
 			</div>
 		</div>
-		<div class="from-grouped">
-			<label for="name" class="col-sm-5 control-label">Number of rooms:</label>
-			<select class="col-sm-2">
-		        <option>1</option>
-		        <option>1.5</option>
-		        <option>2</option>
-		        <option>2.5</option>
-		        <option>3</option>
-		        <option>3.5</option>
-		        <option>4</option>
-    		</select>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Number of rooms:</label>
+			<div class="col-sm-10">
+				<form:select path="nbrRooms" cssClass="formControl" style="width:100%;"
+					tabindex="6">
+					<option value="1">1</option>
+					<option value="1.5">1.5</option>
+					<option value="2">2</option>
+					<option value="2.5">2.5</option>
+					<option value="3">3</option>
+					<option value="3.5">3.5</option>
+					<option value="4">4</option>
+					<option value="4.5">4.5</option>
+					<option value="5">5</option>
+					<option value="5.5">5.5</option>
+					<option value="6">6</option>
+					<option value="6.5">6.5</option>
+					<option value="7">7</option>
+					<option value="7.5">7.5</option>
+					<option value="8">8</option>
+					<option value="8.5">8.5</option>
+					<option value="9">9</option>
+					<option value="9.5">9.5</option>
+					<option value="10">10</option>
+					<option value="10.5">10.5</option>
+					<option value="11">11</option>
+					<option value="11.5">11.5</option>
+					<option value="12">12</option>
+					<option value="12.5">12.5</option>
+				</form:select>
+				<form:errors path="nbrRooms" />
+			</div>
 		</div>
-		<div class="from-grouped">
-			<label for="name" class="col-sm-5 control-label">Number of roommates:</label>
-			<select class="col-sm-2">
-		        <option>1</option>
-		        <option>2</option>
-		        <option>3</option>
-		        <option>4</option>
-    		</select>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Number of room mates:</label>
+			<div class="col-sm-10">
+				<form:select path="nbrRooms" cssClass="formControl" style="width:100%;"
+					tabindex="6">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</form:select>
+				<form:errors path="nbrRooms" />
+			</div>
 		</div>
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Available from:</label>
@@ -257,6 +292,29 @@
 			</div>
 		</div>
 		
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Pets allowed:</label>
+			<div class="col-sm-10">
+				<form:checkbox path="petsAllowed" cssClass="form-control" style="border-style:none;"/>
+				<form:errors path="petsAllowed" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Smoking allowed:</label>
+			<div class="col-sm-10">
+				<form:checkbox path="smokingAllowed" cssClass="form-control" style="border-style:none;"/>
+				<form:errors path="smokingAllowed" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Instuments allowed:</label>
+			<div class="col-sm-10">
+				<form:checkbox path="instrumentsAllowed" cssClass="form-control" style="border-style:none;"/>
+				<form:errors path="instrumentsAllowed" />
+			</div>
+		</div>
 
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Additional Information:</label>

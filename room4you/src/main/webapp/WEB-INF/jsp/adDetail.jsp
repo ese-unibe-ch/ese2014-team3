@@ -74,7 +74,34 @@
 				<label for="name" class="col-sm-4 ">Shared Apartment:</label>
 				<div class="col-sm-8">
 					<div class="input-group">
-					<input type="checkbox" checked="${ad.sharedApartment}" onclick="return false">						
+					<input type="checkbox" <c:if test="${ad.sharedApartment}">checked="checked"</c:if> onclick="return false">						
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Smoking allowed:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+					<input type="checkbox" <c:if test="${ad.smokingAllowed}">checked="checked"</c:if> onclick="return false">						
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Pets allowed:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+					<input type="checkbox" <c:if test="${ad.petsAllowed}">checked="checked"</c:if> value="${ad.petsAllowed}" onclick="return false">						
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Instruments allowed:</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+					<input type="checkbox" <c:if test="${ad.instrumentsAllowed}">checked="checked"</c:if> value="${ad.instrumentsAllowed}" onclick="return false">						
 					</div>
 				</div>
 			</div>

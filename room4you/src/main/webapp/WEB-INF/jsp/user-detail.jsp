@@ -15,7 +15,7 @@
 			  <div class="form-group">
 			    <label for="availableFrom" class="col-sm-4">About me</label>
 			    <div class="col-sm-8">
-			      ${user.aboutMe}" 
+			      ${user.aboutMe}
 			    </div>
 			  </div>	  
 			</form>

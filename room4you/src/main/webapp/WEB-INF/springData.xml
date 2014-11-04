@@ -10,7 +10,7 @@
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/room4you"/>
         <property name="username" value="postgres"/>
-        <property name="password" value="b10hofwifx"/>
+        <property name="password" value="admin"/>
     </bean>
  
 	<bean

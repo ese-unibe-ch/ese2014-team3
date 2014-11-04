@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,13 +38,6 @@ public class AdController {
 		model.addAttribute("ads", adService.findAll());
 		return "ads";
 	}
-
-	@RequestMapping("/newAd")
-	public String createNewAd(@ModelAttribute("ad") Ad ad) {
-		return "newAd";
-	}
-	
-	
 	
 	/**
 	 * Maps the request url /ads to the page ads.jsp and provides the model "ads"
