@@ -6,9 +6,7 @@
 <h1>My account</h1>
 
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">
-  Place new ad
-</button>
+<a class="btn btn-primary btn-lg pull-right" href="newAd.html" role="button">Place new Ad</a>
 
 <h2>Currently placed ads</h2>
 <table class="table table-bordered table-hover table-striped">
@@ -137,16 +135,16 @@
       <div id="myModalContent" class="modal-body">
 
 		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">Title:</label>
+			<label for="name" class="col-sm-2 control-label" >Title:</label>
 			<div class="col-sm-10">
-				<form:input path="title" cssClass="form-control" />
+				<form:input path="title" cssClass="form-control"/>
 				<form:errors path="title" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Description:</label>
 			<div class="col-sm-10">
-				<form:input path="description" cssClass="form-control" />
+				<form:input placeholder="Enter title" path="description" cssClass="form-control" />
 				<form:errors path="description" />
 			</div>
 		</div>
@@ -171,19 +169,26 @@
 				<form:errors path="city" />
 			</div>
 		</div>
-		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">Number of rooms:</label>
-			<div class="col-sm-10">
-				<form:input type="number" path="nbrRooms" cssClass="form-control" />
-				<form:errors path="nbrRooms" />
-			</div>
+		<div class="from-grouped">
+			<label for="name" class="col-sm-5 control-label">Number of rooms:</label>
+			<select class="col-sm-2">
+		        <option>1</option>
+		        <option>1.5</option>
+		        <option>2</option>
+		        <option>2.5</option>
+		        <option>3</option>
+		        <option>3.5</option>
+		        <option>4</option>
+    		</select>
 		</div>
-		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">Number of room mates:</label>
-			<div class="col-sm-10">
-				<form:input type="number" path="nbrRooms" cssClass="form-control" />
-				<form:errors path="nbrRooms" />
-			</div>
+		<div class="from-grouped">
+			<label for="name" class="col-sm-5 control-label">Number of roommates:</label>
+			<select class="col-sm-2">
+		        <option>1</option>
+		        <option>2</option>
+		        <option>3</option>
+		        <option>4</option>
+    		</select>
 		</div>
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Available from:</label>

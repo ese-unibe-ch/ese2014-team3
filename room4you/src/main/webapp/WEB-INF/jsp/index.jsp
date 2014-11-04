@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
+<%@ include file="../layout/bootstrap-datetimepicker.min.css"%>
+<%@ include file="../layout/bootstrap-datetimepicker.min.js"%>
 
 <div class="jumbotron">
   <h1>Room4You</h1>

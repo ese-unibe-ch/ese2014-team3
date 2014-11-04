@@ -59,6 +59,12 @@ public class Ad {
 	
 	private boolean sharedApartment=true;
 	
+	private boolean petsAllowed;
+	
+	private boolean instrumentsAllowed;
+	
+	private boolean smokingAllowed;
+	
 
 	@Lob
 	@Type(type = "org.hibernate.type.StringClobType")
@@ -235,5 +241,31 @@ public class Ad {
 
 	public void setWeAreLookingFor(String weAreLookingFor) {
 		this.weAreLookingFor = weAreLookingFor;
+	}
+	
+	public boolean getPetsAllowed() {
+		return petsAllowed;
+	}
+	
+	public void setPetsAllowed(boolean petsAllowed) {
+		this.petsAllowed = petsAllowed;
+	}
+	
+	
+	public boolean getInstrumentsAllowed() {
+		return instrumentsAllowed;
+	}
+	
+	public void setInstrumentsAllowed(boolean instrumentsAllowed) {
+		this.instrumentsAllowed = instrumentsAllowed;
+	}
+	
+	
+	public boolean getSmokingAllowed() {
+		return smokingAllowed;
+	}
+	
+	public void setSmokingAllowed(boolean smokingAllowed) {
+		this.smokingAllowed = smokingAllowed;
 	}
 }

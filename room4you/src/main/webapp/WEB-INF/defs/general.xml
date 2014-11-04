@@ -36,6 +36,12 @@
 		<put-attribute name="current" value="ad" />
 	</definition>
 	
+	<definition name="newAd" extends="common">
+		<put-attribute name="title" value="NewAd" />
+		<put-attribute name="body" value="/WEB-INF/jsp/newAd.jsp" />
+		<put-attribute name="current" value="newAd" />
+	</definition>
+	
 	<definition name="message" extends="common">
 		<put-attribute name="title" value="Message" />
 		<put-attribute name="body" value="/WEB-INF/jsp/message.jsp" />
