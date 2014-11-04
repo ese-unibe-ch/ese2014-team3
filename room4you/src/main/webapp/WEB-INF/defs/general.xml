@@ -44,7 +44,7 @@
 	
 	<definition name="showmessage" extends="common">
 		<put-attribute name="title" value="Message Detail" />
-		<put-attribute name="body" value="/WEB-INF/jsp/showMessage.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/showmessage.jsp" />
 		<put-attribute name="current" value="messagedetail" />
 	</definition>
 

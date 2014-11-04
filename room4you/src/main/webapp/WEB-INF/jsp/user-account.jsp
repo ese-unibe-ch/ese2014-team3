@@ -5,6 +5,10 @@
 
 <h1>My account</h1>
 
+<c:if test="${param.success eq true}">
+	<div class="alert alert-success">Message sent!</div>
+</c:if>
+
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">
   Place new ad
@@ -100,6 +104,8 @@
 			<th>From</th>
 			<th>Regarding Ad</th>
 			<th>Details</th>
+			<th>Reply</th>
+			<th>Delete</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -118,6 +124,16 @@
 				<td>
 					<a href="<spring:url value="/showmessage/${message.id}.html" />">
 						Show Message
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/reply/${message.id}.html" />">
+						Reply
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/message/remove/${message.id}.html" />" class="btn btn-danger triggerRemove">
+						Delete Message
 					</a>
 				</td>
 			</tr>

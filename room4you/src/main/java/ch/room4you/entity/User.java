@@ -54,17 +54,17 @@ public class User {
     @Basic(optional=true)
     String image;
 	
-	@OneToMany(mappedBy ="sender", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy ="sender", cascade = CascadeType.ALL)
 	private List<Message> sentMessages = new ArrayList<Message>();
 	
-	@OneToMany(mappedBy ="recipient", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy ="recipient", cascade = CascadeType.ALL)
 	private List<Message> messages = new ArrayList<Message>();
 
 	@ManyToMany
 	@JoinTable
 	private List<Role> roles;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Ad> ads = new ArrayList<Ad>();
 	
 	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)

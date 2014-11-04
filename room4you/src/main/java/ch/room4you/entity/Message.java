@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -20,14 +21,17 @@ public class Message {
 	private Integer id;
 	
 	@ManyToOne
+	@JoinColumn(name = "sender_id")
 	private User sender;
 	
 	@ManyToOne
+	@JoinColumn(name = "recipient_id")
 	private User recipient;
 	
 	private String message;
 	
 	@ManyToOne
+	@JoinColumn(name = "messagead_id")
 	private Ad messageAd;
 	
 	@Column(length = 1000)

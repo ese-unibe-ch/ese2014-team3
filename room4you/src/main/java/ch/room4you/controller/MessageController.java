@@ -40,7 +40,8 @@ public class MessageController {
 	public String message(Model model, @PathVariable int id, Principal principal) {
 		if (principal != null) {
 			model.addAttribute("ad", adService.findOne(id));
-			model.addAttribute("principal", principal.getName());
+			model.addAttribute("sender", userService.findOneByName(principal.getName()));
+			model.addAttribute("recipient", adService.findOne(id).getUser());
 			return "message";
 		}
 		else {
@@ -54,12 +55,27 @@ public class MessageController {
 		return "showmessage";
 	}
 	
-	@RequestMapping("/reply/{ad}/{snd}/{rcp}")
-	public String reply(Model model, @PathVariable("ad") int ad, @PathVariable("snd") int snd, @PathVariable("rcp") int rcp) {
-		model.addAttribute("ad", adService.findOne(ad));
-		model.addAttribute("sender", userService.findOne(snd));
-		model.addAttribute("recipient", userService.findOne(rcp));
+	@RequestMapping("/reply/{id}")
+	public String reply(Model model, @PathVariable int id) {
+		Message message = messageService.findOne(id);
+		model.addAttribute("ad", adService.findOne(message.getMessageAd().getId()));
+		model.addAttribute("sender", message.getRecipient());
+		model.addAttribute("recipient", message.getSender());
 		return "message";
+	}
+	
+	@RequestMapping(value="/reply/{id}", method = RequestMethod.POST)
+	public String sendReply(@Valid @ModelAttribute("newmessage") Message reply, BindingResult result, @PathVariable int id) {
+		if (result.hasErrors()) {
+			return "message";
+		}
+		Message message = messageService.findOne(id);
+		reply.setRecipient(message.getSender());
+		reply.setSender(message.getRecipient());
+		reply.setMessageAd(message.getMessageAd());
+		reply.setId(null);
+		messageService.save(reply);
+		return "redirect:/account.html?success=true";
 	}
 	
 	@RequestMapping(value="/message/{id}", method = RequestMethod.POST)
@@ -72,5 +88,11 @@ public class MessageController {
 		message.setMessageAd(adService.findOne(id));
 		messageService.save(message);
 		return "redirect:/ads/{id}.html?success=true";
+	}
+	
+	@RequestMapping("/message/remove/{id}")
+	public String removeMessage(@PathVariable int id) {
+		messageService.delete(id);
+		return "redirect:/account.html";
 	}
 }

@@ -19,4 +19,8 @@ public class MessageService {
 	public Message findOne(int id) {
 		return messageRepository.findOne(id);
 	}
+	
+	public void delete(int id) {
+		messageRepository.delete(id);
+	}
 }
