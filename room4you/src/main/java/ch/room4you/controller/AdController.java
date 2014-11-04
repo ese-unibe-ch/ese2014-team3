@@ -47,6 +47,8 @@ public class AdController {
 		return "newAd";
 	}
 	
+	
+	
 	/**
 	 * Maps the request url /ads to the page ads.jsp and provides the model "ads"
 	 * with all ads in the repository
