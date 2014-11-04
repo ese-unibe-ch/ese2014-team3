@@ -5,6 +5,10 @@
 
 <h1>My account</h1>
 
+<c:if test="${param.success eq true}">
+	<div class="alert alert-success">Message sent!</div>
+</c:if>
+
 <!-- Button trigger modal -->
 <a class="btn btn-primary btn-lg pull-right" href="newAd.html" role="button">Place new Ad</a>
 
@@ -84,6 +88,50 @@
 				<td>
 					<a href="<spring:url value="/ad/unBookmarkAd/${ad.id}.html" />" class="btn btn-danger triggerRemove">
 						Unbookmark Ad
+					</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+
+<h2>Messages</h2>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>From</th>
+			<th>Regarding Ad</th>
+			<th>Details</th>
+			<th>Reply</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${userm.messages}" var="message">
+			<tr>
+				<td id="message_${message.id}">
+					<a>
+						<c:out value="${message.sender.name}" />
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ads/${message.messageAd.id}.html" />">
+						<c:out value="${message.messageAd.title}" />
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/showmessage/${message.id}.html" />">
+						Show Message
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/reply/${message.id}.html" />">
+						Reply
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/message/remove/${message.id}.html" />" class="btn btn-danger triggerRemove">
+						Delete Message
 					</a>
 				</td>
 			</tr>

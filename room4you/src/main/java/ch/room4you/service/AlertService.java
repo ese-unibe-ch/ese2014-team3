@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +45,7 @@ public class AlertService{
 	@Autowired
 	private AdRepository adService;
 	
+		
 	
 	/**
 	 * Saves the ad in the database
@@ -52,8 +56,30 @@ public class AlertService{
 		User user = userRepository.findByName(name);
 		alert.setUser(user);
 		alertRepository.save(alert);
+		MailMail welcomeAlertMail = createWelcomeMail(user, alert);
+		try {
+			welcomeAlertMail.sendMail();
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
+
+	private MailMail createWelcomeMail(User user, Alert alert) {
+		MailMail mail = new MailMail();
+		mail.setFrom("ese2014team3@gmail.com");
+		mail.setRecipients(user.getEmail());
+		mail.setSubject("Mail alert activated");
+		mail.setText("You just acitivated a mail alert for: \n"
+				+ alert+" \n"
+						+ "You can stop the alert in your account at room4you!");		
+		return mail;
+	}
+
 
 	public Alert findOne(int id) {
 		return alertRepository.findOne(id);
@@ -89,7 +115,7 @@ public class AlertService{
 				    		mail.setText("Hi,\n"
 				    				+ "We have found a new interesting room for you. \n"
 				    				+ getHostNameFromProperties().getProperty("hostName")+"/ads/"+ad.getId()+".html \n"			    				
-				    				+ "Checkout it out!");
+				    				+ "Check it out!");
 				    		mails.add(mail);
 													
 						}

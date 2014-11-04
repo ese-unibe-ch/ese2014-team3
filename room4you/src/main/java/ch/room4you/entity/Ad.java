@@ -1,6 +1,7 @@
 package ch.room4you.entity;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
+import javax.persistence.OneToOne;
+
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -66,6 +69,9 @@ public class Ad {
 	private boolean smokingAllowed;
 	
 
+	@OneToMany(mappedBy ="messageAd", cascade = CascadeType.REMOVE)
+	private List<Message> messages = new ArrayList<Message>();
+	
 	@Lob
 	@Type(type = "org.hibernate.type.StringClobType")
 	@Column(length = Integer.MAX_VALUE)
@@ -267,5 +273,13 @@ public class Ad {
 	
 	public void setSmokingAllowed(boolean smokingAllowed) {
 		this.smokingAllowed = smokingAllowed;
+	}
+		
+		public List<Message> getAdMessages() {
+		return messages;
+	}
+	
+	public void setAdMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 }

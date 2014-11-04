@@ -14,6 +14,9 @@
 	    <a href="<spring:url value="/ad/bookmarkAd/${ad.id}.html" />" class="btn btn-primary pull-right"> Bookmark Ad </a>
 	</sec:authorize>
 
+  <c:if test="${param.success eq true}">
+		<div class="alert alert-success">Message sent!</div>
+	</c:if>
   
   <h1><c:out value="${ad.title}" /></h1>
   <p></p>		

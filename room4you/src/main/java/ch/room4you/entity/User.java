@@ -54,17 +54,17 @@ public class User {
     @Basic(optional=true)
     String image;
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy ="sender", cascade = CascadeType.ALL)
-	private Message sender;
+	@OneToMany(mappedBy ="sender", cascade = CascadeType.ALL)
+	private List<Message> sentMessages = new ArrayList<Message>();
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy ="recipient", cascade = CascadeType.ALL)
-	private Message recipient;
+	@OneToMany(mappedBy ="recipient", cascade = CascadeType.ALL)
+	private List<Message> messages = new ArrayList<Message>();
 
 	@ManyToMany
 	@JoinTable
 	private List<Role> roles;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Ad> ads = new ArrayList<Ad>();
 	
 	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
@@ -156,20 +156,20 @@ public class User {
 		this.aboutMe = aboutMe;
 	}
 
-	public Message getSender() {
-		return sender;
+	public List<Message> getSentMessages() {
+		return sentMessages;
 	}
 
-	public void setSender(Message sender) {
-		this.sender = sender;
+	public void setSentMessages(List<Message> sentMessages) {
+		this.sentMessages = sentMessages;
 	}
 
-	public Message getRecipient() {
-		return recipient;
+	public List<Message> getMessages() {
+		return messages;
 	}
 
-	public void setRecipient(Message recipient) {
-		this.recipient = recipient;
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 
 	public void setBookmarkedAds(List<Ad> bookmarkedAds) {

@@ -119,28 +119,12 @@ public class AppInitService {
 			User userAdmin = createAdminUser(roleUser, roleAdmin);
 			Ad ad1 = createFirstAd(userAdmin);     
 	        createRoomMate(userAdmin, ad1);         
-	        createFirstImage(ad1);     
-	        createFirstAlert(userAdmin);
+	        createFirstImage(ad1); 
 			 
 		}
 		
 	}
 	
-
-	private void createFirstAlert(User userAdmin) {
-		Alert alert1 = new Alert();
-		 alert1.setCity("Bern");
-		 alert1.setZip("3007");
-		 alert1.setNbrRoomsMatesMin(1);
-		 alert1.setNbrRoomsMatesMax(4);
-		 alert1.setNbrRoomsMin(1);
-		 alert1.setNbrRoomsMax(5);
-		 alert1.setRentPerMonthMin(100);
-		 alert1.setRentPerMonthMax(1900);
-		 alert1.setUser(userAdmin);
-		 alertRepository.save(alert1);
-		 log.info("First alert created!");
-	}
 
 	private void createFirstImage(Ad ad1) {
 		Image image1 = new Image();      
