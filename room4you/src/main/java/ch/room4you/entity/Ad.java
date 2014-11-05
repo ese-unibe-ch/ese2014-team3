@@ -275,7 +275,7 @@ public class Ad {
 		this.smokingAllowed = smokingAllowed;
 	}
 		
-		public List<Message> getAdMessages() {
+	public List<Message> getAdMessages() {
 		return messages;
 	}
 	

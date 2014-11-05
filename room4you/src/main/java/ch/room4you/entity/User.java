@@ -134,18 +134,10 @@ public class User {
 		bookmarkedAds.add(ad);
 	}
 
-	public boolean isBookmarkedAd(Ad ad) {
-		return bookmarkedAds.contains(ad);
-	}
-	
-	public void unBookmarkAd(Ad ad) {
-		bookmarkedAds.remove(ad);
-	}
 	
 	public List<Ad> getBookmarkedAds(){
 		return bookmarkedAds;
 	}
-
 
 
 	public String getAboutMe() {
