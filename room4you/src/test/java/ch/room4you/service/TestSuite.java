@@ -7,7 +7,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
    AdTest.class,
-   AlertTest.class
+   AlertTest.class,
+   UserTest.class
 })
 public class TestSuite {   
 } 

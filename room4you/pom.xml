@@ -54,9 +54,7 @@
 		<groupId>org.mockito</groupId>
 		<artifactId>mockito-all</artifactId>
 		<version>1.10.8</version>
-	</dependency>
-		
-	
+	</dependency>		
 		
 	
 

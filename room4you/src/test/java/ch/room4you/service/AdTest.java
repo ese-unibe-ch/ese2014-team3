@@ -1,6 +1,9 @@
 package ch.room4you.service;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,23 +20,43 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import pojo.MailMail;
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Alert;
+import ch.room4you.entity.Role;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
 import ch.room4you.repository.AlertRepository;
+import ch.room4you.repository.RoleRepository;
 import ch.room4you.repository.UserRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/springData.xml","file:src/main/webapp/WEB-INF/applicationContext.xml"})
+@Transactional
+@TransactionConfiguration(defaultRollback = true)
 public class AdTest {
- 
- 
+    
+    
+	private Date date = new Date();
+	private Timestamp timestamp = new java.sql.Timestamp(date.getTime()-1000); 
+    
+    private Ad ad;
+    private User user;
+    
+     
     @Autowired
-	@Mock
+    RoleRepository roleRepository;
+    
+    
     private AdRepository adRepository;
     
     @Autowired
@@ -48,39 +71,18 @@ public class AdTest {
 	@Mock
     private AlertService alertService;
     
-    @Autowired
-	@Mock
-    private AdService adService;
     
-    @Autowired
- 	@Mock
-    private Alert alert;
-    
-    @Autowired
- 	@Mock
-    private Ad ad;
-    
-    
-    @Autowired
- 	@Mock
-    private User user;
-    
-    @Autowired
- 	@Mock
-    private MailMail mail;
-    
-    
-	private Date date = new Date();
-	private Timestamp timestamp = new java.sql.Timestamp(date.getTime()-1000); 
-    
-    
+    AdService adService;
+
+
     
  
     @Before
 	public void setUp() throws Exception {
-		ad = createNewAd(timestamp);
 		user = createUser();
-		adRepository.save(ad);
+		ad = createNewAd(timestamp);
+		adService = mock(AdService.class);
+		adRepository = mock(AdRepository.class);
 		
 	}
     
@@ -106,12 +108,11 @@ public class AdTest {
 	     */
 	    @Test
 	    public void findAdByUser() {
-	        // given
 	        List<Ad> adList = new ArrayList<Ad>();
-	        adList.add(ad);
-	        Mockito.doReturn(adList).when(adRepository).findByUser(user);
+	        assertTrue(adList.size()==0);
+	        adList.add(ad);	        
 	 	        // then
-	        assertTrue(adList.get(0).getUser()==user);
+	        assertTrue(adList.get(0).getUser().getName()==user.getName());
 	    }	
 
 
@@ -147,9 +148,31 @@ public class AdTest {
 
 
 		private User createUser() {
-			user.setEmail("test@b.ch");
-			user.setName("TestUser");
-			return user;
+    		String userName = "test";
+    		String userEmail = "ese2014team3@gmail.com";
+    		String userPassword = "test";
+    		String userAboutMe = "I am the admin of room4you and I am 12 years old";
+    		
+    		Role roleUser = new Role();
+    		roleUser.setName("ROLE_USER");
+    		roleRepository.save(roleUser);
+    		
+    	
+    		User testUser = new User();
+    		AppInitService appInit = new AppInitService();
+    		
+
+    		
+    		testUser.setEnabled(true);
+    		testUser.setName(userName);
+    		testUser.setEmail(userEmail);
+    		testUser.setPassword(userPassword);
+    		List<Role> roles = new ArrayList<Role>();
+    		roles.add(roleUser);
+    		testUser.setRoles(roles);
+    		testUser.setAboutMe(userAboutMe);
+    		userRepository.save(testUser);
+    		return testUser;
 		}
 		
 }
