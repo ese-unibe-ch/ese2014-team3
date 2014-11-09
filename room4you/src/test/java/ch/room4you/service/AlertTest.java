@@ -1,6 +1,8 @@
 package ch.room4you.service;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,14 +13,23 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import pojo.MailMail;
 import ch.room4you.entity.Ad;
@@ -29,6 +40,9 @@ import ch.room4you.repository.AlertRepository;
 import ch.room4you.repository.UserRepository;
 
 @RunWith(MockitoJUnitRunner.class)
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/springData.xml","file:src/main/webapp/WEB-INF/applicationContext.xml"})
+@Transactional
+@TransactionConfiguration(defaultRollback = true)
 public class AlertTest {
  
  
@@ -52,27 +66,15 @@ public class AlertTest {
 	@Mock
     private AdService adService;
     
-    @Autowired
- 	@Mock
-    private Alert alert;
-    
-    @Autowired
- 	@Mock
-    private Ad ad;
-    
-    
-    @Autowired
- 	@Mock
-    private User user;
-    
-    @Autowired
- 	@Mock
-    private MailMail mail;
     
     
 	private Date date = new Date();
 	private Timestamp timestamp = new java.sql.Timestamp(date.getTime()-1000); 
     
+	Ad ad = new Ad();
+	User user = new User();
+	Alert alert = new Alert();	
+	MailMail mail = new MailMail();
     
     
  
@@ -115,6 +117,45 @@ public class AlertTest {
 			assertEquals(mailList, alertService.findMatchingAds());
 			
 		}
+		
+		@Test
+		public void saveAlert() {
+			alert.setUser(user);
+			assertNull(alert.getId());
+			
+		       when(alertRepository.save(any(Alert.class)))
+               .thenAnswer(new Answer<Alert>() {
+                   public Alert answer(InvocationOnMock invocation) throws Throwable {
+                       Alert alert = (Alert) invocation.getArguments()[0];
+                       alert.setId(1);
+                       return alert;
+                   }
+               });
+			
+			
+			alertRepository.save(alert);	
+			assertNotNull(alert.getId());
+		}
+		
+		@Test
+		public void mail() {
+			assertEquals(mail.getFrom(),"Test");
+			
+		       when(alertRepository.save(any(Alert.class)))
+               .thenAnswer(new Answer<Alert>() {
+                   public Alert answer(InvocationOnMock invocation) throws Throwable {
+                       Alert alert = (Alert) invocation.getArguments()[0];
+                       alert.setId(1);
+                       return alert;
+                   }
+               });
+			
+			
+			alertRepository.save(alert);	
+			assertNotNull(alert.getId());
+		}
+		
+		
 
 
 		
