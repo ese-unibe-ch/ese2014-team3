@@ -11,7 +11,17 @@
   <div class="col-md-6">
   
   	<sec:authorize access="isAuthenticated()">
-	    <a href="<spring:url value="/ad/bookmarkAd/${ad.id}.html" />" class="btn btn-primary pull-right"> Bookmark Ad </a>
+
+				<c:choose>
+					<c:when test="${isBkmrkedAd eq false}">
+						<a href="<spring:url value="/ad/bookmarkAd/${ad.id}.html" />"
+							class="btn btn-primary pull-right" id="bkmrk"> Bookmark Ad </a>
+					</c:when>
+					<c:otherwise>
+						<a href="<spring:url value="/ad/unBookmarkAd/${ad.id}.html" />"
+							class="btn btn-primary pull-right"> Unbookmark Ad  </a>
+					</c:otherwise>
+				</c:choose>
 	</sec:authorize>
 
   <c:if test="${param.success eq true}">

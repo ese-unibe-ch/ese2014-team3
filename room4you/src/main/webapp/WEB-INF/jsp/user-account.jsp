@@ -88,7 +88,7 @@
 					<a><c:out value="${ad.description}" /></a>
 				</td>
 				<td>
-					<a href="<spring:url value="/ad/unBookmarkAd/${ad.id}.html" />" class="btn btn-danger triggerRemove">
+					<a href="<spring:url value="/ad/removeBookmarkAd/${ad.id}.html" />" class="btn btn-danger triggerRemove">
 						Unbookmark Ad
 					</a>
 				</td>

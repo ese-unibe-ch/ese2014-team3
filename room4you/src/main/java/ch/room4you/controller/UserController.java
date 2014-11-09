@@ -147,7 +147,7 @@ public class UserController {
 		return "redirect:/logout";
 	}
 	
-	@RequestMapping("/ad/unBookmarkAd/{id}")  
+	@RequestMapping("/ad/removeBookmarkAd/{id}")  
 	public String unBookmarkAd(@PathVariable int id, Principal principal) {
 		String userName = principal.getName();
 		User user = userService.findOneByName(userName);
