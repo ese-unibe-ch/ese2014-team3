@@ -7,13 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pojo.SearchAdsForm;
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
@@ -28,17 +25,6 @@ public class AdController {
 
 	@Autowired
 	private UserService userService;
-	
-	/**
-	 * Instantiates an ad object which is mapped to the spring form in 
-	 * user-account.jsp
-	 * 
-	 * @return
-	 */
-	@ModelAttribute("searchAdsForm")
-	public SearchAdsForm constructSearchAdsForm() {
-		return new SearchAdsForm();
-	}
 
 	/**
 	 * Maps the request url /ads to the page ads.jsp and provides the model
@@ -60,14 +46,11 @@ public class AdController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/searchAds", method = RequestMethod.POST)
-	public String search(Model model, @ModelAttribute("searchAdsForm") SearchAdsForm searchAdsForm, BindingResult result) {	
-		model.addAttribute("ads", adService.findAdsWithFormCriteria(searchAdsForm.getSearchTextCity(), searchAdsForm.getSearchTextZip(), 
-				searchAdsForm.getSearchTextMinPrice(), searchAdsForm.getSearchTextMaxPrice(), 
-				searchAdsForm.getSearchTextNbrRoomMatesMin(),searchAdsForm.getSearchTextNbrRoomMatesMax(),
-				searchAdsForm.getSearchTextNbrRoomsMin(), searchAdsForm.getSearchTextNbrRoomsMax(),
-				searchAdsForm.isSearchSharedApartment()));	
+	@RequestMapping(value = "/searchAds", method = RequestMethod.POST)
+	public String search(Model model,
+			org.springframework.web.context.request.WebRequest webRequest) {
 
+		setModelAttributeAds(model, webRequest);
 
 		return "ads";
 	}
@@ -113,7 +96,6 @@ public class AdController {
 		return "redirect:/ads/{id}.html";
 	}
 	
-
 	@RequestMapping("/ad/unBookmarkAd/{id}")  
 	public String unBookmarkAd(@PathVariable int id, Principal principal) {
 		User currentUser = userService.findOneByName(principal.getName());

@@ -17,21 +17,22 @@ public class Alert {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	private String zip="";
+	private String zip;
 	
-	private String city="";
+	private String city;
 	
-	private float nbrRoomsMin=0;
+	private float nbrRoomsMin;
 	
-	private float nbrRoomsMax=10;
+	private float nbrRoomsMax;
 	
-	private int nbrRoomsMatesMin=0;
+	private int nbrRoomsMatesMin;
 	
-	private int nbrRoomsMatesMax=10;
+	private int nbrRoomsMatesMax;
+
 	
-	private int rentPerMonthMin=0;
+	private int rentPerMonthMin;
 	
-	private int rentPerMonthMax=1000;
+	private int rentPerMonthMax;
 		
 
 	public Integer getId() {

@@ -149,43 +149,29 @@ public class AlertService{
 		if(alert.getNbrRoomsMatesMin() > 0)
 		alertRoomMatesMin = alert.getNbrRoomsMatesMin();
 		
-		if(alert.getNbrRoomsMatesMax()>0);
+		if(alert.getNbrRoomsMatesMax()<Integer.MAX_VALUE);
 		alertRoomMatesMax = alert.getNbrRoomsMatesMax();
-		alertRoomMatesMax =Integer.MAX_VALUE;
 		
 		if(alert.getNbrRoomsMin() > 0)
 		alertRoomsMin = alert.getNbrRoomsMin();
 		
-		if(alert.getNbrRoomsMax() > 0)
+		if(alert.getNbrRoomsMax() < Integer.MAX_VALUE)
 		alertRoomsMax = alert.getNbrRoomsMax();
-		alertRoomsMax = Float.MAX_VALUE;
 		
 		if(alert.getRentPerMonthMin() > 0)
 		alertRentMin = alert.getRentPerMonthMin();
 		
-		if(alert.getRentPerMonthMax()>0 )
+		if(alert.getRentPerMonthMax()< Integer.MAX_VALUE)
 		alertRentMax = alert.getRentPerMonthMax();
-		alertRentMax = Integer.MAX_VALUE;
 		
-		if(!alert.getCity().isEmpty() || !alert.getZip().isEmpty()){
-			return 	((alertCity.toLowerCase().equals(ad.getCity().toLowerCase()) ||
-					alertZip.equals(ad.getZip())) &&
-					alertRoomMatesMin<=ad.getNbrRoomsMates() &&
-					alertRoomMatesMax>=ad.getNbrRoomsMates() &&
-					alertRoomsMin<=ad.getNbrRooms() &&
-					alertRoomsMax>=ad.getNbrRooms() &&
-					alertRentMin<=ad.getRentPerMonth() &&
-					alertRentMax>=ad.getRentPerMonth());
-		} else{		
-		
-			return 	(
-					alertRoomMatesMin<=ad.getNbrRoomsMates() &&
-					alertRoomMatesMax>=ad.getNbrRoomsMates() &&
-					alertRoomsMin<=ad.getNbrRooms() &&
-					alertRoomsMax>=ad.getNbrRooms() &&
-					alertRentMin<=ad.getRentPerMonth() &&
-					alertRentMax>=ad.getRentPerMonth());
-		}
+		return 	(alertCity.toLowerCase().equals(ad.getCity().toLowerCase()) &&
+				alertZip.equals(ad.getZip()) &&
+				alertRoomMatesMin<=ad.getNbrRoomsMates() &&
+				alertRoomMatesMax>=ad.getNbrRoomsMates() &&
+				alertRoomsMin<=ad.getNbrRooms() &&
+				alertRoomsMax>=ad.getNbrRooms() &&
+				alertRentMin<=ad.getRentPerMonth() &&
+				alertRentMax>=ad.getRentPerMonth());
 	}
 	
 	private Properties getHostNameFromProperties(){
