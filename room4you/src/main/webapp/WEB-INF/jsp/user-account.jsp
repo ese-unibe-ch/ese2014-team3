@@ -20,6 +20,7 @@
 		<tr>
 			<th>Title</th>
 			<th>Description</th>
+			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
@@ -34,6 +35,11 @@
 				<td>
 					<a href="<spring:url value="/ads/${ad.id}.html" />">
 					<c:out value="${ad.description}" /></a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ad/edit/${ad.id}.html" />" class="btn">
+						edit ad
+					</a>
 				</td>
 				<td>
 					<a href="<spring:url value="/ad/remove/${ad.id}.html" />" class="btn btn-danger triggerRemove">
@@ -219,7 +225,7 @@
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Title:</label>
 			<div class="col-sm-10">
-				<form:input path="title" cssClass="form-control" />
+				<form:input path="title" cssClass="form-control"/>
 				<form:errors path="title" />
 			</div>
 		</div>

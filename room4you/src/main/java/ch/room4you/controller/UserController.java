@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -28,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Image;
+import ch.room4you.entity.Message;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
@@ -131,6 +134,44 @@ public class UserController {
 		System.out.println("remove ist touched");
 		Ad ad = adService.findOne(id);
 		adService.delete(ad);
+		return "redirect:/account.html";
+	}
+	
+	@RequestMapping("/ad/edit/{id}")
+	public String editAd(@PathVariable int id, Model model) {
+		model.addAttribute("ad", adService.findOne(id));
+		model.addAttribute("users", userService.findAll());
+		return "editAd";
+	}
+	
+	@RequestMapping(value="/ad/edit/{id}", method = RequestMethod.POST)
+	public String sendEdit(@PathVariable int id, Model model, @ModelAttribute("ad") Ad ad, BindingResult result, 
+			Principal principal, @RequestParam("image[]") MultipartFile[] images
+	//		,@RequestParam("roomMates") String roomMate
+			,org.springframework.web.context.request.WebRequest webRequest
+			) {	
+		
+			String roomMate = webRequest.getParameter("roomMates");
+				
+			String name = principal.getName();
+			ad.setId(id);
+			adService.save(ad, name);     
+			
+			try {
+				
+				//save roommates
+				if(roomMate!=null){
+					saveRoomMates(ad, roomMate);
+				}		
+				
+				//save imagesAsString
+				saveImages(ad, images);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		return "redirect:/account.html";
 	}
 	
