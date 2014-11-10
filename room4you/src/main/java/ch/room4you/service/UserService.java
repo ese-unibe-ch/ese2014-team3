@@ -58,7 +58,9 @@ public class UserService {
 	public User findOneWithMessages(String name) {
 		User user = userRepository.findByName(name);
 		List<Message> messages = messageRepository.findByRecipient(user);
+		List<Message> sentMessages = messageRepository.findBySender(user);
 		user.setMessages(messages);
+		user.setSentMessages(sentMessages);
 		return user;
 	}
 	

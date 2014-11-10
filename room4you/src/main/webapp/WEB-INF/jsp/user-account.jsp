@@ -97,7 +97,7 @@
 	</tbody>
 </table>
 
-<h2>Messages</h2>
+<h2>Messages received</h2>
 <table class="table table-bordered table-hover table-striped">
 	<thead>
 		<tr>
@@ -134,6 +134,38 @@
 				<td>
 					<a href="<spring:url value="/message/remove/${message.id}.html" />" class="btn btn-danger triggerRemove">
 						Delete Message
+					</a>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+
+<h2>Messages sent</h2>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>To</th>
+			<th>Regarding Ad</th>
+			<th>Details</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${userm.sentMessages}" var="message">
+			<tr>
+				<td id="message_${message.id}">
+					<a>
+						<c:out value="${message.recipient.name}" />
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/ads/${message.messageAd.id}.html" />">
+						<c:out value="${message.messageAd.title}" />
+					</a>
+				</td>
+				<td>
+					<a href="<spring:url value="/showmessage/${message.id}.html" />">
+						Show Message
 					</a>
 				</td>
 			</tr>
