@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -30,13 +31,15 @@ public class RegisterControllerTest {
     
     private MockMvc mockMvc;
     
-	   @Autowired
-	   private UserService userService;
+	  
+	private UserService userService;
 
     @Before
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-
+        this.userService = mock(UserService.class);
+        String username = "Test";
+        when(userService.findOneByName(username)).thenReturn(null);
     }
 
     @Test
@@ -49,16 +52,10 @@ public class RegisterControllerTest {
     }
     
     @Test
-    public void testUserAvailable() throws Exception{
-//    	String username = "Test";
-//    	Boolean available = userService.findOneByName(username) == null;    	
-//    	
-//    	 this.mockMvc.perform(get("/available").param("username", username))
-//         .andExpect(status().isOk())
-//         .andExpect(model().attributeExists("username"))
-//    	 .andExpect(content().string(available.toString())); 	
-    	 
-    	 
+    public void testUserAvailable() throws Exception{  	    	
+    	 this.mockMvc.perform(get("/available"))
+         .andExpect(status().isOk());
+
     }
     
     

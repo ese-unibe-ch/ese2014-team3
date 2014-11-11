@@ -27,7 +27,7 @@
 		<url-pattern>*.xml</url-pattern>
 	</servlet-mapping>
 
-
+<!-- Comment out for production -->
 	<listener>
 	    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
@@ -76,6 +76,7 @@
 		<param-value>prod</param-value>
 	</context-param>
 	
+<!-- 	comment out for production -->
 	<context-param>
 	    <param-name>log4jConfigLocation</param-name>
 	    <param-value>/WEB-INF/log4j.properties</param-value>
