@@ -1,0 +1,27 @@
+\BOOKMARK [1][-]{section.1}{Design}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Violation of MVC pattern}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Usage of helper objects between view and model}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Rich OO domain model}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Clear responsibilities}{section.1}% 5
+\BOOKMARK [2][-]{subsection.1.5}{Sound invariants}{section.1}% 6
+\BOOKMARK [2][-]{subsection.1.6}{Overall code organization and reuse}{section.1}% 7
+\BOOKMARK [1][-]{section.2}{Coding style}{}% 8
+\BOOKMARK [2][-]{subsection.2.1}{Consistency}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.2}{Intention-revealing names}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{Do not repeat yourself}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.4}{Exception, testing null values}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.5}{Encapsulation}{section.2}% 13
+\BOOKMARK [2][-]{subsection.2.6}{Assertion, contracts, invariant checks}{section.2}% 14
+\BOOKMARK [2][-]{subsection.2.7}{Utility methods}{section.2}% 15
+\BOOKMARK [1][-]{section.3}{Documentation}{}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Understandable}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.2}{Intention-revealing}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.3}{Describe responsibilities}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.4}{Match a consistent domain vocabulary}{section.3}% 20
+\BOOKMARK [1][-]{section.4}{Tests}{}% 21
+\BOOKMARK [2][-]{subsection.4.1}{Clear and distinct test cases}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.2}{Number/coverage of test cases}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.3}{Easy to understand the case that is tested}{section.4}% 24
+\BOOKMARK [2][-]{subsection.4.4}{well crafted set of test data}{section.4}% 25
+\BOOKMARK [2][-]{subsection.4.5}{readability}{section.4}% 26
+\BOOKMARK [1][-]{section.5}{controller class evaluation}{}% 27
