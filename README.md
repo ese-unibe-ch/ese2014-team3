@@ -3,7 +3,10 @@ ese2014-team3 (Room4You)
 
 ## Installation
 
-No special installation necessary. Clone project and run it on localhost with Jetty or Tomcat.
+Clone project and run it on localhost with Jetty or Tomcat. Expects a Postgres database with
+
+user: postgres
+password: admin
 
 ## Test version
 
