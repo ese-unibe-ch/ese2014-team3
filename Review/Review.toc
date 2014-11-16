@@ -20,8 +20,8 @@
 \contentsline {subsection}{\numberline {3.4}Match a consistent domain vocabulary}{2}{subsection.3.4}
 \contentsline {section}{\numberline {4}Tests}{2}{section.4}
 \contentsline {subsection}{\numberline {4.1}Clear and distinct test cases}{2}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Number/coverage of test cases}{2}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Easy to understand the case that is tested}{2}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}well crafted set of test data}{2}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}readability}{2}{subsection.4.5}
-\contentsline {section}{\numberline {5}controller class evaluation}{2}{section.5}
+\contentsline {subsection}{\numberline {4.2}Number/coverage of test cases}{3}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Easy to understand the case that is tested}{3}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}well crafted set of test data}{3}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}readability}{3}{subsection.4.5}
+\contentsline {section}{\numberline {5}controller class evaluation}{3}{section.5}
