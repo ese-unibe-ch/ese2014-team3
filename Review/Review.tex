@@ -86,6 +86,12 @@ Given the above it is hard to believe that the creators of the tests(at least th
 Except for one case, the password in the UserTest, which doesn't represent a plausible password, since it wouldn't get through the validation, the test data are reasonably well crafted. Even though not a lot of special cases are tested(no input etc.)on places where user input is expected. 
 \subsection{readability}
 Most tests are not ducumented, which does not necessarily have to be a problem. However, not all names of test methods are meaningfully chosen. The alertTest class for example has a test that is simply called \texttt{test()}, as well as a test \texttt{mail()}. 
-\section{controller class evaluation}
+\section{controller class evaluation: UserController}
+The UserController class seems to be responsible for all the requests coming from the my account page. 
+Well, on a second look, not all the things, but most of them. The problem with this is, that most of these things have to do with ads, and not with the user, as one would expect from the name. Also, things that one would expect here, such as changing user profile, do not appear in this class. 
+
+It is especially strange that there is a mapping here for \texttt{/ad/removeBookmarkAd/\{id\}}, whereas a very similar method appears in the AdController for the mapping \texttt{/ad/unBookmarkAd/\{id\}}. One of them is probably at the wrong place. On the one hand since the BookmarkAd part is also in the AdController, I would be tempted to move it there, but on the other hand the method makes use of the UserService, which would again plead for the UserController. 
+
+It turns out that what seems a clear responsibility at the beginning, in the end is to scattered since it goes about actual users things like deleting the account, but also about ads, bookmarks and alerts. It is clear that this class can be improved, either by moving some methods to the AdController, making a BookmarkController, or making the name more meaningful. The optimal case in my opinion, would be to keep in this class only stuff that has really to do with the user, by moving other stuff to other controllers that might still need to be made (BookmarkController, UserAdController...). 
 
 \end{document}

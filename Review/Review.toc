@@ -17,11 +17,11 @@
 \contentsline {subsection}{\numberline {3.1}Understandable}{3}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Intention-revealing}{3}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Describe responsibilities}{3}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Match a consistent domain vocabulary}{3}{subsection.3.4}
-\contentsline {section}{\numberline {4}Tests}{3}{section.4}
-\contentsline {subsection}{\numberline {4.1}Clear and distinct test cases}{3}{subsection.4.1}
+\contentsline {subsection}{\numberline {3.4}Match a consistent domain vocabulary}{4}{subsection.3.4}
+\contentsline {section}{\numberline {4}Tests}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}Clear and distinct test cases}{4}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Number/coverage of test cases}{4}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Easy to understand the case that is tested}{4}{subsection.4.3}
 \contentsline {subsection}{\numberline {4.4}well crafted set of test data}{4}{subsection.4.4}
 \contentsline {subsection}{\numberline {4.5}readability}{4}{subsection.4.5}
-\contentsline {section}{\numberline {5}controller class evaluation}{4}{section.5}
+\contentsline {section}{\numberline {5}controller class evaluation: UserController}{4}{section.5}
