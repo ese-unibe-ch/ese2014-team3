@@ -21,7 +21,7 @@ Classes of the controller are contained in the \texttt{ch.room4you.controller} p
  
 There is however a difference between the interpretation of the MVC pattern by this project group and the interpretation presented in the exercise hours of ESE. Being that in this project, model entities are used directly as backing objects for the forms, instead of heaving extra form pojo's in the controller taking this role. Strictly taken this can be seen as a MVC pattern violation, since model objects are directly used in views. The extensive usages of form pojo's as backing objects however leads to lots of duplicated code. This is a clear example of a design trade-off. 
 
-We do understand the design decision of team 3. Especially since they do almost all validation on the client side using javascript. Only checking whether a user is unique is done serverside, since a database query is needed for this task. This eliminates the main responsibility of the form pojo's. 
+We do understand the design decision of team 3. Especially since they do almost all validation on the client side using javascript . Only checking whether a user is unique is done serverside, since a database query is needed for this task. This eliminates the main responsibility of the form pojo's. (An exception is the user entity, where all checkin is done in java again. We could not find a reason for this inconsistency)
 
 The only place where a form pojo  is used is for the search form. This is because a search is not a model entity. The question can be asked whether it could be useful to have searches also represented as entities that are persisted to the database. Using this information, statistics could be made that might be interesting for the administrator and/or the custommer. 
 \subsection{Usage of helper objects between view and model}
@@ -60,10 +60,23 @@ Another overall organizational remark is that in this design an alert subscripti
 \subsection{Match a consistent domain vocabulary}
 \section{Tests}
 \subsection{Clear and distinct test cases}
+There are 8 test classes, distributed over two groups(each in their own package), controller tests, and service tests. There are also two testsuites, each with a different number of tests. Although some tests appear in both testsuites, none of the testsuites contains all 8 tests. Moreover, we note that some of the tests in the service test package seem tot be testing data access objects directly and not services. 
+
+Although the idea behind the organisation of the tests is good, the implementation lacks consistency and is confusing. The fact that no javadoc is provided for most of the tests doesn't help either. 
 \subsection{Number/coverage of test cases}
+As said two groups of classes are said to be tested: controller and services. There is no explicit mention of any tests testing the data accessing objects of the repository package. However the UserTest actually is a DAO test. There is not even a userservice mentioned here! (Even when assessing this test as a DAO test it is still insatisfactory, since it doesn't test whether an id has been set to the entity after it has been saved to the database.)
+
+The other servicetests are also not such a great contibution to the overall coverage, since most of them seem to test a mock(eg. \texttt{findAdsMatchingToAlertCriteria()}and \texttt{saveAlert()} from the AlertTest class, \texttt{saveAd()} from the AdTest class), or a get method from a list(eg. \texttt{findAdByUser()} from the AdTest class), or nothing at all(eg. \texttt{createNewAlertTest()} from the AlertTest class), but not a method of the service it is supposed to test. 
+
+Controller tests are very basic and certainly don't cover the majority of the controller cases, but at least they are real. 
+
+We have to conclude that although lots of tests have been writen, no service is actually tested. The controller class is basically covered, an the UserRepository is the only DAO that is, even though not correctly, tested. 
 \subsection{Easy to understand the case that is tested}
+Given the above it is hard to believe that the creators of the tests(at least those in the service package) do themselves understand the cases that are (not) tested. 
 \subsection{well crafted set of test data}
+Except for one case, the password in the UserTest, which doesn't represent a plausible password, since it wouldn't get through the validation, the test data are reasonably well crafted. Even though not a lot of special cases are tested(no input etc.)on places where user input is expected. 
 \subsection{readability}
+Most tests are not ducumented, which does not necessarily have to be a problem. However, not all names of test methods are meaningfully chosen. The alertTest class for example has a test that is simply called \texttt{test()}, as well as a test \texttt{mail()}. 
 \section{controller class evaluation}
 
 \end{document}
