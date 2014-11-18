@@ -47,13 +47,24 @@ Another overall organizational remark is that in this design an alert subscripti
 
 \section{Coding style}
 \subsection{Consistency}
+Method and class naming are consistent. The used formatting style is the same in all classes. The code indentation is inconsistent though. While the majority of all class files are indented with one tab character, there are also classes that indent with two tab characters or a mix of one tab character, two tab chars and space chars.
 \subsection{Intention-revealing names}
-There are no cryptical names, neither for classes, methods, nor for local variables.
+The naming of objects and instance variables is very clear and intention-revealing, there are no cryptic names used in the code.
 \subsection{Do not repeat yourself}
+There's no unnecessary and avoidable code duplication in the source code. This is also because of the very specialized, numerous classes in the project.
 \subsection{Exception, testing null values}
+Except for checking the input in search forms, user input doesn't get checked. It's easily possible to try to display an inexistant ad and thus provoking an exception out of the application's control.
+
 \subsection{Encapsulation}
+Almost all variables are properly marked as private and encapsulated, except for two variables being without modifier and still having setters and getters. This means the code wasn't checked good enough before handing it in for release v1.0.
+
+On class level, the encapsulation is a bit lacking at times. As an example, the methods to edit and remove ads aren't in the AdController as would be logical, but instead in the UserController.
 \subsection{Assertion, contracts, invariant checks}
+Assertions aren't used in the code, and thus neither are contracts and invariant checks.
+
 \subsection{Utility methods}
+There are almost no utility methods, and there also isn't an "utility class". The utility methods there are, though, are sometimes weirdly placed. E.g. the \texttt{encryptPassword} method is in \texttt{AppInitService}, which doesn't make much sense.
+
 \section{Documentation}
 \subsection{Understandable}
 The documentation in the SRS is well understandable and structured, though incomplete and lacking e.g. what is part of a user profile.
@@ -67,6 +78,7 @@ does but lack description of what the method actually is for.
 \subsection{Describe responsibilities}
 Responsibilities aren't described anywhere in the javadoc strings, nor in the SRS.
 \subsection{Match a consistent domain vocabulary}
+The vocabulary is consistent. All terms are defined properly in the SRS when necessary, and are used in their proper meaning. The vocabulary is also consistently used in the javadocs and sourcecode.
 \section{Tests}
 \subsection{Clear and distinct test cases}
 There are 8 test classes, distributed over two groups(each in their own package), controller tests, and service tests. There are also two testsuites, each with a different number of tests. Although some tests appear in both testsuites, none of the testsuites contains all 8 tests. Moreover, we note that some of the tests in the service test package seem tot be testing data access objects directly and not services. 
