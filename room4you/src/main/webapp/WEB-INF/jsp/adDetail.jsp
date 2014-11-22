@@ -174,8 +174,18 @@
 	
 	<div class="col-md-6">
 		<div id="googleMap"  style="width:450px;height:380px;"></div>
+		
+		<div id="adImages2" style="width:150px;height:200px;">
+		<c:forEach items="${ad.images}" var="image">
+			<img id="img${image.id}" src="data:image/jpeg;base64,${image.imageAsString}" alt="image" class="img-thumbnail">
+
+		</c:forEach>
+
+</div>
+		
 	</div>
 </div>
+
 
 
 <div id="adImages" style="display:none">
@@ -248,9 +258,29 @@
   	    // Animation complete.
   	  });
   	});
- 	});
+
+ 	
+  	
+  	//resize images	
+ 	var current_h = null;
+ 	var current_w = null;
+
+ 	$('#adImages2 img${image.id}').hover(
+ 	    function(){
+ 	        current_h = $(this, 'img')[0].height;
+ 	        current_w = $(this, 'img')[0].width;
+ 	        $(this).stop(true, false).animate({width: (current_w * 2), height: (current_h * 2)}, 300);
+ 	    },
+ 	    function(){
+ 	        $(this).stop(true, false).animate({width: current_w + 'px', height: current_h + 'px'}, 300);
+ 	    }	    
+
+ 	);
+ });
+
  	
 
+ 	
 
 </script>
 
