@@ -10,11 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -59,6 +59,16 @@ public class User {
 	
 	@OneToMany(mappedBy ="recipient", cascade = CascadeType.ALL)
 	private List<Message> messages = new ArrayList<Message>();
+	
+	@OneToMany(mappedBy ="recipient", cascade = CascadeType.ALL)
+	private List<Application> receivedApplications = new ArrayList<Application>();
+	
+	@OneToMany(mappedBy ="sender", cascade = CascadeType.ALL)
+	private List<Application> sentApplications = new ArrayList<Application>();
+	
+	@ManyToMany
+	@Column(nullable = true)
+	private List<Appointment> appointments = new ArrayList<Appointment>();
 
 	@ManyToMany
 	@JoinTable
@@ -182,5 +192,21 @@ public class User {
 
 	public void setAlerts(List<Alert> alerts) {
 		this.alerts = alerts;
+	}
+
+	public List<Application> getReceivedApplications() {
+		return receivedApplications;
+	}
+
+	public void setReceivedApplications(List<Application> receivedApplication) {
+		this.receivedApplications = receivedApplication;
+	}
+
+	public List<Application> getSentApplications() {
+		return sentApplications;
+	}
+
+	public void setSentApplications(List<Application> sentApplication) {
+		this.sentApplications = sentApplication;
 	}
 }

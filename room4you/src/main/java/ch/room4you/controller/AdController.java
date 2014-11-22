@@ -81,7 +81,7 @@ public class AdController {
 	 * @return
 	 */
 	@RequestMapping("/ads/{id}")
-	public String detail(Model model, @PathVariable int id, Principal principal) {
+	public String detail(Model model, @PathVariable("id") int id, Principal principal) {
 		model.addAttribute("ad", adService.findOne(id));
 
 		if (principal != null) {
@@ -94,8 +94,12 @@ public class AdController {
 		for (int i = 0; i < adService.findOne(id).getRoomMates().size(); i++) {
 			roomMates.add(adService.findOne(id).getRoomMates().get(i));
 		}
-
+		
 		model.addAttribute("roomMates", roomMates);
+		
+		Ad ad = adService.findOne(id);
+		model.addAttribute("appointments", ad.getAppointments());
+				
 
 		return "adDetail";
 	}
