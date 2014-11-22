@@ -159,6 +159,28 @@
 			</div>
 			
 			<div class="form-group">
+				<label for="name" class="col-sm-4 ">Visits:</label>
+				<div class="col-sm-8">
+					<c:forEach items="${appointments}" var="appointments">
+						<div class="col-sm-8">
+							<div class="input-group">
+
+								<!-- 	<a href="#myModal" role="button" class="btn" -->
+								<!--  		data-toggle="modal"> -->
+								<!-- Button trigger modal -->
+								<a
+									href="<spring:url value="/ad/${ad.id}/appointment/${appointments.id}.html"/>">
+									<c:out  value="${appointments.appointDate.appointDate}" /> <c:out
+											value="${appointments.appointDate.startTime} - "  /> <c:out
+											value="${appointments.appointDate.endTime}" />
+								</a>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			
+			<div class="form-group">
 				<label for="name" class="col-sm-4 ">See images of your future room:</label>
 				<div class="col-sm-8">
 					<div class="input-group">
@@ -307,5 +329,4 @@
 </div>
 </div>
 			
-
 

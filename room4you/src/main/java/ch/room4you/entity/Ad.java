@@ -45,6 +45,13 @@ public class Ad {
 
 	@Column(name = "published_date")
 	private Date publishedDate = new Date();
+	
+	@OneToMany(mappedBy = "appointmentAd", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	private List<Appointment> appointments = new ArrayList<Appointment>();
+	
+	@OneToMany(mappedBy ="applicationAd", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	private List<Application> applications = new ArrayList<Application>();
+
 
 	private String street;
 	
@@ -282,4 +289,21 @@ public class Ad {
 	public void setAdMessages(List<Message> messages) {
 		this.messages = messages;
 	}
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+	
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+	public List<Application> getApplications() {
+		return applications;
+	}
+
+	public void setApplications(List<Application> applications) {
+		this.applications = applications;
+	}
+	
 }

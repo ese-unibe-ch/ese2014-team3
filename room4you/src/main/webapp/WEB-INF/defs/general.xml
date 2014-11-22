@@ -90,4 +90,15 @@
 		<put-attribute name="current" value="login" />
 	</definition>
 	
+	<definition name="application" extends="common">
+		<put-attribute name="title" value="Application" />
+		<put-attribute name="body" value="/WEB-INF/jsp/appointment-application.jsp" />
+		<put-attribute name="current" value="application" />
+	</definition>
+	
+	<definition name="showApplication" extends="common">
+		<put-attribute name="title" value="Show Application" />
+		<put-attribute name="body" value="/WEB-INF/jsp/showApplication.jsp" />
+		<put-attribute name="current" value="showApplication" />
+	</definition>
 </tiles-definitions>
