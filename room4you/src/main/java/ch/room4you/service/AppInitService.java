@@ -29,6 +29,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Alert;
+import ch.room4you.entity.Appointment;
+import ch.room4you.entity.AppointmentDate;
 import ch.room4you.entity.Image;
 import ch.room4you.entity.Role;
 import ch.room4you.entity.RoomMate;
@@ -72,6 +74,12 @@ public class AppInitService {
 	
 	@Autowired
 	private AlertRepository alertRepository;
+	
+	@Autowired
+	private AppointmentDateService dateService;
+	
+	@Autowired
+	private AppointmentService appointmentService;
 	
 		
 	@PostConstruct
@@ -121,6 +129,7 @@ public class AppInitService {
 			Ad ad1 = createFirstAd(userAdmin);
 	        createRoomMate(userAdmin, ad1);         
 	        createFirstImage(ad1); 
+	        saveAppointments(ad1);
 			 
 		}
 		
@@ -231,4 +240,17 @@ public class AppInitService {
 		
 	
 	}
+	
+	private void saveAppointments(Ad ad) {
+			AppointmentDate appointDate = new AppointmentDate();
+			appointDate.setAppointDate("2014-12-24");
+			appointDate.setStartTime("12:30");
+			appointDate.setEndTime("13:30");
+			dateService.save(appointDate);
+			Appointment appointment = new Appointment();
+			appointment.setAppointDate(appointDate);
+			appointment.setAd(ad);
+			appointment.setNmbrVisitors(5);
+			appointmentService.save(appointment);
+			}
 }
