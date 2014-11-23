@@ -105,7 +105,7 @@ public class UserController {
 			@RequestParam("image[]") MultipartFile[] images
 			// ,@RequestParam("roomMates") String roomMate
 			, org.springframework.web.context.request.WebRequest webRequest,
-			@RequestParam("appointments") List<String> appointments) {
+			@RequestParam("appointments[]") String[] appointments) {
 
 		String roomMate = webRequest.getParameter("roomMates");
 
@@ -207,19 +207,19 @@ public class UserController {
 		return "redirect:/account.html";
 	}
 
-	private void saveAppointments(Ad ad, List<String> appointments) {
-		for (int i = 0; i < appointments.size(); i += 4) {
+	private void saveAppointments(Ad ad, String[] appointments) {
+		for (int i = 0; i < appointments.length; i += 4) {
 			AppointmentDate appointDate = new AppointmentDate();
-			appointDate.setAppointDate(appointments.get(i));
-			appointDate.setStartTime(appointments.get(i + 1));
-			appointDate.setEndTime(appointments.get(i + 2));
+			appointDate.setAppointDate(appointments[i]);
+			appointDate.setStartTime(appointments[i + 1]);
+			appointDate.setEndTime(appointments[i + 2]);
 			dateService.save(appointDate);
 			Appointment appointment = new Appointment();
 			appointment.setAppointDate(appointDate);
 			appointment.setAd(ad);
 			
-			if (!appointments.get(i+3).isEmpty()) {
-				appointment.setNmbrVisitors(Integer.valueOf(appointments.get(i+3)));
+			if (!appointments[i+3].isEmpty()) {
+				appointment.setNmbrVisitors(Integer.valueOf(appointments[i+3]));
 			}
 			appointmentService.save(appointment);
 		}
