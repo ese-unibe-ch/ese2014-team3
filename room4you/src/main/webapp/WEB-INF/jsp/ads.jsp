@@ -23,11 +23,11 @@
   <div id="moreSearchCriteria" style="display:none">
    <div class="form-group">
     <label class="sr-only" for="searchTextMinPrice">Rent per month from</label>
-    <input type="number" class="form-control" name="searchTextMinPrice" id="searchTextMinPrice" placeholder="Min. rent in CHF">
+    <input type="number" class="form-control" name="searchTextMinPrice" id="searchTextMinPrice" step="100" placeholder="Min. rent in CHF">
   </div>
     <div class="form-group">
     <label class="sr-only" for="searchTextMaxPrice">Rent per month to</label>
-    <input type="number" class="form-control" name="searchTextMaxPrice" id="searchTextMaxPrice" placeholder="Max. rent in CHF">
+    <input type="number" class="form-control" name="searchTextMaxPrice" id="searchTextMaxPrice" step="100" placeholder="Max. rent in CHF">
   </div>
    <div class="form-group">
     <label class="sr-only" for="searchTextNbrRoomMatesMin">Number of room mates from</label>
