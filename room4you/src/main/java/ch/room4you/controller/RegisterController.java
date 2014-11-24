@@ -62,7 +62,7 @@ public class RegisterController {
 			return "user-register";
 		}
 		userService.save(user);
-		return "redirect:/register.html?success=true";
+		return "redirect:/login.html";
 	}
 	
 	/**
