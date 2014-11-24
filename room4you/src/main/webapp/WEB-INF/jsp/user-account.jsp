@@ -3,9 +3,6 @@
 
 <%@ include file="../layout/taglib.jsp"%>
 
-<link rel="stylesheet" type="text/css" media="screen"
-	href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-
 
 <h1>My account</h1>
 
@@ -161,8 +158,22 @@
 	<tbody>
 		<c:forEach items="${user.alerts}" var="alert">
 			<tr>
-				<td id="alert_${alert.id}"><a> <c:out value="${alert}" />
-				</a></td>
+				<td id="alert_${alert.id}">
+				<a href="javascript:{}" onclick="document.getElementById('showAlertAdsForm').submit(); return false;">
+				 <c:out value="${alert}" />
+				</a>
+					<form:form id="showAlertAdsForm" style="display: none;" action="searchAds.html" class="form-inline"  role="form" method="post" >
+				    <input type="text" class="form-control" name="searchTextZip" id="searchTextZip" value="${alert.zip}">
+				    <input type="text" class="form-control" name="searchTextCity" id="searchTextCity" value="${alert.city}">
+				    <input type="number" class="form-control" name="searchTextMinPrice" id="searchTextMinPrice" step="100" value="${alert.rentPerMonthMin}">
+				    <input type="number" class="form-control" name="searchTextMaxPrice" id="searchTextMaxPrice" step="100" value="${alert.rentPerMonthMax}">
+				    <input type="number" class="form-control" name="searchTextNbrRoomMatesMin" id="searchTextNbrRoomMatesMin" value="${alert.nbrRoomsMatesMin}">
+				    <input type="number" class="form-control" name="searchTextNbrRoomMatesMax" id="searchTextNbrRoomMatesMax" value="${alert.nbrRoomsMatesMax}">
+				    <input type="number" class="form-control" name="searchTextNbrRoomsMin" id="searchTextNbrRoomsMin" value="${alert.nbrRoomsMin}">
+				    <input type="number" class="form-control" name="searchTextNbrRoomsMax" id="searchTextNbrRoomsMax" value="${alert.nbrRoomsMax}"> 
+					</form:form>
+								
+				</td>
 				<td><a
 					href="<spring:url value="/alert/remove/${alert.id}.html" />"
 					class="btn btn-danger triggerRemove"> remove alert </a></td>
@@ -170,6 +181,7 @@
 		</c:forEach>
 	</tbody>
 	</table>
+
 	
 	<h2>Applications</h2>
 		<table class="table table-bordered table-hover table-striped">
@@ -537,3 +549,20 @@ $(document).ready(function() {
      
 });
 </script>
+
+<script>
+function showAlertedAds(data1, data2)
+{
+$.ajax({
+	  url: "searchAds.html",
+	  type: "post",
+	  data: json/array/whatever,
+
+	  success: function(){ // trigger when request was successfull
+	    window.location.href = 'somewhere'
+	  }
+	});
+}
+</script>
+
+

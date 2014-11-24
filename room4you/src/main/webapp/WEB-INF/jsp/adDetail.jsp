@@ -117,15 +117,6 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="name" class="col-sm-4 ">Description:</label>
-				<div class="col-sm-8">
-					<div class="input-group">
-						<p>${ad.description}</p>							
-					</div>
-				</div>
-			</div>
-			
-			<div class="form-group">
 				<label for="name" class="col-sm-4 ">We are looking for:</label>
 				<div class="col-sm-8">
 					<div class="input-group">
@@ -179,29 +170,28 @@
 					</c:forEach>
 				</div>
 			</div>
-			
-			<div class="form-group">
-				<label for="name" class="col-sm-4 ">See images of your future room:</label>
-				<div class="col-sm-8">
-					<div class="input-group">
-						<button id="toggleImagesBtn" type="button" class="btn btn-default btn-md">
-  							<span class="glyphicon glyphicon-film"></span>
-						</button>						
-					</div>
-				</div>
-			</div>
 		  
 		</form>
 	</div> <!-- end col-md-6 -->
 	
 	<div class="col-md-6">
 		<div id="googleMap"  style="width:450px;height:380px;"></div>
-		
+				
 		<div id="adImages2">
 			<c:forEach items="${ad.images}" var="image">
 				<img id="img${image.id}" src="data:image/jpeg;base64,${image.imageAsString}" alt="image" style="width:25%;height:25%;" class="img-thumbnail">
 	
 			</c:forEach>
+		</div>
+		
+							
+		<div class="form-group">
+			<label for="name" class="col-sm-4 ">Description:</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<p>${ad.description}</p>							
+				</div>
+			</div>
 		</div>
 		
 	</div>
@@ -273,15 +263,6 @@
   		 map.setCenter(mapCenter);
   	});
   	
-  	//Toggle images
-  	$( "#toggleImagesBtn" ).click(function() {
-  	  $( "#adImages" ).toggle( "slow", function() {
-  	    // Animation complete.
-  	  });
-  	});
-
- 	
-
 
  	$('#adImages2 img${image.id}').on({
  	    mouseenter: function(){

@@ -177,7 +177,9 @@ public class UserController {
 			}
 
 			// save imagesAsString
+			if (images.length > 0) {
 			saveImages(ad, images);
+			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
