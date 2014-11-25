@@ -5,7 +5,7 @@
 
 <style type="text/css">
 .scroll-area {
-	height: 80%;
+	height: 600px;
 	position: relative;
 	overflow: auto;
 }
@@ -34,7 +34,7 @@
             </ul>
         </div>
 
-    <div class="scroll-area" data-spy="scroll" data-target="#myNavbar" data-offset="0">
+    <div class="scroll-area" data-spy="scroll" data-target="navbarCollapse" data-offset="0">
 
 
 		<h2 id="section-1">User details</h2>
