@@ -5,9 +5,12 @@ package ch.room4you.service;
  * Database operation service for roomMateRepository interface
  */
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,8 +19,10 @@ import java.util.Properties;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import pojo.MailMail;
 import ch.room4you.entity.Ad;
@@ -30,6 +35,10 @@ import ch.room4you.repository.UserRepository;
 
 @Service
 public class AlertService{
+	
+	static Logger log = Logger.getLogger(
+            AlertService.class.getName());
+	
 	
 	@Autowired
 	private AdRepository adRepository;	
@@ -57,6 +66,12 @@ public class AlertService{
 		User user = userRepository.findByName(name);
 		alert.setUser(user);
 		alertRepository.save(alert);
+		
+		if(!isHostPropertySet()){
+			writeHostContextProperty();	
+			log.info("Hostnameproperty set!");
+		}      
+		
 		MailMail welcomeAlertMail = createWelcomeMail(user, alert);
 		try {
 			welcomeAlertMail.sendMail();
@@ -77,7 +92,7 @@ public class AlertService{
 		mail.setSubject("Mail alert activated");
 		mail.setText("You just acitivated a mail alert for: \n"
 				+ alert+" \n"
-						+ "You can stop the alert in your account at room4you!");		
+				+ "You can stop the alert in your account at room4you!");		
 		return mail;
 	}
 
@@ -199,6 +214,8 @@ public class AlertService{
 	 
 			// load a properties file
 			prop.load(input);
+			
+			System.out.println("Emailprop: "+prop.getProperty("emailAccount")+" hostNameProp:"+prop.getProperty("hostName"));
 
 	 
 		} catch (IOException ex) {
@@ -217,6 +234,75 @@ public class AlertService{
 		
 	}
 
+	
+	
+	//Helper to write actual host in Properties
+	private void writeHostContextProperty() {
+		String HOSTNAME = ServletUriComponentsBuilder.fromCurrentContextPath().path("").build().toUriString();
+		
+		Properties prop = new Properties();
+		OutputStream output = null;
+        FileInputStream fileIn = null;
+	 
+		try {
+			
+            File file = new File("config.properties");
+            fileIn = new FileInputStream(file);
+	 
+			prop.load(fileIn);
+			output = new FileOutputStream("config.properties");	
+			
+			prop.setProperty("hostName", HOSTNAME);
+
+	 
+			// save properties to project root folder
+			prop.store(output, null);
+			
+			log.info("EMail-Property: "+prop.getProperty("emailAccount")+"  HostName-Property: "+prop.getProperty("hostName"));
+	 
+		} catch (IOException io) {
+			io.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+	 
+		}
+	}
+	
+	
+	private boolean isHostPropertySet(){
+		Properties prop = new Properties();
+		InputStream input = null;
+	 
+		try {
+	 
+			input = new FileInputStream("config.properties");
+	 
+			// load a properties file
+			prop.load(input);
+			
+			return prop.get("hostName")!=null;			
+
+	 
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return false;	
+		
+	}
 
 	public void delete(int id) {
 		alertRepository.delete(id);

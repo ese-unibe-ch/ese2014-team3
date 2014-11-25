@@ -5,8 +5,10 @@ package ch.room4you.service;
  */
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,9 +28,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ch.room4you.entity.Ad;
-import ch.room4you.entity.Alert;
 import ch.room4you.entity.Appointment;
 import ch.room4you.entity.AppointmentDate;
 import ch.room4you.entity.Image;
@@ -50,13 +52,11 @@ public class AppInitService {
 	  static Logger log = Logger.getLogger(
               AppInitService.class.getName());
 	
-	//production
-//	private final String HOSTNAME ="https://room4you2.herokuapp.com";
-	
-	//localhost
-	private final String HOSTNAME = "http://localhost:8080/room4you";
+	//Set email-property
 	private final String EMAILACCOUNT = "ese2014team3@gmail.com";
 
+	
+	
 	@Autowired
 	private RoleRepository roleRepository;
 
@@ -97,13 +97,14 @@ public class AppInitService {
 		try {
 	 
 			output = new FileOutputStream("config.properties");
+			log.info("Writing Properties");
 	 
 			// set the properties value
-			prop.setProperty("hostName", HOSTNAME);
 			prop.setProperty("emailAccount", EMAILACCOUNT);
 	 
 			// save properties to project root folder
 			prop.store(output, null);
+			
 	 
 		} catch (IOException io) {
 			io.printStackTrace();
@@ -130,7 +131,6 @@ public class AppInitService {
 	        createRoomMate(userAdmin, ad1);         
 	        createFirstImage(ad1); 
 	        saveAppointments(ad1);
-			 
 		}
 		
 	}
@@ -253,4 +253,5 @@ public class AppInitService {
 			appointment.setNmbrVisitors(5);
 			appointmentService.save(appointment);
 			}
+	
 }

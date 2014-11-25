@@ -15,32 +15,38 @@
 	data-target="#myModal">Place new ad</button>
 
 <h2>Currently placed ads</h2>
-<table class="table table-bordered table-hover table-striped">
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Description</th>
-			<th>Edit</th>
-			<th>Delete</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${user.ads}" var="ad">
-			<tr>
-				<td id="ad_${ad.id}"><a
-					href="<spring:url value="/ads/${ad.id}.html" />"> <c:out
-							value="${ad.title}" />
-				</a></td>
-				<td><a href="<spring:url value="/ads/${ad.id}.html" />"> <c:out
-							value="${ad.description}" /></a></td>
-				<td><a href="<spring:url value="/ad/edit/${ad.id}.html" />"
-					class="btn"> edit ad </a></td>
-				<td><a href="<spring:url value="/ad/remove/${ad.id}.html" />"
-					class="btn btn-danger triggerRemove"> remove ad </a></td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
+
+<div id="Layout" class="container">
+            <div class="row">
+
+<c:forEach items="${user.ads}" var="ad">
+		<div class="col-sm-6 col-md-4 col-lg-3">
+			<div style="width: 75%; height: 75%; padding-bottom:5%" id="thumbnail" class="thumbnail" >
+				
+				<a href="<spring:url value="/ads/${ad.id}.html"/>"> <img src="data:image/jpeg;base64,${ad.images[0].imageAsString}" class="img-responsive"></img></a>
+				
+				<div class="caption" >
+					<h4>${ad.title}</h4>
+					<p>${ad.description}</p>
+					<p>City: ${ad.city}</p>
+					<p>Rent per month: <fmt:formatNumber value="${ad.rentPerMonth}" type="currency" currencySymbol="CHF"/></p>
+					
+					<a href="<spring:url value="/ads/${ad.id}.html"/>"  class="btn btn-primary" role="button">
+					View Details
+					</a>
+					<p></p>
+					<a href="<spring:url value="/ad/edit/${ad.id}.html" />"
+					class="btn btn-primary" role="button"> edit ad </a>
+					<p></p>
+					<a href="<spring:url value="/ad/remove/${ad.id}.html" />"
+					class="btn btn-danger triggerRemove"> remove ad </a>
+					
+				</div>
+			</div>
+			</div>
+</c:forEach>	
+</div>
+</div>
 
 
 <h2>User details</h2>
@@ -61,29 +67,36 @@
 
 
 <h2>Currently bookmarked ads</h2>
-<table class="table table-bordered table-hover table-striped">
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Description</th>
-			<th>Unbookmark Ad</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${user.bookmarkedAds}" var="ad">
-			<tr>
-				<td id="ad_${ad.id}"><a
-					href="<spring:url value="/ads/${ad.id}.html" />"> <c:out
-							value="${ad.title}" />
-				</a></td>
-				<td><a><c:out value="${ad.description}" /></a></td>
-				<td><a
+
+<div id="bookmarkedAds" class="container">
+            <div class="row">
+
+<c:forEach items="${user.bookmarkedAds}" var="ad">
+		<div class="col-sm-6 col-md-4 col-lg-3">
+			<div style="width: 75%; height: 75%; padding-bottom:5%" id="thumbnail" class="thumbnail" >
+				
+				<a href="<spring:url value="/ads/${ad.id}.html"/>"> <img src="data:image/jpeg;base64,${ad.images[0].imageAsString}" class="img-responsive"></img></a>
+				
+				<div class="caption" >
+					<h4>${ad.title}</h4>
+					<p>${ad.description}</p>
+					<p>City: ${ad.city}</p>
+					<p>Rent per month: <fmt:formatNumber value="${ad.rentPerMonth}" type="currency" currencySymbol="CHF"/></p>
+					
+					<a href="<spring:url value="/ads/${ad.id}.html"/>"  class="btn btn-primary" role="button">
+					View Details
+					</a>
+					<p></p>
+					<a
 					href="<spring:url value="/ad/removeBookmarkAd/${ad.id}.html" />"
-					class="btn btn-danger triggerRemove"> Unbookmark Ad </a></td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
+					class="btn btn-danger triggerRemove"> Unbookmark Ad </a>
+					
+				</div>
+			</div>
+			</div>
+</c:forEach>	
+</div>
+</div>
 
 <h2>Messages received</h2>
 <table class="table table-bordered table-hover table-striped">
