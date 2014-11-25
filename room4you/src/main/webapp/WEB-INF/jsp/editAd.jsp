@@ -138,6 +138,15 @@
 				<form:errors path="instrumentsAllowed" />
 			</div>
 		</div>
+		
+		<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">We are looking for:</label>
+						<div class="col-sm-10">
+							<form:input path="weAreLookingFor"
+								cssClass="form-control" />
+							<form:errors path="weAreLookingFor" />
+						</div>
+		</div>
 
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Additional Information:</label>
