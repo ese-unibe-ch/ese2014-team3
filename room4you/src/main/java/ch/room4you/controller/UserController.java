@@ -118,6 +118,7 @@ public class UserController {
 			}
 
 			// save imagesAsString
+			if(!images[0].isEmpty())
 			saveImages(ad, images);
 
 		} catch (IOException e) {
@@ -171,7 +172,7 @@ public class UserController {
 			}
 
 			// save imagesAsString
-			if (images.length > 0) {
+			if (!images[0].isEmpty()) {
 			saveImages(ad, images);
 			}
 
@@ -182,6 +183,7 @@ public class UserController {
 
 		return "redirect:/account.html";
 	}
+
 
 	/**
 	 * Removes the user with id = {id} and logs the user out
@@ -235,14 +237,18 @@ public class UserController {
 		byte[] bytes;
 		for (MultipartFile imageMPF : images) {
 			Image image = new Image();
-			bytes = imageMPF.getBytes();
-			byte[] encoded = Base64.encodeBase64(bytes);
-			String encodedString = new String(encoded);
-			image.setImageAsString(encodedString);
-			image.setAd(ad);
-			imageService.save(image);
+			if(!imageMPF.isEmpty()){
+				bytes = imageMPF.getBytes();
+				byte[] encoded = Base64.encodeBase64(bytes);
+				String encodedString = new String(encoded);
+				image.setImageAsString(encodedString);
+				image.setAd(ad);
+				imageService.save(image);
+			}
+
 		}
 	}
+
 
 	/**
 	 * Maps the date format to the convenient date format for the database
