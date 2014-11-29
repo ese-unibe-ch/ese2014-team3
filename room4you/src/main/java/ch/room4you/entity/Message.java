@@ -1,5 +1,7 @@
 package ch.room4you.entity;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,6 +31,8 @@ public class Message {
 	private User recipient;
 	
 	private String message;
+	
+	private Timestamp timestamp;
 	
 	@ManyToOne
 	@JoinColumn(name = "messagead_id")
@@ -83,5 +87,20 @@ public class Message {
 	
 	public String getMessage() {
 		return message;
+	}
+
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+	
+	public void createTimestamp() {
+	   java.util.Date date= new java.util.Date();
+	   Timestamp timestamp = new Timestamp(date.getTime());
+	   this.timestamp = timestamp;
+	   
 	}
 }

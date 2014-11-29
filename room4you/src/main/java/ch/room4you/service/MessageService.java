@@ -13,6 +13,7 @@ public class MessageService {
 	private MessageRepository messageRepository;
 	
 	public void save(Message message) {
+		message.createTimestamp();
 		messageRepository.save(message);
 	}
 	
