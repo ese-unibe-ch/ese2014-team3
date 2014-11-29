@@ -6,6 +6,7 @@ package ch.room4you.repository;
  */
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import ch.room4you.entity.Ad;
 import ch.room4you.entity.Message;
 import ch.room4you.entity.User;
 
@@ -15,5 +16,8 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
 
 	List<Message> findByRecipient(User recipient);
 	List<Message> findBySender(User sender);
+	
+	
+	List<Message> findBySenderAndMessageAdOrderByTimestampAsc(User sender, Ad ad);
 	
 }

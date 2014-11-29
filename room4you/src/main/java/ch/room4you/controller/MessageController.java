@@ -1,6 +1,7 @@
 package ch.room4you.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import ch.room4you.entity.Ad;
 import ch.room4you.entity.Message;
+import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
 import ch.room4you.service.MessageService;
 import ch.room4you.service.UserService;
@@ -49,10 +52,31 @@ public class MessageController {
 		}
 	}
 	
+//	@RequestMapping("/showmessage/{id}")
+//	public String showMessage(Model model, @PathVariable int id) {
+//		model.addAttribute("message", messageService.findOne(id));
+//		return "showmessage";
+//	}
+	
+	
 	@RequestMapping("/showmessage/{id}")
-	public String showMessage(Model model, @PathVariable int id) {
-		model.addAttribute("message", messageService.findOne(id));
-		return "showmessage";
+	public String showMessages(Model model, @PathVariable int id, Principal principal) {
+		if (principal != null) {
+			Message message = messageService.findOne(id);
+			Ad ad = message.getMessageAd();
+			User userSender =  userService.findOneByName(principal.getName());
+			List<Message> msgs= messageService.findAllMessagesBySenderAndAd(userSender, ad);
+			System.out.println("Ad id and principal: "+id +" "+ principal);
+			System.out.println("Size of msgs: "+msgs.size());
+			for(int i=0;i<msgs.size();i++){
+				System.out.println("Messages"+msgs.get(i).getMessage());
+			}
+			model.addAttribute("messages", messageService.findAllMessagesBySenderAndAd(userSender, ad));
+			return "showmessage";
+		}
+		else {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/reply/{id}")
@@ -89,6 +113,7 @@ public class MessageController {
 		messageService.save(message);
 		return "redirect:/ads/{id}.html?success=true";
 	}
+	
 	
 	@RequestMapping("/message/remove/{id}")
 	public String removeMessage(@PathVariable int id) {

@@ -280,7 +280,9 @@
 		</div>
 		</div>
 		
-			
+	
+		</div>
+</div>
 
 		
 <a href="<spring:url value="/account/remove/${user.id}.html" />"
