@@ -15,8 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
 
-import org.hibernate.metamodel.binding.CascadeType;
 
 import ch.room4you.entity.Ad;
 
@@ -28,6 +28,7 @@ public class Appointment {
 	private int id;
 	
 	@ManyToOne
+	@JoinColumn(name = "ad_id")
 	private Ad appointmentAd;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -36,7 +37,7 @@ public class Appointment {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<User> promisingCandidates = new ArrayList<User>();
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private AppointmentDate appointDate;
 	
 	private int nmbrVisitors;

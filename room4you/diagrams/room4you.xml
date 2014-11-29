@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
 	<entity>
-		<entity-name>ch.room4you.entity.Ad</entity-name>
+		<entity-name>ch.room4you.entity.Image</entity-name>
+		<entity-width>159</entity-width>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>1027</entity-X-Coordinate>
+		<entity-Y-Coordinate>36</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>ch.room4you.entity.User</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>426</entity-height>
-		<entity-X-Coordinate>540</entity-X-Coordinate>
-		<entity-Y-Coordinate>160</entity-Y-Coordinate>
+		<entity-height>366</entity-height>
+		<entity-X-Coordinate>210</entity-X-Coordinate>
+		<entity-Y-Coordinate>110</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -15,28 +26,6 @@
 		<entity-width>120</entity-width>
 		<entity-height>146</entity-height>
 		<entity-X-Coordinate>20</entity-X-Coordinate>
-		<entity-Y-Coordinate>314</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>ch.room4you.entity.User</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>346</entity-height>
-		<entity-X-Coordinate>220</entity-X-Coordinate>
-		<entity-Y-Coordinate>180</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>ch.room4you.entity.Image</entity-name>
-		<entity-width>159</entity-width>
-		<entity-height>166</entity-height>
-		<entity-X-Coordinate>720</entity-X-Coordinate>
 		<entity-Y-Coordinate>314</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
@@ -55,11 +44,33 @@
 	</entity>
 
 	<entity>
-		<entity-name>ch.room4you.entity.Message</entity-name>
+		<entity-name>ch.room4you.entity.Appointment</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>186</entity-height>
-		<entity-X-Coordinate>382</entity-X-Coordinate>
+		<entity-height>206</entity-height>
+		<entity-X-Coordinate>840</entity-X-Coordinate>
 		<entity-Y-Coordinate>574</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>ch.room4you.entity.Ad</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>526</entity-height>
+		<entity-X-Coordinate>825</entity-X-Coordinate>
+		<entity-Y-Coordinate>-3</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>ch.room4you.entity.AppointmentDate</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>148</entity-height>
+		<entity-X-Coordinate>1012</entity-X-Coordinate>
+		<entity-Y-Coordinate>742</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -71,6 +82,17 @@
 		<entity-height>128</entity-height>
 		<entity-X-Coordinate>369</entity-X-Coordinate>
 		<entity-Y-Coordinate>26</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>ch.room4you.entity.Message</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>206</entity-height>
+		<entity-X-Coordinate>382</entity-X-Coordinate>
+		<entity-Y-Coordinate>574</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

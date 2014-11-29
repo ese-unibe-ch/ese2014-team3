@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
@@ -30,6 +31,10 @@ public class Ad {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@ManyToMany
+	@JoinColumn(name = "bookmarkedAds")
+	private List<User> bookmarkingUsers = new ArrayList<User>();
 
 	@Column(length = 1000)
 	private String title;
@@ -47,7 +52,7 @@ public class Ad {
 	@Column(name = "published_date")
 	private Date publishedDate = new Date();
 	
-	@OneToMany(mappedBy = "appointmentAd", fetch = FetchType.EAGER, orphanRemoval=true)
+	@OneToMany(mappedBy = "appointmentAd", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 	
 
@@ -74,7 +79,7 @@ public class Ad {
 	private boolean smokingAllowed;
 	
 
-	@OneToMany(mappedBy ="messageAd", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy ="messageAd", fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
 	private List<Message> messages = new ArrayList<Message>();
 	
 	@Lob

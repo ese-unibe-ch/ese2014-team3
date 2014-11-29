@@ -73,7 +73,7 @@
 		
 		<c:forEach items="${user.ads}" var="ad">
 				<div class="col-sm-6 col-md-4 col-lg-3">
-					<div id="thumbnail" class="thumbnail">
+					<div style="width: 75%; height: 75%; padding-bottom:5%" id="thumbnail" class="thumbnail" >
 						
 						<a href="<spring:url value="/ads/${ad.id}.html"/>"> 
 						<c:choose>
@@ -95,6 +95,13 @@
 							<a href="<spring:url value="/ads/${ad.id}.html"/>"  class="btn btn-primary" role="button">
 							View Details
 							</a>
+							<p></p>
+							<a href="<spring:url value="/ad/edit/${ad.id}.html" />"
+							class="btn btn-primary" role="button"> edit ad </a>
+							<p></p>
+							<a href="<spring:url value="/ad/remove/${ad.id}.html" />"
+							class="btn btn-danger triggerRemove"> remove ad </a>
+							
 							
 						</div>
 					</div>

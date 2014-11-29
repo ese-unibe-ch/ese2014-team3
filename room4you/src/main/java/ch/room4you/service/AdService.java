@@ -17,7 +17,9 @@ import ch.room4you.entity.Ad;
 import ch.room4you.entity.Image;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
+import ch.room4you.repository.AppointmentRepository;
 import ch.room4you.repository.ImageRepository;
+import ch.room4you.repository.MessageRepository;
 import ch.room4you.repository.UserRepository;
 
 @Service
@@ -31,6 +33,12 @@ public class AdService{
 	
 	@Autowired
 	private ImageRepository imageRepository;
+	
+	@Autowired
+	private AppointmentRepository appointmentRepository;
+	
+	@Autowired
+	private MessageRepository messageRepository;
 	
 
 	/**
@@ -59,7 +67,6 @@ public class AdService{
 		return adRepository.findAll();
 	}
 
-	
 
 	
 	@Transactional

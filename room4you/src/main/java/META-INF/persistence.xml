@@ -3,6 +3,8 @@
 	<persistence-unit name="room4you">
 		<class>ch.room4you.entity.Ad</class>
 		<class>ch.room4you.entity.Alert</class>
+		<class>ch.room4you.entity.Appointment</class>
+		<class>ch.room4you.entity.AppointmentDate</class>
 		<class>ch.room4you.entity.Image</class>
 		<class>ch.room4you.entity.Message</class>
 		<class>ch.room4you.entity.Role</class>
