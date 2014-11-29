@@ -42,7 +42,7 @@
                 <li><a href="#section-3">Bookmarked ads</a></li>
              	<li><a href="#section-4">Messages</a></li>
                 <li><a href="#section-5">Alerts</a></li>
-                <li><a href="#section-6">Applications</a></li>
+                <li><a href="#scetion-6">Visitors</a><li>
             </ul>
         </div>
 
@@ -232,40 +232,48 @@
 				</c:forEach>
 			</tbody>
 			</table>
+			
+			<h2 id="section-2">Visitors</h2>
+		
+		<div id="Layout" class="container">
+		            <div class="row">
+		            
+		
+					<c:forEach items="${user.ads}" var="ad">
+						<c:forEach items="${ad.appointments}" var ="appointment">		
+						
+						<div class="caption" >
+							<h4>${ad.title} ${appointment.appointDate.appointDate} ${appointment.appointDate.startTime} ${appointment.appointDate.endTime}</h4>
+							<c:forEach items="${appointment.visitors}" var="visitor">
+							<a href="<spring:url value="/ads/${ad.id}.html"/>"> </a>
+							<p>${visitor.name}</p>
+							</c:forEach>
+							
+						</div>
+						</c:forEach>
+					</c:forEach>
+			
+		</div>
+		<div class="col-md-6">
+		<form action="input_checkbox.htm">
+  		<p>Compile a list of the most promising candidates: </p>
+  		<p>
+  		
+  			<c:forEach items="${user.ads}" var="ad">
+				<div class="col-sm-6 col-md-4 col-lg-3">
+						<c:forEach items="${ad.appointments}" var ="appointment">	
+						<c:forEach items="${appointment.visitors}" var="visitor">
+						<input type="checkbox" name="visitor" value="${visitor.name}"> ${visitor.name}<br>
+						</c:forEach>
+						</c:forEach>
+					</div>
+			</c:forEach>
+  		</p>
+		</form>
+		</div>
+		</div>
 		
 			
-			<h2 id="section-6">Applications</h2>
-				<table class="table table-bordered table-hover table-striped">
-				<thead>
-					<tr>
-						<th>From</th>
-						<th>Regarding Ad</th>
-						<th>Appointment</th>
-						<th>Details</th>
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach items="${usera.receivedApplications}" var="application">
-					<tr>
-						<td id="application_${application.id}"><a> <c:out
-									value="${application.sender.name}" />
-						</a></td>
-						<td><a
-							href="<spring:url value="/ads/${application.applicationAd.id}.html" />">
-								<c:out value="${application.applicationAd.title}" />
-						</a></td>
-						<td><a><c:out
-									value="${application.appointment.appointDate}" /></a>
-						<td><a
-							href="<spring:url value="/showApplication/${application.id}.html" />">
-								Show Application </a></td>
-					</tr>
-					</c:forEach>
-				</tbody>
-				</table>
-		    </div>
-</div>		
-		       
 
 		
 <a href="<spring:url value="/account/remove/${user.id}.html" />"

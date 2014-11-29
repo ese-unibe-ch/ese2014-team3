@@ -13,12 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ch.room4you.entity.Ad;
-import ch.room4you.entity.Application;
 import ch.room4you.entity.Message;
 import ch.room4you.entity.Role;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
-import ch.room4you.repository.ApplicationRepository;
 import ch.room4you.repository.MessageRepository;
 import ch.room4you.repository.RoleRepository;
 import ch.room4you.repository.UserRepository;
@@ -39,8 +37,6 @@ public class UserService {
 	@Autowired
 	private MessageRepository messageRepository;
 	
-	@Autowired
-	private ApplicationRepository applicationRepository;
 
 	public List<User> findAll() {
 		return userRepository.findAll();
@@ -106,12 +102,11 @@ public class UserService {
 
 	public boolean isBookmarkedAd(User user, int adId) {
 		List<Ad> bookmarkedAds = user.getBookmarkedAds();
-		boolean isBookmarkedAd = false;
 		for (Ad a : bookmarkedAds) {
 			if (a.getId() == adId)
-				isBookmarkedAd = true;
+				return true;
 		}
-		return isBookmarkedAd;
+		return false;
 	}
 
 	public void unBookmarkAd(User user, int adId) {
@@ -131,14 +126,5 @@ public class UserService {
 		return bookmarkedAds;
 	}
 
-	public User findOneWithApplications(String name) {
-		User user = userRepository.findByName(name);
-		List<Application> sentApplications = applicationRepository.findBySender(user);
-		List<Application> receivedApplications = applicationRepository.findByRecipient(user);
-		user.setSentApplications(sentApplications);
-		user.setReceivedApplications(receivedApplications);
-		return user;
-
-	}
-
+	
 }

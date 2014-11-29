@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -41,17 +42,14 @@ public class Ad {
 	@Lob
 	@Type(type = "org.hibernate.type.StringClobType")
 	@Column(length = Integer.MAX_VALUE)
-	private String weAreLookingFor;
+	private String weAreLookingFor = "Anyone";
 
 	@Column(name = "published_date")
 	private Date publishedDate = new Date();
 	
-	@OneToMany(mappedBy = "appointmentAd", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "appointmentAd", fetch = FetchType.EAGER, orphanRemoval=true)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 	
-	@OneToMany(mappedBy ="applicationAd", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-	private List<Application> applications = new ArrayList<Application>();
-
 
 	private String street;
 	
@@ -298,12 +296,4 @@ public class Ad {
 		this.appointments = appointments;
 	}
 
-	public List<Application> getApplications() {
-		return applications;
-	}
-
-	public void setApplications(List<Application> applications) {
-		this.applications = applications;
-	}
-	
 }

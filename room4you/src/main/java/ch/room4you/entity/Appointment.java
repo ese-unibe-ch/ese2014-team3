@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.metamodel.binding.CascadeType;
 
 import ch.room4you.entity.Ad;
 
@@ -22,18 +27,14 @@ public class Appointment {
 	@GeneratedValue
 	private int id;
 	
-	@ManyToOne 
-	@JoinTable(name = "ad_id")
+	@ManyToOne
 	private Ad appointmentAd;
 	
-	@OneToMany
-	@JoinTable(name="user")
-	@Column(nullable = true)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<User> visitors = new ArrayList<User>();
 	
-	@OneToMany
-	@JoinTable(name="message")
-	private List<Application> applications = new ArrayList<Application>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<User> promisingCandidates = new ArrayList<User>();
 	
 	@OneToOne
 	private AppointmentDate appointDate;
@@ -64,7 +65,6 @@ public class Appointment {
 	public void setVisitors(List<User> visitors) {
 		this.visitors = visitors;
 	}
-
 	
 	public AppointmentDate getAppointDate() {
 		return appointDate;
@@ -78,21 +78,16 @@ public class Appointment {
 		return nmbrVisitors;
 	}
 
-	public void setNmbrVisitors(int nmbrVisitors) {
-		this.nmbrVisitors = nmbrVisitors;
-	}
-
-	public List<Application> getApplications() {
-		return applications;
-	}
-
-	public void setApplications(List<Application> applications) {
-		this.applications = applications;
+	public void setNmbrVisitors(int maxVisitors) {
+		this.nmbrVisitors = maxVisitors;
 	}
 	
-	
+	public void addVisitor(User user) {
+		if(nmbrVisitors > 0) {
+			visitors.add(user);
+			nmbrVisitors--;
+		}
+	}
 
-
-	
 
 }

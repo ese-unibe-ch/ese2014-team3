@@ -152,24 +152,43 @@
 			<div class="form-group">
 				<label for="name" class="col-sm-4 ">Visits:</label>
 				<div class="col-sm-8">
-					<c:forEach items="${appointments}" var="appointments">
-						<div class="col-sm-8">
-							<div class="input-group">
-
-								<!-- 	<a href="#myModal" role="button" class="btn" -->
-								<!--  		data-toggle="modal"> -->
-								<!-- Button trigger modal -->
-								<a
-									href="<spring:url value="/ad/${ad.id}/appointment/${appointments.id}.html"/>">
-									<c:out  value="${appointments.appointDate.appointDate}" /> <c:out
-											value="${appointments.appointDate.startTime} - "  /> <c:out
-											value="${appointments.appointDate.endTime}" />
+				
+			
+				<sec:authorize access="isAuthenticated()"> 
+					
+					<!--  	<button type="button" class="btn-group btn-group-lg" data-toggle="modal" data-target="#myModal">  -->
+					<c:forEach items="${ad.appointments}" var="appointment">		
+				  	<c:choose> 
+					<c:when test="${appointment.nmbrVisitors > 0}">
+						<a 	href="<spring:url value="/ad/${ad.id}/appointment/${appointment.id}.html"/>" class="confirm"> 
+									<c:out  value="${appointment.appointDate.appointDate}" /> <c:out
+											value="${appointment.appointDate.startTime} - "  /> <c:out
+											value="${appointment.appointDate.endTime}" />
 								</a>
-							</div>
-						</div>
+						
+					</c:when>
+					<c:otherwise>
+						<span> 
+								<c:out  value="${appointment.appointDate.appointDate}" /> 
+								<c:out	value="${appointment.appointDate.startTime} - "  /> 
+								<c:out	value="${appointment.appointDate.endTime}" />
+						</span>
+					</c:otherwise>
+					</c:choose>
 					</c:forEach>
+					</sec:authorize>
+				
+					
+					<sec:authorize access="!isAuthenticated()">
+					Please <a href="<spring:url value="/login.html"/>">login</a> or <a href="<spring:url value="/register.html" />"> Register </a> to see the appointments </p>
+					</sec:authorize>
+			
+													
+								
+			
 				</div>
 			</div>
+			
 		  
 		</form>
 	</div> <!-- end col-md-6 -->
@@ -214,7 +233,39 @@
 </div>
 
 
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+ 
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Appointment</h4>
+      </div>
+      <div class="modal-body">
+        Do you want to go to the appointment?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">NO sanks</button>
+        <button type="button" class="btn btn-primary">Yes, add me</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBEGI1Wn8tNYbkCxFF0lupb81SQgLhtHEU&sensor=false">
+</script>
+
+<script type="text/javascript">
+    $('.confirm').on('click', function () {
+        return confirm('Add me to the appointment ?');
+    });
 </script>
 
 

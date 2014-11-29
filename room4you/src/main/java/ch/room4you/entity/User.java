@@ -10,10 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -60,14 +60,7 @@ public class User {
 	@OneToMany(mappedBy ="recipient", cascade = CascadeType.ALL)
 	private List<Message> messages = new ArrayList<Message>();
 	
-	@OneToMany(mappedBy ="recipient", cascade = CascadeType.ALL)
-	private List<Application> receivedApplications = new ArrayList<Application>();
-	
-	@OneToMany(mappedBy ="sender", cascade = CascadeType.ALL)
-	private List<Application> sentApplications = new ArrayList<Application>();
-	
-	@ManyToMany
-	@Column(nullable = true)
+	@ManyToMany(mappedBy="visitors", fetch=FetchType.EAGER)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 
 	@ManyToMany
@@ -80,7 +73,7 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Alert> alerts = new ArrayList<Alert>();
 	
-	@ManyToMany (fetch = FetchType.EAGER)
+	@ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Ad> bookmarkedAds = new ArrayList<Ad>();
 	
 
@@ -194,19 +187,16 @@ public class User {
 		this.alerts = alerts;
 	}
 
-	public List<Application> getReceivedApplications() {
-		return receivedApplications;
+	public List<Appointment> getAppointments() {
+		return appointments;
 	}
 
-	public void setReceivedApplications(List<Application> receivedApplication) {
-		this.receivedApplications = receivedApplication;
+	public void setAppointment(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+	
+	public void addAppointment(Appointment appointment) {
+		this.appointments.add(appointment);
 	}
 
-	public List<Application> getSentApplications() {
-		return sentApplications;
-	}
-
-	public void setSentApplications(List<Application> sentApplication) {
-		this.sentApplications = sentApplication;
-	}
 }

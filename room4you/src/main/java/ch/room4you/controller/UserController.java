@@ -80,7 +80,6 @@ public class UserController {
 		model.addAttribute("user", userService.findOneWithAds(name));
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("userm", userService.findOneWithMessages(name));
-		model.addAttribute("usera", userService.findOneWithApplications(name));
 		return "account";
 	}
 

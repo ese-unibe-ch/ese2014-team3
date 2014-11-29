@@ -21,7 +21,7 @@ public class AppointmentDate {
 	
 	private String endTime;
 	
-	
+		
 	public int getId() {
 		return id;
 	}
