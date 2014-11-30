@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Bookmark;
 import ch.room4you.entity.User;
@@ -27,7 +26,6 @@ public class BookmarkService {
 	@Autowired
 	private BookmarkRepository bookmarkRepository;
 
-	
 	@Transactional
 	public void bookmarkAd(int adId, String user) {
 
@@ -51,9 +49,9 @@ public class BookmarkService {
 			userRepository.save(bookmarker);
 			adRepository.save(bookmarkedAd);
 		}
-	//	User bookmarker = userRepository.findByName(user);
-    //    java.util.List<Bookmark> bookmark = bookmarker.getBookmarkedAds();
-    //    System.out.println(bookmark.get(0).getBookmarkedAd().getTitle());
+		// User bookmarker = userRepository.findByName(user);
+		// java.util.List<Bookmark> bookmark = bookmarker.getBookmarkedAds();
+		// System.out.println(bookmark.get(0).getBookmarkedAd().getTitle());
 	}
 
 	@Transactional

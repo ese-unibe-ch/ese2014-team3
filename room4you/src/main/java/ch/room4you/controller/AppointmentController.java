@@ -30,11 +30,11 @@ public class AppointmentController {
 		return "redirect:/ads/{adId}.html";
 	}
 	
-	@RequestMapping(value="/promisingCandidates")
-	public String compileCandidates(@RequestParam("candidates") List<User> candidates) {
+	@RequestMapping(value="/compileCandidats")
+	public String compileCandidates(@RequestParam("candidates") List<User> candidates, Principal principla) {
 		
 		System.out.println(candidates);
-		appointmentService.compileCandidates(candidates);
+		appointmentService.compileCandidates(candidates, principla.getName()/*, adId */);
 		return "redirect:/account.html";
 	}
 	

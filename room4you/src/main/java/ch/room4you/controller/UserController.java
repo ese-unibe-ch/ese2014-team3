@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -92,6 +94,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
+	@Transactional
 	public String doAddAd(Model model, @ModelAttribute("ad") Ad ad,
 			BindingResult result,
 			Principal principal,
@@ -99,11 +102,16 @@ public class UserController {
 			// ,@RequestParam("roomMates") String roomMate
 			, org.springframework.web.context.request.WebRequest webRequest,
 			@RequestParam("appointments") List<String> appointments) {
-
+		
+		
 		String roomMate = webRequest.getParameter("roomMates");
 
 		String name = principal.getName();
 		adService.save(ad, name);
+		
+		if(ad.getWeAreLookingFor().isEmpty()) {
+			ad.setWeAreLookingFor("Anyone");
+		}
 
 		try {
 

@@ -11,6 +11,6 @@ public interface BookmarkRepository extends JpaRepository<Bookmark, Integer> {
 
 	
 		//@Query("SELECT bookmark FROM Bookmark WEHERE bookmarkadid=adId AND bookmarkerid = userId")
-		// Bookmark findByAdAndUser( Integer adId,  Integer userId);
+		// Bookmark findByAdAndUser( Ad bookmarkedAd,  User bookmarker);
 
 }

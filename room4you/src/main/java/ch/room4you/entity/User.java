@@ -15,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -24,6 +25,8 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 
 import ch.room4you.annotation.UniqueUsername;
+
+import ch.room4you.entity.FavCandidates;
 
 @Entity
 @Table(name = "app_user")
@@ -65,8 +68,12 @@ public class User  {
 	@ManyToMany(mappedBy = "visitors", fetch = FetchType.EAGER)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 	
-	@ManyToMany(mappedBy = "promisingCandidates",fetch = FetchType.EAGER)
-	private List<Appointment> appointmentPromisingCandidates = new ArrayList<Appointment>();
+//	@ManyToMany(mappedBy = "promisingCandidates",fetch = FetchType.EAGER)
+//	private List<Appointment> appointmentPromisingCandidates = new ArrayList<Appointment>();
+	
+	@OneToOne
+	private FavCandidates favCandidates;
+	
 
 	@ManyToMany
 	@JoinTable
@@ -205,6 +212,16 @@ public class User  {
 	public void addAppointment(Appointment appointment) {
 		this.appointments.add(appointment);
 	}
+
+	public FavCandidates getFavCandidates() {
+		return favCandidates;
+	}
+
+	public void setFavCandidates(FavCandidates favCandidates) {
+		this.favCandidates = favCandidates;
+	}
+
+	
 	
 	
 

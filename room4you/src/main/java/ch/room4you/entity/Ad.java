@@ -48,7 +48,7 @@ public class Ad {
 	@Lob
 	@Type(type = "org.hibernate.type.StringClobType")
 	@Column(length = Integer.MAX_VALUE)
-	private String weAreLookingFor = "Anyone";
+	private String weAreLookingFor;
 
 	@Column(name = "published_date")
 	private Date publishedDate = new Date();
@@ -56,7 +56,7 @@ public class Ad {
 	@OneToMany(mappedBy = "appointmentAd", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 	
-	@OneToMany(mappedBy = "bookmarkedAd", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "bookmarkedAd", fetch = FetchType.EAGER, orphanRemoval=true)
 	private List<Bookmark> bookmarks = new ArrayList<Bookmark>();
 	
 
