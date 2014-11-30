@@ -27,52 +27,34 @@
 	<div class="alert alert-success">Message sent!</div>
 </c:if>
 
-<h1>My account</h1>
-
-<!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg pull-right" data-toggle="modal"
-	data-target="#myModal">Place new ad</button>
 
 <div class="container">
+
+		<h2>${user.name}</h2>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="collapse navbar-collapse user-nav" id="navbarCollapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#section-1">User details</a></li>
-                <li><a href="#section-2">Placed ads</a></li>
+                <li class="active"><a href="#section-2">Placed ads</a></li>
                 <li><a href="#section-3">Bookmarked ads</a></li>
-             	<li><a href="#section-4">Messages</a></li>
+             	<!--<li><a href="#section-4">Messages</a></li>-->
                 <li><a href="#section-5">Alerts</a></li>
-                <li><a href="#scetion-6">Visitors</a><li>
+                <li><a href="#scetion-6">Visitors</a></li>
+                <li><a class="link" data-toggle="modal" data-target="#myModal">Place new ad</a></li>
             </ul>
         </div>
 
     <div class="scroll-area" data-spy="scroll" data-target="navbarCollapse" data-offset="0">
 
-
-		<h2 id="section-1">User details</h2>
-		<table class="table table-bordered table-hover table-striped">
-			<thead>
-				<tr>
-					<th>User Name</th>
-					<th>User Email</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${user.name}</td>
-					<td>${user.email}</td>
-				</tr>
-			</tbody>
-		</table>
 		
 		
-		<h2 id="section-2">Currently placed ads</h2>
+		<h4 id="section-2" class="section">Currently placed ads</h4>
 		
 		<div id="Layout" class="container">
 		            <div class="row">
 		
 		<c:forEach items="${user.ads}" var="ad">
-				<div class="col-sm-6 col-md-4 col-lg-3">
+				<div class="col-md-6 col-md-4 user-ads">
 					<div style="width: 75%; height: 75%; padding-bottom:5%" id="thumbnail" class="thumbnail" >
 						
 						<a href="<spring:url value="/ads/${ad.id}.html"/>"> 
@@ -88,7 +70,6 @@
 						
 						<div class="caption" >
 							<h4>${ad.title}</h4>
-							<p>${ad.description}</p>
 							<p>City: ${ad.city}</p>
 							<p>Rent per month: <fmt:formatNumber value="${ad.rentPerMonth}" type="currency" currencySymbol="CHF"/></p>
 							
@@ -111,20 +92,19 @@
 		</div>
 		
 		
-		<h2 id="section-3">Currently bookmarked ads</h2>
+		<h4 id="section-3" class="section">Bookmarks</h4>
 		
 		<div id="bookmarkedAds" class="container">
-		            <div class="row">
+		            <div class="row" id="bookmarked">
 		
 		<c:forEach items="${user.bookmarkedAds}" var="ad">
-				<div class="col-sm-6 col-md-4 col-lg-3">
+				<div class="col-sm-6 col-md-4 user-bookmarks">
 					<div style="width: 75%; height: 75%; padding-bottom:5%" id="thumbnail" class="thumbnail" >
 						
 						<a href="<spring:url value="/ads/${ad.id}.html"/>"> <img src="data:image/jpeg;base64,${ad.images[0].imageAsString}" class="img-responsive"></img></a>
 						
 						<div class="caption" >
 							<h4>${ad.title}</h4>
-							<p>${ad.description}</p>
 							<p>City: ${ad.city}</p>
 							<p>Rent per month: <fmt:formatNumber value="${ad.rentPerMonth}" type="currency" currencySymbol="CHF"/></p>
 							
@@ -142,8 +122,8 @@
 		</c:forEach>	
 		</div>
 		</div>
-		
-		<h2 id="section-4">Messages received</h2>
+		<!-- 
+		<h2 id="section-4" class="section">Messages received</h2>
 		<table class="table table-bordered table-hover table-striped">
 			<thead>
 				<tr>
@@ -204,16 +184,11 @@
 			</tbody>
 		</table>
 		
+		-->
 		
-		<h2 id="section-5">Currently subscribed alerts</h2>
-		<table class="table table-bordered table-hover table-striped">
-			<thead>
-				<tr>
-					<th>Criteria</th>
-					<th>Delete</th>
-				</tr>
-			</thead>
-			<tbody>
+		<h4 id="section-5" class="section">Subscribed alerts</h4>
+		<table class="">
+			<tbody id="alert">
 				<c:forEach items="${user.alerts}" var="alert">
 					<tr>
 						<td id="alert_${alert.id}">
@@ -234,13 +209,13 @@
 						</td>
 						<td><a
 							href="<spring:url value="/alert/remove/${alert.id}.html" />"
-							class="btn btn-danger triggerRemove"> remove alert </a></td>
+							class="btn btn-danger triggerRemove alert-remove"> remove alert </a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 			</table>
-			
-			<h2 id="section-2">Visitors</h2>
+		<!-- 	
+			<h4 id="section-2" class="section">Visitors</h4>
 		
 		<div id="Layout" class="container">
 		            <div class="row">
@@ -282,11 +257,12 @@
 		
 			
 
-		
+	
 <a href="<spring:url value="/account/remove/${user.id}.html" />"
 	class="btn btn-danger btn-large pull-right triggerRemove">
 	Delete my account 
 </a> 
+-->	
 		
 		
 <form:form method="post" modelAttribute="ad"
@@ -554,6 +530,13 @@ $(document).ready(function() {
 				}
 			}
 		);
+	
+	if($.trim($("#bookmarked").html())=='') {
+		$('#bookmarked').html("No bookmarks");
+	}
+	if($.trim($("#alert").html())=='') {
+		$('#alert').html("No alerts");
+	}
 });
 </script>
 
