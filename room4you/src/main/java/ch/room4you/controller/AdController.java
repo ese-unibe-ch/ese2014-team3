@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import ch.room4you.entity.Ad;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
+import ch.room4you.service.BookmarkService;
 import ch.room4you.service.UserService;
 
 @Controller
@@ -28,6 +31,9 @@ public class AdController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private BookmarkService bookmarkService;
 	
 	/**
 	 * Instantiates an ad object which is mapped to the spring form in 
@@ -81,12 +87,12 @@ public class AdController {
 	 * @return
 	 */
 	@RequestMapping("/ads/{id}")
+	@Transactional
 	public String detail(Model model, @PathVariable("id") int id, Principal principal) {
 		model.addAttribute("ad", adService.findOne(id));
 
 		if (principal != null) {
-			User user = userService.findOneByName(principal.getName());
-			boolean isBkrmrkedAd = userService.isBookmarkedAd(user, id);
+			boolean isBkrmrkedAd = bookmarkService.isBookmarkedAd(id, principal.getName());
 			model.addAttribute("isBkmrkedAd", isBkrmrkedAd);
 		}
 
@@ -104,7 +110,7 @@ public class AdController {
 		return "adDetail";
 	}
 
-	@RequestMapping("/ad/bookmarkAd/{id}")
+/*	@RequestMapping("/ad/bookmarkAd/{id}")
 	public String bookmarkAd(@PathVariable int id, Principal principal) {
 		Ad ad = adService.findOne(id);
 		String userName = principal.getName();
@@ -117,14 +123,14 @@ public class AdController {
 		return "redirect:/ads/{id}.html";
 	}
 	
-
-	@RequestMapping("/ad/unBookmarkAd/{id}")  
+*/
+/*	@RequestMapping("/ad/unBookmarkAd/{id}")  
 	public String unBookmarkAd(@PathVariable int id, Principal principal) {
 		User currentUser = userService.findOneByName(principal.getName());
 		userService.unBookmarkAd(currentUser, id);
 		return "redirect:/ads/{id}.html";
 	}
-
+*/
 
 	private void setModelAttributeAds(Model model,
 			org.springframework.web.context.request.WebRequest webRequest) {

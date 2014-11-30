@@ -1,0 +1,75 @@
+.link {
+	cursor: pointer;
+}
+
+#carousel {
+	margin-top: -20px;
+}
+
+.home-container {
+	overflow: hidden;
+}
+
+.no-background {
+	background-image: none !important;
+}
+
+.float-left {
+	float: left !important;
+}
+
+.float-right {
+	float: right !important;
+}
+
+.left-area, .right-area {
+	width: 50%;
+	height: 100%;
+	padding: 0 10px 0 10px;
+}
+
+.btn-home {
+	margin-top: 30px;
+	margin-left: 20%;
+	width: 150px;
+}
+
+.user-nav {
+	margin-left: -30px !important;
+}
+
+.user-ads, .user-bookmarks {
+	margin-right: -80px !important;
+	height: 600px !important;
+	margin-bottom: -110px !important;
+}
+
+.profile-ads {
+	height: 400px !important;
+}
+
+.p-ads {
+	width: 70% !important;
+	margin-top: 30px !important;
+}
+
+.user-detail {
+	width: 30% !important;
+}
+
+.user-alerts {
+	border: none;
+}
+
+.alert-remove {
+	margin-left: 50px;
+}
+
+.section {
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.p-about {
+	margin-top: 30px;
+}

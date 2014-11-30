@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -92,6 +94,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
+	@Transactional
 	public String doAddAd(Model model, @ModelAttribute("ad") Ad ad,
 			BindingResult result,
 			Principal principal,
@@ -101,6 +104,10 @@ public class UserController {
 			@RequestParam("appointments") List<String> appointments) {
 
 		String roomMate = webRequest.getParameter("roomMates");
+
+		if (ad.getWeAreLookingFor().isEmpty()) {
+			ad.setWeAreLookingFor("Anyone");
+		}
 
 		String name = principal.getName();
 		adService.save(ad, name);
@@ -117,8 +124,8 @@ public class UserController {
 			}
 
 			// save imagesAsString
-			if(!images[0].isEmpty())
-			saveImages(ad, images);
+			if (!images[0].isEmpty())
+				saveImages(ad, images);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -172,7 +179,7 @@ public class UserController {
 
 			// save imagesAsString
 			if (!images[0].isEmpty()) {
-			saveImages(ad, images);
+				saveImages(ad, images);
 			}
 
 		} catch (IOException e) {
@@ -182,7 +189,6 @@ public class UserController {
 
 		return "redirect:/account.html";
 	}
-
 
 	/**
 	 * Removes the user with id = {id} and logs the user out
@@ -196,13 +202,12 @@ public class UserController {
 		return "redirect:/logout";
 	}
 
-	@RequestMapping("/ad/removeBookmarkAd/{id}")
-	public String unBookmarkAd(@PathVariable int id, Principal principal) {
-		String userName = principal.getName();
-		User user = userService.findOneByName(userName);
-		userService.unBookmarkAd(user, id);
-		return "redirect:/account.html";
-	}
+	/*
+	 * @RequestMapping("/ad/removeBookmarkAd/{id}") public String
+	 * unBookmarkAd(@PathVariable int id, Principal principal) { String userName
+	 * = principal.getName(); User user = userService.findOneByName(userName);
+	 * userService.unBookmarkAd(user, id); return "redirect:/account.html"; }
+	 */
 
 	private void saveAppointments(Ad ad, List<String> appointments) {
 		for (int i = 0; i < appointments.size(); i += 4) {
@@ -214,9 +219,10 @@ public class UserController {
 			Appointment appointment = new Appointment();
 			appointment.setAppointDate(appointDate);
 			appointment.setAd(ad);
-			
-			if (!appointments.get(i+3).isEmpty()) {
-				appointment.setNmbrVisitors(Integer.valueOf(appointments.get(i+3)));
+
+			if (!appointments.get(i + 3).isEmpty()) {
+				appointment.setNmbrVisitors(Integer.valueOf(appointments
+						.get(i + 3)));
 			}
 			appointmentService.save(appointment);
 		}
@@ -236,7 +242,7 @@ public class UserController {
 		byte[] bytes;
 		for (MultipartFile imageMPF : images) {
 			Image image = new Image();
-			if(!imageMPF.isEmpty()){
+			if (!imageMPF.isEmpty()) {
 				bytes = imageMPF.getBytes();
 				byte[] encoded = Base64.encodeBase64(bytes);
 				String encodedString = new String(encoded);
@@ -247,7 +253,6 @@ public class UserController {
 
 		}
 	}
-
 
 	/**
 	 * Maps the date format to the convenient date format for the database

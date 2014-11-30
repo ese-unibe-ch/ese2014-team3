@@ -9,6 +9,8 @@
 
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
+<link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" >
+
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 

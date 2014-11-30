@@ -22,8 +22,7 @@ public class Image {
 	@ManyToOne
 	@JoinColumn(name = "ad_id")
 	private Ad ad;
-	
-	
+		
 	@Lob
     @Basic(fetch=FetchType.EAGER, optional=true)
     String imageAsString;

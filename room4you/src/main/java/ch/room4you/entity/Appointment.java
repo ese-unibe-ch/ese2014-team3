@@ -34,8 +34,8 @@ public class Appointment {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<User> visitors = new ArrayList<User>();
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	private List<User> promisingCandidates = new ArrayList<User>();
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	private List<User> promisingCandidates = new ArrayList<User>();
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private AppointmentDate appointDate;

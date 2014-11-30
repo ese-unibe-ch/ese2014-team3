@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -22,9 +23,11 @@ import org.hibernate.validator.constraints.Email;
 
 import ch.room4you.annotation.UniqueUsername;
 
+import ch.room4you.entity.FavCandidates;
+
 @Entity
 @Table(name = "app_user")
-public class User {
+public class User  {
 
 	@Id
 	@GeneratedValue
@@ -59,11 +62,15 @@ public class User {
 	@OneToMany(mappedBy ="recipient", cascade = CascadeType.ALL)
 	private List<Message> messages = new ArrayList<Message>();
 	
-	@ManyToMany(mappedBy = "visitors",fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "visitors", fetch = FetchType.EAGER)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 	
-	@ManyToMany(mappedBy = "promisingCandidates",fetch = FetchType.EAGER)
-	private List<Appointment> appointmentPromisingCandidates = new ArrayList<Appointment>();
+//	@ManyToMany(mappedBy = "promisingCandidates",fetch = FetchType.EAGER)
+//	private List<Appointment> appointmentPromisingCandidates = new ArrayList<Appointment>();
+	
+	@OneToOne
+	private FavCandidates favCandidates;
+	
 
 	@ManyToMany
 	@JoinTable
@@ -75,8 +82,10 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Alert> alerts = new ArrayList<Alert>();
 	
-	@ManyToMany (fetch = FetchType.EAGER)
-	private List<Ad> bookmarkedAds = new ArrayList<Ad>();
+	@OneToMany (mappedBy = "bookmarker", fetch = FetchType.EAGER)
+	private List<Bookmark> bookmarkedAds = new ArrayList<Bookmark>();
+	
+	
 	
 
 	public boolean isEnabled() {
@@ -135,12 +144,12 @@ public class User {
 		this.password = password;
 	}
 
-	public void setBookmarkedAd(Ad ad) {
-		bookmarkedAds.add(ad);
+/*	public void setBookmarkedAd(Bookmark bookmark) {
+		bookmarkedAds.add(bookmark);
 	}
-
+*/
 	
-	public List<Ad> getBookmarkedAds(){
+	public List<Bookmark> getBookmarkedAds(){
 		return bookmarkedAds;
 	}
 
@@ -169,7 +178,7 @@ public class User {
 		this.messages = messages;
 	}
 
-	public void setBookmarkedAds(List<Ad> bookmarkedAds) {
+	public void setBookmarkedAds(List<Bookmark> bookmarkedAds) {
 		this.bookmarkedAds = bookmarkedAds;
 	}
 
@@ -200,5 +209,17 @@ public class User {
 	public void addAppointment(Appointment appointment) {
 		this.appointments.add(appointment);
 	}
+
+	public FavCandidates getFavCandidates() {
+		return favCandidates;
+	}
+
+	public void setFavCandidates(FavCandidates favCandidates) {
+		this.favCandidates = favCandidates;
+	}
+
+	
+	
+	
 
 }

@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -47,13 +48,16 @@ public class Ad {
 	@Lob
 	@Type(type = "org.hibernate.type.StringClobType")
 	@Column(length = Integer.MAX_VALUE)
-	private String weAreLookingFor = "Anyone";
+	private String weAreLookingFor;
 
 	@Column(name = "published_date")
 	private Date publishedDate = new Date();
 	
 	@OneToMany(mappedBy = "appointmentAd", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
+	
+	@OneToMany(mappedBy = "bookmarkedAd", fetch = FetchType.EAGER, orphanRemoval=true)
+	private List<Bookmark> bookmarks = new ArrayList<Bookmark>();
 	
 
 	private String street;
@@ -98,8 +102,8 @@ public class Ad {
 	@OneToMany(mappedBy = "ad", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<RoomMate> roomMates;
 	
-
-
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -300,5 +304,17 @@ public class Ad {
 	public void setAppointments(List<Appointment> appointments) {
 		this.appointments = appointments;
 	}
+
+	public List<Bookmark> getBookmarks() {
+		return bookmarks;
+	}
+
+	public void setBookmarks(List<Bookmark> bookmark) {
+		this.bookmarks = bookmark;
+	}
+
+	
+	
+	
 
 }
