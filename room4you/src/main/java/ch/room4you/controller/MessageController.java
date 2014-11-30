@@ -63,15 +63,18 @@ public class MessageController {
 	public String showMessages(Model model, @PathVariable int id, Principal principal) {
 		if (principal != null) {
 			Message message = messageService.findOne(id);
-			Ad ad = message.getMessageAd();
 			User userSender =  userService.findOneByName(principal.getName());
-			List<Message> msgs= messageService.findAllMessagesBySenderAndAd(userSender, ad);
+			User userReceiver =  userService.findOneByName(principal.getName());
+			Ad ad = adService.findOne(message.getMessageAd().getId());
+			List<Message> msgsSender= messageService.findAllMessagesBySenderAndAd(userSender, userReceiver, ad);
 			System.out.println("Ad id and principal: "+id +" "+ principal);
-			System.out.println("Size of msgs: "+msgs.size());
-			for(int i=0;i<msgs.size();i++){
-				System.out.println("Messages"+msgs.get(i).getMessage());
+			System.out.println("Size of msgs: "+msgsSender.size());
+			for(int i=0;i<msgsSender.size();i++){
+				System.out.println("Messages"+msgsSender.get(i).getMessage());
 			}
-			model.addAttribute("messages", messageService.findAllMessagesBySenderAndAd(userSender, ad));
+			
+			
+			model.addAttribute("messages", messageService.findAllMessagesBySenderAndAd(userSender, userReceiver, ad));
 			return "showmessage";
 		}
 		else {

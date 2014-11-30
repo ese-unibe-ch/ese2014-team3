@@ -2,6 +2,8 @@ package ch.room4you.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +27,9 @@ public class MessageService {
 		return messageRepository.findOne(id);
 	}
 	
-	public List<Message> findAllMessagesBySenderAndAd(User sender, Ad ad) {
-		return messageRepository.findBySenderAndMessageAdOrderByTimestampAsc(sender, ad);
+	@Transactional
+	public List<Message> findAllMessagesBySenderAndAd(User userSender, User userRecipient, Ad ad) {
+		return messageRepository.findBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
 	}
 	
 	
