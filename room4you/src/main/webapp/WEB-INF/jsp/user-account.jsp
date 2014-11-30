@@ -48,13 +48,13 @@
 
 		
 		
-		<h4 id="section-2" class="section">Currently placed ads</h4>
+		<h4 id="section-2" class="section">Placed ads</h4>
 		
 		<div id="Layout" class="container">
-		            <div class="row">
+		            <div class="row" id="createdAds">
 		
 		<c:forEach items="${user.ads}" var="ad">
-				<div class="col-md-6 col-md-4 user-ads">
+				<div class="col-md-6 col-md-4 user-ads profile-ads">
 					<div style="width: 75%; height: 75%; padding-bottom:5%" id="thumbnail" class="thumbnail" >
 						
 						<a href="<spring:url value="/ads/${ad.id}.html"/>"> 
@@ -536,6 +536,9 @@ $(document).ready(function() {
 	}
 	if($.trim($("#alert").html())=='') {
 		$('#alert').html("No alerts");
+	}
+	if($.trim($("#createdAds").html())=='') {
+		$('#createdAds').html("No created ads");
 	}
 });
 </script>

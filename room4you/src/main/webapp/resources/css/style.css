@@ -15,11 +15,11 @@
 }
 
 .float-left {
-	float: left;
+	float: left !important;
 }
 
 .float-right {
-	float: right;
+	float: right !important;
 }
 
 .left-area, .right-area {
@@ -44,6 +44,19 @@
 	margin-bottom: -110px !important;
 }
 
+.profile-ads {
+	height: 400px !important;
+}
+
+.p-ads {
+	width: 70% !important;
+	margin-top: 30px !important;
+}
+
+.user-detail {
+	width: 30% !important;
+}
+
 .user-alerts {
 	border: none;
 }
@@ -54,4 +67,9 @@
 
 .section {
 	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.p-about {
+	margin-top: 30px;
 }
