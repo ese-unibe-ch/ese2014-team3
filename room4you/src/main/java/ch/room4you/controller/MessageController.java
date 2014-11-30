@@ -65,6 +65,7 @@ public class MessageController {
 			Message message = messageService.findOne(id);
 			User userSender =  userService.findOneByName(principal.getName());
 			User userReceiver =  userService.findOneByName(principal.getName());
+			
 			Ad ad = adService.findOne(message.getMessageAd().getId());
 			List<Message> msgsSender= messageService.findAllMessagesBySenderAndAd(userSender, userReceiver, ad);
 			System.out.println("Ad id and principal: "+id +" "+ principal);
@@ -72,8 +73,9 @@ public class MessageController {
 			for(int i=0;i<msgsSender.size();i++){
 				System.out.println("Messages"+msgsSender.get(i).getMessage());
 			}
-			
-			
+			model.addAttribute("messageId", message.getId());
+			model.addAttribute("messageTitle", message.getTitle());
+			model.addAttribute("recipient", getOtherUser(userSender, message));
 			model.addAttribute("messages", messageService.findAllMessagesBySenderAndAd(userSender, userReceiver, ad));
 			return "showmessage";
 		}
@@ -82,27 +84,28 @@ public class MessageController {
 		}
 	}
 	
+
 	@RequestMapping("/reply/{id}")
 	public String reply(Model model, @PathVariable int id) {
 		Message message = messageService.findOne(id);
 		model.addAttribute("ad", adService.findOne(message.getMessageAd().getId()));
 		model.addAttribute("sender", message.getRecipient());
 		model.addAttribute("recipient", message.getSender());
-		return "message";
+		return "showmessage";
 	}
 	
 	@RequestMapping(value="/reply/{id}", method = RequestMethod.POST)
-	public String sendReply(@Valid @ModelAttribute("newmessage") Message reply, BindingResult result, @PathVariable int id) {
+	public String sendReply(@Valid @ModelAttribute("newmessage") Message reply, BindingResult result, @PathVariable int id, Principal principal) {
 		if (result.hasErrors()) {
 			return "message";
 		}
 		Message message = messageService.findOne(id);
-		reply.setRecipient(message.getSender());
-		reply.setSender(message.getRecipient());
+		reply.setSender(userService.findOneByName(principal.getName()));
+		reply.setRecipient(getOtherUser(userService.findOneByName(principal.getName()), message));
 		reply.setMessageAd(message.getMessageAd());
 		reply.setId(null);
 		messageService.save(reply);
-		return "redirect:/account.html?success=true";
+		return "redirect:/showmessage/{id}.html?success=true";
 	}
 	
 	@RequestMapping(value="/message/{id}", method = RequestMethod.POST)
@@ -122,5 +125,16 @@ public class MessageController {
 	public String removeMessage(@PathVariable int id) {
 		messageService.delete(id);
 		return "redirect:/account.html";
+	}
+	
+	private User getOtherUser(User userSender, Message message) {
+		User otherUser;
+		if(message.getSender()!=userSender){
+			otherUser = message.getSender();
+		}else{
+			otherUser = message.getRecipient();
+		}
+				
+	   return otherUser;
 	}
 }

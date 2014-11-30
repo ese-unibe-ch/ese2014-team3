@@ -150,7 +150,6 @@
 					<th>From</th>
 					<th>Regarding Ad</th>
 					<th>Details</th>
-					<th>Reply</th>
 					<th>Delete</th>
 				</tr>
 			</thead>
@@ -167,8 +166,6 @@
 						<td><a
 							href="<spring:url value="/showmessage/${message.id}.html" />">
 								Show Message </a></td>
-						<td><a href="<spring:url value="/reply/${message.id}.html" />">
-								Reply </a></td>
 						<td><a
 							href="<spring:url value="/message/remove/${message.id}.html" />"
 							class="btn btn-danger triggerRemove"> Delete Message </a></td>
@@ -184,6 +181,7 @@
 					<th>To</th>
 					<th>Regarding Ad</th>
 					<th>Details</th>
+					<th>Delete</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -199,6 +197,9 @@
 						<td><a
 							href="<spring:url value="/showmessage/${message.id}.html" />">
 								Show Message </a></td>
+					<td><a
+							href="<spring:url value="/message/remove/${message.id}.html" />"
+							class="btn btn-danger triggerRemove"> Delete Message </a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

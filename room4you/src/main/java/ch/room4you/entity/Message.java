@@ -30,6 +30,7 @@ public class Message {
 	@JoinColumn(name = "recipient_id")
 	private User recipient;
 	
+	@Column(length = 2000)
 	private String message;
 	
 	private Timestamp timestamp;
