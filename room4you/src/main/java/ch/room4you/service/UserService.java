@@ -95,7 +95,7 @@ public class UserService {
 		return user;
 	}
 
-	public void bookmarkAd(User user, Ad ad) {
+/*	public void bookmarkAd(User user, Ad ad) {
 		user.setBookmarkedAd(ad);
 		userRepository.save(user);
 	}
@@ -125,6 +125,6 @@ public class UserService {
 		}
 		return bookmarkedAds;
 	}
-
+*/
 	
 }

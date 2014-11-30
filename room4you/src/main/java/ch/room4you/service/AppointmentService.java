@@ -2,6 +2,8 @@ package ch.room4you.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,7 @@ public class AppointmentService {
 		appointmentRepository.save(appointment);
 	}
 	
+	@Transactional
 	public void addVisitor(int appointId, String userName) {
 		Appointment appointment = appointmentRepository.findOne(appointId);
 		User user = userRepository.findByName(userName);
@@ -51,8 +54,16 @@ public class AppointmentService {
 		
 			if (!isVisitor(user, appointment)) {
 				if (appointment.getNmbrVisitors() > 0) {
-					user.addAppointment(appointment);
+					List<Appointment> appointments = user.getAppointments();
+					appointments.add(appointment);
+					user.setAppointment(appointments);
 					userRepository.save(user);
+					
+					List<User> visitors = appointment.getVisitors();
+					visitors.add(user);
+					appointment.setVisitors(visitors);
+					appointmentRepository.save(appointment);
+					
 				System.out.println(user.toString() + " has been added to appointment: " + appointment);
 			}
 		}
@@ -67,6 +78,12 @@ public class AppointmentService {
 			}
 		}
 		return false;
+	}
+
+
+	public void compileCandidates(List<User> candidates) {
+		
+		
 	}
 
 

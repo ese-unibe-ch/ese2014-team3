@@ -116,24 +116,25 @@
 		<div id="bookmarkedAds" class="container">
 		            <div class="row">
 		
-		<c:forEach items="${user.bookmarkedAds}" var="ad">
+		<c:forEach items="${user.bookmarkedAds}" var="bookmark">
+	
 				<div class="col-sm-6 col-md-4 col-lg-3">
 					<div style="width: 75%; height: 75%; padding-bottom:5%" id="thumbnail" class="thumbnail" >
 						
-						<a href="<spring:url value="/ads/${ad.id}.html"/>"> <img src="data:image/jpeg;base64,${ad.images[0].imageAsString}" class="img-responsive"></img></a>
+						<a href="<spring:url value="/ads/${bookmark.bookmarkedAd.id}.html"/>"> <img src="data:image/jpeg;base64,${bookmark.bookmarkedAd.images[0].imageAsString}" class="img-responsive"></img></a>
 						
 						<div class="caption" >
-							<h4>${ad.title}</h4>
-							<p>${ad.description}</p>
-							<p>City: ${ad.city}</p>
-							<p>Rent per month: <fmt:formatNumber value="${ad.rentPerMonth}" type="currency" currencySymbol="CHF"/></p>
+							<h4>${bookmark.bookmarkedAd.title}</h4>
+							<p>${bookmark.bookmarkedAd.description}</p>
+							<p>City: ${bookmark.bookmarkedAd.city}</p>
+							<p>Rent per month: <fmt:formatNumber value="${bookmark.bookmarkedAd.rentPerMonth}" type="currency" currencySymbol="CHF"/></p>
 							
-							<a href="<spring:url value="/ads/${ad.id}.html"/>"  class="btn btn-primary" role="button">
+							<a href="<spring:url value="/ads/${bookmark.bookmarkedAd.id}.html"/>"  class="btn btn-primary" role="button">
 							View Details
 							</a>
 							<p></p>
 							<a
-							href="<spring:url value="/ad/removeBookmarkAd/${ad.id}.html" />"
+							href="<spring:url value="/ad/removeBookmarkAd/${bookmark.bookmarkedAd.id}.html" />"
 							class="btn btn-danger triggerRemove"> Unbookmark Ad </a>
 							
 						</div>

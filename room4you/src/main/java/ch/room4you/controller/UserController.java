@@ -196,13 +196,14 @@ public class UserController {
 		return "redirect:/logout";
 	}
 
-	@RequestMapping("/ad/removeBookmarkAd/{id}")
+/*	@RequestMapping("/ad/removeBookmarkAd/{id}")
 	public String unBookmarkAd(@PathVariable int id, Principal principal) {
 		String userName = principal.getName();
 		User user = userService.findOneByName(userName);
 		userService.unBookmarkAd(user, id);
 		return "redirect:/account.html";
 	}
+	*/
 
 	private void saveAppointments(Ad ad, List<String> appointments) {
 		for (int i = 0; i < appointments.size(); i += 4) {
