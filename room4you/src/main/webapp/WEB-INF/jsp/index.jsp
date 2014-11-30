@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 
 <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
@@ -51,7 +52,9 @@
  		account is created in no time.</p>
 	</div>
   	<div class="right-area float-left">
-  		<a class="btn btn-primary btn-lg btn-home" href="ads.html" role="button">Browse ads</a></br>
-  		<a class="btn btn-primary btn-lg btn-home" href="<spring:url value="/register.html" />">Register</a>
+  		<a class="btn btn-primary btn-lg btn-home" href="ads.html" role="button">Browse ads</a>
+  		<security:authorize access="! isAuthenticated()">
+  			<a class="btn btn-primary btn-lg btn-home" href="<spring:url value="/register.html" />">Register</a>
+  		</security:authorize>
   	</div>
 </div>
