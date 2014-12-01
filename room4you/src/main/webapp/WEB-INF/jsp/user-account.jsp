@@ -184,9 +184,9 @@
 
 								<a href="<spring:url value="/showmessage/${message.id}.html"/>"
 									class="btn btn-primary" role="button"> View Chat </a>
-								<p></p>
-								<a href="<spring:url value="/message/remove/${message.id}.html" />"
-									class="btn btn-danger triggerRemove"> Delete chat </a>
+<!-- 								<p></p> -->
+<%-- 								<a href="<spring:url value="/message/remove/${message.id}.html" />" --%>
+<!-- 									class="btn btn-danger triggerRemove"> Delete chat </a> -->
 
 
 							</div>
