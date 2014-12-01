@@ -20,4 +20,9 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
 	
 	List<Message> findBySenderOrRecipientAndMessageAdOrderByTimestampAsc(User sender, User recipient, Ad ad);
 	
+	List<Message> findBySenderOrRecipient(User sender, User recipient);
+	
+		
+	Message findTop1BySenderOrRecipientAndMessageAdOrderByTimestampAsc(User sender, User recipient, Ad ad);
+	
 }

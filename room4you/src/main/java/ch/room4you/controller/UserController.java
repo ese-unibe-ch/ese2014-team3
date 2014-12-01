@@ -28,12 +28,15 @@ import ch.room4you.entity.Ad;
 import ch.room4you.entity.Appointment;
 import ch.room4you.entity.AppointmentDate;
 import ch.room4you.entity.Image;
+import ch.room4you.entity.Message;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
+import ch.room4you.repository.MessageRepository;
 import ch.room4you.service.AdService;
 import ch.room4you.service.AppointmentDateService;
 import ch.room4you.service.AppointmentService;
 import ch.room4you.service.ImageService;
+import ch.room4you.service.MessageService;
 import ch.room4you.service.RoomMateService;
 import ch.room4you.service.UserService;
 
@@ -57,6 +60,12 @@ public class UserController {
 
 	@Autowired
 	private AppointmentService appointmentService;
+	
+	@Autowired
+	private MessageService messageService;
+	
+	@Autowired
+	private MessageRepository messageRepository;
 
 	/**
 	 * Instantiates an ad object which is mapped to the spring form in
@@ -82,6 +91,8 @@ public class UserController {
 		model.addAttribute("user", userService.findOneWithAds(name));
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("userm", userService.findOneWithMessages(name));
+		model.addAttribute("conversations", messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));		
+		
 		return "account";
 	}
 

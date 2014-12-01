@@ -67,12 +67,6 @@ public class MessageController {
 			User userReceiver =  userService.findOneByName(principal.getName());
 			
 			Ad ad = adService.findOne(message.getMessageAd().getId());
-			List<Message> msgsSender= messageService.findAllMessagesBySenderAndAd(userSender, userReceiver, ad);
-			System.out.println("Ad id and principal: "+id +" "+ principal);
-			System.out.println("Size of msgs: "+msgsSender.size());
-			for(int i=0;i<msgsSender.size();i++){
-				System.out.println("Messages"+msgsSender.get(i).getMessage());
-			}
 			model.addAttribute("messageId", message.getId());
 			model.addAttribute("messageTitle", message.getTitle());
 			model.addAttribute("recipient", getOtherUser(userSender, message));
@@ -126,6 +120,7 @@ public class MessageController {
 		messageService.delete(id);
 		return "redirect:/account.html";
 	}
+
 	
 	private User getOtherUser(User userSender, Message message) {
 		User otherUser;
