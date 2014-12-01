@@ -48,14 +48,7 @@
 							<div class="pager">
 								<input type="submit" value="Send" class="btn btn-lg btn-primary" />
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<div class="pager">
-								<a class="btn btn-lg btn-primary" href="javascript:location.reload(true)">Receive</a>
-							</div>
-						</div>
-			    
+						</div>			    
 			</form:form>		
 		
 		</div>		
@@ -89,12 +82,16 @@ $(document).ready(function() {
 	
 });
 
-// $(document).ready(function(){
-// 	  setInterval(function(){
-// 		  if(document.getElementById("txtArea").value == ''){
-// 			  window.location.reload(1);
-// 		  }
-// 	  },5000);
-// 	});
+
+
+$(document).ready(function(){
+	  setInterval(function(){
+		  console.log(document.activeElement);
+		  if(document.getElementById("txtArea").value == '' && !$("input,textarea").is(":focus")){
+			  window.location.reload(1);
+		  }
+		  
+	  },5000);
+	});
 
 </script>

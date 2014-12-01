@@ -6,6 +6,7 @@
 <style type="text/css">
 .scroll-area {
 	height: 100%;
+	width: 100%
 	position: relative;
 	overflow: auto;
 }
@@ -199,7 +200,7 @@
 		
 	
 			<h4 id="section-5" class="section">Subscribed alerts</h4>
-			<table class="alert alert-info">
+			<table class="well">
 				<tbody id="alert">
 					<c:forEach items="${user.alerts}" var="alert">
 							<tr>
