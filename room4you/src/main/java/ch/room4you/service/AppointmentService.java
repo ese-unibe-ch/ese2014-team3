@@ -59,12 +59,11 @@ public class AppointmentService {
 	public void addVisitor(int appointId, String userName) {
 		Appointment appointment = appointmentRepository.findOne(appointId);
 		User user = userRepository.findByName(userName);
-		Ad ad = appointment.getAd();
+		Ad ad = appointment.getAppointmentAd();
 		
 		if (!isVisitor(user, appointment)) {
 				if (appointment.getNmbrVisitors() > 0) {
-					List<Appointment> adAppointments = ad.getAppointments();
-					adAppointments.remove(appointment);
+					
 					List<Appointment> userAppointments = user.getAppointments();
 					userAppointments.remove(appointment);
 					
@@ -78,13 +77,11 @@ public class AppointmentService {
 					user.setAppointment(userAppointments);
 					userRepository.save(user);
 					
-					adAppointments.add(appointment);
-					ad.setAppointments(adAppointments);
-					adRepository.save(ad);
 					
 				System.out.println(user.toString() + " has been added to appointment: " + appointment);
 			}
 		}
+		System.out.println(ad.getAppointments().size());
 	}
 	
 	public boolean isVisitor(User user, Appointment appointment) {

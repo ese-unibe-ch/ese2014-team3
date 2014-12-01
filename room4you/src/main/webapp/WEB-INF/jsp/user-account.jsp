@@ -27,6 +27,7 @@
 </c:if>
 
 
+
 <div class="container">
 
 	<h2>${user.name}</h2>
@@ -38,7 +39,8 @@
 			<li><a href="#section-3">Bookmarked ads</a></li>
 			<li><a href="#section-4">Messages</a></li>
 			<li><a href="#section-5">Alerts</a></li>
-			<li><a href="#scetion-6">Visitors</a></li>
+			<c:if test="${not empty user.ads}">	<li><a href="#scetion-6">Visitors</a></li></c:if>
+			<li><a href="#section-7">My Appointments</a></li>
 			<li><a class="link" data-toggle="modal" data-target="#myModal">Place
 					new ad</a></li>
 		</ul>
@@ -244,7 +246,8 @@
 				</tbody>
 			</table>
 			<!-- 	-->
-			<h4 id="section-2" class="section">Visitors</h4>
+			<c:if test="${not empty user.ads}">
+			<h4 id="section-6" class="section">Visitors</h4>
 		
 			<div id="Layout" class="container">
 		            <div class="row">
@@ -283,12 +286,32 @@
 			</c:forEach>
 		</div>
 		</div>
+	</c:if>
+	
+	<h4 id="section-7" class="section">My Appointments</h4>
+		
+			<div id="Layout" class="container">
+		            <div class="row">
+					<c:forEach items="${user.appointments}" var="appointment">
+						<div class="caption" >
+							<h4>
+								<a href="<spring:url value="/ads/${appointment.appointmentAd.id}.html" />"> 
+								<c:out value="${appointment.appointmentAd.title}" /></a>
+							</h4>	
+							<h4>Date: ${appointment.appointDate.appointDate} </h4> 
+							<h4>Begin: ${appointment.appointDate.startTime} </h4>
+							<h4>End: ${appointment.appointDate.endTime} </h4>
+						</div>		
+					</c:forEach>
+					</div>
+			</div>
+	
+	
 
 
-
-<a href="<spring:url value="/account/remove/${user.id}.html" />"
+<!-- <a href="<spring:url value="/account/remove/${user.id}.html" />"
 	class="btn btn-danger btn-large pull-right triggerRemove"> Delete
-	my account </a>
+	my account </a> -->
 
 
 <form:form method="post" modelAttribute="ad"

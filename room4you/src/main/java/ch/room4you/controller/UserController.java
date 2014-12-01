@@ -236,7 +236,7 @@ public class UserController {
 			dateService.save(appointDate);
 			Appointment appointment = new Appointment();
 			appointment.setAppointDate(appointDate);
-			appointment.setAd(ad);
+			appointment.setAppointmentAd(ad);
 
 			if (!appointments.get(i + 3).isEmpty()) {
 				appointment.setNmbrVisitors(Integer.valueOf(appointments

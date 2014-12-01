@@ -1,8 +1,15 @@
 package ch.room4you.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,7 +22,7 @@ import ch.room4you.entity.User;
 import ch.room4you.service.UserService;
 
 /**
- * Maps the request url /register 
+ * Maps the request url /register
  * 
  * @param model
  * @return
@@ -27,9 +34,15 @@ public class RegisterController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	@Qualifier("org.springframework.security.authenticationManager")
+	private AuthenticationManager authenticationManager;
+
 	/**
-	 * Instantiates a new User and maps the values from spring form in user-register.jsp 
-	 * to the new user object (with commandName="user" in spring form)
+	 * Instantiates a new User and maps the values from spring form in
+	 * user-register.jsp to the new user object (with commandName="user" in
+	 * spring form)
+	 * 
 	 * @return User
 	 */
 	@ModelAttribute("user")
@@ -49,9 +62,9 @@ public class RegisterController {
 	}
 
 	/**
-	 * Receives the data from user-register form and adds the data to the
-	 * user object and saves the user in the database.
-	 * If successful, show success notification on register page
+	 * Receives the data from user-register form and adds the data to the user
+	 * object and saves the user in the database. If successful, show success
+	 * notification on register page
 	 * 
 	 * @param model
 	 * @return
@@ -64,7 +77,7 @@ public class RegisterController {
 		userService.save(user);
 		return "redirect:/login.html";
 	}
-	
+
 	/**
 	 * Checks if username is available
 	 * 

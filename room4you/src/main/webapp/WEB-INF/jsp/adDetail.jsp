@@ -5,6 +5,10 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
+<c:if test="${param.addedToAppointment eq true}">
+	<div class="alert alert-success">You have been successfully added to the appointment!</div>
+</c:if>
+
 <div class="container-fluid">
 
 <div class="row">
@@ -161,14 +165,14 @@
 				  	<c:choose> 
 					<c:when test="${appointment.nmbrVisitors > 0}">
 						<a 	href="<spring:url value="/ad/${ad.id}/appointment/${appointment.id}.html"/>" class="confirm"> 
-									<c:out  value="${appointment.appointDate.appointDate}" /> <c:out
-											value="${appointment.appointDate.startTime} - "  /> <c:out
-											value="${appointment.appointDate.endTime}" />
-								</a>
+									<c:out  value="${appointment.appointDate.appointDate}" />
+								    <c:out 	value="${appointment.appointDate.startTime} - "  /> 
+								    <c:out	value="${appointment.appointDate.endTime}" />
+						</a>
 						
 					</c:when>
 					<c:otherwise>
-						<span> 
+						<span title="Already max visitors"> 
 								<c:out  value="${appointment.appointDate.appointDate}" /> 
 								<c:out	value="${appointment.appointDate.startTime} - "  /> 
 								<c:out	value="${appointment.appointDate.endTime}" />
@@ -248,11 +252,11 @@
         <h4 class="modal-title" id="myModalLabel">Appointment</h4>
       </div>
       <div class="modal-body">
-        Do you want to go to the appointment?
+        Add me on the list for visitation
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">NO sanks</button>
-        <button type="button" class="btn btn-primary">Yes, add me</button>
+        <a 	href="<spring:url value="/ad/${ad.id}/appointment/${appointment.id}.html"/>" class="btn btn-primary"> Yes, add me</a>
       </div>
     </div>
   </div>

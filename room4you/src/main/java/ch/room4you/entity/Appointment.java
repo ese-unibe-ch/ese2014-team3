@@ -51,11 +51,11 @@ public class Appointment {
 		this.id = id;
 	}
 
-	public Ad getAd() {
+	public Ad getAppointmentAd() {
 		return appointmentAd;
 	}
 
-	public void setAd(Ad ad) {
+	public void setAppointmentAd(Ad ad) {
 		this.appointmentAd = ad;
 	}
 

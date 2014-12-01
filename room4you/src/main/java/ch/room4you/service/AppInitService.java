@@ -249,7 +249,7 @@ public class AppInitService {
 			dateService.save(appointDate);
 			Appointment appointment = new Appointment();
 			appointment.setAppointDate(appointDate);
-			appointment.setAd(ad);
+			appointment.setAppointmentAd(ad);
 			appointment.setNmbrVisitors(5);
 			appointmentService.save(appointment);
 			}

@@ -35,7 +35,7 @@ public class AppointmentController {
 			, @PathVariable("appointId") int appointId) {
 		
 		appointmentService.addVisitor(appointId, principal.getName());
-		return "redirect:/ads/{adId}.html";
+		return "redirect:/ads/{adId}.html?addedToAppointment=true";
 	}
 	
 	@RequestMapping(value="compileCandidates", method = RequestMethod.POST)
