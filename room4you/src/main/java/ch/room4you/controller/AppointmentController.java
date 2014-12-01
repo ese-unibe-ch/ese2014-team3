@@ -5,11 +5,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.room4you.service.AppointmentService;
+import ch.room4you.entity.FavCandidates;
 import ch.room4you.entity.User;
 
 
@@ -20,7 +25,10 @@ public class AppointmentController {
 	@Autowired
 	private AppointmentService appointmentService;
 
-
+	@ModelAttribute
+	public FavCandidates constructFavCandiidates(){
+		return new FavCandidates();
+	}
 
 	@RequestMapping(value="/ad/{adId}/appointment/{appointId}")
 	public String addUserToAppointment(Principal principal, @PathVariable("adId") int adId
@@ -30,11 +38,12 @@ public class AppointmentController {
 		return "redirect:/ads/{adId}.html";
 	}
 	
-	@RequestMapping(value="/compileCandidats")
-	public String compileCandidates(@RequestParam("candidates") List<User> candidates, Principal principla) {
+	@RequestMapping(value="/compileCandidats", method = RequestMethod.POST)
+	public String compileCandidates(Model model,  @ModelAttribute("favCandidtes") FavCandidates favCandidates,
+			BindingResult result, Principal principal) {
 		
-		System.out.println(candidates);
-		appointmentService.compileCandidates(candidates, principla.getName()/*, adId */);
+		
+		appointmentService.compileCandidates(favCandidates, principal.getName()/*, adId */);
 		return "redirect:/account.html";
 	}
 	

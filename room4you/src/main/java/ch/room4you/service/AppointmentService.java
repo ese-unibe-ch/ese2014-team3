@@ -89,11 +89,11 @@ public class AppointmentService {
 	}
 
 
-	public void compileCandidates(List<User> candidates, String userName/*, int adId*/) {
+	public void compileCandidates(FavCandidates favCandidates, String userName/*, int adId*/) {
 		User user = userRepository.findByName(userName);
 	//	Ad ad = adRepository.findOne(adId);
-		FavCandidates favCandidates = new FavCandidates();
-		favCandidates.setVisitors(candidates);
+	//	FavCandidates favCandidates = new FavCandidates();
+	//	favCandidates.setVisitors(favCandidates);
 		//favCandidates.setAppointments(appointments);
 	//	favCandidates.setAd(ad);
 		

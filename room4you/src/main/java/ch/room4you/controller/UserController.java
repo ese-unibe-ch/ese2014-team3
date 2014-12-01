@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Appointment;
 import ch.room4you.entity.AppointmentDate;
+import ch.room4you.entity.FavCandidates;
 import ch.room4you.entity.Image;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
@@ -67,6 +68,11 @@ public class UserController {
 	@ModelAttribute("ad")
 	public Ad constructAd() {
 		return new Ad();
+	}
+	
+	@ModelAttribute
+	public FavCandidates constructFavCandiidates(){
+		return new FavCandidates();
 	}
 
 	/**

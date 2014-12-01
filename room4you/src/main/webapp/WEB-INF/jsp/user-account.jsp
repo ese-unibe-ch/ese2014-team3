@@ -263,53 +263,46 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<!-- 	
+			<!-- 	-->
 			<h4 id="section-2" class="section">Visitors</h4>
 		
 			<div id="Layout" class="container">
 		            <div class="row">
-		            
-		
 					<c:forEach items="${user.ads}" var="ad">
 						<c:forEach items="${ad.appointments}" var ="appointment">		
-						
 						<div class="caption" >
-							<h4>
-							<p>Ad: ${ad.title}</p> 
-							<p>Date: ${appointment.appointDate.appointDate} </p> 
-							<p>Begin: ${appointment.appointDate.startTime} </p>
-							<p>End: ${appointment.appointDate.endTime} </p>
-							</h4>
-							
-							
-							<c:forEach items="${appointment.visitors}" var="visitor">
-						<!--  	<a href="<spring:url value="/ads/${ad.id}.html"/>"> </a> -->
-			<a href="<spring:url value="/users/${visitor.id}.html" />"> <c:out
-					value="${visitor.name}" />
-			</a>
+							<h4>Ad: ${ad.title}</h4> 
+							<h4>Date: ${appointment.appointDate.appointDate} </h4> 
+							<h4>Begin: ${appointment.appointDate.startTime} </h4>
+							<h4>End: ${appointment.appointDate.endTime} </h4>
+								<c:forEach items="${appointment.visitors}" var="visitor">
+						 			<a href="<spring:url value="/ads/${ad.id}.html"/>"> </a> 
+									<a href="<spring:url value="/users/${visitor.id}.html" />"> 
+										<c:out value="${visitor.name}" />
+									</a>
+								</c:forEach>
+						</div>
+					</c:forEach>
+
+						<form:form method="post" modelAttribute="favCandidates" action="compileCandidats">
+							<div class="col-md-6">
+								<h5>Compile a list of the most promising candidates:</h5>
+
+								<c:forEach items="${user.ads}" var="ad">
+									<div class="col-sm-6 col-md-4 col-lg-3">
+										<c:forEach items="${ad.appointments}" var="appointment">
+											<c:forEach items="${appointment.visitors}" var="visitor">
+												<form:checkbox path="visitors" value="${visitor.name}"></form:checkbox> ${visitor.name}<br>
+										</c:forEach>
+								</c:forEach>
+							</div>
+						</c:forEach>
+					<input type="submit" class="btn btn-primary" value="Save" />
+			 	</div>
+				</form:form>
 			</c:forEach>
 		</div>
-		</c:forEach>
-
-		<div class="col-md-6">
-			<form action="compileCandidats.html">
-				<h5>Compile a list of the most promising candidates:</h5>
-
-				<c:forEach items="${user.ads}" var="ad">
-					<div class="col-sm-6 col-md-4 col-lg-3">
-						<c:forEach items="${ad.appointments}" var="appointment">
-							<c:forEach items="${appointment.visitors}" var="visitor">
-								<input type="checkbox" name="visitors" value="${visitor.name}"> ${visitor.name}<br>
-							</c:forEach>
-						</c:forEach>
-					</div>
-				</c:forEach>
-				<input type="submit" class="btn btn-primary" value="Save" />
-			</form>
-		</div>
-		</c:forEach>
 	</div>
-</div>
 
 
 
@@ -317,7 +310,6 @@
 <a href="<spring:url value="/account/remove/${user.id}.html" />"
 	class="btn btn-danger btn-large pull-right triggerRemove"> Delete
 	my account </a>
--->
 
 
 <form:form method="post" modelAttribute="ad"
