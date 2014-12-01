@@ -26,7 +26,7 @@ public class AppointmentController {
 	private AppointmentService appointmentService;
 
 	@ModelAttribute
-	public FavCandidates constructFavCandiidates(){
+	public FavCandidates constructFavCandidates(){
 		return new FavCandidates();
 	}
 
@@ -38,10 +38,9 @@ public class AppointmentController {
 		return "redirect:/ads/{adId}.html";
 	}
 	
-	@RequestMapping(value="/compileCandidats", method = RequestMethod.POST)
-	public String compileCandidates(Model model,  @ModelAttribute("favCandidtes") FavCandidates favCandidates,
+	@RequestMapping(value="compileCandidates", method = RequestMethod.POST)
+	public String compileCandidates(Model model,  @ModelAttribute("favCandidates") FavCandidates favCandidates,
 			BindingResult result, Principal principal) {
-		
 		
 		appointmentService.compileCandidates(favCandidates, principal.getName()/*, adId */);
 		return "redirect:/account.html";

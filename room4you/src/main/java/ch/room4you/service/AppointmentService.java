@@ -59,18 +59,28 @@ public class AppointmentService {
 	public void addVisitor(int appointId, String userName) {
 		Appointment appointment = appointmentRepository.findOne(appointId);
 		User user = userRepository.findByName(userName);
+		Ad ad = appointment.getAd();
 		
 		if (!isVisitor(user, appointment)) {
 				if (appointment.getNmbrVisitors() > 0) {
-					List<Appointment> appointments = user.getAppointments();
-					appointments.add(appointment);
-					user.setAppointment(appointments);
-					userRepository.save(user);
+					List<Appointment> adAppointments = ad.getAppointments();
+					adAppointments.remove(appointment);
+					List<Appointment> userAppointments = user.getAppointments();
+					userAppointments.remove(appointment);
 					
 					List<User> visitors = appointment.getVisitors();
 					visitors.add(user);
+					appointment.decrementNmbrVisitors();
 					appointment.setVisitors(visitors);
 					appointmentRepository.save(appointment);
+					
+					userAppointments.add(appointment);
+					user.setAppointment(userAppointments);
+					userRepository.save(user);
+					
+					adAppointments.add(appointment);
+					ad.setAppointments(adAppointments);
+					adRepository.save(ad);
 					
 				System.out.println(user.toString() + " has been added to appointment: " + appointment);
 			}

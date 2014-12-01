@@ -3,6 +3,7 @@ package ch.room4you.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -29,12 +30,15 @@ import ch.room4you.entity.Appointment;
 import ch.room4you.entity.AppointmentDate;
 import ch.room4you.entity.FavCandidates;
 import ch.room4you.entity.Image;
+import ch.room4you.entity.Message;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
+import ch.room4you.repository.MessageRepository;
 import ch.room4you.service.AdService;
 import ch.room4you.service.AppointmentDateService;
 import ch.room4you.service.AppointmentService;
 import ch.room4you.service.ImageService;
+import ch.room4you.service.MessageService;
 import ch.room4you.service.RoomMateService;
 import ch.room4you.service.UserService;
 
@@ -58,6 +62,12 @@ public class UserController {
 
 	@Autowired
 	private AppointmentService appointmentService;
+	
+	@Autowired
+	private MessageService messageService;
+	
+	@Autowired
+	private MessageRepository messageRepository;
 
 	/**
 	 * Instantiates an ad object which is mapped to the spring form in
@@ -71,7 +81,7 @@ public class UserController {
 	}
 	
 	@ModelAttribute
-	public FavCandidates constructFavCandiidates(){
+	public FavCandidates constructFavCandidates(){
 		return new FavCandidates();
 	}
 
@@ -88,6 +98,7 @@ public class UserController {
 		model.addAttribute("user", userService.findOneWithAds(name));
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("userm", userService.findOneWithMessages(name));
+		model.addAttribute("conversations", messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));		
 		return "account";
 	}
 
@@ -216,6 +227,7 @@ public class UserController {
 	 */
 
 	private void saveAppointments(Ad ad, List<String> appointments) {
+		List<Appointment> adAppoints = new ArrayList<Appointment>();
 		for (int i = 0; i < appointments.size(); i += 4) {
 			AppointmentDate appointDate = new AppointmentDate();
 			appointDate.setAppointDate(appointments.get(i));
@@ -231,7 +243,9 @@ public class UserController {
 						.get(i + 3)));
 			}
 			appointmentService.save(appointment);
+			adAppoints.add(appointment);
 		}
+		ad.setAppointments(adAppoints);
 	}
 
 	private void saveRoomMates(Ad ad, String roomMate) {

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pojo.SearchAdsForm;
 import ch.room4you.entity.Ad;
+import ch.room4you.entity.Appointment;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
@@ -90,6 +91,8 @@ public class AdController {
 	@Transactional
 	public String detail(Model model, @PathVariable("id") int id, Principal principal) {
 		model.addAttribute("ad", adService.findOne(id));
+		
+		
 
 		if (principal != null) {
 			boolean isBkrmrkedAd = bookmarkService.isBookmarkedAd(id, principal.getName());
@@ -106,6 +109,11 @@ public class AdController {
 		Ad ad = adService.findOne(id);
 		model.addAttribute("appointments", ad.getAppointments());
 				
+		for (Appointment appoint: adService.findOne(id).getAppointments()) {
+			System.err.println(appoint.getId());
+		}
+		
+		System.out.println(ad.getAppointments().size());
 
 		return "adDetail";
 	}

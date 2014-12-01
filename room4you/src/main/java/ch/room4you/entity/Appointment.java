@@ -83,11 +83,15 @@ public class Appointment {
 		this.nmbrVisitors = maxVisitors;
 	}
 	
-	public void addVisitor(User user) {
+/*	public void addVisitor(User user) {
 		if(nmbrVisitors > 0) {
 			visitors.add(user);
 			nmbrVisitors--;
 		}
+	}
+*/
+	public void decrementNmbrVisitors() {
+		nmbrVisitors--;
 	}
 
 

@@ -155,6 +155,38 @@
 						</c:forEach>
 					</div>
 			</div>
+			
+			<h2 id="section-4" class="section">Chats</h2>
+		<table class="table table-bordered table-hover table-striped">
+			<thead>
+				<tr>
+					<th>With</th>
+					<th>Regarding Ad</th>
+					<th>Details</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${conversations}" var="message">
+					
+					<tr>
+						<td id="message_${message.id}"><a> <c:out
+									value="${message.recipient.name}" /> 
+						</a></td>
+						<td><a
+							href="<spring:url value="/ads/${message.messageAd.id}.html" />">
+								<c:out value="${message.messageAd.title}" />
+						</a></td>
+						<td><a
+							href="<spring:url value="/showmessage/${message.id}.html" />">
+								Show Message </a></td>
+						<td><a
+							href="<spring:url value="/message/remove/${message.id}.html" />"
+							class="btn btn-danger triggerRemove"> Delete Message </a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 			<!-- 
 		<h2 id="section-4" class="section">Messages received</h2>
 		<table class="table table-bordered table-hover table-striped">
@@ -163,7 +195,6 @@
 					<th>From</th>
 					<th>Regarding Ad</th>
 					<th>Details</th>
-					<th>Reply</th>
 					<th>Delete</th>
 				</tr>
 			</thead>
@@ -180,8 +211,6 @@
 						<td><a
 							href="<spring:url value="/showmessage/${message.id}.html" />">
 								Show Message </a></td>
-						<td><a href="<spring:url value="/reply/${message.id}.html" />">
-								Reply </a></td>
 						<td><a
 							href="<spring:url value="/message/remove/${message.id}.html" />"
 							class="btn btn-danger triggerRemove"> Delete Message </a></td>
@@ -197,6 +226,7 @@
 					<th>To</th>
 					<th>Regarding Ad</th>
 					<th>Details</th>
+					<th>Delete</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -212,6 +242,9 @@
 						<td><a
 							href="<spring:url value="/showmessage/${message.id}.html" />">
 								Show Message </a></td>
+					<td><a
+							href="<spring:url value="/message/remove/${message.id}.html" />"
+							class="btn btn-danger triggerRemove"> Delete Message </a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -284,7 +317,7 @@
 						</div>
 					</c:forEach>
 
-						<form:form method="post" modelAttribute="favCandidates" action="compileCandidats">
+						<form:form method="post" modelAttribute="favCandidates" action="compileCandidates">
 							<div class="col-md-6">
 								<h5>Compile a list of the most promising candidates:</h5>
 
@@ -297,13 +330,12 @@
 								</c:forEach>
 							</div>
 						</c:forEach>
-					<input type="submit" class="btn btn-primary" value="Save" />
+					<input type="submit" class="btn btn-primary" value="Compile" />
 			 	</div>
 				</form:form>
 			</c:forEach>
 		</div>
-	</div>
-
+		</div>
 
 
 
