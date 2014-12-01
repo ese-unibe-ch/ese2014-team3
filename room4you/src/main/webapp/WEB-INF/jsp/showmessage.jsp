@@ -14,7 +14,20 @@
     </div>
 		<c:forEach items="${messages}" var="message">
 		  <div class="panel-body">
-		     [${message.sender.name} -  <fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>] :<br> ${message.message}
+		  	<div 
+		  	
+		  	<c:choose>
+			    <c:when test="${message.sender.name == recipient.name}">
+			       class="alert alert-success"
+			    </c:when>
+			    <c:otherwise>
+			        class="alert alert-info"
+			    </c:otherwise>
+			</c:choose>
+		  	>
+		  	
+		  		[${message.sender.name} -  <fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>] :<br> ${message.message}
+		  	</div>		     
 		  </div>		
 		</c:forEach>
 		
@@ -22,10 +35,8 @@
 			<form:form action="/room4you/reply/${messageId}.html" commandName="newmessage">
 			       
 						<input type="hidden" path="sender" value="${pageContext.request.userPrincipal.name}"/>
-							
-			
-						<input type="hidden" path="sender" value="${recipient}"/>
-						
+										
+						<input type="hidden" path="sender" value="${recipient}"/>						
 										
 						<div class="form-group">
 							<label for="message" class="col-sm-2 control-label">Message:</label>
@@ -36,6 +47,12 @@
 						<div class="form-group">
 							<div class="pager">
 								<input type="submit" value="Send" class="btn btn-lg btn-primary" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="pager">
+								<a class="btn btn-lg btn-primary" href="javascript:location.reload(true)">Receive</a>
 							</div>
 						</div>
 			    
@@ -69,5 +86,15 @@ $(document).ready(function() {
 			},
 		}
 	);
+	
 });
+
+// $(document).ready(function(){
+// 	  setInterval(function(){
+// 		  if(document.getElementById("txtArea").value == ''){
+// 			  window.location.reload(1);
+// 		  }
+// 	  },5000);
+// 	});
+
 </script>

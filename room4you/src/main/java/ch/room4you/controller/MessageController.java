@@ -124,7 +124,7 @@ public class MessageController {
 	
 	private User getOtherUser(User userSender, Message message) {
 		User otherUser;
-		if(message.getSender()!=userSender){
+		if(!message.getSender().getName().equals(userSender.getName())){
 			otherUser = message.getSender();
 		}else{
 			otherUser = message.getRecipient();
