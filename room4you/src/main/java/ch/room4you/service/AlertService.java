@@ -18,6 +18,7 @@ import java.util.Properties;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,7 @@ public class AlertService{
 	 * @param ad
 	 * @param name
 	 */
+	@Transactional
 	public void save(Alert alert, String name) {
 		User user = userRepository.findByName(name);
 		alert.setUser(user);
