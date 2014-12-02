@@ -56,7 +56,7 @@ public class Ad {
 	@OneToMany(mappedBy = "appointmentAd", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 	
-	@OneToMany(mappedBy = "bookmarkedAd", fetch = FetchType.EAGER, orphanRemoval=true)
+	@OneToMany(mappedBy = "bookmarkedAd", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Bookmark> bookmarks = new ArrayList<Bookmark>();
 	
 

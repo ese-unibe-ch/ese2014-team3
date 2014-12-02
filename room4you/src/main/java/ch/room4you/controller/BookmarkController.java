@@ -27,4 +27,10 @@ public class BookmarkController {
 		bookmarkService.unBookmarkAd(id, principal.getName());
 		return "redirect:/ads/{id}.html";
 	}
+	
+	@RequestMapping("/ad/removeBookmarkedAd/{id}")
+	public String removeBookmarkedAd(@PathVariable int id, Principal principal) {
+		bookmarkService.unBookmarkAd(id, principal.getName());
+		return "redirect:/account.html";
+	}
 }

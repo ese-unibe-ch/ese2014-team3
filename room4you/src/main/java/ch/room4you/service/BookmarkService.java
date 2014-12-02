@@ -27,27 +27,27 @@ public class BookmarkService {
 	private BookmarkRepository bookmarkRepository;
 
 	@Transactional
-	public void bookmarkAd(int adId, String user) {
+	public void bookmarkAd(int adId, String currentUser) {
 
-		if (!isBookmarkedAd(adId, user)) {
+		if (!isBookmarkedAd(adId, currentUser)) {
 			Ad bookmarkedAd = adRepository.findOne(adId);
-			User bookmarker = userRepository.findByName(user);
+			User user = userRepository.findByName(currentUser);
 
 			Bookmark bookmark = new Bookmark();
-			bookmark.setBookmarker(bookmarker);
+			bookmark.setBookmarker(user);
 			bookmark.setBookmarks(bookmarkedAd);
 
-			List<Bookmark> userBookmarks = bookmarker.getBookmarkedAds();
+			List<Bookmark> userBookmarks = user.getBookmarkedAds();
 			userBookmarks.add(bookmark);
-			bookmarker.setBookmarkedAds(userBookmarks);
+			user.setBookmarkedAds(userBookmarks);
 
-			List<Bookmark> adBookmarks = bookmarkedAd.getBookmarks();
-			adBookmarks.add(bookmark);
-			bookmarkedAd.setBookmarks(adBookmarks);
+		//	List<Bookmark> adBookmarks = bookmarkedAd.getBookmarks();
+		//	adBookmarks.add(bookmark);
+		//	bookmarkedAd.setBookmarks(adBookmarks);
 
 			bookmarkRepository.save(bookmark);
-			userRepository.save(bookmarker);
-			adRepository.save(bookmarkedAd);
+			userRepository.save(user);
+		//	adRepository.save(bookmarkedAd);
 		}
 		// User bookmarker = userRepository.findByName(user);
 		// java.util.List<Bookmark> bookmark = bookmarker.getBookmarkedAds();
@@ -82,6 +82,13 @@ public class BookmarkService {
 			}
 		}
 		return false;
+	}
+
+	@Transactional
+	public List<Bookmark> findAllBookmarks(String name) {
+		User user = userRepository.findByName(name);
+		List<Bookmark> bookmarks = bookmarkRepository.findByBookmarker(user);
+		return bookmarks;
 	}
 
 }

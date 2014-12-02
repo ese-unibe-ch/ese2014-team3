@@ -2,9 +2,11 @@ package ch.room4you.entity;
 
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 
@@ -16,9 +18,11 @@ public class Bookmark {
 	private int id;
 	
 	@ManyToOne
+	@JoinColumn( name = "bookmarker_id")
 	private User bookmarker;
 	
 	@ManyToOne
+	@JoinColumn( name = "bookmarkedAd_id" )
 	private Ad bookmarkedAd;
 	
 	public int getId() {

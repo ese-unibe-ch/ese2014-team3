@@ -41,6 +41,7 @@ import ch.room4you.service.ImageService;
 import ch.room4you.service.MessageService;
 import ch.room4you.service.RoomMateService;
 import ch.room4you.service.UserService;
+import ch.room4you.service.BookmarkService;
 
 @Controller
 public class UserController {
@@ -67,7 +68,9 @@ public class UserController {
 	private MessageService messageService;
 	
 	@Autowired
-	private MessageRepository messageRepository;
+	private BookmarkService bookmarkService;
+	
+	
 
 	/**
 	 * Instantiates an ad object which is mapped to the spring form in
@@ -99,6 +102,7 @@ public class UserController {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("userm", userService.findOneWithMessages(name));
 		model.addAttribute("conversations", messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));		
+		model.addAttribute("bookmarks", bookmarkService.findAllBookmarks(name));
 		return "account";
 	}
 
@@ -184,11 +188,11 @@ public class UserController {
 			, org.springframework.web.context.request.WebRequest webRequest) {
 
 		adService.editAd(id, model, ad, result, principal, images, webRequest);
-		String roomMate = webRequest.getParameter("roomMates");
+	//	String roomMate = webRequest.getParameter("roomMates");
 
-		String name = principal.getName();
-		ad.setId(id);
-		adService.save(ad, name);
+	//	String name = principal.getName();
+	//	ad.setId(id);
+	//	adService.save(ad, name);
 
 	/*	try {
 

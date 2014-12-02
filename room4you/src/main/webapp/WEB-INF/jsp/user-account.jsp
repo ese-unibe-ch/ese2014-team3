@@ -106,13 +106,10 @@
 		<h4 id="section-3" class="section">Bookmarks</h4>
 		<div id="bookmarkedAds" class="container">
 			<div class="row" id="bookmarked">
-			<c:forEach items="${user.bookmarkedAds}" var="bookmark">			
-
-						<c:forEach items="${user.bookmarkedAds}" var="bookmark">
+			<c:forEach items="${bookmarks}" var="bookmark">			
 							<div class="col-md-6 col-md-4 user-bookmarks">
 								<div style="width: 75%; height: 75%; padding-bottom: 5%"
 									id="thumbnail" class="thumbnail">
-
 									<a
 										href="<spring:url value="/ads/${bookmark.bookmarkedAd.id}.html"/>">
 										<img
@@ -130,28 +127,18 @@
 												value="${bookmark.bookmarkedAd.rentPerMonth}"
 												type="currency" currencySymbol="CHF" />
 										</p>
-										<h4>${ad.title}</h4>
-										<p>City: ${ad.city}</p>
-										<p>
-											Rent per month:
-											<fmt:formatNumber value="${ad.rentPerMonth}" type="currency"
-												currencySymbol="CHF" />
-										</p>
-
-
 										<a
 											href="<spring:url value="/ads/${bookmark.bookmarkedAd.id}.html"/>"
 											class="btn btn-primary" role="button"> View Details </a>
 										<p></p>
 										<a
-											href="<spring:url value="/ad/removeBookmarkAd/${bookmark.bookmarkedAd.id}.html" />"
+											href="<spring:url value="/ad/removeBookmarkedAd/${bookmark.bookmarkedAd.id}.html" />"
 											class="btn btn-danger triggerRemove"> Unbookmark Ad </a>
 
 									</div>
 								</div>
 								</div>
 								</c:forEach>							
-						</c:forEach>
 					</div>
 			</div>
 			
