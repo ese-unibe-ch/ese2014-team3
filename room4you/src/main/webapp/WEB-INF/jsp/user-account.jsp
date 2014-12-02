@@ -242,37 +242,38 @@
 		            <div class="row">
 		            <div class="caption" >
 					<c:forEach items="${user.ads}" var="ad">
-						<c:forEach items="${ad.appointments}" var ="appointment">		
-							<h4>Ad: ${ad.title}</h4> 
-								<c:choose>
-									<c:when test="${empty appointment}">
-										<p> There is no appointment scheduled for this ad </p>
-									</c:when>
-									<c:otherwise>
+						<c:choose>
+						<c:when test="${empty ad.appointments}">
+						<!--    <h4>Ad: ${ad.title}</h4> -->
+						<!--    <p>No appointments scheduled for this appointment </p>	-->						
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${ad.appointments}" var ="appointment">		
+								<h4>Ad: ${ad.title}</h4> 
 										<h4>Date: ${appointment.appointDate.appointDate} </h4> 
 										<h4>Begin: ${appointment.appointDate.startTime} </h4>
 										<h4>End: ${appointment.appointDate.endTime} 	</h4>
 											<c:forEach items="${appointment.visitors}" var="visitor">
-						 						<a href="<spring:url value="/ads/${ad.id}.html"/>"> </a> 
-												<a href="<spring:url value="/users/${visitor.id}.html" />"> 
+						 					<p><a href="<spring:url value="/ads/${ad.id}.html"/>"> </a> </p>
+											<li><form:checkbox path="visitors" value="${visitor.name}"></form:checkbox><a href="<spring:url value="/users/${visitor.id}.html" />"> 
 													<c:out value="${visitor.name}" />
-												</a>
+												</a></li>
 											</c:forEach>	
-									</c:otherwise>
-								</c:choose>
 						</c:forEach>
-						<div class="col-md-6">
-							<h5>Compile a list of the most promising candidates:</h5>
-								<c:forEach items="${user.ads}" var="ad">
-									<div class="col-sm-6 col-md-4 col-lg-3">
-										<c:forEach items="${ad.appointments}" var="appointment">
-											<c:forEach items="${appointment.visitors}" var="visitor">
-												<form:checkbox path="visitors" value="${visitor.name}"></form:checkbox> ${visitor.name}<br>
-											</c:forEach>
-										</c:forEach>
-									</div>
-								</c:forEach>
-			 			</div>
+					<!--  	<div class="col-md-6"> -->
+					<!--  		<h5>Compile a list of the most promising candidates:</h5> -->
+					<!--  			<c:forEach items="${user.ads}" var="ad"> -->
+					<!--  				<div class="col-sm-6 col-md-4 col-lg-3">  -->
+					<!--					<c:forEach items="${ad.appointments}" var="appointment"> -->
+					<!-- 						<c:forEach items="${appointment.visitors}" var="visitor"> -->
+					<!--  							<form:checkbox path="visitors" value="${visitor.name}"></form:checkbox> ${visitor.name}<br> -->
+					<!--						</c:forEach> -->
+					<!--					</c:forEach> -->
+					<!--				</div>  -->
+					<!--  			</c:forEach> -->
+			 		<!--  	</div>	-->
+			 			</c:otherwise>
+			 			</c:choose>
 			 			</c:forEach>
 			 			</div>
 				<input type="submit" class="btn btn-primary" value="Compile" />

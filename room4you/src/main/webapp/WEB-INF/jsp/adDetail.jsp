@@ -158,7 +158,10 @@
 				<sec:authorize access="isAuthenticated()"> 
 					
 					<!--  	<button type="button" class="btn-group btn-group-lg" data-toggle="modal" data-target="#myModal">  -->
-					<c:forEach items="${ad.appointments}" var="appointment">		
+					<c:if test="${empty appointmentList}">
+					<p>No appointments scheduled</p>
+					</c:if>	
+					<c:forEach items="${appointmentList}" var="appointment">
 				  	<c:choose> 
 					<c:when test="${appointment.nmbrVisitors > 0}">
 						<a 	href="<spring:url value="/ad/${ad.id}/appointment/${appointment.id}.html"/>" class="confirm"> 
@@ -166,7 +169,6 @@
 								    <c:out 	value="${appointment.appointDate.startTime} - "  /> 
 								    <c:out	value="${appointment.appointDate.endTime}" />
 						</a>
-						
 					</c:when>
 					<c:otherwise>
 						<span title="Already max visitors"> 
@@ -181,7 +183,7 @@
 				
 					
 					<sec:authorize access="!isAuthenticated()">
-					Please <a href="<spring:url value="/login.html"/>">login</a> or <a href="<spring:url value="/register.html" />"> Register </a> to see the appointments </p>
+					Please <a href="<spring:url value="/login.html"/>">Login</a> or <a href="<spring:url value="/register.html" />"> Register </a> to see the appointments </p>
 					</sec:authorize>
 			
 													

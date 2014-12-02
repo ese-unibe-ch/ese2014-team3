@@ -64,8 +64,10 @@ public class AppointmentService {
 		if (!isVisitor(user, appointment)) {
 				if (appointment.getNmbrVisitors() > 0) {
 					
-				//	List<Appointment> userAppointments = user.getAppointments();
+					List<Appointment> userAppointments = user.getAppointments();
 				//	userAppointments.remove(appointment);
+					
+					
 					
 					List<User> visitors = appointment.getVisitors();
 					visitors.add(user);
@@ -73,8 +75,9 @@ public class AppointmentService {
 					appointment.setVisitors(visitors);
 					appointmentRepository.save(appointment);
 					
-				//	userAppointments.add(appointment);
-				//	user.setAppointment(userAppointments);
+					
+					userAppointments.add(appointment);
+					user.setAppointment(userAppointments);
 					userRepository.save(user);
 					
 				
@@ -82,8 +85,9 @@ public class AppointmentService {
 			}
 				
 		}
-		System.out.println(ad.getAppointments().size());
-		
+		System.out.println("ad.getAppointments size = " + ad.getAppointments().size());
+		System.out.println("appointment.getVisitor size = " + appointment.getVisitors().size());
+		System.out.println("user.getAppointments size = " + user.getAppointments().size());
 	}
 	
 	public boolean isVisitor(User user, Appointment appointment) {
@@ -112,6 +116,17 @@ public class AppointmentService {
 		candidatesRepository.save(favCandidates);
 		
 		
+	}
+
+	@Transactional
+	public List<Appointment> findByAd(int id) {
+		Ad ad = adRepository.findOne(id);
+		List<Appointment> appointments = appointmentRepository.findByAppointmentAd(ad);
+		System.out.println("in service findBy ad ----- size: " + appointments.size());
+		for (Appointment a : appointments) {
+			System.err.println(a);
+		}
+		return appointments;
 	}
 
 

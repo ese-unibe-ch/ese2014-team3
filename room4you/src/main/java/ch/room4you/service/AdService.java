@@ -161,12 +161,16 @@ public class AdService {
 					appointment.setNmbrVisitors(Integer.valueOf(appointments
 							.get(i + 3)));
 				}
+				System.err.println("appoints size b4 save " + adAppoints.size());
 				appointmentRepository.save(appointment);
 				adAppoints.add(appointment);
+				System.err.println("appoints size after save " + adAppoints.size());
 			}
 			System.out.println("is adAppoints empty? " + adAppoints.isEmpty());
 			if (!adAppoints.isEmpty()) {
 				ad.setAppointments(adAppoints);
+				adRepository.save(ad);
+				
 			}
 		}
 	}
@@ -197,8 +201,9 @@ public class AdService {
 		}
 	}
 
+	@Transactional
 	public void editAd(int id, Model model, Ad ad, BindingResult result,
-			Principal principal, MultipartFile[] images, WebRequest webRequest) {
+			Principal principal, MultipartFile[] images, WebRequest webRequest, List<String> appointments) {
 		
 		String roomMate = webRequest.getParameter("roomMates");
 
@@ -211,6 +216,10 @@ public class AdService {
 			// save roommates
 			if (roomMate != null) {
 				saveRoomMates(ad, roomMate);
+			}
+			
+			if (!appointments.isEmpty()) {
+				saveAppointments(ad, appointments);
 			}
 
 			// save imagesAsString

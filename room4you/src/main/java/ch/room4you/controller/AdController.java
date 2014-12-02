@@ -21,6 +21,7 @@ import ch.room4you.entity.Appointment;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
+import ch.room4you.service.AppointmentService;
 import ch.room4you.service.BookmarkService;
 import ch.room4you.service.UserService;
 
@@ -35,6 +36,9 @@ public class AdController {
 	
 	@Autowired
 	private BookmarkService bookmarkService;
+	
+	@Autowired
+	private AppointmentService appointmentService;
 	
 	/**
 	 * Instantiates an ad object which is mapped to the spring form in 
@@ -91,6 +95,8 @@ public class AdController {
 	@Transactional
 	public String detail(Model model, @PathVariable("id") int id, Principal principal) {
 		model.addAttribute("ad", adService.findOne(id));
+		model.addAttribute("appointmentList", appointmentService.findByAd(id));
+		
 		
 		
 
@@ -114,6 +120,10 @@ public class AdController {
 		}
 		
 		System.out.println(ad.getAppointments().size());
+		appointmentService.findByAd(id);
+		System.out.println("ad appointments size: " + ad.getAppointments().size());
+		User user = userService.findOneByName(principal.getName());
+		System.err.println("user.getAppointments size: " + user.getAppointments().size());
 
 		return "adDetail";
 	}

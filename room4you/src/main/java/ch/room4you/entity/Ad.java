@@ -33,9 +33,9 @@ public class Ad {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@ManyToMany
-	@JoinColumn(name = "bookmarkedAds")
-	private List<User> bookmarkingUsers = new ArrayList<User>();
+	//@ManyToMany
+	//@JoinColumn(name = "bookmarkedAds")
+	//private List<User> bookmarkingUsers = new ArrayList<User>();
 
 	@Column(length = 1000)
 	private String title;

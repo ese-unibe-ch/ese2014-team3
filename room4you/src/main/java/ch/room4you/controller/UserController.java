@@ -177,6 +177,7 @@ public class UserController {
 	public String editAd(@PathVariable int id, Model model) {
 		model.addAttribute("ad", adService.findOne(id));
 		model.addAttribute("users", userService.findAll());
+		model.addAttribute("appointments", appointmentService.findByAd(id));
 		return "editAd";
 	}
 
@@ -185,9 +186,10 @@ public class UserController {
 			@ModelAttribute("ad") Ad ad, BindingResult result,
 			Principal principal, @RequestParam("image[]") MultipartFile[] images
 			// ,@RequestParam("roomMates") String roomMate
-			, org.springframework.web.context.request.WebRequest webRequest) {
-
-		adService.editAd(id, model, ad, result, principal, images, webRequest);
+			, org.springframework.web.context.request.WebRequest webRequest
+			, @RequestParam("appointments") List<String> appointments) {
+		
+		adService.editAd(id, model, ad, result, principal, images, webRequest, appointments);
 	//	String roomMate = webRequest.getParameter("roomMates");
 
 	//	String name = principal.getName();

@@ -25,10 +25,10 @@ public class AppointmentController {
 	@Autowired
 	private AppointmentService appointmentService;
 
-	@ModelAttribute
-	public FavCandidates constructFavCandidates(){
-		return new FavCandidates();
-	}
+	//@ModelAttribute
+	//public FavCandidates constructFavCandidates(){
+	//	return new FavCandidates();
+	//}
 
 	@RequestMapping(value="/ad/{adId}/appointment/{appointId}")
 	public String addUserToAppointment(Principal principal, @PathVariable("adId") int adId

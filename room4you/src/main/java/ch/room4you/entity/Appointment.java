@@ -28,7 +28,7 @@ public class Appointment {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name = "ad_id")
+	@JoinColumn(name = "appointmentAd_id")
 	private Ad appointmentAd;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
