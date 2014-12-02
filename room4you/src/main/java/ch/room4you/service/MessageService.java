@@ -44,14 +44,22 @@ public class MessageService {
 		System.out.println("Ads size: "+ads.size());
 		if(!ads.isEmpty()){
 		for(Ad ad : ads){
-			List<Message> mes = messageRepository.findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
+			List<Message> mesSender = messageRepository.findDistinctBySenderAndMessageAdOrderByTimestampAsc(userSender, ad);
+			List<Message> mesRecipient = messageRepository.findDistinctByRecipientAndMessageAdOrderByTimestampAsc(userRecipient, ad);
 			System.out.println("MesSize: "+firstMessagesOfUser.size());
 			System.out.println("userSenderId: "+userSender.getId());
 			System.out.println("userRecipientId: "+userSender.getId());
 			System.out.println("adId: "+ad.getId());
-			if(!mes.isEmpty())
-			firstMessagesOfUser.add(messageRepository.findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad).get(0));
 			
+			System.out.println("MesSize: "+firstMessagesOfUser.size());
+			System.out.println("userRecipientId: "+userRecipient.getId());
+			System.out.println("userRecipientId: "+userRecipient.getId());
+			System.out.println("adId: "+ad.getId());
+			if(!mesSender.isEmpty())
+			firstMessagesOfUser.add(messageRepository.findDistinctBySenderAndMessageAdOrderByTimestampAsc(userSender, ad).get(0));
+			
+			if(!mesRecipient.isEmpty())
+				firstMessagesOfUser.add(messageRepository.findDistinctByRecipientAndMessageAdOrderByTimestampAsc(userRecipient, ad).get(0));
 			}
 		}
 		System.out.println("MessageSize: "+firstMessagesOfUser.size());

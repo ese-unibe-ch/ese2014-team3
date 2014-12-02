@@ -76,6 +76,7 @@ public class AdService {
 
 	@PreAuthorize("#ad.user.name == authentication.name or hasRole('ROLE_ADMIN')")
 	public void delete(@P("ad") Ad ad) {
+		messageService.deleteAllMessages(ad.getAdMessages());
 		adRepository.delete(ad);
 	}
 
