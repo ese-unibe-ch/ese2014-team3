@@ -25,7 +25,7 @@
 	</sec:authorize>
 
   <c:if test="${param.success eq true}">
-		<div class="alert alert-success">Message sent!</div>
+		<div class="alert alert-success" id="msgsent">Message sent!</div>
 	</c:if>
   
   <h1><c:out value="${ad.title}" /></h1>

@@ -33,3 +33,6 @@ local.properties
 # Server
 Servers/*
 RemoteSystemsTempFiles/*
+
+# Images
+Images/*

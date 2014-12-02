@@ -34,14 +34,51 @@
 	width: 150px;
 }
 
+.btn-message {
+	
+}
+
+#chat {
+	width: 70%;
+	margin: auto;
+}
+
+	#chat .btn-message {
+		margin: auto;
+	}
+	
+.chat-body {
+	width: 60%;
+	margin: auto;
+	margin-top: 30px;
+}
+
+	.chat-body .panel-body {
+		padding: 15px 15px 0px 15px;
+	}
+	
+.alert-no-margin {
+	margin-bottom: 0px !important;
+}
+
+.message-footer {
+	margin-top: 20px;
+}
+
 .user-nav {
 	margin-left: -30px !important;
 }
 
 .user-ads, .user-bookmarks {
-	margin-right: -80px !important;
+	margin-right: -90px !important;
 	height: 600px !important;
-	margin-bottom: -110px !important;
+	margin-bottom: -125px !important;
+}
+
+.user-messages {
+	margin-right: -90px !important;
+	height: 430px !important;
+	margin-bottom: -75px !important;
 }
 
 .profile-ads {
@@ -66,10 +103,18 @@
 }
 
 .section {
-	margin-top: 40px;
+	margin-top: 60px;
 	margin-bottom: 20px;
 }
 
 .p-about {
 	margin-top: 30px;
+}
+
+#title {
+	width: 442px;
+}
+
+#msgsent {
+	margin-right: 140px;
 }

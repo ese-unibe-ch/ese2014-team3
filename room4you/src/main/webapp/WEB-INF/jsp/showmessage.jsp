@@ -4,9 +4,9 @@
 <%@ include file="../layout/taglib.jsp"%>
 
 
-<h3>Chat with ${recipient.name}</h3>
+<h4>Chat with ${recipient.name}</h4>
 
-<div class="panel panel-default">
+<div class="panel panel-default chat-body">
   <div class="panel-heading">
     <h3 class="panel-title"> 
 	 Title: ${messageTitle}  
@@ -18,7 +18,7 @@
 		  	
 		  	<c:choose>
 			    <c:when test="${message.sender.name == recipient.name}">
-			       class="alert alert-success"
+			       class="alert alert-success alert-no-margin"
 			    </c:when>
 			    <c:otherwise>
 			        class="alert alert-info"
@@ -31,22 +31,23 @@
 		  </div>		
 		</c:forEach>
 		
-		<div class="panel-footer">
+		<div class="panel-footer message-footer">
 			<form:form action="/room4you/reply/${messageId}.html" commandName="newmessage">
 			       
 						<input type="hidden" path="sender" value="${pageContext.request.userPrincipal.name}"/>
 										
 						<input type="hidden" path="sender" value="${recipient}"/>						
-										
-						<div class="form-group">
-							<label for="message" class="col-sm-2 control-label">Message:</label>
-							<div class="col-sm-10">
-								<textarea name="message" path="message" id="txtArea" rows="10" cols="70"></textarea>
+						<div id="chat">				
+							<div class="form-group">
+								<label for="message" class="col-sm-2 control-label">Message:</label>
+								<div class="col-sm-10">
+									<textarea name="message" path="message" id="txtArea" rows="10" cols="70"></textarea>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<div class="pager">
-								<input type="submit" value="Send" class="btn btn-lg btn-primary" />
+							<div class="form-group">
+								<div class="pager">
+									<input type="submit" value="Send" class="btn btn-lg btn-primary btn-message" />
+								</div>
 							</div>
 						</div>			    
 			</form:form>		
