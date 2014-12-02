@@ -4,45 +4,64 @@ package ch.room4you.service;
  * Database operation service for roomMateRepository interface
  */
 
+import java.io.IOException;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import ch.room4you.entity.Ad;
+import ch.room4you.entity.Appointment;
+import ch.room4you.entity.AppointmentDate;
 import ch.room4you.entity.Image;
+import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
+import ch.room4you.repository.AppointmentDateRepository;
 import ch.room4you.repository.AppointmentRepository;
 import ch.room4you.repository.ImageRepository;
 import ch.room4you.repository.MessageRepository;
+import ch.room4you.repository.RoomMateRepository;
 import ch.room4you.repository.UserRepository;
 
 @Service
-public class AdService{
+public class AdService {
 	@Autowired
 	private AdRepository adRepository;
-	
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private ImageRepository imageRepository;
-	
+
 	@Autowired
 	private AppointmentRepository appointmentRepository;
-	
+
 	@Autowired
 	private MessageRepository messageRepository;
-	
+
+	@Autowired
+	private AppointmentDateRepository dateRepository;
+
+	@Autowired
+	private RoomMateRepository roomMateRepository;
 
 	/**
 	 * Saves the ad in the database
+	 * 
 	 * @param ad
 	 * @param name
 	 */
@@ -51,8 +70,6 @@ public class AdService{
 		ad.setUser(user);
 		adRepository.save(ad);
 	}
-	
-
 
 	@PreAuthorize("#ad.user.name == authentication.name or hasRole('ROLE_ADMIN')")
 	public void delete(@P("ad") Ad ad) {
@@ -62,23 +79,151 @@ public class AdService{
 	public Ad findOne(int id) {
 		return adRepository.findOne(id);
 	}
-	
+
 	public List<Ad> findAll() {
 		return adRepository.findAll();
 	}
 
-
-	
 	@Transactional
-	public List<Ad> findAdsWithFormCriteria(String city, String zip, int priceMin, int priceMax, int searchTextNbrRoomMatesMin, int searchTextNbrRoomMatesMax, float searchTextNbrRoomsMin, float searchTextNbrRoomsMax, boolean sharedApartment) {	
-		List<Ad> ads = adRepository.findAdsWithFormCriteria("%"+city+"%", "%"+zip+"%", priceMin, priceMax, searchTextNbrRoomMatesMin, searchTextNbrRoomMatesMax, searchTextNbrRoomsMin, searchTextNbrRoomsMax, sharedApartment);	
+	public List<Ad> findAdsWithFormCriteria(String city, String zip,
+			int priceMin, int priceMax, int searchTextNbrRoomMatesMin,
+			int searchTextNbrRoomMatesMax, float searchTextNbrRoomsMin,
+			float searchTextNbrRoomsMax, boolean sharedApartment) {
+		List<Ad> ads = adRepository.findAdsWithFormCriteria("%" + city + "%",
+				"%" + zip + "%", priceMin, priceMax, searchTextNbrRoomMatesMin,
+				searchTextNbrRoomMatesMax, searchTextNbrRoomsMin,
+				searchTextNbrRoomsMax, sharedApartment);
 		for (Ad ad : ads) {
 			List<Image> images = imageRepository.findByAd(ad);
 			ad.setImages(images);
 		}
-	return ads;	
+		return ads;
 
 	}
 
+	@Transactional
+	public void doAddAd(Model model, Ad ad, BindingResult result,
+			Principal principal, MultipartFile[] images, WebRequest webRequest,
+			List<String> appointments) {
+
+		String roomMate = webRequest.getParameter("roomMates");
+
+		if (ad.getWeAreLookingFor().isEmpty()) {
+			ad.setWeAreLookingFor("Anyone");
+		}
+
+		String name = principal.getName();
+		save(ad, name);
+
+		try {
+
+			// save roommates
+			if (roomMate != null) {
+				saveRoomMates(ad, roomMate);
+			}
+
+			if (!appointments.isEmpty()) {
+				saveAppointments(ad, appointments);
+			}
+
+			// save imagesAsString
+			if (!images[0].isEmpty())
+				saveImages(ad, images);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.err.println(appointments.size());
+		System.err.println(appointments.isEmpty());
+		for (String a : appointments) {
+			System.out.println(a);
+		}
+		System.out.println(appointments == null);
+
+	}
+
+	private void saveAppointments(Ad ad, List<String> appointments) {
+		List<Appointment> adAppoints = new ArrayList<Appointment>();
+		for (int i = 0; i < appointments.size(); i += 4) {
+			if (!appointments.get(i).isEmpty()) {
+				AppointmentDate appointDate = new AppointmentDate();
+				appointDate.setAppointDate(appointments.get(i));
+				appointDate.setStartTime(appointments.get(i + 1));
+				appointDate.setEndTime(appointments.get(i + 2));
+				dateRepository.save(appointDate);
+				Appointment appointment = new Appointment();
+				appointment.setAppointDate(appointDate);
+				appointment.setAppointmentAd(ad);
+
+				if (!appointments.get(i + 3).isEmpty()) {
+					appointment.setNmbrVisitors(Integer.valueOf(appointments
+							.get(i + 3)));
+				}
+				appointmentRepository.save(appointment);
+				adAppoints.add(appointment);
+			}
+			System.out.println("is adAppoints empty? " + adAppoints.isEmpty());
+			if (!adAppoints.isEmpty()) {
+				ad.setAppointments(adAppoints);
+			}
+		}
+	}
+
+	private void saveRoomMates(Ad ad, String roomMate) {
+		List<String> roomMates = Arrays.asList(roomMate.split(","));
+		for (String roomM : roomMates) {
+			RoomMate rm = new RoomMate();
+			rm.setUser(userRepository.findOne(Integer.parseInt(roomM)));
+			rm.setAd(ad);
+			roomMateRepository.save(rm);
+		}
+	}
+
+	private void saveImages(Ad ad, MultipartFile[] images) throws IOException {
+		byte[] bytes;
+		for (MultipartFile imageMPF : images) {
+			Image image = new Image();
+			if (!imageMPF.isEmpty()) {
+				bytes = imageMPF.getBytes();
+				byte[] encoded = Base64.encodeBase64(bytes);
+				String encodedString = new String(encoded);
+				image.setImageAsString(encodedString);
+				image.setAd(ad);
+				imageRepository.save(image);
+			}
+
+		}
+	}
+
+	public void editAd(int id, Model model, Ad ad, BindingResult result,
+			Principal principal, MultipartFile[] images, WebRequest webRequest) {
+		
+		String roomMate = webRequest.getParameter("roomMates");
+
+		String name = principal.getName();
+		ad.setId(id);
+		save(ad, name);
+
+		try {
+
+			// save roommates
+			if (roomMate != null) {
+				saveRoomMates(ad, roomMate);
+			}
+
+			// save imagesAsString
+			if (!images[0].isEmpty()) {
+				saveImages(ad, images);
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+		
+	}
 
 }

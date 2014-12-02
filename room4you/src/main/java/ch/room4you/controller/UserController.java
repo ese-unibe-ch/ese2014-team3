@@ -120,7 +120,8 @@ public class UserController {
 			, org.springframework.web.context.request.WebRequest webRequest,
 			@RequestParam("appointments") List<String> appointments) {
 
-		String roomMate = webRequest.getParameter("roomMates");
+		adService.doAddAd(model, ad, result, principal, images, webRequest, appointments);
+		/*String roomMate = webRequest.getParameter("roomMates");
 
 		if (ad.getWeAreLookingFor().isEmpty()) {
 			ad.setWeAreLookingFor("Anyone");
@@ -148,6 +149,7 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 
 		return "redirect:/account.html";
 	}
@@ -181,13 +183,14 @@ public class UserController {
 			// ,@RequestParam("roomMates") String roomMate
 			, org.springframework.web.context.request.WebRequest webRequest) {
 
+		adService.editAd(id, model, ad, result, principal, images, webRequest);
 		String roomMate = webRequest.getParameter("roomMates");
 
 		String name = principal.getName();
 		ad.setId(id);
 		adService.save(ad, name);
 
-		try {
+	/*	try {
 
 			// save roommates
 			if (roomMate != null) {
@@ -202,7 +205,7 @@ public class UserController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} */
 
 		return "redirect:/account.html";
 	}
@@ -226,7 +229,7 @@ public class UserController {
 	 * userService.unBookmarkAd(user, id); return "redirect:/account.html"; }
 	 */
 
-	private void saveAppointments(Ad ad, List<String> appointments) {
+/*	private void saveAppointments(Ad ad, List<String> appointments) {
 		List<Appointment> adAppoints = new ArrayList<Appointment>();
 		for (int i = 0; i < appointments.size(); i += 4) {
 			AppointmentDate appointDate = new AppointmentDate();
@@ -272,7 +275,7 @@ public class UserController {
 			}
 
 		}
-	}
+	} */ 
 
 	/**
 	 * Maps the date format to the convenient date format for the database

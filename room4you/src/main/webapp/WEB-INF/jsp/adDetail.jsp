@@ -5,9 +5,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
-<c:if test="${param.addedToAppointment eq true}">
-	<div class="alert alert-success">You have been successfully added to the appointment!</div>
-</c:if>
 
 <div class="container-fluid">
 
@@ -207,7 +204,7 @@
 			</c:forEach>
 		</div>
 		
-							
+						
 		<div class="form-group">
 			<label for="name" class="col-sm-4 ">Description:</label>
 			<div class="col-sm-8">
@@ -216,7 +213,6 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
 </div>
 

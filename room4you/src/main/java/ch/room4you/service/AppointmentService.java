@@ -64,8 +64,8 @@ public class AppointmentService {
 		if (!isVisitor(user, appointment)) {
 				if (appointment.getNmbrVisitors() > 0) {
 					
-					List<Appointment> userAppointments = user.getAppointments();
-					userAppointments.remove(appointment);
+				//	List<Appointment> userAppointments = user.getAppointments();
+				//	userAppointments.remove(appointment);
 					
 					List<User> visitors = appointment.getVisitors();
 					visitors.add(user);
@@ -73,15 +73,17 @@ public class AppointmentService {
 					appointment.setVisitors(visitors);
 					appointmentRepository.save(appointment);
 					
-					userAppointments.add(appointment);
-					user.setAppointment(userAppointments);
+				//	userAppointments.add(appointment);
+				//	user.setAppointment(userAppointments);
 					userRepository.save(user);
 					
-					
+				
 				System.out.println(user.toString() + " has been added to appointment: " + appointment);
 			}
+				
 		}
 		System.out.println(ad.getAppointments().size());
+		
 	}
 	
 	public boolean isVisitor(User user, Appointment appointment) {

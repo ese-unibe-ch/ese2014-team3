@@ -132,7 +132,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">Instuments allowed:</label>
+			<label for="name" class="col-sm-2 control-label">Instruments allowed:</label>
 			<div class="col-sm-10">
 				<form:checkbox path="instrumentsAllowed" cssClass="form-control" style="border-style:none;"/>
 				<form:errors path="instrumentsAllowed" />
@@ -155,6 +155,32 @@
 				<form:errors path="additionalInformation" />
 			</div>
 		</div>
+		<div class="form-group" id="firstDatePicker">
+						<label for="name" class="col-sm-2 control-label">Appointment:</label>
+						<div class="col-sm-10">
+						<p>Date: <a id="datetimepicker1" class="input-append"><input
+								data-format="dd-MM-yyyy" type="date" name="appointments"></input>
+								
+							</a></p><p>Begin: <a id="datetimepicker2" class="input-append"> <input
+								type="time" name="appointments"></input>
+								
+							</a></p><p>End:  <a id="datetimepicker3" class="input-append"> <input
+								type="time" name="appointments"></input>
+							</a></p>
+							<button id="addAppointment" type="button"
+								class="btn btn-default btn-sm right-block">
+								<span class="glyphicon glyphicon-plus"></span>
+							</button>
+							<p></p>
+						</div>
+						<label for="name" class="col-sm-2 control-label">Number of
+							Visitors:</label>
+						<div class="col-sm-10">
+							<input name="appointments" class="form-control" />
+						</div>
+					</div>
+		
+		
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Image:</label>
 			<div class="col-sm-10">
