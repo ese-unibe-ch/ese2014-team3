@@ -6,6 +6,7 @@
 <style type="text/css">
 .scroll-area {
 	height: 100%;
+	width: 100%
 	position: relative;
 	overflow: auto;
 }
@@ -57,7 +58,7 @@
 			<div class="row" id="createdAds">
 
 				<c:forEach items="${user.ads}" var="ad">
-					<div class="col-md-6 col-md-4 user-ads profile-ads">
+					<div class="col-md-6 col-md-4 user-ads">
 						<div style="width: 75%; height: 75%; padding-bottom: 5%"
 							id="thumbnail" class="thumbnail">
 
@@ -108,7 +109,7 @@
 			<c:forEach items="${user.bookmarkedAds}" var="bookmark">			
 
 						<c:forEach items="${user.bookmarkedAds}" var="bookmark">
-							<div class="col-md-6 col-md-4 user-ads profile-ads">
+							<div class="col-md-6 col-md-4 user-bookmarks">
 								<div style="width: 75%; height: 75%; padding-bottom: 5%"
 									id="thumbnail" class="thumbnail">
 
@@ -154,13 +155,13 @@
 					</div>
 			</div>
 			
-			<h2 id="section-4" class="section">Chats</h2>
+			<h4 id="section-4" class="section">Messages</h4>
 			
 			<div id="Layout" class="container">
 			<div class="row" id="messages">
 
 				<c:forEach items="${conversations}" var="message">
-					<div class="col-md-6 col-md-4 user-ads profile-ads">
+					<div class="col-md-6 col-md-4 user-messages">
 						<div style="width: 75%; height: 75%; padding-bottom: 5%"
 							id="thumbnail" class="thumbnail">
 
@@ -185,9 +186,9 @@
 
 								<a href="<spring:url value="/showmessage/${message.id}.html"/>"
 									class="btn btn-primary" role="button"> View Chat </a>
-								<p></p>
-								<a href="<spring:url value="/message/remove/${message.id}.html" />"
-									class="btn btn-danger triggerRemove"> Delete chat </a>
+<!-- 								<p></p> -->
+<%-- 								<a href="<spring:url value="/message/remove/${message.id}.html" />" --%>
+<!-- 									class="btn btn-danger triggerRemove"> Delete chat </a> -->
 
 
 							</div>
@@ -201,8 +202,8 @@
 		
 	
 			<h4 id="section-5" class="section">Subscribed alerts</h4>
-			<table class="alert alert-info">
-				<tbody id="alert">
+			<table>
+				<tbody id="alerts">
 					<c:forEach items="${user.alerts}" var="alert">
 							<tr>
 							<td id="alert_${alert.id}"><a href="javascript:{}"
@@ -588,11 +589,14 @@
 				if ($.trim($("#bookmarked").html()) == '') {
 					$('#bookmarked').html("No bookmarks");
 				}
-				if ($.trim($("#alert").html()) == '') {
-					$('#alert').html("No alerts");
+				if ($.trim($("#alerts").html()) == '') {
+					$('#alerts').html("No alerts");
 				}
 				if ($.trim($("#createdAds").html()) == '') {
-					$('#createdAds').html("No created ads");
+					$('#createdAds').html("No ads");
+				}
+				if ($.trim($("#messages").html()) == '') {
+					$('#messages').html("No messages");
 				}
 			});
 </script>
