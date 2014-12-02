@@ -117,7 +117,7 @@ public class MessageController {
 	
 	@RequestMapping("/message/remove/{id}")
 	public String removeMessage(@PathVariable int id) {
-		messageService.delete(id);
+		messageService.deleteAllMessages(adService.findOne(id).getAdMessages());
 		return "redirect:/account.html";
 	}
 
@@ -128,8 +128,7 @@ public class MessageController {
 			otherUser = message.getSender();
 		}else{
 			otherUser = message.getRecipient();
-		}
-				
+		}				
 	   return otherUser;
 	}
 }
