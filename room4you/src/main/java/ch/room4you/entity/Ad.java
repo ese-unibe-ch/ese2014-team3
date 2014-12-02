@@ -83,7 +83,7 @@ public class Ad {
 	private boolean smokingAllowed;
 	
 
-	@OneToMany(mappedBy ="messageAd", fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy ="messageAd", fetch = FetchType.EAGER, orphanRemoval=true)
 	private List<Message> messages = new ArrayList<Message>();
 	
 	@Lob

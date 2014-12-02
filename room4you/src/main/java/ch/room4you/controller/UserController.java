@@ -98,7 +98,11 @@ public class UserController {
 		model.addAttribute("user", userService.findOneWithAds(name));
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("userm", userService.findOneWithMessages(name));
-		model.addAttribute("conversations", messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));		
+		model.addAttribute("conversations", messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));
+		List<Message> msgs= messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name));
+		for(Message msg : msgs){
+			System.out.println("Message: "+ msg.getTitle());
+		}
 		return "account";
 	}
 

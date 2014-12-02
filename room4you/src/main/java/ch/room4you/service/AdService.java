@@ -58,6 +58,9 @@ public class AdService {
 
 	@Autowired
 	private RoomMateRepository roomMateRepository;
+	
+	@Autowired
+	private MessageService messageService;
 
 	/**
 	 * Saves the ad in the database

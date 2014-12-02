@@ -15,14 +15,13 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository<Message, Integer> {
 
 	List<Message> findByRecipient(User recipient);
+	
 	List<Message> findBySender(User sender);
-	
-	
-	List<Message> findBySenderOrRecipientAndMessageAdOrderByTimestampAsc(User sender, User recipient, Ad ad);
-	
-	List<Message> findBySenderOrRecipient(User sender, User recipient);
-	
 		
-	Message findTop1BySenderOrRecipientAndMessageAdOrderByTimestampAsc(User sender, User recipient, Ad ad);
+	List<Message> findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(User sender, User recipient, Ad ad);
+	
+	List<Message> findDisctinctBySenderOrRecipient(User sender, User recipient);	
+		
+	Message findDistinctTop1BySenderOrRecipientAndMessageAdOrderByTimestampAsc(User sender, User recipient, Ad ad);
 	
 }

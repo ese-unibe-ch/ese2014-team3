@@ -34,7 +34,7 @@ public class MessageService {
 	
 	@Transactional
 	public List<Message> findAllMessagesBySenderAndAd(User userSender, User userRecipient, Ad ad) {
-		return messageRepository.findBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
+		return messageRepository.findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
 	}
 	
 	@Transactional
@@ -44,11 +44,15 @@ public class MessageService {
 		System.out.println("Ads size: "+ads.size());
 		if(!ads.isEmpty()){
 		for(Ad ad : ads){
-			List<Message> mes = messageRepository.findBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
+			List<Message> mes = messageRepository.findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
+			System.out.println("MesSize: "+firstMessagesOfUser.size());
+			System.out.println("userSenderId: "+userSender.getId());
+			System.out.println("userRecipientId: "+userSender.getId());
+			System.out.println("adId: "+ad.getId());
 			if(!mes.isEmpty())
-			firstMessagesOfUser.add(messageRepository.findBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad).get(0));
+			firstMessagesOfUser.add(messageRepository.findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad).get(0));
 			
-		}
+			}
 		}
 		System.out.println("MessageSize: "+firstMessagesOfUser.size());
 		return firstMessagesOfUser;
@@ -56,7 +60,7 @@ public class MessageService {
 	
 	@Transactional
 	public Message findFirstMessage(User userSender, User userRecipient, Ad ad) {
-		return messageRepository.findTop1BySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
+		return messageRepository.findDistinctTop1BySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
 	}
 	
 	
