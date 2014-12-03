@@ -13,7 +13,7 @@
 	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">ZIP:</label>
 		<div class="col-sm-9">
-			<form:input path="zip" cssClass="form-control" />
+			<form:input path="zip" cssClass="form-control alert-input" />
 			<form:errors path="zip" />
 		</div>
 	</div>
@@ -21,7 +21,7 @@
 	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">City:</label>
 		<div class="col-sm-9">
-			<form:input path="city" cssClass="form-control" />
+			<form:input path="city" cssClass="form-control alert-input" />
 			<form:errors path="city" />
 		</div>
 	</div>
@@ -29,7 +29,7 @@
   	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">Rent per month from</label>
 		<div class="col-sm-9">
-			<form:input path="rentPerMonthMin" cssClass="form-control" />
+			<form:input path="rentPerMonthMin" cssClass="form-control alert-input" />
 			<form:errors path="rentPerMonthMin" />
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 	 <div class="form-group">
 		<label for="name" class="col-sm-3 control-label">Rent per month to</label>
 		<div class="col-sm-9">
-			<form:input path="rentPerMonthMax" cssClass="form-control" />
+			<form:input path="rentPerMonthMax" cssClass="form-control alert-input" />
 			<form:errors path="rentPerMonthMax" />
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">Number of room mates from</label>
 		<div class="col-sm-9">
-			<form:input path="nbrRoomsMatesMin" cssClass="form-control" />
+			<form:input path="nbrRoomsMatesMin" cssClass="form-control alert-input" />
 			<form:errors path="nbrRoomsMatesMin" />
 		</div>
 	</div>
@@ -53,7 +53,7 @@
 	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">Number of room mates to</label>
 		<div class="col-sm-9">
-			<form:input path="nbrRoomsMatesMax" cssClass="form-control" />
+			<form:input path="nbrRoomsMatesMax" cssClass="form-control alert-input" />
 			<form:errors path="nbrRoomsMatesMax" />
 		</div>
 	</div>
@@ -61,7 +61,7 @@
 	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">Number of rooms from</label>
 		<div class="col-sm-9">
-			<form:input path="nbrRoomsMin" cssClass="form-control" />
+			<form:input path="nbrRoomsMin" cssClass="form-control alert-input" />
 			<form:errors path="nbrRoomsMin" />
 		</div>
 	</div>
@@ -69,7 +69,7 @@
 	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">Number of rooms to</label>
 		<div class="col-sm-9">
-			<form:input path="nbrRoomsMax" cssClass="form-control" />
+			<form:input path="nbrRoomsMax" cssClass="form-control alert-input" />
 			<form:errors path="nbrRoomsMax" />
 		</div>
 	</div>

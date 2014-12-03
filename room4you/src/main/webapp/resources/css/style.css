@@ -1,3 +1,25 @@
+.scroll-area {
+	height: 100%;
+	width: 100%
+	position: relative;
+	overflow: auto;
+}
+
+.thumbnail {
+	width: 250px;
+	height: 400px;
+	overflow: auto;
+}
+
+.thumbnail img {
+	width: 250px;
+	height: 200px;
+}
+
+.scrollup {
+	margin-right: 25px;
+}
+
 .link {
 	cursor: pointer;
 }
@@ -26,6 +48,10 @@
 	width: 50%;
 	height: 100%;
 	padding: 0 10px 0 10px;
+}
+
+.left-area {
+	text-align: justify;
 }
 
 .btn-home {
@@ -71,13 +97,13 @@
 
 .user-ads, .user-bookmarks {
 	margin-right: -90px !important;
-	height: 600px !important;
+	height: 620px !important;
 	margin-bottom: -125px !important;
 }
 
 .user-messages {
 	margin-right: -90px !important;
-	height: 430px !important;
+	height: 510px !important;
 	margin-bottom: -75px !important;
 }
 
@@ -111,10 +137,54 @@
 	margin-top: 30px;
 }
 
-#title {
-	width: 442px;
+#title, .register-input, .alert-input {
+	width: 442px !important;
 }
 
 #msgsent {
 	margin-right: 140px;
+}
+
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,.form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+
+.form-signin .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.btn-login {
+	margin-bottom: 10px !important;
 }

@@ -3,26 +3,6 @@
 
 <%@ include file="../layout/taglib.jsp"%>
 
-<style type="text/css">
-.scroll-area {
-	height: 100%;
-	width: 100%
-	position: relative;
-	overflow: auto;
-}
-
-.thumbnail {
-	width: 250px;
-	height: 400px;
-	overflow: auto;
-}
-
-.thumbnail img {
-	width: 250px;
-	height: 200px;
-}
-</style>
-
 <c:if test="${param.success eq true}">
 	<div class="alert alert-success">Message sent!</div>
 </c:if>
@@ -40,7 +20,7 @@
 			<li><a href="#section-3">Bookmarked ads</a></li>
 			<li><a href="#section-4">Messages</a></li>
 			<li><a href="#section-5">Alerts</a></li>
-			<c:if test="${not empty user.ads}">	<li><a href="#scetion-6">Visitors</a></li></c:if>
+			<c:if test="${not empty user.ads}">	<li><a href="#section-6">Visitors</a></li></c:if>
 			<li><a href="#section-7">My Appointments</a></li>
 			<li><a class="link" data-toggle="modal" data-target="#myModal">Place
 					new ad</a></li>
@@ -53,7 +33,7 @@
 
 
 		<h4 id="section-2" class="section">Placed ads</h4>
-
+		<a href="#" class="scrollup float-right">top</a>
 		<div id="Layout" class="container">
 			<div class="row" id="createdAds">
 
@@ -104,6 +84,7 @@
 
 
 		<h4 id="section-3" class="section">Bookmarks</h4>
+		<a href="#" class="scrollup float-right">top</a>
 		<div id="bookmarkedAds" class="container">
 			<div class="row" id="bookmarked">
 			<c:forEach items="${user.bookmarkedAds}" var="bookmark">			
@@ -156,7 +137,7 @@
 			</div>
 			
 			<h4 id="section-4" class="section">Received Messages</h4>
-			
+			<a href="#" class="scrollup float-right">top</a>
 			<div id="Layout" class="container">
 			<div class="row" id="messages">
 
@@ -199,7 +180,7 @@
 		</div>
 		
 			<h4 id="section-4" class="section">Sent Messages</h4>
-			
+			<a href="#" class="scrollup float-right">top</a>
 			<div id="Layout" class="container">
 			<div class="row" id="messages">
 
@@ -245,6 +226,7 @@
 		
 	
 			<h4 id="section-5" class="section">Subscribed alerts</h4>
+			<a href="#" class="scrollup float-right">top</a>
 			<table>
 				<tbody id="alerts">
 					<c:forEach items="${user.alerts}" var="alert">
@@ -293,6 +275,7 @@
 			
 			<c:if test="${not empty user.ads}">
 			<h4 id="section-6" class="section">Visitors</h4>
+			<a href="#" class="scrollup float-right">top</a>
 			<form:form method="post" modelAttribute="favCandidates" action="compileCandidates">
 			<div id="Layout" class="container">
 		            <div class="row">
@@ -338,9 +321,9 @@
 	</c:if>
 	
 	<h4 id="section-7" class="section">My Appointments</h4>
-		
+			<a href="#" class="scrollup float-right">top</a>
 			<div id="Layout" class="container">
-		            <div class="row">
+		            <div class="row" id="appointments">
 					<c:forEach items="${user.appointments}" var="appointment">
 						<div class="caption" >
 							<h4>
@@ -354,7 +337,6 @@
 					</c:forEach>
 					</div>
 			</div>
-	
 		</div>
 	</div>
 	
@@ -642,6 +624,9 @@
 				}
 				if ($.trim($("#messages").html()) == '') {
 					$('#messages').html("No messages");
+				}
+				if ($.trim($("#appointments").html()) == '') {
+					$('#appointments').html("No appointments");
 				}
 			});
 </script>
