@@ -18,6 +18,18 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/subscribeAlerts.jsp" />
 		<put-attribute name="current" value="alert" />
 	</definition>
+	
+	<definition name="messages" extends="common">
+		<put-attribute name="title" value="Messages" />
+		<put-attribute name="body" value="/WEB-INF/jsp/messages.jsp" />
+		<put-attribute name="current" value="messages" />
+	</definition>
+	
+	<definition name="placeAd" extends="common">
+		<put-attribute name="title" value="Place ad" />
+		<put-attribute name="body" value="/WEB-INF/jsp/placeAd.jsp" />
+		<put-attribute name="current" value="placeAd" />
+	</definition>
 
 	<definition name="users" extends="common">
 		<put-attribute name="title" value="Users" />

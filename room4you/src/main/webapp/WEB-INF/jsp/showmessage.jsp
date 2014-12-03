@@ -4,32 +4,19 @@
 <%@ include file="../layout/taglib.jsp"%>
 
 
-<h4>Chat with ${recipient.name}</h4>
+<h4>Messages</h4>
 
 <div class="panel panel-default chat-body">
   <div class="panel-heading">
-    <h3 class="panel-title"> 
-	 Title: ${messageTitle}  
+    <h3 class="panel-title">
+     From: &nbsp; ${message.sender.name}<br><br>
+     To:   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;${message.recipient.name} <br><br>
+	 Title: &nbsp;&nbsp;&nbsp;&nbsp;${message.title} 
     </h3>
     </div>
-		<c:forEach items="${messages}" var="message">
 		  <div class="panel-body">
-		  	<div 
-		  	
-		  	<c:choose>
-			    <c:when test="${message.sender.name == recipient.name}">
-			       class="alert alert-success alert-no-margin"
-			    </c:when>
-			    <c:otherwise>
-			        class="alert alert-info"
-			    </c:otherwise>
-			</c:choose>
-		  	>
-		  	
-		  		[${message.sender.name} -  <fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>] :<br> ${message.message}
-		  	</div>		     
+		  	 	<fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>: <br> ${message.message}    
 		  </div>		
-		</c:forEach>
 		
 		<div class="panel-footer message-footer">
 			<form:form action="/room4you/reply/${messageId}.html" commandName="newmessage">
@@ -84,15 +71,5 @@ $(document).ready(function() {
 });
 
 
-
-$(document).ready(function(){
-	  setInterval(function(){
-		  console.log(document.activeElement);
-		  if(document.getElementById("txtArea").value == '' && !$("input,textarea").is(":focus")){
-			  window.location.reload(1);
-		  }
-		  
-	  },5000);
-	});
 
 </script>

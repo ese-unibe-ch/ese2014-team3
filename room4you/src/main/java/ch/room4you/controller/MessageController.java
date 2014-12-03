@@ -1,7 +1,6 @@
 package ch.room4you.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ch.room4you.entity.Ad;
 import ch.room4you.entity.Message;
-import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
 import ch.room4you.service.MessageService;
 import ch.room4you.service.UserService;
@@ -52,54 +49,33 @@ public class MessageController {
 		}
 	}
 	
-//	@RequestMapping("/showmessage/{id}")
-//	public String showMessage(Model model, @PathVariable int id) {
-//		model.addAttribute("message", messageService.findOne(id));
-//		return "showmessage";
-//	}
-	
-	
 	@RequestMapping("/showmessage/{id}")
-	public String showMessages(Model model, @PathVariable int id, Principal principal) {
-		if (principal != null) {
-			Message message = messageService.findOne(id);
-			User userSender =  userService.findOneByName(principal.getName());
-			User userReceiver =  userService.findOneByName(principal.getName());
-			
-			Ad ad = adService.findOne(message.getMessageAd().getId());
-			model.addAttribute("messageId", message.getId());
-			model.addAttribute("messageTitle", message.getTitle());
-			model.addAttribute("recipient", getOtherUser(userSender, message));
-			model.addAttribute("messages", messageService.findAllMessagesBySenderAndAd(userSender, userReceiver, ad));
-			return "showmessage";
-		}
-		else {
-			return "login";
-		}
+	public String showMessage(Model model, @PathVariable int id) {
+		model.addAttribute("message", messageService.findOne(id));
+		return "showmessage";
 	}
 	
-
 	@RequestMapping("/reply/{id}")
 	public String reply(Model model, @PathVariable int id) {
 		Message message = messageService.findOne(id);
 		model.addAttribute("ad", adService.findOne(message.getMessageAd().getId()));
 		model.addAttribute("sender", message.getRecipient());
 		model.addAttribute("recipient", message.getSender());
-		return "showmessage";
+		return "message";
 	}
 	
 	@RequestMapping(value="/reply/{id}", method = RequestMethod.POST)
-	public String sendReply(@Valid @ModelAttribute("newmessage") Message reply, BindingResult result, @PathVariable int id, Principal principal) {
+	public String sendReply(@Valid @ModelAttribute("newmessage") Message reply, BindingResult result, @PathVariable int id) {
 		if (result.hasErrors()) {
 			return "message";
 		}
 		Message message = messageService.findOne(id);
-		reply.setSender(userService.findOneByName(principal.getName()));
-		reply.setRecipient(getOtherUser(userService.findOneByName(principal.getName()), message));
+		reply.setRecipient(message.getSender());
+		reply.setSender(message.getRecipient());
 		reply.setMessageAd(message.getMessageAd());
 		reply.setId(null);
 		messageService.save(reply);
-		return "redirect:/showmessage/{id}.html?success=true";
+		return "redirect:/account.html?success=true";
 	}
 	
 	@RequestMapping(value="/message/{id}", method = RequestMethod.POST)
@@ -114,21 +90,9 @@ public class MessageController {
 		return "redirect:/ads/{id}.html?success=true";
 	}
 	
-	
 	@RequestMapping("/message/remove/{id}")
 	public String removeMessage(@PathVariable int id) {
-		messageService.deleteAllMessages(adService.findOne(id).getAdMessages());
+		messageService.delete(id);
 		return "redirect:/account.html";
-	}
-
-	
-	private User getOtherUser(User userSender, Message message) {
-		User otherUser;
-		if(!message.getSender().getName().equals(userSender.getName())){
-			otherUser = message.getSender();
-		}else{
-			otherUser = message.getRecipient();
-		}				
-	   return otherUser;
 	}
 }
