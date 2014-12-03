@@ -76,18 +76,8 @@ public class UserController {
 	private FavCandidatesService candidateService;
 	
 	
-	
 
-	/**
-	 * Instantiates an ad object which is mapped to the spring form in
-	 * user-account.jsp
-	 * 
-	 * @return
-	 */
-	@ModelAttribute("ad")
-	public Ad constructAd() {
-		return new Ad();
-	}
+
 	
 	@ModelAttribute("favCandidates")
 	public FavCandidates constructFavCandidates(){
@@ -174,63 +164,7 @@ public class UserController {
 		return "redirect:/account.html";
 	}
 
-	/**
-	 * Removes the ad with the id={id} and redirects to account.html
-	 * 
-	 * @param model
-	 * @param id
-	 * @return
-	 */
-	@RequestMapping("/ad/remove/{id}")
-	public String removeAd(@PathVariable int id) {
-		System.out.println("remove ist touched");
-		Ad ad = adService.findOne(id);
-		adService.delete(ad);
-		return "redirect:/account.html";
-	}
-
-	@RequestMapping("/ad/edit/{id}")
-	public String editAd(@PathVariable int id, Model model) {
-		model.addAttribute("ad", adService.findOne(id));
-		model.addAttribute("users", userService.findAll());
-		model.addAttribute("appointments", appointmentService.findByAd(id));
-		return "editAd";
-	}
-
-	@RequestMapping(value = "/ad/edit/{id}", method = RequestMethod.POST)
-	public String sendEdit(@PathVariable int id, Model model,
-			@ModelAttribute("ad") Ad ad, BindingResult result,
-			Principal principal, @RequestParam("image[]") MultipartFile[] images
-			// ,@RequestParam("roomMates") String roomMate
-			, org.springframework.web.context.request.WebRequest webRequest
-			, @RequestParam("appointments") List<String> appointments) {
-		
-		adService.editAd(id, model, ad, result, principal, images, webRequest, appointments);
-	//	String roomMate = webRequest.getParameter("roomMates");
-
-	//	String name = principal.getName();
-	//	ad.setId(id);
-	//	adService.save(ad, name);
-
-	/*	try {
-
-			// save roommates
-			if (roomMate != null) {
-				saveRoomMates(ad, roomMate);
-			}
-
-			// save imagesAsString
-			if (!images[0].isEmpty()) {
-				saveImages(ad, images);
-			}
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} */
-
-		return "redirect:/account.html";
-	}
+	
 
 	/**
 	 * Removes the user with id = {id} and logs the user out

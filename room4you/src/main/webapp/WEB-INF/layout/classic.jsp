@@ -63,7 +63,7 @@
               <security:authorize access="isAuthenticated()">              
               	<li class="${current == 'alert' ? 'active' : ''}"><a href="<spring:url value="/alert.html" />">Subscribe alerts</a></li>
               	<li class="${current == 'messages' ? 'active' : ''}"><a href="<spring:url value="/messages.html" />">Messages</a></li>
-              	<li class="${current == 'placeAd' ? 'active' : ''}"><a href="<spring:url value="/placeAd.html" />">Place ad</a></li>                  	
+              	<li class="${current == 'placeAd' ? 'active' : ''}"><a href="<spring:url value="/placeAd.html" />">My ads</a></li>                  	
               	<li class="${current == 'account' ? 'active' : ''}"><a href="<spring:url value="/account.html" />">My account</a></li>  
               	<li><a href="<spring:url value="/logout" />">Logout</a></li>           	
               </security:authorize>

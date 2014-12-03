@@ -12,28 +12,24 @@
 <div class="container">
 
 	<h2>${user.name}</h2>
+	
+	<a href="<spring:url value="/ad/placeNewAd.html"/>" class="btn btn-primary btn-lg active pull-right" role="button">Place new ad</a>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse user-nav" id="navbarCollapse">
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="#section-2">Placed ads</a></li>
-			<li><a href="#section-3">Bookmarked ads</a></li>
-			<li><a href="#section-4">Messages</a></li>
-			<li><a href="#section-5">Alerts</a></li>
-			<c:if test="${not empty user.ads}">	<li><a href="#section-6">Visitors</a></li></c:if>
-			<li><a href="#section-7">My Appointments</a></li>
-			<li><a class="link" data-toggle="modal" data-target="#myModal">Place
-					new ad</a></li>
-		</ul>
-	</div>
+	<ul class="nav nav-tabs">
+	 	 <li class="active"><a href="#section-1" data-toggle="tab">Placed ads</a></li>
+	  	<li><a href="#section-2" data-toggle="tab">Bookmarked ads</a></li>
+	  	<li><a href="#section-3" data-toggle="tab">Visitors</a></li>
+	</ul>
 
 	<div class="scroll-area" data-spy="scroll" data-target="navbarCollapse"
 		data-offset="0">
 
 
-
-		<h4 id="section-2" class="section">Placed ads</h4>
-		<a href="#" class="scrollup float-right">top</a>
+<div class="tab-content">
+  <div class="tab-pane active" id="section-1">
+  
+	<h4 class="section">Placed ads</h4>
 		<div id="Layout" class="container">
 			<div class="row" id="createdAds">
 
@@ -82,9 +78,10 @@
 			</div>
 		</div>
 
-
-		<h4 id="section-3" class="section">Bookmarks</h4>
-		<a href="#" class="scrollup float-right">top</a>
+  </div><!-- @end #section1 -->
+  
+  <div class="tab-pane" id="section-2">
+	<h4 class="section">Bookmarks</h4>
 		<div id="bookmarkedAds" class="container">
 			<div class="row" id="bookmarked">
 			<c:forEach items="${bookmarks}" var="bookmark">			
@@ -122,121 +119,11 @@
 								</c:forEach>							
 					</div>
 			</div>
-			
-			<h2 id="section-4">Messages received</h2>
-		<table class="table table-bordered table-hover table-striped">
-			<thead>
-				<tr>
-					<th>From</th>
-					<th>Regarding Ad</th>
-					<th>Details</th>
-					<th>Reply</th>
-					<th>Delete</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${userm.messages}" var="message">
-					<tr>
-						<td id="message_${message.id}"><a> <c:out
-									value="${message.sender.name}" />
-						</a></td>
-						<td><a
-							href="<spring:url value="/ads/${message.messageAd.id}.html" />">
-								<c:out value="${message.messageAd.title}" />
-						</a></td>
-						<td><a
-							href="<spring:url value="/showmessage/${message.id}.html" />">
-								Show Message </a></td>
-						<td><a href="<spring:url value="/reply/${message.id}.html" />">
-								Reply </a></td>
-						<td><a
-							href="<spring:url value="/message/remove/${message.id}.html" />"
-							class="btn btn-danger triggerRemove"> Delete Message </a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		
-		<h2>Messages sent</h2>
-		<table class="table table-bordered table-hover table-striped">
-			<thead>
-				<tr>
-					<th>To</th>
-					<th>Regarding Ad</th>
-					<th>Details</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${userm.sentMessages}" var="message">
-					<tr>
-						<td id="message_${message.id}"><a> <c:out
-									value="${message.recipient.name}" />
-						</a></td>
-						<td><a
-							href="<spring:url value="/ads/${message.messageAd.id}.html" />">
-								<c:out value="${message.messageAd.title}" />
-						</a></td>
-						<td><a
-							href="<spring:url value="/showmessage/${message.id}.html" />">
-								Show Message </a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		
-		
-	
-			<h4 id="section-5" class="section">Subscribed alerts</h4>
-			<a href="#" class="scrollup float-right">top</a>
-			<table>
-				<tbody id="alerts">
-					<c:forEach items="${user.alerts}" var="alert">
-							<tr>
-							<td id="alert_${alert.id}"><a href="javascript:{}"
-								onclick="document.getElementById('showAlertAdsForm').submit(); return false;">
-									<c:out value="${alert}" />
-							</a> <form:form id="showAlertAdsForm" style="display: none;"
-									action="searchAds.html" class="form-inline" role="form"
-									method="post">
-									<input type="text" class="form-control" name="searchTextZip"
-										id="searchTextZip" value="${alert.zip}">
-									<input type="text" class="form-control" name="searchTextCity"
-										id="searchTextCity" value="${alert.city}">
-									<input type="number" class="form-control"
-										name="searchTextMinPrice" id="searchTextMinPrice" step="100"
-										value="${alert.rentPerMonthMin}">
-									<input type="number" class="form-control"
-										name="searchTextMaxPrice" id="searchTextMaxPrice" step="100"
-										value="${alert.rentPerMonthMax}">
-									<input type="number" class="form-control"
-										name="searchTextNbrRoomMatesMin"
-										id="searchTextNbrRoomMatesMin"
-										value="${alert.nbrRoomsMatesMin}">
-									<input type="number" class="form-control"
-										name="searchTextNbrRoomMatesMax"
-										id="searchTextNbrRoomMatesMax"
-										value="${alert.nbrRoomsMatesMax}">
-									<input type="number" class="form-control"
-										name="searchTextNbrRoomsMin" id="searchTextNbrRoomsMin"
-										value="${alert.nbrRoomsMin}">
-									<input type="number" class="form-control"
-										name="searchTextNbrRoomsMax" id="searchTextNbrRoomsMax"
-										value="${alert.nbrRoomsMax}">
-								</form:form></td>
-							<td><a
-								href="<spring:url value="/alert/remove/${alert.id}.html" />"
-								class="btn btn-danger triggerRemove alert-remove"> remove
-									alert </a></td>
-						</tr>
-											
-					</c:forEach>
-				</tbody>
-			</table>
-			<!-- 	-->
-			
-			<c:if test="${not empty user.ads}">
-			<h4 id="section-6" class="section">Visitors</h4>
-			<a href="#" class="scrollup float-right">top</a>
+  </div><!-- @end #section-2 -->
+
+<div class="tab-pane" id="section3">
+	<c:if test="${not empty user.ads}">
+			<h4 id="section-3" class="section">Visitors</h4>
 			<div id="Layout" class="container">
 		            <div class="row">
 		            <div class="caption" >
@@ -316,285 +203,15 @@
 		</div>
 		</div>
 	</c:if>
+</div><!-- @end #section-3 -->
+
+				
 	
-	<h4 id="section-7" class="section">My Appointments</h4>
-			<a href="#" class="scrollup float-right">top</a>
-			<div id="Layout" class="container">
-		            <div class="row" id="appointments">
-					<c:forEach items="${user.appointments}" var="appointment">
-						<div class="caption" >
-							<h4>
-								<a href="<spring:url value="/ads/${appointment.appointmentAd.id}.html" />"> 
-								<c:out value="${appointment.appointmentAd.title}" /></a>
-							</h4>
-							<div class="row">
-									<div class="col-md-1">
-										<label>Date:</label>
-									</div>
-									<div class="col-md-1.5">
-										<label>${appointment.appointDate.appointDate}</label>
-									</div>
-								</div><div class="row">
-									<div class="col-md-1">
-										<label>Begin:</label>
-									</div>
-									<div class="col-md-1.5">
-										<label>${appointment.appointDate.startTime}</label>
-									</div>
-								</div>	
-							<div class="row">
-									<div class="col-md-1">
-										<label>Begin:</label>
-									</div>
-									<div class="col-md-1.5">
-										<label>${appointment.appointDate.endTime}</label>
-									</div>
-								</div>
-						</div>		
-					</c:forEach>
-					</div>
-			</div>
-		</div>
-	</div>
-	
-
-
-<!-- <a href="<spring:url value="/account/remove/${user.id}.html" />"
-	class="btn btn-danger btn-large pull-right triggerRemove"> Delete
-	my account </a> -->
-
-
-<form:form method="post" modelAttribute="ad"
-	cssClass="form-horizontal adForm" enctype="multipart/form-data">
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">New Ad</h4>
-				</div>
-				<div id="myModalContent" class="modal-body">
-
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Title:</label>
-						<div class="col-sm-10">
-							<form:input path="title" cssClass="form-control" />
-							<form:errors path="title" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Description:</label>
-						<div class="col-sm-10">
-							<form:input path="description" cssClass="form-control" />
-							<form:errors path="description" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Street:</label>
-						<div class="col-sm-10">
-							<form:input path="street" cssClass="form-control" />
-							<form:errors path="street" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">ZIP:</label>
-						<div class="col-sm-10">
-							<form:input path="zip" cssClass="form-control" />
-							<form:errors path="zip" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">City:</label>
-						<div class="col-sm-10">
-							<form:input path="city" cssClass="form-control" />
-							<form:errors path="city" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Number of
-							rooms:</label>
-						<div class="col-sm-10">
-							<form:select path="nbrRooms" cssClass="formControl"
-								style="width:100%;" tabindex="6">
-								<option value="1">1</option>
-								<option value="1.5">1.5</option>
-								<option value="2">2</option>
-								<option value="2.5">2.5</option>
-								<option value="3">3</option>
-								<option value="3.5">3.5</option>
-								<option value="4">4</option>
-								<option value="4.5">4.5</option>
-								<option value="5">5</option>
-								<option value="5.5">5.5</option>
-								<option value="6">6</option>
-								<option value="6.5">6.5</option>
-								<option value="7">7</option>
-								<option value="7.5">7.5</option>
-								<option value="8">8</option>
-								<option value="8.5">8.5</option>
-								<option value="9">9</option>
-								<option value="9.5">9.5</option>
-								<option value="10">10</option>
-								<option value="10.5">10.5</option>
-								<option value="11">11</option>
-								<option value="11.5">11.5</option>
-								<option value="12">12</option>
-								<option value="12.5">12.5</option>
-							</form:select>
-							<form:errors path="nbrRooms" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Number of
-							room mates:</label>
-						<div class="col-sm-10">
-							<form:select path="nbrRooms" cssClass="formControl"
-								style="width:100%;" tabindex="6">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-							</form:select>
-							<form:errors path="nbrRooms" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Available
-							from:</label>
-						<div class="col-sm-10">
-							<form:input type="date" path="availableFrom"
-								cssClass="form-control" />
-							<form:errors path="availableFrom" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Rent per
-							month:</label>
-						<div class="col-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon">CHF</span>
-								<form:input path="rentPerMonth" cssClass="form-control" />
-								<form:errors path="rentPerMonth" />
-								<span class="input-group-addon">.00</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Pets
-							allowed:</label>
-						<div class="col-sm-10">
-							<form:checkbox path="petsAllowed" cssClass="form-control"
-								style="border-style:none;" />
-							<form:errors path="petsAllowed" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Smoking
-							allowed:</label>
-						<div class="col-sm-10">
-							<form:checkbox path="smokingAllowed" cssClass="form-control"
-								style="border-style:none;" />
-							<form:errors path="smokingAllowed" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Instruments
-							allowed:</label>
-						<div class="col-sm-10">
-							<form:checkbox path="instrumentsAllowed" cssClass="form-control"
-								style="border-style:none;" />
-							<form:errors path="instrumentsAllowed" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">We are
-							looking for:</label>
-						<div class="col-sm-10">
-							<form:input path="weAreLookingFor" cssClass="form-control" />
-							<form:errors path="weAreLookingFor" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Additional
-							Information:</label>
-						<div class="col-sm-10">
-							<form:input path="additionalInformation" cssClass="form-control" />
-							<form:errors path="additionalInformation" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">RoomMates:</label>
-						<div class="col-sm-10">
-							<form:select class="form-control" path="roomMates">
-								<form:options items="${users}" var="users" itemValue="id"
-									itemLabel="name" />
-								</form:select>
-						</div>
-					</div>
-					<div class="form-group" id="firstDatePicker">
-						<label for="name" class="col-sm-2 control-label">Appointment:</label>
-						<div class="col-sm-10">
-						<p>Date: <a id="datetimepicker1" class="input-append"><input
-								data-format="dd-MM-yyyy" type="date" name="appointments"></input>
-								
-							</a></p><p>Begin: <a id="datetimepicker2" class="input-append"> <input
-								type="time" name="appointments"></input>
-								
-							</a></p><p>End:  <a id="datetimepicker3" class="input-append"> <input
-								type="time" name="appointments"></input>
-							</a></p>
-							
-						</div>
-						<label for="name" class="col-sm-2 control-label">Number of
-							Visitors:</label>
-						<div class="col-sm-10">
-							<input name="appointments" class="form-control" />
-						</div>
-							<button id="addAppointment" type="button"
-								class="btn btn-default btn-sm right-block">
-								<span class="glyphicon glyphicon-plus"></span>
-							</button>
-							<p></p>
-						</div>
-
-					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Image:</label>
-						<div class="col-sm-10">
-							<input type="file" name="image[]" class="form-control" />
-							<button id="addFile" type="button"
-								class="btn btn-default btn-sm right-block">
-								<span class="glyphicon glyphicon-plus"></span>
-							</button>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<input type="submit" class="btn btn-primary" value="Save" />
-				</div>
-			</div>
-		</div>
-	</div>
-</form:form>
 
 <br />
 <br />
+</div>
+</div>
 
 
 
@@ -747,6 +364,16 @@
 			}
 		});
 	}
+</script>
+
+
+<script>
+	$(function{
+		  $('#myTab a').click(function(e) {
+		    e.preventDefault();
+		    $(this).tab('show');
+		  });
+		});
 </script>
 
 

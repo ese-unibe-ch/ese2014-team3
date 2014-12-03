@@ -1,19 +1,26 @@
 package ch.room4you.controller;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import pojo.SearchAdsForm;
 import ch.room4you.entity.Ad;
@@ -23,6 +30,8 @@ import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
 import ch.room4you.service.AppointmentService;
 import ch.room4you.service.BookmarkService;
+import ch.room4you.service.FavCandidatesService;
+import ch.room4you.service.MessageService;
 import ch.room4you.service.UserService;
 
 @Controller
@@ -40,6 +49,12 @@ public class AdController {
 	@Autowired
 	private AppointmentService appointmentService;
 	
+	@Autowired
+	private MessageService messageService;
+	
+	@Autowired
+	private FavCandidatesService candidateService;
+	
 	/**
 	 * Instantiates an ad object which is mapped to the spring form in 
 	 * user-account.jsp
@@ -49,6 +64,17 @@ public class AdController {
 	@ModelAttribute("searchAdsForm")
 	public SearchAdsForm constructSearchAdsForm() {
 		return new SearchAdsForm();
+	}
+	
+	/**
+	 * Instantiates an ad object which is mapped to the spring form in
+	 * user-account.jsp
+	 * 
+	 * @return
+	 */
+	@ModelAttribute("ad")
+	public Ad constructAd() {
+		return new Ad();
 	}
 
 	/**
@@ -62,6 +88,153 @@ public class AdController {
 	public String ads(Model model) {
 		model.addAttribute("ads", adService.findAll());
 		return "ads";
+	}
+	
+	/**
+	 * Maps the request url /account to the page account.jsp and provides the
+	 * model "user" with the current user
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/placeAd")
+	public String account(Model model, Principal principal) {
+		String name = principal.getName();
+		model.addAttribute("user", userService.findOneWithAds(name));
+		model.addAttribute("users", userService.findAll());
+		model.addAttribute("userm", userService.findOneWithMessages(name));
+		//model.addAttribute("conversations", messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));		
+		model.addAttribute("bookmarks", bookmarkService.findAllBookmarks(name));
+		model.addAttribute("candidates", candidateService.findByAdPlacer(name));
+		model.addAttribute("conversationsSent", messageService.findFirstSentMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));
+		model.addAttribute("conversationsReceived", messageService.findFirstReceivedMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));
+
+		return "placeAd";
+	}
+
+
+	
+	
+	/**
+	 * Receives the data from user-account form and adds the data to the ad
+	 * object and saves the ad to the current user in the database. Provides
+	 * model ad.
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/ad/placeNewAd", method = RequestMethod.POST)
+	@Transactional
+	public String doAddAd(Model model, @ModelAttribute("ad") Ad ad,
+			BindingResult result,
+			Principal principal,
+			@RequestParam("image[]") MultipartFile[] images
+			// ,@RequestParam("roomMates") String roomMate
+			, org.springframework.web.context.request.WebRequest webRequest,
+			@RequestParam("appointments") List<String> appointments) {
+
+		adService.doAddAd(model, ad, result, principal, images, webRequest, appointments);
+		/*String roomMate = webRequest.getParameter("roomMates");
+
+		if (ad.getWeAreLookingFor().isEmpty()) {
+			ad.setWeAreLookingFor("Anyone");
+		}
+
+		String name = principal.getName();
+		adService.save(ad, name);
+
+		try {
+
+			// save roommates
+			if (roomMate != null) {
+				saveRoomMates(ad, roomMate);
+			}
+
+			if (appointments != null) {
+				saveAppointments(ad, appointments);
+			}
+
+			// save imagesAsString
+			if (!images[0].isEmpty())
+				saveImages(ad, images);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		
+	/*	List<FavCandidates> f = favCRepository.findAll();
+		System.err.println(f.isEmpty());
+		System.out.println(f);
+		for ( FavCandidates c : f) {
+			System.out.println(c.getVisitors().get(0));
+		} */ 
+		return "redirect:/placeAd.html";
+	}
+	
+	/**
+	 * Removes the ad with the id={id} and redirects to account.html
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/ad/remove/{id}")
+	public String removeAd(@PathVariable int id) {
+		System.out.println("remove ist touched");
+		Ad ad = adService.findOne(id);
+		adService.delete(ad);
+		return "redirect:/placeAd.html";
+	}
+
+	@RequestMapping("/ad/edit/{id}")
+	public String editAd(@PathVariable int id, Model model) {
+		model.addAttribute("ad", adService.findOne(id));
+		model.addAttribute("users", userService.findAll());
+		model.addAttribute("appointments", appointmentService.findByAd(id));
+		return "editAd";
+	}
+	
+	@RequestMapping("/ad/placeNewAd")
+	public String placeNewAd() {
+		return "editAd";
+	}
+	
+
+	@RequestMapping(value = "/ad/edit/{id}", method = RequestMethod.POST)
+	public String sendEdit(@PathVariable int id, Model model,
+			@ModelAttribute("ad") Ad ad, BindingResult result,
+			Principal principal, @RequestParam("image[]") MultipartFile[] images
+			// ,@RequestParam("roomMates") String roomMate
+			, org.springframework.web.context.request.WebRequest webRequest
+			, @RequestParam("appointments") List<String> appointments) {
+		
+		adService.editAd(id, model, ad, result, principal, images, webRequest, appointments);
+	//	String roomMate = webRequest.getParameter("roomMates");
+
+	//	String name = principal.getName();
+	//	ad.setId(id);
+	//	adService.save(ad, name);
+
+	/*	try {
+
+			// save roommates
+			if (roomMate != null) {
+				saveRoomMates(ad, roomMate);
+			}
+
+			// save imagesAsString
+			if (!images[0].isEmpty()) {
+				saveImages(ad, images);
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} */
+
+		return "redirect:/placeAd.html";
 	}
 
 	/**
@@ -95,10 +268,7 @@ public class AdController {
 	@Transactional
 	public String detail(Model model, @PathVariable("id") int id, Principal principal) {
 		model.addAttribute("ad", adService.findOne(id));
-		model.addAttribute("appointmentList", appointmentService.findByAd(id));
-		
-		
-		
+		model.addAttribute("appointmentList", appointmentService.findByAd(id));	
 
 		if (principal != null) {
 			boolean isBkrmrkedAd = bookmarkService.isBookmarkedAd(id, principal.getName());
@@ -260,6 +430,19 @@ public class AdController {
 			searchSharedApartment = false;
 		}
 		return searchSharedApartment;
+	}
+	
+	/**
+	 * Maps the date format to the convenient date format for the database
+	 * 
+	 * @param binder
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+				dateFormat, true));
 	}
 
 }

@@ -36,6 +36,24 @@ public class MessageController {
 		return new Message();
 	}
 	
+	
+	/**
+	 * Maps the request url /account to the page account.jsp and provides the
+	 * model "user" with the current user
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/messages")
+	public String account(Model model, Principal principal) {
+		String name = principal.getName();
+		model.addAttribute("user", userService.findOneWithAds(name));
+		model.addAttribute("users", userService.findAll());
+		model.addAttribute("userm", userService.findOneWithMessages(name));
+
+		return "messages";
+	}
+	
 	@RequestMapping("/message/{id}")
 	public String message(Model model, @PathVariable int id, Principal principal) {
 		if (principal != null) {
