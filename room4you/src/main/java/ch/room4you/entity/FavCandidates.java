@@ -19,6 +19,9 @@ public class FavCandidates {
 	@OneToOne
 	private Ad ad;
 	
+	@OneToOne
+	private User adPlacer;
+	
 	@OneToMany
 	private List<User> visitors = new ArrayList<User>();
 	
@@ -55,5 +58,13 @@ public class FavCandidates {
 
 	public void setAd(Ad ad) {
 		this.ad = ad;
+	}
+
+	public User getAdPlacer() {
+		return adPlacer;
+	}
+
+	public void setAdPlacer(User adPlacer) {
+		this.adPlacer = adPlacer;
 	}
 }

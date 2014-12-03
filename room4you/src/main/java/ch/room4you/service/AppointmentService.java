@@ -19,81 +19,78 @@ import ch.room4you.repository.UserRepository;
 
 @Service
 public class AppointmentService {
-	
+
 	@Autowired
 	private AppointmentRepository appointmentRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private FavCandidatesRepository candidatesRepository;
-	
+
 	@Autowired
 	private AdRepository adRepository;
-	
-	
+
 	public Appointment findOne(int id) {
 		return appointmentRepository.findOne(id);
 	}
 
-
-/*	public Appointment save(AppointmentDate date, AdForm adForm, Ad ad) {
-		Appointment appointment = new Appointment();
-		
-		appointment.setAdPlacer(adForm.getUser());
-		appointment.setAppointDate(date);
-		appointment.setNmbrVisitors(adForm.getNmbrVisitors());
-		appointment.setAd(ad);
-		
-		appointmentRepository.save(appointment); 
-		return appointment;
-	} */
-
+	/*
+	 * public Appointment save(AppointmentDate date, AdForm adForm, Ad ad) {
+	 * Appointment appointment = new Appointment();
+	 * 
+	 * appointment.setAdPlacer(adForm.getUser());
+	 * appointment.setAppointDate(date);
+	 * appointment.setNmbrVisitors(adForm.getNmbrVisitors());
+	 * appointment.setAd(ad);
+	 * 
+	 * appointmentRepository.save(appointment); return appointment; }
+	 */
 
 	public void save(Appointment appointment) {
 		appointmentRepository.save(appointment);
 	}
-	
+
 	@Transactional
 	public void addVisitor(int appointId, String userName) {
 		Appointment appointment = appointmentRepository.findOne(appointId);
 		User user = userRepository.findByName(userName);
 		Ad ad = appointment.getAppointmentAd();
-		
+
 		if (!isVisitor(user, appointment)) {
-				if (appointment.getNmbrVisitors() > 0) {
-					
-					List<Appointment> userAppointments = user.getAppointments();
-				//	userAppointments.remove(appointment);
-					
-					
-					
-					List<User> visitors = appointment.getVisitors();
-					visitors.add(user);
-					appointment.decrementNmbrVisitors();
-					appointment.setVisitors(visitors);
-					appointmentRepository.save(appointment);
-					
-					
-					userAppointments.add(appointment);
-					user.setAppointment(userAppointments);
-					userRepository.save(user);
-					
-				
-				System.out.println(user.toString() + " has been added to appointment: " + appointment);
+			if (appointment.getNmbrVisitors() > 0) {
+
+				List<Appointment> userAppointments = user.getAppointments();
+				// userAppointments.remove(appointment);
+
+				List<User> visitors = appointment.getVisitors();
+				visitors.add(user);
+				appointment.decrementNmbrVisitors();
+				appointment.setVisitors(visitors);
+				appointmentRepository.save(appointment);
+
+				userAppointments.add(appointment);
+				user.setAppointment(userAppointments);
+				userRepository.save(user);
+
+				System.out.println(user.toString()
+						+ " has been added to appointment: " + appointment);
 			}
-				
+
 		}
-		System.out.println("ad.getAppointments size = " + ad.getAppointments().size());
-		System.out.println("appointment.getVisitor size = " + appointment.getVisitors().size());
-		System.out.println("user.getAppointments size = " + user.getAppointments().size());
+		System.out.println("ad.getAppointments size = "
+				+ ad.getAppointments().size());
+		System.out.println("appointment.getVisitor size = "
+				+ appointment.getVisitors().size());
+		System.out.println("user.getAppointments size = "
+				+ user.getAppointments().size());
 	}
-	
+
 	public boolean isVisitor(User user, Appointment appointment) {
 		List<User> visitors = appointment.getVisitors();
-		
-		for (User visitor: visitors) {
+
+		for (User visitor : visitors) {
 			if (visitor.getId() == user.getId()) {
 				return true;
 			}
@@ -101,34 +98,43 @@ public class AppointmentService {
 		return false;
 	}
 
-
-	public void compileCandidates(FavCandidates favCandidates, String userName/*, int adId*/) {
+	@Transactional
+	public void compileCandidates(FavCandidates favCandidates, String userName /*
+																				 * ,
+																				 * int
+																				 * adId
+																				 */) {
 		User user = userRepository.findByName(userName);
-	//	Ad ad = adRepository.findOne(adId);
-	//	FavCandidates favCandidates = new FavCandidates();
-	//	favCandidates.setVisitors(favCandidates);
-		//favCandidates.setAppointments(appointments);
-	//	favCandidates.setAd(ad);
-		
+		// Ad ad = adRepository.findOne(adId);
+		// Ad ad = adRepository.findOne(adId);
+		// FavCandidates favCandidates = new FavCandidates();
+		// favCandidates.setVisitors(favCandidates);
+		// favCandidates.setAppointments(appointments);
+		// favCandidates.setAd(ad);
+		// favCandidates.setAd(ad);
 		user.setFavCandidates(favCandidates);
-		
+
 		userRepository.save(user);
 		candidatesRepository.save(favCandidates);
-		
-		
+		System.out.println(favCandidates.getVisitors().size());
+
 	}
 
 	@Transactional
 	public List<Appointment> findByAd(int id) {
 		Ad ad = adRepository.findOne(id);
-		List<Appointment> appointments = appointmentRepository.findByAppointmentAd(ad);
-		System.out.println("in service findBy ad ----- size: " + appointments.size());
+		List<Appointment> appointments = appointmentRepository
+				.findByAppointmentAd(ad);
+		System.out.println("in service findBy ad ----- size: "
+				+ appointments.size());
 		for (Appointment a : appointments) {
 			System.err.println(a);
 		}
 		return appointments;
 	}
 
-
+	public void delteAppointment(int appointId) {
+		appointmentRepository.delete(appointId);
+	}
 
 }

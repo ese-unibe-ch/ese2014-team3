@@ -164,11 +164,12 @@
 					<c:forEach items="${appointmentList}" var="appointment">
 				  	<c:choose> 
 					<c:when test="${appointment.nmbrVisitors > 0}">
-						<a 	href="<spring:url value="/ad/${ad.id}/appointment/${appointment.id}.html"/>" class="confirm"> 
+						<li><a 	href="<spring:url value="/ad/${ad.id}/appointment/${appointment.id}.html"/>" class="confirm"> 
 									<c:out  value="${appointment.appointDate.appointDate}" />
 								    <c:out 	value="${appointment.appointDate.startTime} - "  /> 
 								    <c:out	value="${appointment.appointDate.endTime}" />
 						</a>
+						</li>
 					</c:when>
 					<c:otherwise>
 						<span title="Already max visitors"> 

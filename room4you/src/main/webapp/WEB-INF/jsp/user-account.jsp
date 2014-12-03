@@ -237,28 +237,60 @@
 			
 			<c:if test="${not empty user.ads}">
 			<h4 id="section-6" class="section">Visitors</h4>
-			<form:form method="post" modelAttribute="favCandidates" action="compileCandidates">
 			<div id="Layout" class="container">
 		            <div class="row">
 		            <div class="caption" >
 					<c:forEach items="${user.ads}" var="ad">
+					<form:form method="post" modelAttribute="favCandidates" action="compileCandidates.html">
 						<c:choose>
 						<c:when test="${empty ad.appointments}">
 						<!--    <h4>Ad: ${ad.title}</h4> -->
 						<!--    <p>No appointments scheduled for this appointment </p>	-->						
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${ad.appointments}" var ="appointment">		
-								<h4>Ad: ${ad.title}</h4> 
-										<h4>Date: ${appointment.appointDate.appointDate} </h4> 
-										<h4>Begin: ${appointment.appointDate.startTime} </h4>
-										<h4>End: ${appointment.appointDate.endTime} 	</h4>
+						<form:hidden path="ad" value="${ad.id}"></form:hidden>
+						<h4>${ad.title}</h4>
+							<c:forEach items="${ad.appointments}" var ="appointment">	
+								<h5>Appointment</h5>
+								<div class="row">
+									<div class="col-md-1">
+										<label>Begin:</label>
+									</div>
+									<div class="col-md-1.5">
+										<label>${appointment.appointDate.startTime}</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-1">
+										<label>Date:</label>
+									</div>
+									<div class="col-md-1.5">
+										<label>${appointment.appointDate.appointDate}</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-1">
+										<label>End:</label>
+									</div>
+									<div class="col-md-1.5">
+										<label>${appointment.appointDate.endTime}</label>
+									</div>
+								</div>
+								<p></p>
+										<label>Visitors:</label>
+										<c:choose>
+											<c:when test="${not empty appointment.visitors}">
 											<c:forEach items="${appointment.visitors}" var="visitor">
-						 					<p><a href="<spring:url value="/ads/${ad.id}.html"/>"> </a> </p>
+						 					<a href="<spring:url value="/ads/${ad.id}.html"/>"> </a> 
 											<li><form:checkbox path="visitors" value="${visitor.name}"></form:checkbox><a href="<spring:url value="/users/${visitor.id}.html" />"> 
 													<c:out value="${visitor.name}" />
 												</a></li>
-											</c:forEach>	
+											</c:forEach>
+											</c:when>
+											<c:otherwise>
+											<c:out value="No visitors at the moment" />
+											</c:otherwise>
+											</c:choose>
 						</c:forEach>
 					<!--  	<div class="col-md-6"> -->
 					<!--  		<h5>Compile a list of the most promising candidates:</h5> -->
@@ -272,14 +304,17 @@
 					<!--				</div>  -->
 					<!--  			</c:forEach> -->
 			 		<!--  	</div>	-->
+			 		<!--    	<input type="submit" class="btn btn-primary" value="Compile" /> -->
 			 			</c:otherwise>
 			 			</c:choose>
+			 				<c:if test="${not empty ad.appointments}">
+			 			<!--  		<input type="submit" class="btn btn-primary" value="Compile" /> -->
+			 				</c:if>
+			 			</form:form>
 			 			</c:forEach>
-			 			</div>
-				<input type="submit" class="btn btn-primary" value="Compile" />
+			 			</div> 
 		</div>
 		</div>
-	</form:form>
 	</c:if>
 	
 	<h4 id="section-7" class="section">My Appointments</h4>
@@ -488,7 +523,7 @@
 							<form:select class="form-control" path="roomMates">
 								<form:options items="${users}" var="users" itemValue="id"
 									itemLabel="name" />
-							</form:select>
+								</form:select>
 						</div>
 					</div>
 					<div class="form-group" id="firstDatePicker">
@@ -503,18 +538,19 @@
 							</a></p><p>End:  <a id="datetimepicker3" class="input-append"> <input
 								type="time" name="appointments"></input>
 							</a></p>
-							<button id="addAppointment" type="button"
-								class="btn btn-default btn-sm right-block">
-								<span class="glyphicon glyphicon-plus"></span>
-							</button>
-							<p></p>
+							
 						</div>
 						<label for="name" class="col-sm-2 control-label">Number of
 							Visitors:</label>
 						<div class="col-sm-10">
 							<input name="appointments" class="form-control" />
 						</div>
-					</div>
+							<button id="addAppointment" type="button"
+								class="btn btn-default btn-sm right-block">
+								<span class="glyphicon glyphicon-plus"></span>
+							</button>
+							<p></p>
+						</div>
 
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">Image:</label>

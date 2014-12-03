@@ -155,22 +155,19 @@
 				<form:errors path="additionalInformation" />
 			</div>
 		</div>
+	<!--  	<c:forEach items="${appointments}" var="appointment">
 		<div class="form-group" id="firstDatePicker">
 						<label for="name" class="col-sm-2 control-label">Appointment:</label>
 						<div class="col-sm-10">
 						<p>Date: <a id="datetimepicker1" class="input-append"><input
-								data-format="dd-MM-yyyy" type="date" name="appointments"></input>
+								data-format="dd-MM-yyyy" type="date" name="appointDate"></input>
 								
 							</a></p><p>Begin: <a id="datetimepicker2" class="input-append"> <input
-								type="time" name="appointments"></input>
+								type="time" name="startTime"></input>
 								
 							</a></p><p>End:  <a id="datetimepicker3" class="input-append"> <input
-								type="time" name="appointments"></input>
+								type="time" name="endTime"></input>
 							</a></p>
-							<button id="addAppointment" type="button"
-								class="btn btn-default btn-sm right-block">
-								<span class="glyphicon glyphicon-plus"></span>
-							</button>
 							<p></p>
 						</div>
 						<label for="name" class="col-sm-2 control-label">Number of
@@ -178,8 +175,15 @@
 						<div class="col-sm-10">
 							<input name="appointments" class="form-control" />
 						</div>
+						<a href="<spring:url value="/ad/${ad.id}/deleteAppointment/${appointment.id}.html" />"
+									class="btn btn-danger triggerRemove"> Delete Appointment </a>
 					</div>
-		
+		</c:forEach>
+					<button id="addAppointment" type="button"
+								class="btn btn-default btn-sm right-block">
+								<span class="glyphicon glyphicon-plus"></span>
+					</button>
+		-->
 		
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">Image:</label>
@@ -197,6 +201,28 @@
 		</div>
 	  </div>   
 </form:form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Remove Appointment</h4>
+			</div>
+			<div class="modal-body">Really remove?</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<a href="" class="btn btn-danger removeBtn">Remove</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 
 <!-- adding more fileinputs -->
 <script>

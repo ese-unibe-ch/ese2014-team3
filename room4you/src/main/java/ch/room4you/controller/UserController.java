@@ -33,10 +33,12 @@ import ch.room4you.entity.Image;
 import ch.room4you.entity.Message;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
+import ch.room4you.repository.FavCandidatesRepository;
 import ch.room4you.repository.MessageRepository;
 import ch.room4you.service.AdService;
 import ch.room4you.service.AppointmentDateService;
 import ch.room4you.service.AppointmentService;
+import ch.room4you.service.FavCandidatesService;
 import ch.room4you.service.ImageService;
 import ch.room4you.service.MessageService;
 import ch.room4you.service.RoomMateService;
@@ -70,6 +72,10 @@ public class UserController {
 	@Autowired
 	private BookmarkService bookmarkService;
 	
+	@Autowired
+	private FavCandidatesService candidateService;
+	
+	
 	
 
 	/**
@@ -83,7 +89,7 @@ public class UserController {
 		return new Ad();
 	}
 	
-	@ModelAttribute
+	@ModelAttribute("favCandidates")
 	public FavCandidates constructFavCandidates(){
 		return new FavCandidates();
 	}
@@ -103,6 +109,8 @@ public class UserController {
 		model.addAttribute("userm", userService.findOneWithMessages(name));
 		model.addAttribute("conversations", messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));		
 		model.addAttribute("bookmarks", bookmarkService.findAllBookmarks(name));
+		model.addAttribute("candidates", candidateService.findByAdPlacer(name));
+		
 		return "account";
 	}
 
@@ -154,7 +162,13 @@ public class UserController {
 			e.printStackTrace();
 		}
 		*/
-
+		
+	/*	List<FavCandidates> f = favCRepository.findAll();
+		System.err.println(f.isEmpty());
+		System.out.println(f);
+		for ( FavCandidates c : f) {
+			System.out.println(c.getVisitors().get(0));
+		} */ 
 		return "redirect:/account.html";
 	}
 

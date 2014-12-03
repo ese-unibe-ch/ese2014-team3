@@ -40,13 +40,20 @@ public class AppointmentController {
 	
 	@RequestMapping(value="compileCandidates", method = RequestMethod.POST)
 	public String compileCandidates(Model model,  @ModelAttribute("favCandidates") FavCandidates favCandidates,
-			BindingResult result, Principal principal) {
+			BindingResult result, Principal principal/*, @PathVariable("adId") int adId*/) {
 		
-		appointmentService.compileCandidates(favCandidates, principal.getName()/*, adId */);
+		appointmentService.compileCandidates(favCandidates, principal.getName()/*, adId*/);
 		return "redirect:/account.html";
 	}
 	
+	@RequestMapping("/ad/{adId}/deleteAppointment/{id}") 
+		public String deleteAppointment(@PathVariable("appointId") int appointId, @PathVariable("adId") int adId) {
+			appointmentService.delteAppointment(appointId);
+			return "redirect:/editAd/{adId}.html";
+		}
+}
 	
-	}
+	
+	
 
 	
