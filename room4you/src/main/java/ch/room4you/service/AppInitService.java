@@ -34,12 +34,14 @@ import ch.room4you.entity.Ad;
 import ch.room4you.entity.Appointment;
 import ch.room4you.entity.AppointmentDate;
 import ch.room4you.entity.Image;
+import ch.room4you.entity.Message;
 import ch.room4you.entity.Role;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
 import ch.room4you.repository.AlertRepository;
 import ch.room4you.repository.ImageRepository;
+import ch.room4you.repository.MessageRepository;
 import ch.room4you.repository.RoleRepository;
 import ch.room4you.repository.RoomMateRepository;
 import ch.room4you.repository.UserRepository;
@@ -68,6 +70,9 @@ public class AppInitService {
 	
 	@Autowired
 	private ImageRepository imageRepository;
+	
+	@Autowired
+	private MessageRepository messageRepository;
 	
 	@Autowired
 	private RoomMateRepository roomMateRepository;
@@ -162,11 +167,25 @@ public class AppInitService {
 	        createFirstImage(ad9, 8); 
 	        createFirstImage(ad10, 9);
 	        
+	        createFirstMessage(ad1, userClient, userAdmin);
+	        
 	        saveAppointments(ad1);
 		}
 		
 	}
 	
+
+	private void createFirstMessage(Ad ad, User recipient, User sender) throws ParseException {
+		Message msg1 = new Message();
+		msg1.createTimestamp();
+		msg1.setMessage("Test");
+		msg1.setMessageAd(ad);
+		msg1.setRecipient(recipient);
+		msg1.setSender(sender);
+		msg1.setTitle("Test");
+		messageRepository.save(msg1);
+		
+	}
 
 	private void createFirstImage(Ad ad1, int i) {
 		 Image image1 = new Image();      

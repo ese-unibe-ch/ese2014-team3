@@ -58,6 +58,9 @@ public class AdService {
 
 	@Autowired
 	private RoomMateRepository roomMateRepository;
+	
+	@Autowired
+	private MessageService messageService;
 
 	/**
 	 * Saves the ad in the database
@@ -73,7 +76,9 @@ public class AdService {
 
 	@PreAuthorize("#ad.user.name == authentication.name or hasRole('ROLE_ADMIN')")
 	public void delete(@P("ad") Ad ad) {
-		adRepository.delete(ad);
+		messageService.deleteAllMessages(ad.getAdMessages());
+		Ad tempAd = adRepository.findOne(ad.getId());
+		adRepository.delete(tempAd);
 	}
 
 	public Ad findOne(int id) {

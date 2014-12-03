@@ -48,7 +48,7 @@
 <div class="jumbotron home-container">
 	<div class="left-area float-left">
 		<p>Welcome to Room4You, the new place to find the best room for you!</p>
-  		<p>You can freely browse available ads and look at their properties. To interact with the advertiser a free room4you account is necessary. However a room4you
+  		<p>You can freely browse available ads and look at their properties. To interact with the advertiser a free registration is necessary. However a room4you
  		account is created in no time.</p>
 	</div>
   	<div class="right-area float-left">

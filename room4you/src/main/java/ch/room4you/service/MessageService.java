@@ -34,29 +34,44 @@ public class MessageService {
 	
 	@Transactional
 	public List<Message> findAllMessagesBySenderAndAd(User userSender, User userRecipient, Ad ad) {
-		return messageRepository.findBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
+		return messageRepository.findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
 	}
 	
 	@Transactional
-	public List<Message> findFirstMessageOfConversations(User userSender, User userRecipient) {
+	public List<Message> findFirstSentMessageOfConversations(User userSender, User userRecipient) {
 		List<Message> firstMessagesOfUser = new ArrayList<Message>();
 		List<Ad> ads = adRepository.findAll();
-		System.out.println("Ads size: "+ads.size());
 		if(!ads.isEmpty()){
 		for(Ad ad : ads){
-			List<Message> mes = messageRepository.findBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
-			if(!mes.isEmpty())
-			firstMessagesOfUser.add(messageRepository.findBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad).get(0));
+			List<Message> mesSender = messageRepository.findDistinctBySenderAndMessageAdOrderByTimestampAsc(userSender, ad);
+						
+			if(!mesSender.isEmpty())
+			firstMessagesOfUser.add(messageRepository.findDistinctBySenderAndMessageAdOrderByTimestampAsc(userSender, ad).get(0));
+		
+		}
+	}
+		return firstMessagesOfUser;
+	}
+	
+	@Transactional
+	public List<Message> findFirstReceivedMessageOfConversations(User userSender, User userRecipient) {
+		List<Message> firstMessagesOfUser = new ArrayList<Message>();
+		List<Ad> ads = adRepository.findAll();
+		if(!ads.isEmpty()){
+		for(Ad ad : ads){
+			List<Message> mesRecipient = messageRepository.findDistinctByRecipientAndMessageAdOrderByTimestampAsc(userRecipient, ad);
 			
+			if(!mesRecipient.isEmpty())
+				firstMessagesOfUser.add(messageRepository.findDistinctByRecipientAndMessageAdOrderByTimestampAsc(userRecipient, ad).get(0));
+			}
+		
 		}
-		}
-		System.out.println("MessageSize: "+firstMessagesOfUser.size());
 		return firstMessagesOfUser;
 	}
 	
 	@Transactional
 	public Message findFirstMessage(User userSender, User userRecipient, Ad ad) {
-		return messageRepository.findTop1BySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
+		return messageRepository.findDistinctTop1BySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
 	}
 	
 	
