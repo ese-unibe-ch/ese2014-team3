@@ -352,10 +352,30 @@
 							<h4>
 								<a href="<spring:url value="/ads/${appointment.appointmentAd.id}.html" />"> 
 								<c:out value="${appointment.appointmentAd.title}" /></a>
-							</h4>	
-							<h4>Date: ${appointment.appointDate.appointDate} </h4> 
-							<h4>Begin: ${appointment.appointDate.startTime} </h4>
-							<h4>End: ${appointment.appointDate.endTime} </h4>
+							</h4>
+							<div class="row">
+									<div class="col-md-1">
+										<label>Date:</label>
+									</div>
+									<div class="col-md-1.5">
+										<label>${appointment.appointDate.appointDate}</label>
+									</div>
+								</div><div class="row">
+									<div class="col-md-1">
+										<label>Begin:</label>
+									</div>
+									<div class="col-md-1.5">
+										<label>${appointment.appointDate.startTime}</label>
+									</div>
+								</div>	
+							<div class="row">
+									<div class="col-md-1">
+										<label>Begin:</label>
+									</div>
+									<div class="col-md-1.5">
+										<label>${appointment.appointDate.endTime}</label>
+									</div>
+								</div>
 						</div>		
 					</c:forEach>
 					</div>
