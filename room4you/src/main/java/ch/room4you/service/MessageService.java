@@ -30,6 +30,8 @@ public class MessageService {
 	
 	public void save(Message message) {
 		message.createTimestamp();
+		String messageWithNewLines = message.getMessage().replaceAll("\n", "<br>");
+		message.setMessage(messageWithNewLines);
 		messageRepository.save(message);
 	}
 	

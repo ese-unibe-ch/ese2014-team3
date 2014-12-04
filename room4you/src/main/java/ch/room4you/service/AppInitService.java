@@ -178,7 +178,7 @@ public class AppInitService {
 	private void createFirstMessage(Ad ad, User recipient, User sender) throws ParseException {
 		Message msg1 = new Message();
 		msg1.createTimestamp();
-		msg1.setMessage("Test");
+		msg1.setMessage("Hi <br> How are you? <br> I'm fine...");
 		msg1.setMessageAd(ad);
 		msg1.setRecipient(recipient);
 		msg1.setSender(sender);

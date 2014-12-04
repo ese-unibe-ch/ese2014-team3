@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
+<%@ page import = "java.util.*" %>
+
+<c:set var="newline" value="<%= \"\n\" %>" />
 
 <c:set var="name" value="${nbrUnreadMessages}" scope="session" />
 	
@@ -89,7 +92,7 @@
 									  </div>
 									  <div class="panel-body">					  
 											<a href="<spring:url value="/showmessage/${message.id}.html"/>">
-												<c:out value="${message.message}" />							
+												${message.message}"							
 											</a>						  							  
 									  </div>
 							</div>
@@ -154,10 +157,8 @@
 											</c:choose>								
 									  </a>
 									  </div>
-									  <div class="panel-body">					  
-											<a href="<spring:url value="/showmessage/${message.id}.html"/>">
-												<c:out value="${message.message}" />							
-											</a>						  							  
+									  <div class="panel-body" id="messageText">					  
+												<c:out value="${message.message}" />					  							  
 									  </div>
 							</div>
 				</c:forEach>
@@ -200,7 +201,7 @@ $(document).ready(function() {
 							$("#modalRemove .removeBtn").attr("href",
 									$(this).attr("href"));
 							$("#modalRemove").modal();
-						});				
+						});						
 			});
 </script>
 
