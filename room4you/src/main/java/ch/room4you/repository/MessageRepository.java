@@ -14,9 +14,9 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Integer> {
 
-	List<Message> findByRecipientOrderByTimestampAsc(User recipient);
+	List<Message> findByRecipientOrderByTimestampDesc(User recipient);
 	
-	List<Message> findBySenderOrderByTimestampAsc(User sender);
+	List<Message> findBySenderOrderByTimestampDesc(User sender);
 		
 	List<Message> findDistinctBySenderAndMessageAdOrderByTimestampAsc(User sender, Ad ad);
 	
@@ -25,11 +25,6 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
 	List<Message> findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(User sender, User recipient, Ad ad);
 	
 	List<Message> findDisctinctBySenderOrRecipient(User sender, User recipient);	
-		
-	Message findDistinctTop1BySenderOrRecipientAndMessageAdOrderByTimestampAsc(User sender, User recipient, Ad ad);
-	
-	List<Message> findByUnReadTrueAndSender(User sender);
-	
-	List<Message> findByUnReadTrueAndRecipient(User recipient);
+
 		
 }

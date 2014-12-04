@@ -3,8 +3,16 @@
 
 <%@ include file="../layout/taglib.jsp"%>
 
+<!-- Collect the nav links, forms, and other content for toggling -->
+<ul class="nav nav-tabs">
+ 	 <li class="active"><a href="#section-1" data-toggle="tab">Inbox</a></li>
+  	<li><a href="#section-2" data-toggle="tab">Sent items</a></li>
+</ul>
 
-			<h2 id="section-4">Messages received</h2>
+<div class="tab-content">
+  <div class="tab-pane active" id="section-1">  
+
+			<h2 id="section-4">Inbox</h2>
 				<c:forEach items="${userm.messages}" var="message">
 							<div class="panel 
 										<c:choose>
@@ -19,9 +27,11 @@
 									   <a><span class="pull-left">
 								        <c:choose>
 									    <c:when test="${message.unRead}">
+									    	<strong>From:&nbsp;&nbsp;&nbsp;&nbsp;</strong>
 									       <strong><c:out value="${message.sender.name}" /></strong>
 									    </c:when>								    
 									    <c:otherwise>
+									    	From: &nbsp;&nbsp;&nbsp;&nbsp;
 									        <c:out value="${message.sender.name}" />
 									    </c:otherwise>
 									  </c:choose>		</span>
@@ -29,9 +39,11 @@
 								        <span class="text-muted pull-right"><a class="pull-right" href="<spring:url value="/showmessage/${message.id}.html" />">
 										<c:choose>
 										    <c:when test="${message.unRead}">
+										    	<strong>Received:&nbsp;</strong>
 										       <strong><fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/> </strong>
 										    </c:when>								    
 										    <c:otherwise>
+										    	Received:&nbsp;
 										       <fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>
 										    </c:otherwise>
 										</c:choose>								
@@ -41,6 +53,16 @@
 										   <a href="<spring:url value="/reply/${message.id}.html" />" class="btn btn-default btn-sm">
 												Reply 
 										   </a>
+												<c:choose>
+												    <c:when test="${message.unRead}">
+												    	<a href="<spring:url value="/message/markAsRead/${message.id}.html" /> "class="btn btn-default btn-sm"> 
+												    	Mark as read</a>	
+												    </c:when>								    
+												    <c:otherwise>
+												    	<a href="<spring:url value="/message/markAsUnRead/${message.id}.html" /> "class="btn btn-default btn-sm"> 
+												    	Mark as unread</a>	
+												    </c:otherwise>
+												</c:choose>	
 									       <a href="<spring:url value="/message/remove/${message.id}.html" />"
 												class="btn btn-danger btn-sm triggerRemove"> 
 												Delete Message 
@@ -51,9 +73,11 @@
 									  <a href="<spring:url value="/ads/${message.messageAd.id}.html" />">
 											<c:choose>
 											    <c:when test="${message.unRead}">
+											    	<strong>Subject:&nbsp;&nbsp;&nbsp;</strong>
 											       <strong><c:out value="${message.messageAd.title}" /></strong>
 											    </c:when>								    
 											    <c:otherwise>
+											    	Subject:&nbsp;&nbsp;&nbsp;
 											        <c:out value="${message.messageAd.title}" />
 											    </c:otherwise>
 											</c:choose>								
@@ -66,9 +90,10 @@
 									  </div>
 							</div>
 				</c:forEach>
+	</div><!-- @end #section1 -->
 
-		
-		<h2>Messages sent</h2>
+	<div class="tab-pane" id="section-2">	
+		<h2>Sent items</h2>
 					<c:forEach items="${userm.sentMessages}" var="message">
 							<div class="panel 
 										<c:choose>
@@ -83,7 +108,8 @@
 									   <a><span class="pull-left">
 								        <c:choose>
 									    <c:when test="${message.unRead}">
-									       <strong><c:out value="To: ${message.sender.name}" /></strong>
+									    	<strong>To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+									       <strong><c:out value="${message.sender.name}" /></strong>
 									    </c:when>								    
 									    <c:otherwise>
 									        To: <c:out value="${message.sender.name}" />
@@ -93,9 +119,11 @@
 								        <span class="text-muted pull-right"><a class="pull-right" href="<spring:url value="/showmessage/${message.id}.html" />">
 										<c:choose>
 										    <c:when test="${message.unRead}">
+										    	<strong>Sent:&nbsp;</strong>
 										       <strong><fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/> </strong>
 										    </c:when>								    
 										    <c:otherwise>
+										    	Sent:&nbsp;
 										       <fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>
 										    </c:otherwise>
 										</c:choose>								
@@ -112,9 +140,11 @@
 									  <a href="<spring:url value="/ads/${message.messageAd.id}.html" />">
 											<c:choose>
 											    <c:when test="${message.unRead}">
+											    	<strong>Subject: &nbsp;&nbsp;&nbsp;</strong>
 											       <strong><c:out value="${message.messageAd.title}" /></strong>
 											    </c:when>								    
 											    <c:otherwise>
+											    	Subject: &nbsp;&nbsp;&nbsp;
 											        <c:out value="${message.messageAd.title}" />
 											    </c:otherwise>
 											</c:choose>								
@@ -127,7 +157,9 @@
 									  </div>
 							</div>
 				</c:forEach>
+		</div><!-- @end #section2 -->
 		
+</div>
 	
 
 <script type="text/javascript">
@@ -153,3 +185,36 @@ $(document).ready(function() {
 	);
 });
 </script>
+
+
+<script>
+	$(document).ready(
+			function() {
+				$(".triggerRemove").click(
+						function(e) {
+							e.preventDefault();
+							$("#modalRemove .removeBtn").attr("href",
+									$(this).attr("href"));
+							$("#modalRemove").modal();
+						});				
+			});
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Remove ad</h4>
+			</div>
+			<div class="modal-body">Really remove?</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<a href="" class="btn btn-danger removeBtn">Remove</a>
+			</div>
+		</div>
+	</div>
+</div>

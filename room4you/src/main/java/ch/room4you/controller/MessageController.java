@@ -93,7 +93,7 @@ public class MessageController {
 		reply.setMessageAd(message.getMessageAd());
 		reply.setId(null);
 		messageService.save(reply);
-		return "redirect:/account.html?success=true";
+		return "redirect:/messages.html?success=true";
 	}
 	
 	@RequestMapping(value="/message/{id}", method = RequestMethod.POST)
@@ -111,6 +111,18 @@ public class MessageController {
 	@RequestMapping("/message/remove/{id}")
 	public String removeMessage(@PathVariable int id) {
 		messageService.delete(id);
-		return "redirect:/account.html";
+		return "redirect:/messages.html";
+	}
+	
+	@RequestMapping("/message/markAsRead/{id}")
+	public String unMarkMessage(@PathVariable int id) {
+		messageService.unMarkMessage(id);
+		return "redirect:/messages.html";
+	}
+	
+	@RequestMapping("/message/markAsUnRead/{id}")
+	public String markMessage(@PathVariable int id) {
+		messageService.markMessage(id);
+		return "redirect:/messages.html";
 	}
 }

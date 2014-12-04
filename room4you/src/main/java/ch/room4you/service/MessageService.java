@@ -61,21 +61,29 @@ public class MessageService {
 	@Transactional
 	public User findOneWithMessages(String name) {
 		User user = userRepository.findByName(name);
-		List<Message> messages = messageRepository.findByRecipientOrderByTimestampAsc(user);
-		List<Message> sentMessages = messageRepository.findBySenderOrderByTimestampAsc(user);
+		List<Message> messages = messageRepository.findByRecipientOrderByTimestampDesc(user);
+		List<Message> sentMessages = messageRepository.findBySenderOrderByTimestampDesc(user);
 		user.setMessages(messages);
 		user.setSentMessages(sentMessages);
 		return user;
 	}
 	
-	@Transactional
-	public Message findFirstMessage(User userSender, User userRecipient, Ad ad) {
-		return messageRepository.findDistinctTop1BySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
-	}
 	
 	
 	public void delete(int id) {
 		messageRepository.delete(id);
+	}
+	
+	public void unMarkMessage(int id){
+		Message message = messageRepository.findOne(id);
+		message.setUnRead(false);
+		messageRepository.save(message);
+	}
+	
+	public void markMessage(int id){
+		Message message = messageRepository.findOne(id);
+		message.setUnRead(true);
+		messageRepository.save(message);
 	}
 	
 	public void deleteAllMessages(List<Message> messages){
