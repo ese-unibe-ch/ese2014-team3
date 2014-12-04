@@ -3,9 +3,13 @@
 
 <%@ include file="../layout/taglib.jsp"%>
 
+<c:set var="name" value="${nbrUnreadMessages}" scope="session" />
+	
+
+
 <!-- Collect the nav links, forms, and other content for toggling -->
 <ul class="nav nav-tabs">
- 	 <li class="active"><a href="#section-1" data-toggle="tab">Inbox</a></li>
+ 	 <li class="active"><a href="#section-1" data-toggle="tab">Inbox <span class="badge"><c:out value="${name}" /></span></a></li>
   	<li><a href="#section-2" data-toggle="tab">Sent items</a></li>
 </ul>
 

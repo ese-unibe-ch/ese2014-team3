@@ -37,26 +37,7 @@ public class MessageService {
 		return messageRepository.findOne(id);
 	}
 	
-	@Transactional
-	public List<Message> findAllMessagesBySenderAndAd(User userSender, User userRecipient, Ad ad) {
-		return messageRepository.findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(userSender, userRecipient, ad);
-	}
 	
-	@Transactional
-	public List<Message> findFirstSentMessageOfConversations(User userSender, User userRecipient) {
-		List<Message> firstMessagesOfUser = new ArrayList<Message>();
-		List<Ad> ads = adRepository.findAll();
-		if(!ads.isEmpty()){
-		for(Ad ad : ads){
-			List<Message> mesSender = messageRepository.findDistinctBySenderAndMessageAdOrderByTimestampAsc(userSender, ad);
-						
-			if(!mesSender.isEmpty())
-			firstMessagesOfUser.add(messageRepository.findDistinctBySenderAndMessageAdOrderByTimestampAsc(userSender, ad).get(0));
-		
-		}
-	}
-		return firstMessagesOfUser;
-	}
 	
 	@Transactional
 	public User findOneWithMessages(String name) {
@@ -67,6 +48,14 @@ public class MessageService {
 		user.setSentMessages(sentMessages);
 		return user;
 	}
+	
+	@Transactional
+	public List<Message> findNbrOfUnreadMessages(String name) {
+		User user = userRepository.findByName(name);
+		List<Message> messages = messageRepository.findByUnReadTrueAndRecipient(user);
+		return messages;
+	}
+	
 	
 	
 	

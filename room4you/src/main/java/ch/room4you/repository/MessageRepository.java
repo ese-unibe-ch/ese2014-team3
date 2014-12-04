@@ -17,14 +17,7 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
 	List<Message> findByRecipientOrderByTimestampDesc(User recipient);
 	
 	List<Message> findBySenderOrderByTimestampDesc(User sender);
-		
-	List<Message> findDistinctBySenderAndMessageAdOrderByTimestampAsc(User sender, Ad ad);
 	
-	List<Message> findDistinctByRecipientAndMessageAdOrderByTimestampAsc(User recipient, Ad ad);
-	
-	List<Message> findDistinctBySenderOrRecipientAndMessageAdOrderByTimestampAsc(User sender, User recipient, Ad ad);
-	
-	List<Message> findDisctinctBySenderOrRecipient(User sender, User recipient);	
-
+	List<Message> findByUnReadTrueAndRecipient(User recipient);
 		
 }

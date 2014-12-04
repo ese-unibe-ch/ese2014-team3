@@ -1,6 +1,7 @@
 package ch.room4you.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch.room4you.entity.Message;
+import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
 import ch.room4you.service.MessageService;
 import ch.room4you.service.UserService;
@@ -50,7 +52,8 @@ public class MessageController {
 		model.addAttribute("user", userService.findOneWithAds(name));
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("userm", messageService.findOneWithMessages(name));
-
+		List<Message> messages = messageService.findNbrOfUnreadMessages(principal.getName());
+		model.addAttribute("nbrUnreadMessages", messages.size());
 		return "messages";
 	}
 	
@@ -125,4 +128,5 @@ public class MessageController {
 		messageService.markMessage(id);
 		return "redirect:/messages.html";
 	}
+
 }

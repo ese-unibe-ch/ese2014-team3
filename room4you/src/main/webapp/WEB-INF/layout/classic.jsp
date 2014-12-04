@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ include file="../layout/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	
 	
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -62,7 +64,7 @@
               </security:authorize>
               <security:authorize access="isAuthenticated()">              
               	<li class="${current == 'alert' ? 'active' : ''}"><a href="<spring:url value="/alert.html" />">Subscribe alerts</a></li>
-              	<li class="${current == 'messages' ? 'active' : ''}"><a href="<spring:url value="/messages.html" />">Messages</a></li>
+              	<li class="${current == 'messages' ? 'active' : ''}"><a href="<spring:url value="/messages.html" />">Messages <span id="nbrMsgs" class="badge"><c:out value="${name}" /></span></a></li>
               	<li class="${current == 'placeAd' ? 'active' : ''}"><a href="<spring:url value="/placeAd.html" />">My ads</a></li>                  	
               	<li class="${current == 'account' ? 'active' : ''}"><a href="<spring:url value="/account.html" />">My account</a></li>  
               	<li><a href="<spring:url value="/logout" />">Logout</a></li>           	
@@ -82,6 +84,15 @@
 	</center>
 
 </div>
+
+<script>
+    $(document).ready(
+            function() {
+                setInterval(function() {
+                    $('#nbrMsgs').text(<c:out value="${name}" />);
+                }, 1000);
+            });
+</script>
 
 </body>
 </html>
