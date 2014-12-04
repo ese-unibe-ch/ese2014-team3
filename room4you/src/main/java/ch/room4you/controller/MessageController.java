@@ -49,7 +49,7 @@ public class MessageController {
 		String name = principal.getName();
 		model.addAttribute("user", userService.findOneWithAds(name));
 		model.addAttribute("users", userService.findAll());
-		model.addAttribute("userm", userService.findOneWithMessages(name));
+		model.addAttribute("userm", messageService.findOneWithMessages(name));
 
 		return "messages";
 	}

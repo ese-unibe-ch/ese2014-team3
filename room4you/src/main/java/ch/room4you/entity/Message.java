@@ -35,6 +35,8 @@ public class Message {
 	
 	private Timestamp timestamp;
 	
+	private boolean unRead = true;
+	
 	@ManyToOne
 	@JoinColumn(name = "messagead_id")
 	private Ad messageAd;
@@ -103,5 +105,13 @@ public class Message {
 	   Timestamp timestamp = new Timestamp(date.getTime());
 	   this.timestamp = timestamp;
 	   
+	}
+
+	public boolean isUnRead() {
+		return unRead;
+	}
+
+	public void setUnRead(boolean read) {
+		this.unRead = read;
 	}
 }

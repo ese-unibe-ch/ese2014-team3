@@ -5,99 +5,130 @@
 
 
 			<h2 id="section-4">Messages received</h2>
-		<table class="table table-bordered table-hover table-striped">
-			<thead>
-				<tr>
-					<th>From</th>
-					<th>Regarding Ad</th>
-					<th>Details</th>
-					<th>Reply</th>
-					<th>Delete</th>
-				</tr>
-			</thead>
-			<tbody>
 				<c:forEach items="${userm.messages}" var="message">
-					<tr>
-						<td id="message_${message.id}"><a> <c:out
-									value="${message.sender.name}" />
-						</a></td>
-						<td><a
-							href="<spring:url value="/ads/${message.messageAd.id}.html" />">
-								<c:out value="${message.messageAd.title}" />
-						</a></td>
-						<td><a
-							href="<spring:url value="/showmessage/${message.id}.html" />">
-								Show Message </a></td>
-						<td><a href="<spring:url value="/reply/${message.id}.html" />">
-								Reply </a></td>
-						<td><a
-							href="<spring:url value="/message/remove/${message.id}.html" />"
-							class="btn btn-danger triggerRemove"> Delete Message </a></td>
-					</tr>
+							<div class="panel 
+										<c:choose>
+										<c:when test="${message.unRead}">
+									       panel-warning
+									    </c:when>								    
+									    <c:otherwise>
+									        panel-default
+									    </c:otherwise>	
+									    </c:choose>">					
+								  <div class="panel-heading" >
+									   <a><span class="pull-left">
+								        <c:choose>
+									    <c:when test="${message.unRead}">
+									       <strong><c:out value="${message.sender.name}" /></strong>
+									    </c:when>								    
+									    <c:otherwise>
+									        <c:out value="${message.sender.name}" />
+									    </c:otherwise>
+									  </c:choose>		</span>
+								        
+								        <span class="text-muted pull-right"><a class="pull-right" href="<spring:url value="/showmessage/${message.id}.html" />">
+										<c:choose>
+										    <c:when test="${message.unRead}">
+										       <strong><fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/> </strong>
+										    </c:when>								    
+										    <c:otherwise>
+										       <fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>
+										    </c:otherwise>
+										</c:choose>								
+									  </a></span></a>
+									  <br><br>
+									  <div class="btn-group pull-right">
+										   <a href="<spring:url value="/reply/${message.id}.html" />" class="btn btn-default btn-sm">
+												Reply 
+										   </a>
+									       <a href="<spring:url value="/message/remove/${message.id}.html" />"
+												class="btn btn-danger btn-sm triggerRemove"> 
+												Delete Message 
+										   </a>	
+								     </div>		
+      							     <br>						  								  									  
+									  
+									  <a href="<spring:url value="/ads/${message.messageAd.id}.html" />">
+											<c:choose>
+											    <c:when test="${message.unRead}">
+											       <strong><c:out value="${message.messageAd.title}" /></strong>
+											    </c:when>								    
+											    <c:otherwise>
+											        <c:out value="${message.messageAd.title}" />
+											    </c:otherwise>
+											</c:choose>								
+									  </a>
+									  </div>
+									  <div class="panel-body">					  
+											<a href="<spring:url value="/showmessage/${message.id}.html"/>">
+												<c:out value="${message.message}" />							
+											</a>						  							  
+									  </div>
+							</div>
 				</c:forEach>
-			</tbody>
-		</table>
+
 		
 		<h2>Messages sent</h2>
-		<table class="table table-bordered table-hover table-striped">
-			<thead>
-				<tr>
-					<th>To</th>
-					<th>Regarding Ad</th>
-					<th>Details</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${userm.sentMessages}" var="message">
-					<tr>
-						<td id="message_${message.id}"><a> <c:out
-									value="${message.recipient.name}" />
-						</a></td>
-						<td><a
-							href="<spring:url value="/ads/${message.messageAd.id}.html" />">
-								<c:out value="${message.messageAd.title}" />
-						</a></td>
-						<td><a
-							href="<spring:url value="/showmessage/${message.id}.html" />">
-								Show Message </a></td>
-					</tr>
+					<c:forEach items="${userm.sentMessages}" var="message">
+							<div class="panel 
+										<c:choose>
+										<c:when test="${message.unRead}">
+									       panel-warning
+									    </c:when>								    
+									    <c:otherwise>
+									        panel-default
+									    </c:otherwise>	
+									    </c:choose>">					
+								  <div class="panel-heading" >
+									   <a><span class="pull-left">
+								        <c:choose>
+									    <c:when test="${message.unRead}">
+									       <strong><c:out value="To: ${message.sender.name}" /></strong>
+									    </c:when>								    
+									    <c:otherwise>
+									        To: <c:out value="${message.sender.name}" />
+									    </c:otherwise>
+									  </c:choose>		</span>
+								        
+								        <span class="text-muted pull-right"><a class="pull-right" href="<spring:url value="/showmessage/${message.id}.html" />">
+										<c:choose>
+										    <c:when test="${message.unRead}">
+										       <strong><fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/> </strong>
+										    </c:when>								    
+										    <c:otherwise>
+										       <fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>
+										    </c:otherwise>
+										</c:choose>								
+									  </a></span></a>
+									  <br><br>
+									  <div class="btn-group pull-right">
+									       <a href="<spring:url value="/message/remove/${message.id}.html" />"
+												class="btn btn-danger btn-sm triggerRemove"> 
+												Delete Message 
+										   </a>	
+								     </div>		
+      							     <br>						  								  									  
+									  
+									  <a href="<spring:url value="/ads/${message.messageAd.id}.html" />">
+											<c:choose>
+											    <c:when test="${message.unRead}">
+											       <strong><c:out value="${message.messageAd.title}" /></strong>
+											    </c:when>								    
+											    <c:otherwise>
+											        <c:out value="${message.messageAd.title}" />
+											    </c:otherwise>
+											</c:choose>								
+									  </a>
+									  </div>
+									  <div class="panel-body">					  
+											<a href="<spring:url value="/showmessage/${message.id}.html"/>">
+												<c:out value="${message.message}" />							
+											</a>						  							  
+									  </div>
+							</div>
 				</c:forEach>
-			</tbody>
-		</table>
-
-
-<form:form commandName="newmessage" cssClass="form-horizontal registrationForm">
-
-	<div class="form-group">
-		<label for="sender" class="col-sm-2 control-label">From:</label>
-		<div class="col-sm-10">
-			<form:label path="sender" cssClass="label label-default">${sender.name}</form:label>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="recipient" class="col-sm-2 control-label">To:</label>
-		<div class="col-sm-10">
-			<form:label path="recipient" cssClass="label label-default">${recipient.name}</form:label>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="title" class="col-sm-2 control-label">Title:</label>
-		<div class="col-sm-10">
-			<form:input path="title" cssClass="form-control" width="100px"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="message" class="col-sm-2 control-label">Message:</label>
-		<div class="col-sm-10">
-			<textarea name="message" path="message" id="txtArea" rows="10" cols="70"></textarea>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="pager">
-			<input type="submit" value="Save" class="btn btn-lg btn-primary" />
-		</div>
-	</div>
-</form:form>
+		
+	
 
 <script type="text/javascript">
 $(document).ready(function() {

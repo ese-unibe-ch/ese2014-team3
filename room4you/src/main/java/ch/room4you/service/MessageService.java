@@ -13,6 +13,7 @@ import ch.room4you.entity.Message;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
 import ch.room4you.repository.MessageRepository;
+import ch.room4you.repository.UserRepository;
 
 @Service
 public class MessageService {
@@ -22,6 +23,10 @@ public class MessageService {
 	
 	@Autowired
 	private AdRepository adRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
 	
 	public void save(Message message) {
 		message.createTimestamp();
@@ -54,19 +59,13 @@ public class MessageService {
 	}
 	
 	@Transactional
-	public List<Message> findFirstReceivedMessageOfConversations(User userSender, User userRecipient) {
-		List<Message> firstMessagesOfUser = new ArrayList<Message>();
-		List<Ad> ads = adRepository.findAll();
-		if(!ads.isEmpty()){
-		for(Ad ad : ads){
-			List<Message> mesRecipient = messageRepository.findDistinctByRecipientAndMessageAdOrderByTimestampAsc(userRecipient, ad);
-			
-			if(!mesRecipient.isEmpty())
-				firstMessagesOfUser.add(messageRepository.findDistinctByRecipientAndMessageAdOrderByTimestampAsc(userRecipient, ad).get(0));
-			}
-		
-		}
-		return firstMessagesOfUser;
+	public User findOneWithMessages(String name) {
+		User user = userRepository.findByName(name);
+		List<Message> messages = messageRepository.findByRecipientOrderByTimestampAsc(user);
+		List<Message> sentMessages = messageRepository.findBySenderOrderByTimestampAsc(user);
+		user.setMessages(messages);
+		user.setSentMessages(sentMessages);
+		return user;
 	}
 	
 	@Transactional

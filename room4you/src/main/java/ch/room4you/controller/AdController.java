@@ -102,12 +102,10 @@ public class AdController {
 		String name = principal.getName();
 		model.addAttribute("user", userService.findOneWithAds(name));
 		model.addAttribute("users", userService.findAll());
-		model.addAttribute("userm", userService.findOneWithMessages(name));
+		model.addAttribute("userm", messageService.findOneWithMessages(name));
 		//model.addAttribute("conversations", messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));		
 		model.addAttribute("bookmarks", bookmarkService.findAllBookmarks(name));
 		model.addAttribute("candidates", candidateService.findByAdPlacer(name));
-		model.addAttribute("conversationsSent", messageService.findFirstSentMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));
-		model.addAttribute("conversationsReceived", messageService.findFirstReceivedMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));
 
 		return "placeAd";
 	}
