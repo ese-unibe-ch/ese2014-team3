@@ -170,10 +170,13 @@
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">RoomMates:</label>
 						<div class="col-sm-10">
-							<form:select class="form-control" path="roomMates">
-								<form:options items="${users}" var="users" itemValue="id"
-									itemLabel="name" />
-								</form:select>
+							<form:select id="roomMateSelection" class="form-control" path="roomMates">
+								<c:forEach items="${users}" var="user">
+									<option value="${user.id}">${user.name}</option>								
+								</c:forEach>
+<%-- 								<form:options items="${users}" var="users" itemValue="id" --%>
+<%--  									itemLabel="name" /> --%>
+							</form:select>
 						</div>
 					</div>
 					<div class="form-group" id="firstDatePicker">
@@ -270,6 +273,19 @@
 				}
 			});
 </script>
+
+<!-- multiple roommate dropdown selection -->
+<script>
+     $(document).ready(function() { 
+    	 $("#roomMateSelection").select2({
+    		 placeholder: "Select a room mate",
+    		    allowClear: true
+    	 }
+    		 
+     
+     ); });
+ </script> 
+
 
 
 <!-- Modal -->

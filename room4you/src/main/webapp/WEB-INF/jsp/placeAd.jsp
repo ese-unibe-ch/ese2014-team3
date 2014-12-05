@@ -13,7 +13,7 @@
 
 	<h2>${user.name}</h2>
 	
-	<a href="<spring:url value="/ad/placeNewAd.html"/>" class="btn btn-primary btn-lg active pull-right" role="button">Place new ad</a>
+	<a href="<spring:url value="/placeNewAd.html"/>" class="btn btn-primary btn-lg active pull-right" role="button">Place new ad</a>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<ul class="nav nav-tabs">
@@ -120,6 +120,7 @@
 					</div>
 			</div>
   </div><!-- @end #section-2 -->
+ </div>
 
 <div class="tab-pane" id="section3">
 	<c:if test="${not empty user.ads}">

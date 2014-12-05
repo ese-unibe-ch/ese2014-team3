@@ -1,13 +1,16 @@
 package ch.room4you.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -25,13 +28,16 @@ import org.springframework.web.multipart.MultipartFile;
 import pojo.SearchAdsForm;
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Appointment;
+import ch.room4you.entity.Image;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
 import ch.room4you.service.AppointmentService;
 import ch.room4you.service.BookmarkService;
 import ch.room4you.service.FavCandidatesService;
+import ch.room4you.service.ImageService;
 import ch.room4you.service.MessageService;
+import ch.room4you.service.RoomMateService;
 import ch.room4you.service.UserService;
 
 @Controller
@@ -54,6 +60,12 @@ public class AdController {
 	
 	@Autowired
 	private FavCandidatesService candidateService;
+	
+	@Autowired
+	private RoomMateService roomMateService;
+	
+	@Autowired
+	private ImageService imageService;
 	
 	/**
 	 * Instantiates an ad object which is mapped to the spring form in 
@@ -102,16 +114,24 @@ public class AdController {
 		String name = principal.getName();
 		model.addAttribute("user", userService.findOneWithAds(name));
 		model.addAttribute("users", userService.findAll());
-		model.addAttribute("userm", messageService.findOneWithMessages(name));
-		//model.addAttribute("conversations", messageService.findFirstMessageOfConversations(userService.findOneByName(name), userService.findOneByName(name)));		
+		model.addAttribute("userm", messageService.findOneWithMessages(name));	
 		model.addAttribute("bookmarks", bookmarkService.findAllBookmarks(name));
 		model.addAttribute("candidates", candidateService.findByAdPlacer(name));
 
 		return "placeAd";
 	}
-
-
 	
+	@RequestMapping("/placeNewAd")
+	public String placeNewAd(Model model, Principal principal) {
+		String name = principal.getName();
+		model.addAttribute("user", userService.findOneWithAds(name));
+		model.addAttribute("users", userService.findAll());
+		model.addAttribute("userm", messageService.findOneWithMessages(name));		
+		model.addAttribute("bookmarks", bookmarkService.findAllBookmarks(name));
+		model.addAttribute("candidates", candidateService.findByAdPlacer(name));
+
+		return "editAd";
+	}
 	
 	/**
 	 * Receives the data from user-account form and adds the data to the ad
@@ -121,7 +141,7 @@ public class AdController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/ad/placeNewAd", method = RequestMethod.POST)
+	@RequestMapping(value = "/placeNewAd", method = RequestMethod.POST)
 	@Transactional
 	public String doAddAd(Model model, @ModelAttribute("ad") Ad ad,
 			BindingResult result,
@@ -131,14 +151,10 @@ public class AdController {
 			, org.springframework.web.context.request.WebRequest webRequest,
 			@RequestParam("appointments") List<String> appointments) {
 
-		adService.doAddAd(model, ad, result, principal, images, webRequest, appointments);
-		/*String roomMate = webRequest.getParameter("roomMates");
-
-		if (ad.getWeAreLookingFor().isEmpty()) {
-			ad.setWeAreLookingFor("Anyone");
-		}
-
+		String roomMate = webRequest.getParameter("roomMates");
+		
 		String name = principal.getName();
+		model.addAttribute("users",userService.findAll());
 		adService.save(ad, name);
 
 		try {
@@ -149,27 +165,22 @@ public class AdController {
 			}
 
 			if (appointments != null) {
-				saveAppointments(ad, appointments);
+//				saveAppointments(ad, appointments);
 			}
 
 			// save imagesAsString
-			if (!images[0].isEmpty())
-				saveImages(ad, images);
+			if(!images[0].isEmpty())
+			saveImages(ad, images);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
-		
-	/*	List<FavCandidates> f = favCRepository.findAll();
-		System.err.println(f.isEmpty());
-		System.out.println(f);
-		for ( FavCandidates c : f) {
-			System.out.println(c.getVisitors().get(0));
-		} */ 
+
 		return "redirect:/placeAd.html";
 	}
+
+	
 	
 	/**
 	 * Removes the ad with the id={id} and redirects to account.html
@@ -199,23 +210,22 @@ public class AdController {
 		return "editAd";
 	}
 	
+	
 
 	@RequestMapping(value = "/ad/edit/{id}", method = RequestMethod.POST)
 	public String sendEdit(@PathVariable int id, Model model,
 			@ModelAttribute("ad") Ad ad, BindingResult result,
 			Principal principal, @RequestParam("image[]") MultipartFile[] images
 			// ,@RequestParam("roomMates") String roomMate
-			, org.springframework.web.context.request.WebRequest webRequest
-			, @RequestParam("appointments") List<String> appointments) {
-		
-		adService.editAd(id, model, ad, result, principal, images, webRequest, appointments);
-	//	String roomMate = webRequest.getParameter("roomMates");
+			, org.springframework.web.context.request.WebRequest webRequest) {
 
-	//	String name = principal.getName();
-	//	ad.setId(id);
-	//	adService.save(ad, name);
+		String roomMate = webRequest.getParameter("roomMates");
 
-	/*	try {
+		String name = principal.getName();
+		ad.setId(id);
+		adService.save(ad, name);
+
+		try {
 
 			// save roommates
 			if (roomMate != null) {
@@ -224,17 +234,16 @@ public class AdController {
 
 			// save imagesAsString
 			if (!images[0].isEmpty()) {
-				saveImages(ad, images);
+			saveImages(ad, images);
 			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} */
+		}
 
-		return "redirect:/placeAd.html";
+		return "redirect:/account.html";
 	}
-
 	/**
 	 * Maps the request url /ads to the page ads.jsp and provides the model
 	 * "ads" with all ads in the repository
@@ -429,6 +438,34 @@ public class AdController {
 		}
 		return searchSharedApartment;
 	}
+	
+	private void saveRoomMates(Ad ad, String roomMate) {
+		List<String> roomMates = Arrays.asList(roomMate.split(","));
+		for (String roomM : roomMates) {
+			RoomMate rm = new RoomMate();
+			rm.setUser(userService.findOne(Integer.parseInt(roomM)));
+			rm.setAd(ad);
+			roomMateService.save(rm);
+		}
+	}
+
+	private void saveImages(Ad ad, MultipartFile[] images) throws IOException {
+		byte[] bytes;
+		for (MultipartFile imageMPF : images) {
+			Image image = new Image();
+			if(!imageMPF.isEmpty()){
+				bytes = imageMPF.getBytes();
+				byte[] encoded = Base64.encodeBase64(bytes);
+				String encodedString = new String(encoded);
+				image.setImageAsString(encodedString);
+				image.setAd(ad);
+				imageService.save(image);
+			}
+
+		}
+	}
+
+
 	
 	/**
 	 * Maps the date format to the convenient date format for the database

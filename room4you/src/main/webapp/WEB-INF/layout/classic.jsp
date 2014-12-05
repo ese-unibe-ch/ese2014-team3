@@ -17,8 +17,17 @@
 
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2-bootstrap.min.css">
+	
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css">
+	
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js"></script>
+
 
 <script type="text/javascript" 
 		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
@@ -26,6 +35,7 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	
+<%-- <script src="${pageContext.request.contextPath}/resources/js/style.css"></script>	 --%>
 	
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
