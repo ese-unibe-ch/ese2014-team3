@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:if test="${param.success eq true}">
 	<div class="alert alert-success">Message sent!</div>
@@ -37,13 +38,14 @@
 				<div id="Layout" class="container">
 					<div class="row" id="createdAds">
 
+
 						<c:forEach items="${user.ads}" var="ad">
 							<div class="col-md-6 col-md-4 user-ads">
 								<div style="width: 75%; height: 75%; padding-bottom: 5%"
 									id="thumbnail" class="thumbnail">
 
 									<a href="<spring:url value="/ads/${ad.id}.html"/>"> <c:choose>
-											<c:when test="${not empty ad.images}">
+											<c:when test="${fn:length(ad.images) > 0}">
 												<img
 													src="data:image/jpeg;base64,${ad.images[0].imageAsString}"
 													class="img-responsive"></img>
@@ -127,109 +129,111 @@
 			</div>
 			<!-- @end #section-2 -->
 
-		<div class="tab-pane" id="section-3">
-				<h4 class="section">To create a list of your favorite visitors select them and compile</h4>
+			<div class="tab-pane" id="section-3">
+				<h4 class="section">To create a list of your favorite visitors
+					select them and compile</h4>
 				<h4 class="section">Appointments</h4>
 				<div id="appointments" class="container">
 					<div class="row" id="visitors">
-					<div class="caption">
-					<c:if test="${not empty user.ads}">
-					<c:forEach items="${user.ads}" var="ad">
-							<form:form method="post" action="compile/${ad.id}.html">
-								<c:choose>
-									<c:when test="${empty ad.appointments}">
-										<!--    <h4>Ad: ${ad.title}</h4> -->
-										<!--    <p>No appointments scheduled for this appointment </p>	-->
-									</c:when>
-									<c:otherwise>
-										<h4>${ad.title}</h4>
-										<c:forEach items="${ad.appointments}" var="appointment">
-											<li>Appointment</li>
-											<div class="row">
-												<div class="col-md-1">
-													<label>Begin:</label>
-												</div>
-												<div class="col-md-1.5">
-													<label>${appointment.appointDate.startTime}</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-1">
-													<label>Date:</label>
-												</div>
-												<div class="col-md-1.5">
-													<label>${appointment.appointDate.appointDate}</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-1">
-													<label>End:</label>
-												</div>
-												<div class="col-md-1.5">
-													<label>${appointment.appointDate.endTime}</label>
-												</div>
-											</div>
-											<p></p>
-											<label>Visitors:</label>
-											<c:choose>
-												<c:when test="${not empty appointment.visitors}">
-													<c:forEach items="${appointment.visitors}" var="visitor">
-														<a href="<spring:url value="/ads/${ad.id}.html"/>"> </a>
-														<li><input type="checkbox" name="candidates"
-															value="${visitor.id}"></input><a
-															href="<spring:url value="/users/${visitor.id}.html" />">
-																<c:out value="${visitor.name}" />
-														</a></li>
-														<input type="hidden" name="_candidates" value="on" />
-													</c:forEach>
-												</c:when>
-												<c:otherwise>
-													<c:out value="No visitors at the moment" />
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-									</c:otherwise>
-								</c:choose>
-								<c:if test="${not empty ad.appointments[0].visitors}">
-									<input type="submit" class="btn btn-primary" value="Compile" />
-								</c:if>
-							</form:form>
-						</c:forEach>
-					</c:if>
+						<div class="caption">
+							<c:if test="${not empty user.ads}">
+								<c:forEach items="${user.ads}" var="ad">
+									<form:form method="post" action="compile/${ad.id}.html">
+										<c:choose>
+											<c:when test="${empty ad.appointments}">
+												<!--    <h4>Ad: ${ad.title}</h4> -->
+												<!--    <p>No appointments scheduled for this appointment </p>	-->
+											</c:when>
+											<c:otherwise>
+												<h4>${ad.title}</h4>
+												<c:forEach items="${ad.appointments}" var="appointment">
+													<li>Appointment</li>
+													<div class="row">
+														<div class="col-md-1">
+															<label>Begin:</label>
+														</div>
+														<div class="col-md-1.5">
+															<label>${appointment.appointDate.startTime}</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-1">
+															<label>Date:</label>
+														</div>
+														<div class="col-md-1.5">
+															<label>${appointment.appointDate.appointDate}</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-1">
+															<label>End:</label>
+														</div>
+														<div class="col-md-1.5">
+															<label>${appointment.appointDate.endTime}</label>
+														</div>
+													</div>
+													<p></p>
+													<label>Visitors:</label>
+													<c:choose>
+														<c:when test="${not empty appointment.visitors}">
+															<c:forEach items="${appointment.visitors}" var="visitor">
+																<a href="<spring:url value="/ads/${ad.id}.html"/>">
+																</a>
+																<li><input type="checkbox" name="candidates"
+																	value="${visitor.id}"></input><a
+																	href="<spring:url value="/users/${visitor.id}.html" />">
+																		<c:out value="${visitor.name}" />
+																</a></li>
+																<input type="hidden" name="_candidates" value="on" />
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<c:out value="No visitors at the moment" />
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
+										<c:if test="${not empty ad.appointments[0].visitors}">
+											<input type="submit" class="btn btn-primary" value="Compile" />
+										</c:if>
+									</form:form>
+								</c:forEach>
+							</c:if>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	<!-- @end #section-3 -->
-	
-	
+			<!-- @end #section-3 -->
 
-	<div class="tab-pane" id="section-4">
-		<h4 class="section">Favourite Candidates</h4>
-		<div id="favCandidates" class="container">
-			<div class="row" id="favCandidates">
-				<div class="col-md-6 col-md-4 favCandidates">
-					<div class="caption">
-						<c:forEach items="${user.favCandidates}" var="candList">
-							<c:forEach items="${candList.visitors}" var="member" >
-							<li><a
-								href="<spring:url value="/users/${member.id}.html" />">
-									<c:out value="${member.name}" />
-							</a></li>
-							</c:forEach>
-						</c:forEach>
+
+
+			<div class="tab-pane" id="section-4">
+				<h4 class="section">Favourite Candidates</h4>
+				<div id="favCandidates" class="container">
+					<div class="row" id="favCandidates">
+						<div class="col-md-6 col-md-4 favCandidates">
+							<div class="caption">
+								<c:forEach items="${user.favCandidates}" var="candList">
+									<c:forEach items="${candList.visitors}" var="member">
+										<li><a
+											href="<spring:url value="/users/${member.id}.html" />"> <c:out
+													value="${member.name}" />
+										</a></li>
+									</c:forEach>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
+		<!-- @end #section-4 -->
 		
 
 
-
-	<br /> <br />
-</div>
+		<br /> <br />
+	</div>
 </div>
 
 

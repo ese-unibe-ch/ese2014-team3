@@ -217,7 +217,17 @@ public class AdController {
 		model.addAttribute("ad", adService.findOne(id));
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("appointments", appointmentService.findByAd(id));
+		model.addAttribute("selectedRoomMates", roomMateService.findRoomMatesForAd(adService.findOne(id)));
 		return "editAd";
+	}
+	
+	@RequestMapping("/ad/deleteRoomMate/{id}")
+	public String deleteRoomMates(@PathVariable int id, Model model) {
+		List<RoomMate> rm = roomMateService.findRoomMatesForAd(adService.findOne(id));
+		for(RoomMate roomMate : rm){
+			roomMateService.deleteRoomMate(roomMate);
+		}
+		return "redirect:/ad/edit/"+id+".html"; 
 	}
 	
 	@RequestMapping("/ad/placeNewAd")

@@ -4,6 +4,8 @@ package ch.room4you.service;
  * Database operation service for adRepository interface
  */
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,15 @@ public class RoomMateService{
 	public void save(RoomMate roomMate) {
 		roomMateRepository.save(roomMate);
 		
+	}
+	
+	public void deleteRoomMate(RoomMate roomMate) {
+		roomMateRepository.delete(roomMate);
+		
+	}
+	
+	public List<RoomMate> findRoomMatesForAd(Ad ad){
+		return roomMateRepository.findByAd(ad);		
 	}
 	
 
