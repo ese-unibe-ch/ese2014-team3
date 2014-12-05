@@ -10,6 +10,9 @@
 
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
+<%@ taglib prefix="fn" 
+           uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" >
 
 <link rel="stylesheet"

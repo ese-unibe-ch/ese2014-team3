@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
+<%@ taglib prefix="fn" 
+           uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:if test="${param.success eq true}">
 	<div class="alert alert-success">Message sent!</div>
@@ -38,8 +40,9 @@
 						<div style="width: 75%; height: 75%; padding-bottom: 5%"
 							id="thumbnail" class="thumbnail">
 
-							<a href="<spring:url value="/ads/${ad.id}.html"/>"> <c:choose>
-									<c:when test="${not empty ad.images}">
+							<a href="<spring:url value="/ads/${ad.id}.html"/>"> 
+							<c:choose>
+									<c:when test="${fn:length(ad.images) > 0}">
 										<img
 											src="data:image/jpeg;base64,${ad.images[0].imageAsString}"
 											class="img-responsive"></img>

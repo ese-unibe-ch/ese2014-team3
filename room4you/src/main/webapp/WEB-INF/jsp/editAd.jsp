@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
+<%@ taglib prefix="fn" 
+           uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <form:form method="post" modelAttribute="ad" cssClass="form-horizontal adForm" enctype="multipart/form-data">
@@ -167,15 +169,30 @@
 							<form:errors path="additionalInformation" />
 						</div>
 					</div>
+					
+					<c:if test="${fn:length(selectedRoomMates) > 0}">					
 					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">RoomMates:</label>
+						<label for="name" class="col-sm-2 control-label">Already selected room mates:</label>
+						<div class="col-sm-10">
+							<c:forEach items="${selectedRoomMates}" var="items">
+								${items.user.name}
+							</c:forEach>
+							<a href="<spring:url value="/ad/deleteRoomMate/${ad.id}.html"/>"
+									class="btn btn-primary" role="button"> Delete existing room mates </a>
+						</div>
+					</div>
+					</c:if>
+					
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">Add room mates:</label>
 						<div class="col-sm-10">
 							<form:select multiple="" name="roomMates" id="roomMateSelection" class="form-control" path="roomMates">
 								<form:options items="${users}" var="users" itemValue="id"
-  									itemLabel="name" />
+  									itemLabel="name"/>
 							</form:select>
 						</div>
-					</div>
+					</div>					
+
 					<div class="form-group" id="firstDatePicker">
 						<label for="name" class="col-sm-2 control-label">Appointment:</label>
 						<div class="col-sm-10">
