@@ -170,12 +170,9 @@
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">RoomMates:</label>
 						<div class="col-sm-10">
-							<form:select id="roomMateSelection" class="form-control" path="roomMates">
-								<c:forEach items="${users}" var="user">
-									<option value="${user.id}">${user.name}</option>								
-								</c:forEach>
-<%-- 								<form:options items="${users}" var="users" itemValue="id" --%>
-<%--  									itemLabel="name" /> --%>
+							<form:select multiple="" name="roomMates" id="roomMateSelection" class="form-control" path="roomMates">
+								<form:options items="${users}" var="users" itemValue="id"
+  									itemLabel="name" />
 							</form:select>
 						</div>
 					</div>

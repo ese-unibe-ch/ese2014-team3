@@ -11,6 +11,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pojo.SearchAdsForm;
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Appointment;
+import ch.room4you.entity.AppointmentDate;
 import ch.room4you.entity.Image;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
@@ -42,10 +44,12 @@ import ch.room4you.service.UserService;
 
 @Controller
 public class AdController {
+	
+	Logger  log = Logger.getLogger(AdController.class);
 
 	@Autowired
 	private AdService adService;
-
+	
 	@Autowired
 	private UserService userService;
 	
@@ -129,7 +133,6 @@ public class AdController {
 		model.addAttribute("userm", messageService.findOneWithMessages(name));		
 		model.addAttribute("bookmarks", bookmarkService.findAllBookmarks(name));
 		model.addAttribute("candidates", candidateService.findByAdPlacer(name));
-
 		return "editAd";
 	}
 	
@@ -147,11 +150,11 @@ public class AdController {
 			BindingResult result,
 			Principal principal,
 			@RequestParam("image[]") MultipartFile[] images
-			// ,@RequestParam("roomMates") String roomMate
+			 ,@RequestParam(value="roomMates", defaultValue="anonymous") List<String> roomMate
 			, org.springframework.web.context.request.WebRequest webRequest,
 			@RequestParam("appointments") List<String> appointments) {
-
-		String roomMate = webRequest.getParameter("roomMates");
+		log.info("Got following roommate string:"+ roomMate);
+		System.out.println("Got following roommate string:"+ roomMate);
 		
 		String name = principal.getName();
 		model.addAttribute("users",userService.findAll());
@@ -160,12 +163,12 @@ public class AdController {
 		try {
 
 			// save roommates
-			if (roomMate != null) {
+			if (!roomMate.get(0).equals("anonymous")) {
 				saveRoomMates(ad, roomMate);
 			}
 
 			if (appointments != null) {
-//				saveAppointments(ad, appointments);
+	//			saveAppointments(ad, appointments);
 			}
 
 			// save imagesAsString
@@ -191,7 +194,6 @@ public class AdController {
 	 */
 	@RequestMapping("/ad/remove/{id}")
 	public String removeAd(@PathVariable int id) {
-		System.out.println("remove ist touched");
 		Ad ad = adService.findOne(id);
 		adService.delete(ad);
 		return "redirect:/placeAd.html";
@@ -216,11 +218,10 @@ public class AdController {
 	public String sendEdit(@PathVariable int id, Model model,
 			@ModelAttribute("ad") Ad ad, BindingResult result,
 			Principal principal, @RequestParam("image[]") MultipartFile[] images
-			// ,@RequestParam("roomMates") String roomMate
+			 ,@RequestParam(value="roomMates", defaultValue="anonymous") List<String> roomMate
 			, org.springframework.web.context.request.WebRequest webRequest) {
 
-		String roomMate = webRequest.getParameter("roomMates");
-
+	
 		String name = principal.getName();
 		ad.setId(id);
 		adService.save(ad, name);
@@ -228,7 +229,7 @@ public class AdController {
 		try {
 
 			// save roommates
-			if (roomMate != null) {
+			if (!roomMate.get(0).equals("anonymous")) {
 				saveRoomMates(ad, roomMate);
 			}
 
@@ -242,7 +243,7 @@ public class AdController {
 			e.printStackTrace();
 		}
 
-		return "redirect:/account.html";
+		return "redirect:/placeAd.html";
 	}
 	/**
 	 * Maps the request url /ads to the page ads.jsp and provides the model
@@ -326,6 +327,28 @@ public class AdController {
 		return "redirect:/ads/{id}.html";
 	}
 */
+	
+	private void saveAppointments(Ad ad, List<String> appointments) {
+		List<Appointment> adAppoints = new ArrayList<Appointment>();
+		for (int i = 0; i < appointments.size(); i += 4) {
+			AppointmentDate appointDate = new AppointmentDate();
+			appointDate.setAppointDate(appointments.get(i));
+			appointDate.setStartTime(appointments.get(i + 1));
+			appointDate.setEndTime(appointments.get(i + 2));
+//			dateService.save(appointDate);
+			Appointment appointment = new Appointment();
+			appointment.setAppointDate(appointDate);
+			appointment.setAppointmentAd(ad);
+
+			if (!appointments.get(i + 3).isEmpty()) {
+				appointment.setNmbrVisitors(Integer.valueOf(appointments
+						.get(i + 3)));
+			}
+			appointmentService.save(appointment);
+			adAppoints.add(appointment);
+		}
+		ad.setAppointments(adAppoints);
+	}
 
 	private void setModelAttributeAds(Model model,
 			org.springframework.web.context.request.WebRequest webRequest) {
@@ -439,9 +462,9 @@ public class AdController {
 		return searchSharedApartment;
 	}
 	
-	private void saveRoomMates(Ad ad, String roomMate) {
-		List<String> roomMates = Arrays.asList(roomMate.split(","));
-		for (String roomM : roomMates) {
+	private void saveRoomMates(Ad ad, List<String> roomMate) {
+//		List<String> roomMates = Arrays.asList(roomMate.split(","));
+		for (String roomM : roomMate) {
 			RoomMate rm = new RoomMate();
 			rm.setUser(userService.findOne(Integer.parseInt(roomM)));
 			rm.setAd(ad);
