@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -19,10 +22,10 @@ public class FavCandidates {
 	@OneToOne
 	private Ad ad;
 	
-	@OneToOne
+	@ManyToOne
 	private User adPlacer;
 	
-	@OneToMany
+	@ManyToMany (fetch = FetchType.EAGER)
 	private List<User> visitors = new ArrayList<User>();
 	
 	//@OneToMany

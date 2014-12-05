@@ -71,6 +71,8 @@ public class AdController {
 	@Autowired
 	private ImageService imageService;
 	
+	
+	
 	/**
 	 * Instantiates an ad object which is mapped to the spring form in 
 	 * user-account.jsp
@@ -121,6 +123,8 @@ public class AdController {
 		model.addAttribute("userm", messageService.findOneWithMessages(name));	
 		model.addAttribute("bookmarks", bookmarkService.findAllBookmarks(name));
 		model.addAttribute("candidates", candidateService.findByAdPlacer(name));
+		
+		System.out.println(userService.findOneByName(principal.getName()).getFavCandidates().isEmpty());
 
 		return "placeAd";
 	}
@@ -182,6 +186,15 @@ public class AdController {
 
 		return "redirect:/placeAd.html";
 	}
+	
+	@RequestMapping(value="/compile/{id}", method = RequestMethod.POST)
+	public String compileCandidates(Model model /*, BindingResult result */, Principal principal,
+			@PathVariable("id") int id, @RequestParam("candidates") List<Integer> candidates) {
+		
+		candidateService.createFavList(candidates, id, principal.getName());
+		return "redirect:/placeAd.html";
+	}	
+
 
 	
 	

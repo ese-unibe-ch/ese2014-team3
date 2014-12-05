@@ -97,13 +97,13 @@ public class AppointmentService {
 		}
 		return false;
 	}
-
+/*
 	@Transactional
 	public void compileCandidates(FavCandidates favCandidates, String userName /*
 																				 * ,
 																				 * int
 																				 * adId
-																				 */) {
+																				 ) {
 		User user = userRepository.findByName(userName);
 		// Ad ad = adRepository.findOne(adId);
 		// Ad ad = adRepository.findOne(adId);
@@ -118,7 +118,7 @@ public class AppointmentService {
 		candidatesRepository.save(favCandidates);
 		System.out.println(favCandidates.getVisitors().size());
 
-	}
+	} */
 
 	@Transactional
 	public List<Appointment> findByAd(int id) {

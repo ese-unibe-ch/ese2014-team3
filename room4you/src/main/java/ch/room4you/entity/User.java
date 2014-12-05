@@ -2,6 +2,7 @@ package ch.room4you.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -22,7 +23,6 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 
 import ch.room4you.annotation.UniqueUsername;
-
 import ch.room4you.entity.FavCandidates;
 
 @Entity
@@ -68,8 +68,8 @@ public class User  {
 //	@ManyToMany(mappedBy = "promisingCandidates",fetch = FetchType.EAGER)
 //	private List<Appointment> appointmentPromisingCandidates = new ArrayList<Appointment>();
 	
-	@OneToOne
-	private FavCandidates favCandidates;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<FavCandidates> favCandidates;
 	
 
 	@ManyToMany
@@ -210,12 +210,12 @@ public class User  {
 		this.appointments.add(appointment);
 	}
 
-	public FavCandidates getFavCandidates() {
+	public Set<FavCandidates> getFavCandidates() {
 		return favCandidates;
 	}
 
-	public void setFavCandidates(FavCandidates favCandidates) {
-		this.favCandidates = favCandidates;
+	public void setFavCandidates(Set<FavCandidates> favCand) {
+		this.favCandidates = favCand;
 	}
 
 	
