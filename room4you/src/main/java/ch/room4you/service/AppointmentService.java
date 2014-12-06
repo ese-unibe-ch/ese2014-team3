@@ -69,25 +69,13 @@ public class AppointmentService {
 				visitors.add(user);
 				appointment.decrementNmbrVisitors();
 				appointment.setVisitors(visitors);
-				System.out.println("before save");
 				appointmentRepository.save(appointment);
-				System.err.println("after save");
 				
 				userAppointments.add(appointment);
 				user.setAppointment(userAppointments);
 				userRepository.save(user);
-
-				System.out.println(user.toString()
-						+ " has been added to appointment: " + appointment);
 			}
-
 		}
-		System.out.println("ad.getAppointments size = "
-				+ ad.getAppointments().size());
-		System.out.println("appointment.getVisitor size = "
-				+ appointment.getVisitors().size());
-		System.out.println("user.getAppointments size = "
-				+ user.getAppointments().size());
 	}
 
 	public boolean isVisitor(User user, Appointment appointment) {
@@ -119,7 +107,6 @@ public class AppointmentService {
 
 		userRepository.save(user);
 		candidatesRepository.save(favCandidates);
-		System.out.println(favCandidates.getVisitors().size());
 
 	} */
 
@@ -128,14 +115,10 @@ public class AppointmentService {
 		Ad ad = adRepository.findOne(id);
 		List<Appointment> appointments = appointmentRepository
 				.findByAppointmentAd(ad);
-		System.out.println("in service findBy ad ----- size: "
-				+ appointments.size());
-		for (Appointment a : appointments) {
-			System.err.println(a);
-		}
 		return appointments;
 	}
 
+	@Transactional
 	public void delteAppointment(int appointId) {
 		appointmentRepository.delete(appointId);
 	}
