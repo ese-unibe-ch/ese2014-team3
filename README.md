@@ -16,8 +16,6 @@ Testuser: user1
 Password: user1
 
 ##Not yet implemented:
-* manage scheduled visits
-* list of most promising candidates
 * Design is not final. For example User profile
 
 
