@@ -170,6 +170,7 @@
 								    <c:out	value="${appointment.appointDate.endTime}" />
 						</a>
 						</li>
+						<p></p>
 					</c:when>
 					<c:otherwise>
 						<span title="Already max visitors"> 

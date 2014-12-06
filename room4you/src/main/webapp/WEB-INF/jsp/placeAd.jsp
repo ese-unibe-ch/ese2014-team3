@@ -194,7 +194,14 @@
 												</c:forEach>
 											</c:otherwise>
 										</c:choose>
-										<c:if test="${not empty ad.appointments[0].visitors}">
+									<!--  	<c:set var="compileable" value="${false}"/>  -->
+										<c:forEach items="${ad.appointments}" var="appoints">
+											<c:forEach items="${appoints.visitors}" var="besucher">     <!-- running out of names -->
+												<c:if test="${not empty besucher}" />
+												 <c:set var="compileable" value="${true}" />
+											</c:forEach>
+											</c:forEach>
+										<c:if test="${compileable}">
 											<input type="submit" class="btn btn-primary" value="Compile" />
 										</c:if>
 									</form:form>
@@ -223,6 +230,7 @@
 									</c:forEach>
 									<a href="<spring:url value="/deleteFavList/${candList.id}.html" />"
 											class="btn btn-danger triggerRemove"> Delete List </a>
+									<hr>		
 								</c:forEach>
 								<p></p>
 							</div>

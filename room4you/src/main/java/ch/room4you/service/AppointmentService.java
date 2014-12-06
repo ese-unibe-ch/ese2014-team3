@@ -59,6 +59,7 @@ public class AppointmentService {
 		Ad ad = appointment.getAppointmentAd();
 
 		if (!isVisitor(user, appointment)) {
+			System.out.println("is visitor");
 			if (appointment.getNmbrVisitors() > 0) {
 
 				List<Appointment> userAppointments = user.getAppointments();
@@ -68,8 +69,10 @@ public class AppointmentService {
 				visitors.add(user);
 				appointment.decrementNmbrVisitors();
 				appointment.setVisitors(visitors);
+				System.out.println("before save");
 				appointmentRepository.save(appointment);
-
+				System.err.println("after save");
+				
 				userAppointments.add(appointment);
 				user.setAppointment(userAppointments);
 				userRepository.save(user);
