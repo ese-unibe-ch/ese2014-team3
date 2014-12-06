@@ -23,7 +23,7 @@
 		<li class="active"><a href="#section-1" data-toggle="tab">Placed
 				ads</a></li>
 		<li><a href="#section-2" data-toggle="tab">Bookmarked ads</a></li>
-		<li><a href="#section-3" data-toggle="tab">Appointments </a></li>
+		<li><a href="#section-3" data-toggle="tab">Appointments &amp; Visitors </a></li>
 		<li><a href="#section-4" data-toggle="tab">Favorite Visitors</a></li>
 	</ul>
 
@@ -145,15 +145,17 @@
 												<!--    <p>No appointments scheduled for this appointment </p>	-->
 											</c:when>
 											<c:otherwise>
-												<h4>${ad.title}</h4>
+												<h4>AD: ${ad.title}</h4>
+												<c:set var="count" value="${1}" />
+												<c:set var="appointsSize" value="${fn:length(ad.appointments)}" />
 												<c:forEach items="${ad.appointments}" var="appointment">
-													<li>Appointment</li>
-													<div class="row">
+												 <label>${count}. Appointment </label> <!-- ${appointment.appointDate.startTime} - ${appointment.appointDate.endTime} ${appointment.appointDate.appointDate}  -->
+													  	<div class="row">
 														<div class="col-md-1">
-															<label>Begin:</label>
+															<label>Time:</label>
 														</div>
 														<div class="col-md-1.5">
-															<label>${appointment.appointDate.startTime}</label>
+															<label>${appointment.appointDate.startTime} - ${appointment.appointDate.endTime} </label>
 														</div>
 													</div>
 													<div class="row">
@@ -164,14 +166,14 @@
 															<label>${appointment.appointDate.appointDate}</label>
 														</div>
 													</div>
-													<div class="row">
+												<!--  	<div class="row">
 														<div class="col-md-1">
 															<label>End:</label>
 														</div>
 														<div class="col-md-1.5">
 															<label>${appointment.appointDate.endTime}</label>
 														</div>
-													</div>
+													</div> -->
 													<p></p>
 													<label>Visitors:</label>
 													<c:choose>
@@ -186,11 +188,23 @@
 																</a></li>
 																<input type="hidden" name="_candidates" value="on" />
 															</c:forEach>
+															<p></p>
+															<p></p>
+															<p></p>
 														</c:when>
 														<c:otherwise>
 															<c:out value="No visitors at the moment" />
+															<p></p>
+															<p></p>
+															<p></p>
 														</c:otherwise>
 													</c:choose>
+													<c:set var="count" value="${count + 1}" />
+														<c:if test="${count eq appointsSize}" > 
+													<hr width=50% align=left>
+													</c:if>
+													<p></p>
+										
 												</c:forEach>
 											</c:otherwise>
 										</c:choose>
@@ -202,7 +216,9 @@
 											</c:forEach>
 											</c:forEach>
 										<c:if test="${compileable}">
+											<p></p>
 											<input type="submit" class="btn btn-primary" value="Compile" />
+											<hr>
 										</c:if>
 									</form:form>
 								</c:forEach>
@@ -223,10 +239,12 @@
 							<div class="caption">
 								<c:forEach items="${user.favCandidates}" var="candList">
 									<c:forEach items="${candList.visitors}" var="member">
+										<h5>Favorite candidates for ad ${candList.ad.title}</h5>
 										<li><a
 											href="<spring:url value="/users/${member.id}.html" />"> <c:out
 													value="${member.name}" />
 										</a></li>
+										<p></p>
 									</c:forEach>
 									<a href="<spring:url value="/deleteFavList/${candList.id}.html" />"
 											class="btn btn-danger triggerRemove"> Delete List </a>
