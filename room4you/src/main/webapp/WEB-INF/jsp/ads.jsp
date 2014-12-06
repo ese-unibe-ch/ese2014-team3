@@ -2,18 +2,6 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
-<style>
-.thumbnail{
-    width: 250px;
-    height: 400px;
-    overflow: auto;
-}
-
-.thumbnail img{
-	width: 250px;
-    height:200px;
-}
-</style>
 
 
 <form:form action="searchAds.html" class="form-inline" role="form" method="post" >

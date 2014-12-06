@@ -7,11 +7,11 @@ package ch.room4you.service;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
@@ -61,6 +61,9 @@ public class AdService {
 	
 	@Autowired
 	private MessageService messageService;
+	
+	  static Logger log = Logger.getLogger(
+              AdService.class.getName());
 
 	/**
 	 * Saves the ad in the database
@@ -204,17 +207,6 @@ public class AdService {
 		}
 	}
 	
-	private void addAppointments(Ad ad, List<String> appointments) {
-		List<Appointment> currentAppointments = ad.getAppointments();
-		List<Appointment> additionalAppointments = createAppointments(ad, appointments);
-		
-		currentAppointments.addAll(additionalAppointments);
-		
-			if (!currentAppointments.isEmpty()) {
-				ad.setAppointments(currentAppointments);
-				adRepository.save(ad);
-		}
-	}
 
 	@Transactional
 	public void editAd(int id, Model model, Ad ad, BindingResult result,
@@ -234,7 +226,9 @@ public class AdService {
 			}
 			
 			if (!appointments.isEmpty()) {
-				addAppointments(ad, appointments);
+				List<Appointment> adAppointments = createAppointments(ad, appointments);
+				ad.setAppointments(adAppointments);
+				adRepository.save(ad);
 			}
 
 			// save imagesAsString
