@@ -6,6 +6,8 @@ package ch.room4you.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +53,8 @@ public class RoomMateService{
 		roomMateRepository.delete(roomMate);
 		
 	}
-	
+	//added transactional
+	@Transactional
 	public List<RoomMate> findRoomMatesForAd(Ad ad){
 		return roomMateRepository.findByAd(ad);		
 	}

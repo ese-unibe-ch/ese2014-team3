@@ -54,7 +54,8 @@ public class UserService {
 		return user;
 	}
 
-
+	//added Transactional
+	@Transactional
 	public User findOneWithAds(String name) {
 		User user = userRepository.findByName(name);
 		return findOneWithAds(user.getId());
@@ -80,6 +81,8 @@ public class UserService {
 		return userRepository.findByName(username);
 	}
 
+	// added transactional
+	@Transactional
 	public User findOneById(int id) {
 		User user = findOne(id);
 		List<Ad> ads = adRepository.findByUser(user);

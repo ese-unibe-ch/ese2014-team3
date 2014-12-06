@@ -81,10 +81,12 @@ public class AdService {
 		adRepository.delete(tempAd);
 	}
 
+	@Transactional
 	public Ad findOne(int id) {
 		return adRepository.findOne(id);
 	}
 
+	@Transactional
 	public List<Ad> findAll() {
 		return adRepository.findAll();
 	}
@@ -128,7 +130,9 @@ public class AdService {
 			}
 
 			if (!appointments.isEmpty()) {
-				saveAppointments(ad, appointments);
+				List<Appointment> adAppointments = createAppointments(ad, appointments);
+				ad.setAppointments(adAppointments);
+				adRepository.save(ad);
 			}
 
 			// save imagesAsString
@@ -142,8 +146,9 @@ public class AdService {
 
 	}
 
-	private void saveAppointments(Ad ad, List<String> appointments) {
-		List<Appointment> adAppoints = new ArrayList<Appointment>();
+	private List<Appointment> createAppointments(Ad ad, List<String> appointments) {
+		//List<Appointment> adAppoints = new ArrayList<Appointment>();
+		List<Appointment> createdAppointments = new ArrayList<Appointment>();
 		for (int i = 0; i < appointments.size(); i += 4) {
 			if (!appointments.get(i).isEmpty()) {
 				AppointmentDate appointDate = new AppointmentDate();
@@ -160,14 +165,16 @@ public class AdService {
 							.get(i + 3)));
 				}
 				appointmentRepository.save(appointment);
-				adAppoints.add(appointment);
-			}
-			if (!adAppoints.isEmpty()) {
-				ad.setAppointments(adAppoints);
-				adRepository.save(ad);
+				createdAppointments.add(appointment);
+			//	adAppoints.add(appointment);
+			// }
+			// if (!adAppoints.isEmpty()) {
+			//	ad.setAppointments(adAppoints);
+			//	adRepository.save(ad);
 				
 			}
 		}
+		return createdAppointments;
 	}
 
 	private void saveRoomMates(Ad ad, List<String> roomMates) {
@@ -180,6 +187,7 @@ public class AdService {
 		}
 	}
 
+	@Transactional
 	private void saveImages(Ad ad, MultipartFile[] images) throws IOException {
 		byte[] bytes;
 		for (MultipartFile imageMPF : images) {
@@ -193,6 +201,18 @@ public class AdService {
 				imageRepository.save(image);
 			}
 
+		}
+	}
+	
+	private void addAppointments(Ad ad, List<String> appointments) {
+		List<Appointment> currentAppointments = ad.getAppointments();
+		List<Appointment> additionalAppointments = createAppointments(ad, appointments);
+		
+		currentAppointments.addAll(additionalAppointments);
+		
+			if (!currentAppointments.isEmpty()) {
+				ad.setAppointments(currentAppointments);
+				adRepository.save(ad);
 		}
 	}
 
@@ -214,7 +234,7 @@ public class AdService {
 			}
 			
 			if (!appointments.isEmpty()) {
-				saveAppointments(ad, appointments);
+				addAppointments(ad, appointments);
 			}
 
 			// save imagesAsString

@@ -244,14 +244,16 @@ public class AdController {
 			@ModelAttribute("ad") Ad ad, BindingResult result,
 			Principal principal, @RequestParam("image[]") MultipartFile[] images
 			 ,@RequestParam(value="roomMates", defaultValue="anonymous") List<String> roomMate
-			, org.springframework.web.context.request.WebRequest webRequest) {
+			, org.springframework.web.context.request.WebRequest webRequest
+			, @RequestParam("appointments") List<String> appointments) {
 
 	
-		String name = principal.getName();
-		ad.setId(id);
-		adService.save(ad, name);
+	//	String name = principal.getName();
+		adService.editAd(id, model, ad, result, principal, images, roomMate, webRequest, appointments);
+	//	ad.setId(id);
+	//	adService.save(ad, name);
 
-		try {
+	/*	try {
 
 			// save roommates
 			if (!roomMate.get(0).equals("anonymous")) {
@@ -266,7 +268,7 @@ public class AdController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} */
 
 		return "redirect:/placeAd.html";
 	}
