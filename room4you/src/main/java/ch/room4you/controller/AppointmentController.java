@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.room4you.service.AppointmentService;
+import ch.room4you.service.FavCandidatesService;
 import ch.room4you.entity.FavCandidates;
 import ch.room4you.entity.User;
 
@@ -24,6 +25,9 @@ public class AppointmentController {
 	
 	@Autowired
 	private AppointmentService appointmentService;
+	
+	@Autowired
+	private FavCandidatesService candService;
 
 	//@ModelAttribute
 	//public FavCandidates constructFavCandidates(){
@@ -51,7 +55,14 @@ public class AppointmentController {
 			appointmentService.delteAppointment(appointId);
 			return "redirect:/editAd/{adId}.html";
 		}
-}
+	
+	@RequestMapping("/deleteFavList/{listId}") 
+		public String deleteFavCandidatesList(@PathVariable("listId") int listId) {
+			candService.delete(listId);
+			return "redirect:/placeAd";
+		}
+	}
+
 	
 	
 	

@@ -83,6 +83,11 @@ public class FavCandidatesService {
 		return favVisitors;
 	}
 
+	public void delete(int listId) {
+		candidateRepository.delete(listId);
+		
+	}
+
 }
 
 

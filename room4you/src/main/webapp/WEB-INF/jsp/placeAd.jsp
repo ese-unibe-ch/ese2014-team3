@@ -221,7 +221,10 @@
 													value="${member.name}" />
 										</a></li>
 									</c:forEach>
+									<a href="<spring:url value="/deleteFavList/${candList.id}.html" />"
+											class="btn btn-danger triggerRemove"> Delete List </a>
 								</c:forEach>
+								<p></p>
 							</div>
 						</div>
 					</div>

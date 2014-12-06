@@ -108,10 +108,10 @@ public class AdService {
 
 	@Transactional
 	public void doAddAd(Model model, Ad ad, BindingResult result,
-			Principal principal, MultipartFile[] images, WebRequest webRequest,
+			Principal principal, MultipartFile[] images, List<String> roomMate, WebRequest webRequest,
 			List<String> appointments) {
 
-		String roomMate = webRequest.getParameter("roomMates");
+	//	String roomMate = webRequest.getParameter("roomMates");
 
 		if (ad.getWeAreLookingFor().isEmpty()) {
 			ad.setWeAreLookingFor("Anyone");
@@ -123,7 +123,7 @@ public class AdService {
 		try {
 
 			// save roommates
-			if (roomMate != null) {
+			if (!roomMate.get(0).equals("anonymous")) {
 				saveRoomMates(ad, roomMate);
 			}
 
@@ -139,13 +139,6 @@ public class AdService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		System.err.println(appointments.size());
-		System.err.println(appointments.isEmpty());
-		for (String a : appointments) {
-			System.out.println(a);
-		}
-		System.out.println(appointments == null);
 
 	}
 
@@ -166,12 +159,9 @@ public class AdService {
 					appointment.setNmbrVisitors(Integer.valueOf(appointments
 							.get(i + 3)));
 				}
-				System.err.println("appoints size b4 save " + adAppoints.size());
 				appointmentRepository.save(appointment);
 				adAppoints.add(appointment);
-				System.err.println("appoints size after save " + adAppoints.size());
 			}
-			System.out.println("is adAppoints empty? " + adAppoints.isEmpty());
 			if (!adAppoints.isEmpty()) {
 				ad.setAppointments(adAppoints);
 				adRepository.save(ad);
@@ -180,8 +170,8 @@ public class AdService {
 		}
 	}
 
-	private void saveRoomMates(Ad ad, String roomMate) {
-		List<String> roomMates = Arrays.asList(roomMate.split(","));
+	private void saveRoomMates(Ad ad, List<String> roomMates) {
+	//	List<String> roomMates = Arrays.asList(roomMate.split(","));
 		for (String roomM : roomMates) {
 			RoomMate rm = new RoomMate();
 			rm.setUser(userRepository.findOne(Integer.parseInt(roomM)));
@@ -208,9 +198,9 @@ public class AdService {
 
 	@Transactional
 	public void editAd(int id, Model model, Ad ad, BindingResult result,
-			Principal principal, MultipartFile[] images, WebRequest webRequest, List<String> appointments) {
+			Principal principal, MultipartFile[] images, List<String> roomMate,WebRequest webRequest, List<String> appointments) {
 		
-		String roomMate = webRequest.getParameter("roomMates");
+	//	String roomMate = webRequest.getParameter("roomMates");
 
 		String name = principal.getName();
 		ad.setId(id);
@@ -219,7 +209,7 @@ public class AdService {
 		try {
 
 			// save roommates
-			if (roomMate != null) {
+			if (!roomMate.get(0).equals("anonymous")) {
 				saveRoomMates(ad, roomMate);
 			}
 			

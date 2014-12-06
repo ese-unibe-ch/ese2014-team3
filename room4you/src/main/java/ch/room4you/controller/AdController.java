@@ -160,19 +160,21 @@ public class AdController {
 		log.info("Got following roommate string:"+ roomMate);
 		System.out.println("Got following roommate string:"+ roomMate);
 		
-		String name = principal.getName();
+		//String name = principal.getName();
 		model.addAttribute("users",userService.findAll());
-		adService.save(ad, name);
+		//adService.save(ad, name);
+		
+		adService.doAddAd(model, ad, result, principal, images, roomMate, webRequest, appointments);
 
-		try {
+	/*	try {
 
 			// save roommates
 			if (!roomMate.get(0).equals("anonymous")) {
 				saveRoomMates(ad, roomMate);
 			}
 
-			if (appointments != null) {
-	//			saveAppointments(ad, appointments);
+			if (!appointments.isEmpty()) {
+				saveAppointments(ad, appointments);
 			}
 
 			// save imagesAsString
@@ -182,9 +184,9 @@ public class AdController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} */
 
-		return "redirect:/placeAd.html";
+		return "redirect:/placeAd.html"; 
 	}
 	
 	@RequestMapping(value="/compile/{id}", method = RequestMethod.POST)

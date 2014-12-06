@@ -122,7 +122,7 @@ public class UserController {
 			, org.springframework.web.context.request.WebRequest webRequest,
 			@RequestParam("appointments") List<String> appointments) {
 
-		adService.doAddAd(model, ad, result, principal, images, webRequest, appointments);
+	//	adService.doAddAd(model, ad, result, principal, images, webRequest, appointments);
 		/*String roomMate = webRequest.getParameter("roomMates");
 
 		if (ad.getWeAreLookingFor().isEmpty()) {
