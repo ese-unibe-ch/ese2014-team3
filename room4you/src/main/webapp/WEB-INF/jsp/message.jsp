@@ -31,7 +31,7 @@
 	</div>
 	<div class="form-group">
 		<div class="pager">
-			<input type="submit" value="Save" class="btn btn-lg btn-primary" />
+			<input type="submit" value="Send" class="btn btn-lg btn-primary" />
 		</div>
 	</div>
 </form:form>

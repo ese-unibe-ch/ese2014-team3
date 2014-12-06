@@ -175,10 +175,12 @@
 						<label for="name" class="col-sm-2 control-label">Already selected room mates:</label>
 						<div class="col-sm-10">
 							<c:forEach items="${selectedRoomMates}" var="items">
-								${items.user.name}
+								<p>${items.user.name}
+									<a href="<spring:url value="/ad/deleteRoomMate/${ad.id}/${items.user.id}.html"/>"
+										class="btn btn-danger btn-xs" role="button">Delete</a>
+								</p>
 							</c:forEach>
-							<a href="<spring:url value="/ad/deleteRoomMate/${ad.id}.html"/>"
-									class="btn btn-primary" role="button"> Delete existing room mates </a>
+							
 						</div>
 					</div>
 					</c:if>

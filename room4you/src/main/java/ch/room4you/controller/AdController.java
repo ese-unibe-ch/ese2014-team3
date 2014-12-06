@@ -223,11 +223,13 @@ public class AdController {
 		return "editAd";
 	}
 	
-	@RequestMapping("/ad/deleteRoomMate/{id}")
-	public String deleteRoomMates(@PathVariable int id, Model model) {
-		List<RoomMate> rm = roomMateService.findRoomMatesForAd(adService.findOne(id));
+	@RequestMapping("/ad/deleteRoomMate/{id}/{rmId}")
+	public String deleteRoomMates(@PathVariable int id, @PathVariable int rmId,  Model model) {
+		List<RoomMate> rm = roomMateService.findRoomMatesForAd(adService.findOne(id));		
 		for(RoomMate roomMate : rm){
-			roomMateService.deleteRoomMate(roomMate);
+			if(roomMate.getUser().getId()==rmId){
+				roomMateService.deleteRoomMate(roomMate);
+			}
 		}
 		return "redirect:/ad/edit/"+id+".html"; 
 	}
