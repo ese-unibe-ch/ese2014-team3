@@ -208,18 +208,12 @@ public class AlertService{
 	
 	private Properties getHostNameFromProperties(){
 		Properties prop = new Properties();
-		InputStream input = null;
-	 
-		try {
-	 
-			input = new FileInputStream("config.properties");
-	 
+		InputStream input = null;	 
+		try {	 
+			input = new FileInputStream("config.properties");	 
 			// load a properties file
-			prop.load(input);
-			
-			System.out.println("Emailprop: "+prop.getProperty("emailAccount")+" hostNameProp:"+prop.getProperty("hostName"));
-
-	 
+			prop.load(input);			
+			System.out.println("Emailprop: "+prop.getProperty("emailAccount")+" hostNameProp:"+prop.getProperty("hostName"));	 
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -246,20 +240,16 @@ public class AlertService{
 		OutputStream output = null;
         FileInputStream fileIn = null;
 	 
-		try {
-			
+		try {			
             File file = new File("config.properties");
-            fileIn = new FileInputStream(file);
-	 
-			prop.load(fileIn);
+            fileIn = new FileInputStream(file);	 
+			prop.load(fileIn);	
 			output = new FileOutputStream("config.properties");	
 			
-			prop.setProperty("hostName", HOSTNAME);
-
-	 
+			prop.setProperty("hostName", HOSTNAME);	 
 			// save properties to project root folder
 			prop.store(output, null);
-			
+		
 			log.info("EMail-Property: "+prop.getProperty("emailAccount")+"  HostName-Property: "+prop.getProperty("hostName"));
 	 
 		} catch (IOException io) {
@@ -303,6 +293,44 @@ public class AlertService{
 			}
 		}
 		return false;	
+		
+	}
+	
+	public String getHostProperty(){
+		Properties prop = new Properties();
+		InputStream input = null;
+	 
+		try {
+	 
+			input = new FileInputStream("config.properties");
+	 
+			// load a properties file
+			prop.load(input);
+			
+			String ret;
+			if(prop.getProperty("emailAccount")+" hostNameProp:"+prop.getProperty("hostName")!=null){
+				ret=prop.getProperty("emailAccount")+" hostNameProp:"+prop.getProperty("hostName");
+			}else{
+				ret= "No host property available";
+			}
+			return ret;
+			
+			
+			
+
+	 
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return "HostProperty is not set";	
 		
 	}
 
