@@ -201,7 +201,8 @@ public class AdService {
 			Image image = new Image();
 			if (!imageMPF.isEmpty()) {
 				//resize first
-				bytes = resizeImageAsJPG(imageMPF.getBytes());
+				//bytes = resizeImageAsJPG(imageMPF.getBytes());
+				bytes =  imageMPF.getBytes();
 				byte[] encoded = Base64.encodeBase64(bytes);
 				String encodedString = new String(encoded);
 				image.setImageAsString(encodedString);
@@ -225,37 +226,37 @@ public class AdService {
      * @throws IOException
      *                 if the iamge could not be manipulated correctly.
      */
-    public static byte[] resizeImageAsJPG(byte[] image) {
-	// Create an ImageIcon from the image data
-    BufferedImage img = createImageFromBytes(image);
-    java.awt.Image scaledImg = img.getScaledInstance(1280, 1024, java.awt.Image.SCALE_SMOOTH);
-    BufferedImage thumbnail = new BufferedImage(1280, 1024, BufferedImage.TYPE_INT_RGB);
-    thumbnail.createGraphics().drawImage(scaledImg,0,0,null);
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    try {
-		ImageIO.write(thumbnail, "jpg", baos);
-	} catch (IOException e) {
-		log.error("Could not write ImageIO: ", e);
-		e.printStackTrace();
-	}
-    try {
-		baos.flush();
-	} catch (IOException e) {
-		log.error("Could not flush ByteArrayOutputStream: ", e);
-		e.printStackTrace();
-	}
-    byte[] imageBytes = baos.toByteArray();
-	return imageBytes;
-    }
-    
-    private static BufferedImage createImageFromBytes(byte[] imageData) {
-        ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
-        try {
-            return ImageIO.read(bais);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public byte[] resizeImageAsJPG(byte[] image) {
+//	// Create an ImageIcon from the image data
+//    BufferedImage img = createImageFromBytes(image);
+//    java.awt.Image scaledImg = img.getScaledInstance(1280, 1024, java.awt.Image.SCALE_SMOOTH);
+//    BufferedImage thumbnail = new BufferedImage(1280, 1024, BufferedImage.TYPE_INT_RGB);
+//    thumbnail.createGraphics().drawImage(scaledImg,0,0,null);
+//    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//    try {
+//		ImageIO.write(thumbnail, "jpg", baos);
+//	} catch (IOException e) {
+//		log.error("Could not write ImageIO: ", e);
+//		e.printStackTrace();
+//	}
+//    try {
+//		baos.flush();
+//	} catch (IOException e) {
+//		log.error("Could not flush ByteArrayOutputStream: ", e);
+//		e.printStackTrace();
+//	}
+//    byte[] imageBytes = baos.toByteArray();
+//	return imageBytes;
+//    }
+//    
+//    private BufferedImage createImageFromBytes(byte[] imageData) {
+//        ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
+//        try {
+//            return ImageIO.read(bais);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 
 	@Transactional

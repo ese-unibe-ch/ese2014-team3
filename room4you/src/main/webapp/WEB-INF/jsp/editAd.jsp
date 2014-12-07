@@ -50,7 +50,11 @@
 						<div class="col-sm-10">
 							<form:select path="nbrRooms" cssClass="formControl"
 								style="width:100%;" tabindex="6">
-								<option value="${ad.nbrRooms}">${ad.nbrRooms }</option>
+								<c:if test="${ad.nbrRooms > 0}">
+								    <option value="${ad.nbrRooms}">
+								    ${ad.nbrRooms }
+								    </option>
+								</c:if>
 								<option value="1">1</option>
 								<option value="1.5">1.5</option>
 								<option value="2">2</option>
@@ -83,8 +87,13 @@
 						<label for="name" class="col-sm-2 control-label">Number of
 							room mates:</label>
 						<div class="col-sm-10">
-							<form:select path="nbrRooms" cssClass="formControl"
+							<form:select path="nbrRoomsMates" cssClass="formControl"
 								style="width:100%;" tabindex="6">
+								<c:if test="${ad.nbrRoomsMates > 0}">
+								    <option value="${ad.nbrRoomsMates}">
+								    ${ad.nbrRoomsMates}
+								    </option>
+								</c:if>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>

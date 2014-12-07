@@ -188,7 +188,7 @@ public class AppInitService {
 	}
 
 	private void createFirstImage(Ad ad1, int i) {
-		 Image image1 = new Image();      
+		 Image image1 = new Image();
 		 image1.setImageAsString(getfirstPictureAsStringHelper(i));
 		 image1.setAd(ad1);
 		 imageRepository.save(image1);
