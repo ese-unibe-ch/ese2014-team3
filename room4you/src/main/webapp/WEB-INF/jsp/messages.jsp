@@ -6,9 +6,6 @@
 
 <c:set var="newline" value="<%= \"\n\" %>" />
 
-<c:set var="name" value="${nbrUnreadMessages}" scope="session" />
-	
-
 
 <!-- Collect the nav links, forms, and other content for toggling -->
 <ul class="nav nav-tabs">

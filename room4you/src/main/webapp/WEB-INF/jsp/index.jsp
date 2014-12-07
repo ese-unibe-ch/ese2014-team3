@@ -4,6 +4,8 @@
 <%@ include file="../layout/taglib.jsp"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
+<c:set var="name" value="${nbrUnreadMessages}" scope="session" />
+	
 
 <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
  

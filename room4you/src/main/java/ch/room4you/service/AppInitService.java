@@ -214,7 +214,7 @@ public class AppInitService {
 		 Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse("2014-11-01");
 		 ad1.setAvailableFrom(date);
 		 ad1.setNbrRooms(4);
-		 ad1.setRentPerMonth(1200);
+		 ad1.setRentPerMonth(350);
 		 ad1.setAdditionalInformation("Some additional Info");
 		 ad1.setSharedApartment(true);
 		 ad1.setSmokingAllowed(false);
@@ -239,7 +239,7 @@ public class AppInitService {
 		 Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse("2014-11-01");
 		 ad1.setAvailableFrom(date);
 		 ad1.setNbrRooms(4);
-		 ad1.setRentPerMonth(1100);
+		 ad1.setRentPerMonth(400);
 		 ad1.setAdditionalInformation("Some additional Info");
 		 ad1.setSharedApartment(true);
 		 ad1.setSmokingAllowed(false);
@@ -314,7 +314,7 @@ public class AppInitService {
 		 Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse("2014-11-01");
 		 ad1.setAvailableFrom(date);
 		 ad1.setNbrRooms(8);
-		 ad1.setRentPerMonth(3500);
+		 ad1.setRentPerMonth(600);
 		 ad1.setAdditionalInformation("Some additional Info");
 		 ad1.setSharedApartment(true);
 		 ad1.setSmokingAllowed(false);
