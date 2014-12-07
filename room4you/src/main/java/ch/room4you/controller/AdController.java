@@ -220,6 +220,7 @@ public class AdController {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("appointments", appointmentService.findByAd(id));
 		model.addAttribute("selectedRoomMates", roomMateService.findRoomMatesForAd(adService.findOne(id)));
+		model.addAttribute("selectedImages", adService.findOne(id).getImages());
 		return "editAd";
 	}
 	
@@ -231,6 +232,14 @@ public class AdController {
 				roomMateService.deleteRoomMate(roomMate);
 			}
 		}
+		return "redirect:/ad/edit/"+id+".html"; 
+	}
+	
+	@RequestMapping("/ad/deleteImage/{id}/{imageId}")
+	public String deleteImage(@PathVariable int id,@PathVariable int imageId, Model model) {
+		Image image = imageService.findOneById(imageId);
+		imageService.delete(image);
+		
 		return "redirect:/ad/edit/"+id+".html"; 
 	}
 	

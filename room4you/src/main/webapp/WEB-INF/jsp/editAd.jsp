@@ -230,8 +230,25 @@
 							</div>
 						</div>
 
+
+					<c:if test="${fn:length(selectedImages) > 0}">					
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">Already stored images:</label>
+						<div class="col-sm-10">
+							<c:forEach items="${selectedImages}" var="items">
+								<p>
+								<img id="img${item.id}" src="data:image/jpeg;base64,${items.imageAsString}" alt="image" style="width:15%;height:15%;" class="img-thumbnail">
+									<a href="<spring:url value="/ad/deleteImage/${ad.id}/${items.id}.html"/>"
+										class="btn btn-danger btn-xs" role="button">Delete</a>
+								</p>
+							</c:forEach>
+							
+						</div>
+					</div>
+					</c:if>
+					
 					<div id="fileinput" class="form-group">
-						<label for="name" class="col-sm-2 control-label">Image:</label>
+						<label for="name" class="col-sm-2 control-label">Add Image:</label>
 						<div  class="col-sm-10">
 							<input type="file" name="image[]" class="form-control" />
 							<button id="addFile" type="button"
