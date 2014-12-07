@@ -220,48 +220,8 @@
 	</div>
 </div>
 
-
-
-<div id="adImages" style="display:none">
-
-		<c:forEach items="${ad.images}" var="image">
-			<img src="data:image/jpeg;base64,${image.imageAsString}" alt="image" class="img-thumbnail">
-
-		</c:forEach>
-
 </div>
 
-
-
-
-</div>
-
-
-
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
- 
-</button> -->
-
-<!-- Modal -->
-<!--   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Appointment</h4>
-      </div>
-      <div class="modal-body">
-        Add me on the list for visitation
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">NO sanks</button>
-        <a 	href="<spring:url value="/ad/${ad.id}/appointment/${appointment.id}.html"/>" class="btn btn-primary"> Yes, add me</a>
-      </div>
-    </div>
-  </div>
-</div>
--->
 
 
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBEGI1Wn8tNYbkCxFF0lupb81SQgLhtHEU&sensor=false">
@@ -331,33 +291,9 @@
 
  });
 
- 	
 
- 	
 
 </script>
 
-
-<!-- Modal Show Google Maps in Modal-->
-<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Location</h4>
-      </div>
-      <div class="modal-body">
-      <div class="container">
-                    <div class="row">                        
-          				<div id="googleMap1"  style="width:450px;height:380px;"></div>
-                    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 			
 

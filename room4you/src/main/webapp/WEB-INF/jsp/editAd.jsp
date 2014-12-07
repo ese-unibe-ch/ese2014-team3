@@ -50,6 +50,7 @@
 						<div class="col-sm-10">
 							<form:select path="nbrRooms" cssClass="formControl"
 								style="width:100%;" tabindex="6">
+								<option value="${ad.nbrRooms}">${ad.nbrRooms }</option>
 								<option value="1">1</option>
 								<option value="1.5">1.5</option>
 								<option value="2">2</option>

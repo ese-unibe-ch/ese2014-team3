@@ -329,8 +329,10 @@ public class AdController {
 		System.out.println(ad.getAppointments().size());
 		appointmentService.findByAd(id);
 		System.out.println("ad appointments size: " + ad.getAppointments().size());
-		User user = userService.findOneByName(principal.getName());
-		System.err.println("user.getAppointments size: " + user.getAppointments().size());
+		if(principal.getName() !=null){
+			User user = userService.findOneByName(principal.getName());
+			log.debug("user.getAppointments size: " + user.getAppointments().size());
+		}
 
 		return "adDetail";
 	}
