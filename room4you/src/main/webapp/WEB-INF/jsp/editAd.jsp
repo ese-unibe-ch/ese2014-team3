@@ -50,6 +50,11 @@
 						<div class="col-sm-10">
 							<form:select path="nbrRooms" cssClass="formControl"
 								style="width:100%;" tabindex="6">
+								<c:if test="${ad.nbrRooms > 0}">
+								    <option value="${ad.nbrRooms}">
+								    ${ad.nbrRooms }
+								    </option>
+								</c:if>
 								<option value="1">1</option>
 								<option value="1.5">1.5</option>
 								<option value="2">2</option>
@@ -82,8 +87,13 @@
 						<label for="name" class="col-sm-2 control-label">Number of
 							room mates:</label>
 						<div class="col-sm-10">
-							<form:select path="nbrRooms" cssClass="formControl"
+							<form:select path="nbrRoomsMates" cssClass="formControl"
 								style="width:100%;" tabindex="6">
+								<c:if test="${ad.nbrRoomsMates > 0}">
+								    <option value="${ad.nbrRoomsMates}">
+								    ${ad.nbrRoomsMates}
+								    </option>
+								</c:if>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -175,10 +185,12 @@
 						<label for="name" class="col-sm-2 control-label">Already selected room mates:</label>
 						<div class="col-sm-10">
 							<c:forEach items="${selectedRoomMates}" var="items">
-								${items.user.name}
+								<p>${items.user.name}
+									<a href="<spring:url value="/ad/deleteRoomMate/${ad.id}/${items.user.id}.html"/>"
+										class="btn btn-danger btn-xs" role="button">Delete</a>
+								</p>
 							</c:forEach>
-							<a href="<spring:url value="/ad/deleteRoomMate/${ad.id}.html"/>"
-									class="btn btn-primary" role="button"> Delete existing room mates </a>
+							
 						</div>
 					</div>
 					</c:if>
@@ -218,8 +230,25 @@
 							</div>
 						</div>
 
+
+					<c:if test="${fn:length(selectedImages) > 0}">					
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">Already stored images:</label>
+						<div class="col-sm-10">
+							<c:forEach items="${selectedImages}" var="items">
+								<p>
+								<img id="img${item.id}" src="data:image/jpeg;base64,${items.imageAsString}" alt="image" style="width:15%;height:15%;" class="img-thumbnail">
+									<a href="<spring:url value="/ad/deleteImage/${ad.id}/${items.id}.html"/>"
+										class="btn btn-danger btn-xs" role="button">Delete</a>
+								</p>
+							</c:forEach>
+							
+						</div>
+					</div>
+					</c:if>
+					
 					<div id="fileinput" class="form-group">
-						<label for="name" class="col-sm-2 control-label">Image:</label>
+						<label for="name" class="col-sm-2 control-label">Add Image:</label>
 						<div  class="col-sm-10">
 							<input type="file" name="image[]" class="form-control" />
 							<button id="addFile" type="button"

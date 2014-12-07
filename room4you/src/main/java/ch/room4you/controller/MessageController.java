@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch.room4you.entity.Message;
-import ch.room4you.entity.User;
 import ch.room4you.service.AdService;
 import ch.room4you.service.MessageService;
 import ch.room4you.service.UserService;

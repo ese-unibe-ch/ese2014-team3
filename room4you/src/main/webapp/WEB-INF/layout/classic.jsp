@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ include file="../layout/taglib.jsp"%>
+<%@ page import="java.io.*,java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +39,8 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	
+	
+	
 <%-- <script src="${pageContext.request.contextPath}/resources/js/style.css"></script>	 --%>
 	
 
@@ -48,7 +51,9 @@
 
 <%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>
 
+
 <tilesx:useAttribute name="current"/>
+
 
 <div class="container">
 
@@ -89,23 +94,25 @@
 
 
 	<tiles:insertAttribute name="body" />
-
 	<br>
 	<br>
+	
+	
+	
 	<center>
 		<tiles:insertAttribute name="footer" />
 	</center>
 
-</div>
-
 <script>
-    $(document).ready(
+   $(document).ready(
             function() {
-                setInterval(function() {
+                setInterval(function() {	
                     $('#nbrMsgs').text(<c:out value="${name}" />);
                 }, 1000);
             });
 </script>
+
+</div>
 
 </body>
 </html>

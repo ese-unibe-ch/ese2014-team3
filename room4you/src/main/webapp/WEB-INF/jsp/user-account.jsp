@@ -12,33 +12,24 @@
 <div class="container">
 
 	<h2>${user.name}</h2>
-
-	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse user-nav" id="navbarCollapse">
-		<ul class="nav navbar-nav">
-			<li><a href="#section-5">Alerts</a></li>
-			<li><a href="#section-7">My Appointments</a></li>
-		</ul>
-	</div>
 	
-<%-- 	<a href="<spring:url value="/account/remove/${user.id}.html" />" --%>
-<!-- 	class="btn btn-danger btn-large pull-right triggerRemove"> Delete -->
-<!-- 	my account </a> -->
-
-	
+		<!-- Collect the nav links, forms, and other content for toggling -->
+	<ul class="nav nav-tabs">
+		<li><a href="#section-5" data-toggle="tab">My Alerts</a></li>
+		<li><a href="#section-7" data-toggle="tab">My Appointments</a></li>
+		<li><a href="#section-8" data-toggle="tab">Delete my account</a></li>
+	</ul>
 
 	<div class="scroll-area" data-spy="scroll" data-target="navbarCollapse"
 		data-offset="0">
 
 
-
-				
-	
-			<h4 id="section-5" class="section">Subscribed alerts</h4>
-			<a href="#" class="scrollup float-right">top</a>
-			<table>
-				<tbody id="alerts">
-					<c:forEach items="${user.alerts}" var="alert">
+		<div class="tab-content">
+			<div class="tab-pane active" id="section-5">
+				<h4 class="section">Alerts</h4>
+				<div id="Layout" class="container">
+					<div class="row" id="alerts">
+						<c:forEach items="${user.alerts}" var="alert">
 							<tr>
 							<td id="alert_${alert.id}"><a href="javascript:{}"
 								onclick="document.getElementById('showAlertAdsForm').submit(); return false;">
@@ -78,48 +69,63 @@
 						</tr>
 											
 					</c:forEach>
-				</tbody>
-			</table>
-		
-	<h4 id="section-7" class="section">My Appointments</h4>
-			<a href="#" class="scrollup float-right">top</a>
-			<div id="Layout" class="container">
-		            <div class="row" id="appointments">
-					<c:forEach items="${user.appointments}" var="appointment">
-						<div class="caption" >
-							<h4>
-								<a href="<spring:url value="/ads/${appointment.appointmentAd.id}.html" />"> 
-								<c:out value="${appointment.appointmentAd.title}" /></a>
-							</h4>
-							<div class="row">
-									<div class="col-md-1">
-										<label>Date:</label>
-									</div>
-									<div class="col-md-1.5">
-										<label>${appointment.appointDate.appointDate}</label>
-									</div>
-								</div><div class="row">
-									<div class="col-md-1">
-										<label>Begin:</label>
-									</div>
-									<div class="col-md-1.5">
-										<label>${appointment.appointDate.startTime}</label>
-									</div>
-								</div>	
-							<div class="row">
-									<div class="col-md-1">
-										<label>Begin:</label>
-									</div>
-									<div class="col-md-1.5">
-										<label>${appointment.appointDate.endTime}</label>
-									</div>
-								</div>
-						</div>		
-					</c:forEach>
 					</div>
-			</div>
-		</div>
+				</div>
+			</div><!-- @end #section5 -->
+		
+		
+			<div class="tab-pane" id="section-7">
+				<h4 class="section">Appointments</h4>
+				<div id="Layout" class="container">
+					<div class="row" id="appointments">							
+						<c:forEach items="${user.appointments}" var="appointment">
+								<div class="caption" >
+									<h4>
+										<a href="<spring:url value="/ads/${appointment.appointmentAd.id}.html" />"> 
+										<c:out value="${appointment.appointmentAd.title}" /></a>
+									</h4>
+									<div class="row">
+											<div class="col-md-1">
+												<label>Date:</label>
+											</div>
+											<div class="col-md-1.5">
+												<label>${appointment.appointDate.appointDate}</label>
+											</div>
+										</div><div class="row">
+											<div class="col-md-1">
+												<label>Begin:</label>
+											</div>
+											<div class="col-md-1.5">
+												<label>${appointment.appointDate.startTime}</label>
+											</div>
+										</div>	
+									<div class="row">
+											<div class="col-md-1">
+												<label>Begin:</label>
+											</div>
+											<div class="col-md-1.5">
+												<label>${appointment.appointDate.endTime}</label>
+											</div>
+										</div>
+								</div>		
+							</c:forEach>
+							</div>
+						</div>
+					</div><!-- @end #section7 -->
+			
+			<div class="tab-pane" id="section-8">
+				<h4 class="section">Delete my account</h4>
+				<div id="Layout" class="container">
+					<div class="row" id="deleteAccount">	
+					<a href="<spring:url value="/account/remove/${user.id}.html" />"
+					class="btn btn-danger btn-large triggerRemove"> Delete
+					my account </a>
+					</div>
+				</div>
+			</div><!-- @end #section8 -->
 	</div>
+  </div>
+</div>	
 	
 
 
@@ -200,65 +206,65 @@
 
 <!-- adding more fileinputs -->
 <script>
-	$(document)
-			.ready(
-					function() {
-						//add more file components if Add is clicked
-						$('#addFile')
-								.click(
-										function() {
-											var fileIndex = $('#fileTable tr')
-													.children().length - 1;
-											$('#myModalContent')
-													.append(
-															'<div class="form-group">'
-																	+ '<label for="name" class="col-sm-2 control-label">Image:</label>'
-																	+ '<div class="col-sm-10">'
-																	+ '<input type="file" name="image[]" cssClass="form-control" />'
-																	+ '</div>');
-										});
+// 	$(document)
+// 			.ready(
+// 					function() {
+// 						//add more file components if Add is clicked
+// 						$('#addFile')
+// 								.click(
+// 										function() {
+// 											var fileIndex = $('#fileTable tr')
+// 													.children().length - 1;
+// 											$('#myModalContent')
+// 													.append(
+// 															'<div class="form-group">'
+// 																	+ '<label for="name" class="col-sm-2 control-label">Image:</label>'
+// 																	+ '<div class="col-sm-10">'
+// 																	+ '<input type="file" name="image[]" cssClass="form-control" />'
+// 																	+ '</div>');
+// 										});
 
-					});
+// 					});
 </script>
 
 <!-- adding more appointments -->
 <script>
-	$(document)
-			.ready(
-					function() {
-						//add more file components if Add is clicked
-						$('#addAppointment')
-								.click(
-										function() {
-											$('#firstDatePicker')
-													.append(
-															'<label for="name" class="col-sm-2 control-label">Appointment:</label>'
-																	+ '<div class="col-sm-10">'
-																	+ '<a id="datetimepicker1" class="input-append">'
-																	+ '<input data-format="dd-MM-yyyy"'+
-					'type="date" name="appointments"></input> '
-																	+ '</a>'
-																	+ '<a id="datetimepicker2" class="input-append">'
-																	+ '	<input type="time"'+
-					'		name="appointments"></input> '
-																	+ '</a>'
-																	+ '<a id="datetimepicker3" class="input-append">'
-																	+ '	<input type="time"'+
-					'		name="appointments"></input> '
-																	+ '</a>'
-																	+ '</div>'
-																	+ '<label for="name" class="col-sm-2 control-label">Number'
-																	+ '	of Visitors:</label>'
-																	+ '<div class="col-sm-10">'
-																	+ '	<input name="appointments" class="form-control" />'
-																	+ '</div>'
-																	+ '</div>'
-																	+ '</div>'
+// 	$(document)
+// 			.ready(
+// 					function() {
+// 						//add more file components if Add is clicked
+// 						$('#addAppointment')
+// 								.click(
+// 										function() {
+// 											$('#firstDatePicker')
+// 													.append(
+// 															'<label for="name" class="col-sm-2 control-label">Appointment:</label>'
+// 																	+ '<div class="col-sm-10">'
+// 																	+ '<a id="datetimepicker1" class="input-append">'
+// 																	+ '<input data-format="dd-MM-yyyy"'+
+// 					'type="date" name="appointments"></input> '
+// 																	+ '</a>'
+// 																	+ '<a id="datetimepicker2" class="input-append">'
+// 																	+ '	<input type="time"'+
+// 					'		name="appointments"></input> '
+// 																	+ '</a>'
+// 																	+ '<a id="datetimepicker3" class="input-append">'
+// 																	+ '	<input type="time"'+
+// 					'		name="appointments"></input> '
+// 																	+ '</a>'
+// 																	+ '</div>'
+// 																	+ '<label for="name" class="col-sm-2 control-label">Number'
+// 																	+ '	of Visitors:</label>'
+// 																	+ '<div class="col-sm-10">'
+// 																	+ '	<input name="appointments" class="form-control" />'
+// 																	+ '</div>'
+// 																	+ '</div>'
+// 																	+ '</div>'
 
-													);
-										});
+// 													);
+// 										});
 
-					});
+// 					});
 </script>
 
 <script>
@@ -273,6 +279,15 @@
 			}
 		});
 	}
+</script>
+
+<script>
+// 	$(function{
+// 		  $('#myTab a').click(function(e) {
+// 		    e.preventDefault();
+// 		    $(this).tab('show');
+// 		  });
+// 		});
 </script>
 
 

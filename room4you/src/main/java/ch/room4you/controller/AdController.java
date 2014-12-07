@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -160,31 +159,9 @@ public class AdController {
 		log.info("Got following roommate string:"+ roomMate);
 		System.out.println("Got following roommate string:"+ roomMate);
 		
-		//String name = principal.getName();
 		model.addAttribute("users",userService.findAll());
-		//adService.save(ad, name);
 		
 		adService.doAddAd(model, ad, result, principal, images, roomMate, webRequest, appointments);
-
-	/*	try {
-
-			// save roommates
-			if (!roomMate.get(0).equals("anonymous")) {
-				saveRoomMates(ad, roomMate);
-			}
-
-			if (!appointments.isEmpty()) {
-				saveAppointments(ad, appointments);
-			}
-
-			// save imagesAsString
-			if(!images[0].isEmpty())
-			saveImages(ad, images);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} */
 
 		return "redirect:/placeAd.html"; 
 	}
@@ -220,15 +197,26 @@ public class AdController {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("appointments", appointmentService.findByAd(id));
 		model.addAttribute("selectedRoomMates", roomMateService.findRoomMatesForAd(adService.findOne(id)));
+		model.addAttribute("selectedImages", adService.findOne(id).getImages());
 		return "editAd";
 	}
 	
-	@RequestMapping("/ad/deleteRoomMate/{id}")
-	public String deleteRoomMates(@PathVariable int id, Model model) {
-		List<RoomMate> rm = roomMateService.findRoomMatesForAd(adService.findOne(id));
+	@RequestMapping("/ad/deleteRoomMate/{id}/{rmId}")
+	public String deleteRoomMates(@PathVariable int id, @PathVariable int rmId,  Model model) {
+		List<RoomMate> rm = roomMateService.findRoomMatesForAd(adService.findOne(id));		
 		for(RoomMate roomMate : rm){
-			roomMateService.deleteRoomMate(roomMate);
+			if(roomMate.getUser().getId()==rmId){
+				roomMateService.deleteRoomMate(roomMate);
+			}
 		}
+		return "redirect:/ad/edit/"+id+".html"; 
+	}
+	
+	@RequestMapping("/ad/deleteImage/{id}/{imageId}")
+	public String deleteImage(@PathVariable int id,@PathVariable int imageId, Model model) {
+		Image image = imageService.findOneById(imageId);
+		imageService.delete(image);
+		
 		return "redirect:/ad/edit/"+id+".html"; 
 	}
 	
@@ -246,30 +234,8 @@ public class AdController {
 			 ,@RequestParam(value="roomMates", defaultValue="anonymous") List<String> roomMate
 			, org.springframework.web.context.request.WebRequest webRequest
 			, @RequestParam("appointments") List<String> appointments) {
-
-	
-	//	String name = principal.getName();
 		adService.editAd(id, model, ad, result, principal, images, roomMate, webRequest, appointments);
-	//	ad.setId(id);
-	//	adService.save(ad, name);
-
-	/*	try {
-
-			// save roommates
-			if (!roomMate.get(0).equals("anonymous")) {
-				saveRoomMates(ad, roomMate);
-			}
-
-			// save imagesAsString
-			if (!images[0].isEmpty()) {
-			saveImages(ad, images);
-			}
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} */
-
+	
 		return "redirect:/placeAd.html";
 	}
 	/**
@@ -327,33 +293,14 @@ public class AdController {
 		System.out.println(ad.getAppointments().size());
 		appointmentService.findByAd(id);
 		System.out.println("ad appointments size: " + ad.getAppointments().size());
-		User user = userService.findOneByName(principal.getName());
-		System.err.println("user.getAppointments size: " + user.getAppointments().size());
+		if(principal.getName() !=null){
+			User user = userService.findOneByName(principal.getName());
+			log.debug("user.getAppointments size: " + user.getAppointments().size());
+		}
 
 		return "adDetail";
 	}
 
-/*	@RequestMapping("/ad/bookmarkAd/{id}")
-	public String bookmarkAd(@PathVariable int id, Principal principal) {
-		Ad ad = adService.findOne(id);
-		String userName = principal.getName();
-		User currentUser = userService.findOneByName(userName);
-
-		if (!userService.isBookmarkedAd(currentUser, id)) {
-			userService.bookmarkAd(currentUser, ad);
-		}
-
-		return "redirect:/ads/{id}.html";
-	}
-	
-*/
-/*	@RequestMapping("/ad/unBookmarkAd/{id}")  
-	public String unBookmarkAd(@PathVariable int id, Principal principal) {
-		User currentUser = userService.findOneByName(principal.getName());
-		userService.unBookmarkAd(currentUser, id);
-		return "redirect:/ads/{id}.html";
-	}
-*/
 	
 	private void saveAppointments(Ad ad, List<String> appointments) {
 		List<Appointment> adAppoints = new ArrayList<Appointment>();

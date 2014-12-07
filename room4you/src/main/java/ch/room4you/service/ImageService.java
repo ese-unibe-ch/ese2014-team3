@@ -46,5 +46,15 @@ public class ImageService{
 		imageRepository.save(image);
 		
 	}
+	
+	public void delete(Image image) {
+		imageRepository.delete(image);
+		
+	}
+	
+	public Image findOneById(int id) {
+		return imageRepository.findOne(id);
+		
+	}
 
 }

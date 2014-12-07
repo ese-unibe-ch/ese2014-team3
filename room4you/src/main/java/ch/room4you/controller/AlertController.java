@@ -1,23 +1,16 @@
 package ch.room4you.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.security.Principal;
-import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ch.room4you.entity.Alert;
 import ch.room4you.entity.User;
@@ -64,7 +57,8 @@ public class AlertController {
 	 * @return
 	 */
 	@RequestMapping
-	public String showAlert() {
+	public String showAlert(Model model) {		
+		//model.addAttribute("hostname", alertService.getHostProperty());
 		return "alert";
 	}
 	

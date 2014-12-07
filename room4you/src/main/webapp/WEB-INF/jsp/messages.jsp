@@ -6,9 +6,6 @@
 
 <c:set var="newline" value="<%= \"\n\" %>" />
 
-<c:set var="name" value="${nbrUnreadMessages}" scope="session" />
-	
-
 
 <!-- Collect the nav links, forms, and other content for toggling -->
 <ul class="nav nav-tabs">
@@ -31,7 +28,7 @@
 									    </c:otherwise>	
 									    </c:choose>">					
 								  <div class="panel-heading" >
-									   <a><span class="pull-left">
+									   <span class="pull-left">
 								        <c:choose>
 									    <c:when test="${message.unRead}">
 									    	<strong>From:&nbsp;&nbsp;&nbsp;&nbsp;</strong>
@@ -43,7 +40,7 @@
 									    </c:otherwise>
 									  </c:choose>		</span>
 								        
-								        <span class="text-muted pull-right"><a class="pull-right" href="<spring:url value="/showmessage/${message.id}.html" />">
+								        <span class="pull-right">
 										<c:choose>
 										    <c:when test="${message.unRead}">
 										    	<strong>Received:&nbsp;</strong>
@@ -54,7 +51,7 @@
 										       <fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>
 										    </c:otherwise>
 										</c:choose>								
-									  </a></span></a>
+									  </span>
 									  <br><br>
 									  <div class="btn-group pull-right">
 										   <a href="<spring:url value="/reply/${message.id}.html" />" class="btn btn-default btn-sm">
@@ -91,9 +88,9 @@
 									  </a>
 									  </div>
 									  <div class="panel-body">					  
-											<a href="<spring:url value="/showmessage/${message.id}.html"/>">
+											<p>
 												${message.message}"							
-											</a>						  							  
+											</p>						  							  
 									  </div>
 							</div>
 				</c:forEach>
@@ -112,18 +109,18 @@
 									    </c:otherwise>	
 									    </c:choose>">					
 								  <div class="panel-heading" >
-									   <a><span class="pull-left">
+									   <span class="pull-left">
 								        <c:choose>
 									    <c:when test="${message.unRead}">
 									    	<strong>To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
-									       <strong><c:out value="${message.sender.name}" /></strong>
+									       <strong><c:out value="${message.recipient.name}" /></strong>
 									    </c:when>								    
 									    <c:otherwise>
-									        To: <c:out value="${message.sender.name}" />
+									        To: <c:out value="${message.recipient.name}" />
 									    </c:otherwise>
 									  </c:choose>		</span>
 								        
-								        <span class="text-muted pull-right"><a class="pull-right" href="<spring:url value="/showmessage/${message.id}.html" />">
+								        <span class="pull-right">
 										<c:choose>
 										    <c:when test="${message.unRead}">
 										    	<strong>Sent:&nbsp;</strong>
@@ -134,7 +131,7 @@
 										       <fmt:formatDate value="${message.timestamp}" pattern="yyyy-MM-dd HH:mm"/>
 										    </c:otherwise>
 										</c:choose>								
-									  </a></span></a>
+									  </span>
 									  <br><br>
 									  <div class="btn-group pull-right">
 									       <a href="<spring:url value="/message/remove/${message.id}.html" />"
@@ -144,7 +141,7 @@
 								     </div>		
       							     <br>						  								  									  
 									  
-									  <a href="<spring:url value="/ads/${message.messageAd.id}.html" />">
+									  <a>
 											<c:choose>
 											    <c:when test="${message.unRead}">
 											    	<strong>Subject: &nbsp;&nbsp;&nbsp;</strong>
@@ -158,7 +155,7 @@
 									  </a>
 									  </div>
 									  <div class="panel-body" id="messageText">					  
-												<c:out value="${message.message}" />					  							  
+												${message.message}					  							  
 									  </div>
 							</div>
 				</c:forEach>
