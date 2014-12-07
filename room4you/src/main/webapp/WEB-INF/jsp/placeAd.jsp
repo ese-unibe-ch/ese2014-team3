@@ -23,7 +23,8 @@
 		<li class="active"><a href="#section-1" data-toggle="tab">Placed
 				ads</a></li>
 		<li><a href="#section-2" data-toggle="tab">Bookmarked ads</a></li>
-		<li><a href="#section-3" data-toggle="tab">Appointments &amp; Visitors </a></li>
+		<li><a href="#section-3" data-toggle="tab">Appointments &amp;
+				Visitors </a></li>
 		<li><a href="#section-4" data-toggle="tab">Favorite Visitors</a></li>
 	</ul>
 
@@ -147,15 +148,26 @@
 											<c:otherwise>
 												<h4>AD: ${ad.title}</h4>
 												<c:set var="count" value="${1}" />
-												<c:set var="appointsSize" value="${fn:length(ad.appointments)}" />
+												<c:set var="appointsSize"
+													value="${fn:length(ad.appointments)}" />
 												<c:forEach items="${ad.appointments}" var="appointment">
-												 <label>${count}. Appointment </label> <!-- ${appointment.appointDate.startTime} - ${appointment.appointDate.endTime} ${appointment.appointDate.appointDate}  -->
-													  	<div class="row">
+													<div class="row">
+														<div class="col-xs-6">
+															<a
+																href="<spring:url value="/deleteAppointment/${appointment.id}.html" />"
+																class="btn btn-danger triggerRemove pull-right">
+																Delete Appointment </a>
+														</div>
+													</div>
+													<label>${count}. Appointment </label>
+													<!-- ${appointment.appointDate.startTime} - ${appointment.appointDate.endTime} ${appointment.appointDate.appointDate}  -->
+													<div class="row">
 														<div class="col-md-1">
 															<label>Time:</label>
 														</div>
 														<div class="col-md-1.5">
-															<label>${appointment.appointDate.startTime} - ${appointment.appointDate.endTime} </label>
+															<label>${appointment.appointDate.startTime} -
+																${appointment.appointDate.endTime} </label>
 														</div>
 													</div>
 													<div class="row">
@@ -166,7 +178,7 @@
 															<label>${appointment.appointDate.appointDate}</label>
 														</div>
 													</div>
-												<!--  	<div class="row">
+													<!--  	<div class="row">
 														<div class="col-md-1">
 															<label>End:</label>
 														</div>
@@ -200,24 +212,30 @@
 														</c:otherwise>
 													</c:choose>
 													<c:set var="count" value="${count + 1}" />
-														<c:if test="${count eq appointsSize}" > 
-													<hr width=50% align=left>
+													<c:if test="${count eq appointsSize}">
+														<hr width=50% align=left>
 													</c:if>
 													<p></p>
-										
+
 												</c:forEach>
 											</c:otherwise>
 										</c:choose>
-									<!--  	<c:set var="compileable" value="${false}"/>  -->
+										<!--  	<c:set var="compileable" value="${false}"/>  -->
 										<c:forEach items="${ad.appointments}" var="appoints">
-											<c:forEach items="${appoints.visitors}" var="besucher">     <!-- running out of names -->
+											<c:forEach items="${appoints.visitors}" var="besucher">
+												<!-- running out of names -->
 												<c:if test="${not empty besucher}" />
-												 <c:set var="compileable" value="${true}" />
+												<c:set var="compileable" value="${true}" />
 											</c:forEach>
-											</c:forEach>
+										</c:forEach>
 										<c:if test="${compileable}">
 											<p></p>
-											<input type="submit" class="btn btn-primary" value="Compile" />
+											<div class="row">
+												<div class="col-md-4 col-md-offset-6">
+													<input type="submit" class="btn btn-primary pull-right"
+														value="Compile" />
+												</div>
+											</div>
 											<hr>
 										</c:if>
 									</form:form>
@@ -238,17 +256,19 @@
 						<div class="col-md-6 col-md-4 favCandidates">
 							<div class="caption">
 								<c:forEach items="${user.favCandidates}" var="candList">
+									<a
+										href="<spring:url value="/deleteFavList/${candList.id}.html" />"
+										class="btn btn-danger triggerRemove pull-right"> Delete
+										List </a>
+									<h5>Favorite candidates for ad ${candList.ad.title}</h5>
 									<c:forEach items="${candList.visitors}" var="member">
-										<h5>Favorite candidates for ad ${candList.ad.title}</h5>
 										<li><a
 											href="<spring:url value="/users/${member.id}.html" />"> <c:out
 													value="${member.name}" />
 										</a></li>
 										<p></p>
 									</c:forEach>
-									<a href="<spring:url value="/deleteFavList/${candList.id}.html" />"
-											class="btn btn-danger triggerRemove"> Delete List </a>
-									<hr>		
+									<hr>
 								</c:forEach>
 								<p></p>
 							</div>
@@ -258,7 +278,7 @@
 			</div>
 		</div>
 		<!-- @end #section-4 -->
-		
+
 
 
 		<br /> <br />

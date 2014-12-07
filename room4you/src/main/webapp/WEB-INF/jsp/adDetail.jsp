@@ -173,11 +173,13 @@
 						<p></p>
 					</c:when>
 					<c:otherwise>
-						<span title="Already max visitors"> 
+						<li><span title="Already max visitors"> 
 								<c:out  value="${appointment.appointDate.appointDate}" /> 
 								<c:out	value="${appointment.appointDate.startTime} - "  /> 
 								<c:out	value="${appointment.appointDate.endTime}" />
 						</span>
+						</li>
+						<p></p>
 					</c:otherwise>
 					</c:choose>
 					</c:forEach>

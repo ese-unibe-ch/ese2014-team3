@@ -29,10 +29,6 @@ public class AppointmentController {
 	@Autowired
 	private FavCandidatesService candService;
 
-	//@ModelAttribute
-	//public FavCandidates constructFavCandidates(){
-	//	return new FavCandidates();
-	//}
 
 	@RequestMapping(value="/ad/{adId}/appointment/{appointId}")
 	public String addUserToAppointment(Principal principal, @PathVariable("adId") int adId
@@ -41,17 +37,17 @@ public class AppointmentController {
 		appointmentService.addVisitor(appointId, principal.getName());
 		return "redirect:/ads/{adId}.html";
 	}
-	
-	@RequestMapping("/ad/{adId}/deleteAppointment/{id}") 
-		public String deleteAppointment(@PathVariable("appointId") int appointId, @PathVariable("adId") int adId) {
+					  
+	@RequestMapping(value="/deleteAppointment/{appointId}") 
+		public String deleteAppointment(@PathVariable("appointId") int appointId /*, @PathVariable("adId") int adId */) {
 			appointmentService.delteAppointment(appointId);
-			return "redirect:/editAd/{adId}.html";
+			return "redirect:/placeAd.html";
 		}
 	
 	@RequestMapping("/deleteFavList/{listId}") 
 		public String deleteFavCandidatesList(@PathVariable("listId") int listId) {
 			candService.delete(listId);
-			return "redirect:/placeAd";
+			return "redirect:/placeAd.html";
 		}
 	}
 

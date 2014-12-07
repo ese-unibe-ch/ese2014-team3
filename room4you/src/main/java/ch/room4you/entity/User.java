@@ -62,13 +62,13 @@ public class User  {
 	@OneToMany(mappedBy ="recipient", cascade = CascadeType.ALL)
 	private List<Message> messages = new ArrayList<Message>();
 	
-	@ManyToMany(mappedBy = "visitors", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "visitors", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 	
 //	@ManyToMany(mappedBy = "promisingCandidates",fetch = FetchType.EAGER)
 //	private List<Appointment> appointmentPromisingCandidates = new ArrayList<Appointment>();
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "visitors", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Set<FavCandidates> favCandidates;
 	
 
@@ -82,7 +82,7 @@ public class User  {
 	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Alert> alerts = new ArrayList<Alert>();
 	
-	@OneToMany (mappedBy = "bookmarker", fetch = FetchType.EAGER)
+	@OneToMany (mappedBy = "bookmarker", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Bookmark> bookmarkedAds = new ArrayList<Bookmark>();
 	
 	

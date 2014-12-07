@@ -49,9 +49,6 @@ public class BookmarkService {
 			userRepository.save(user);
 		//	adRepository.save(bookmarkedAd);
 		}
-		// User bookmarker = userRepository.findByName(user);
-		// java.util.List<Bookmark> bookmark = bookmarker.getBookmarkedAds();
-		// System.out.println(bookmark.get(0).getBookmarkedAd().getTitle());
 	}
 
 	@Transactional
@@ -90,5 +87,4 @@ public class BookmarkService {
 		List<Bookmark> bookmarks = bookmarkRepository.findByBookmarker(user);
 		return bookmarks;
 	}
-
 }
