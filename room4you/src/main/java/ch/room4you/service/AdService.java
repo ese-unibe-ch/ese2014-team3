@@ -153,35 +153,54 @@ public class AdService {
 
 	}
 
+	/**
+	 * Appointments are being created according to the users input. An appointment has an appointmentDate
+	 * which is created first, the appointment gets assigned numbrVisitors and the corresponding ad.
+	 * 
+	 * This the first element of the List appointments must not be null, otherwise the method does not execute
+	 * anything. 
+	 * 
+	 * @param ad
+	 * @param appointments, List of Strings, format: <Date, startTime, endtTime, nmbrVisitors>
+	 * @return List of created Appointments 
+	 */
 	private List<Appointment> createAppointments(Ad ad, List<String> appointments) {
-		//List<Appointment> adAppoints = new ArrayList<Appointment>();
 		List<Appointment> createdAppointments = new ArrayList<Appointment>();
+	
 		for (int i = 0; i < appointments.size(); i += 4) {
 			if (!appointments.get(i).isEmpty()) {
-				AppointmentDate appointDate = new AppointmentDate();
-				appointDate.setAppointDate(appointments.get(i));
-				appointDate.setStartTime(appointments.get(i + 1));
-				appointDate.setEndTime(appointments.get(i + 2));
-				dateRepository.save(appointDate);
+				AppointmentDate appointDate = createAppointmentDate(appointments, i);
 				Appointment appointment = new Appointment();
 				appointment.setAppointDate(appointDate);
 				appointment.setAppointmentAd(ad);
 
 				if (!appointments.get(i + 3).isEmpty()) {
-					appointment.setNmbrVisitors(Integer.valueOf(appointments
-							.get(i + 3)));
+					appointment.setNmbrVisitors(Integer.valueOf(appointments.get(i + 3)));
 				}
+				// Default value, in case the user does not set any value. An appointment with 0 visitors would not make sense
+				else appointment.setNmbrVisitors(20); 
+					
 				appointmentRepository.save(appointment);
 				createdAppointments.add(appointment);
-			//	adAppoints.add(appointment);
-			// }
-			// if (!adAppoints.isEmpty()) {
-			//	ad.setAppointments(adAppoints);
-			//	adRepository.save(ad);
-				
 			}
 		}
 		return createdAppointments;
+	}
+
+	/**
+	 * Creates an appointDate for an Appointment when an Ad has been created.
+	 * 
+	 * @param appointments
+	 * @param i, index of List appointments in order to create the appointDate(s) correctly. 
+	 * @return
+	 */
+	private AppointmentDate createAppointmentDate(List<String> appointments, int i) {
+		AppointmentDate appointDate = new AppointmentDate();
+		appointDate.setAppointDate(appointments.get(i));
+		appointDate.setStartTime(appointments.get(i + 1));
+		appointDate.setEndTime(appointments.get(i + 2));
+		dateRepository.save(appointDate);
+		return appointDate;
 	}
 
 	private void saveRoomMates(Ad ad, List<String> roomMates) {
@@ -214,7 +233,24 @@ public class AdService {
 	}
 	
 	/**
-     * This method takes in an image as a byte array (currently supports GIF, JPG, PNG and possibly other formats) and
+	 * Adds further appointments, when the ad has been edited. 
+	 * 
+	 * @param editedAd
+	 * @param appointments, List of Strings with the format <Date, startTime, endTime, nmbrVisitors>
+	 */
+	private void addAppointments(Ad ad, List<String> appointments) {
+		List<Appointment> currentAppointments = ad.getAppointments();
+		List<Appointment> additionalAppointments = createAppointments(ad, appointments);
+		
+		currentAppointments.addAll(additionalAppointments);
+		
+			if (!currentAppointments.isEmpty()) {
+				ad.setAppointments(currentAppointments);
+				adRepository.save(ad);
+		}
+	}
+
+    /* This method takes in an image as a byte array (currently supports GIF, JPG, PNG and possibly other formats) and
      * resizes it to have a width no greater than the pMaxWidth parameter in pixels. It converts the image to a standard
      * quality JPG and returns the byte array of that JPG image.
      * 
@@ -291,8 +327,6 @@ public class AdService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-
-		
 	}
 
 }

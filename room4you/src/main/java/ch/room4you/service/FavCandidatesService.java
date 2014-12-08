@@ -83,6 +83,7 @@ public class FavCandidatesService {
 		return favVisitors;
 	}
 
+	@Transactional
 	public void delete(int listId) {
 		candidateRepository.delete(listId);
 		

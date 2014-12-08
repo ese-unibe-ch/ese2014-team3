@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -22,10 +23,12 @@ public class FavCandidates {
 	@OneToOne
 	private Ad ad;
 	
-	@ManyToOne (cascade = CascadeType.ALL)
+	@ManyToOne // (cascade = CascadeType.REMOVE)
+	@JoinColumn (name = "adplacer_id")
 	private User adPlacer;
 	
-	@ManyToMany (fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "visitor_id")
 	private List<User> visitors = new ArrayList<User>();
 
 	public int getId() {
