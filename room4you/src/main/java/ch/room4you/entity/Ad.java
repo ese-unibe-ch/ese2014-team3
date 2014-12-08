@@ -4,6 +4,7 @@ package ch.room4you.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
 
@@ -94,6 +96,9 @@ public class Ad {
 	@Column(name="ROOM_MATES")
 	@OneToMany(mappedBy = "ad", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<RoomMate> roomMates;
+	
+	@OneToMany(cascade = CascadeType.REMOVE)
+	private Set<FavCandidates> favCandidates;
 	
 	
 	
@@ -306,7 +311,16 @@ public class Ad {
 		this.bookmarks = bookmark;
 	}
 
+	public Set<FavCandidates> getFavCandidates() {
+		return favCandidates;
+	}
+
+	public void setFavCandidates(Set<FavCandidates> favCandidates) {
+		this.favCandidates = favCandidates;
+	}
+
 	
+
 	
 	
 

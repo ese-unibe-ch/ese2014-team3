@@ -62,13 +62,17 @@ public class FavCandidatesService {
 		favCand.add(favCandidates);
 		adPlacer.setFavCandidates(favCand);
 		userRepository.save(adPlacer);
-		System.out.println(adPlacer.getFavCandidates());
+		
+		Set<FavCandidates> adFavCand = ad.getFavCandidates();
+		adFavCand.add(favCandidates);
+		ad.setFavCandidates(adFavCand);
+		adRepository.save(ad);
 	}
 
 	
 	
 	 /**
-	  *  This method receives a list of user id's and returns a list of users (visitors) to be added to favourites
+	  *  This method receives a list of user id's and returns a list of users (visitors) to be added to favorites
 	  *  
 	  * @param candidatesId List of id's from visitors
 	  * @return List of users
