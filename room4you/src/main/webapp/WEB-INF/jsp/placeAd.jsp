@@ -99,7 +99,7 @@
 										href="<spring:url value="/ads/${bookmark.bookmarkedAd.id}.html"/>">
 										<img
 										src="data:image/jpeg;base64,${bookmark.bookmarkedAd.images[0].imageAsString}"
-										class="img-responsive"></img>
+										class="img-responsive"  style="width:250px;height:200px"></img>
 									</a>
 
 									<div class="caption">
