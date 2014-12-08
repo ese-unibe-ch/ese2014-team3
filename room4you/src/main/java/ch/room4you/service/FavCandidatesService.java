@@ -93,10 +93,12 @@ public class FavCandidatesService {
 	public void delete(int listId) {
 		FavCandidates favCand = candidateRepository.findOne(listId);
 		Ad ad = favCand.getAd();
+	
 		Set<FavCandidates> adFavCand = ad.getFavCandidates();
 		adFavCand.remove(favCand);
 		ad.setFavCandidates(adFavCand);
 		adRepository.save(ad);
+		
 		candidateRepository.delete(listId);
 
 	}

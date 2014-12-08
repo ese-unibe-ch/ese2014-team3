@@ -43,10 +43,8 @@ public class AppointmentService {
 	public void addVisitor(int appointId, String userName) {
 		Appointment appointment = appointmentRepository.findOne(appointId);
 		User user = userRepository.findByName(userName);
-		Ad ad = appointment.getAppointmentAd();
 
 		if (!isVisitor(user, appointment)) {
-			System.out.println("is visitor");
 			if (appointment.getNmbrVisitors() > 0) {
 
 				List<Appointment> userAppointments = user.getAppointments();

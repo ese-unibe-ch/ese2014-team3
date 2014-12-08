@@ -306,7 +306,7 @@ public class AppInitService {
 		 ad1.setDescription("Beautiful room in small house");
 		 ad1.setUser(userAdmin);
 		 ad1.setStreet("Weinbergstrasse 5");
-		 ad1.setCity("ZÃ¼rich");
+		 ad1.setCity("Zürich");
 		 ad1.setZip("8001");
 		 Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse("2014-11-01");
 		 ad1.setAvailableFrom(date);

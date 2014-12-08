@@ -49,7 +49,6 @@ public class BookmarkService {
 	@Transactional
 	public void unBookmarkAd(int adId, String userName) {
 		User user = userRepository.findByName(userName);
-		Ad ad = adRepository.findOne(adId);
 		java.util.List<Bookmark> bookmarks = user.getBookmarkedAds();
 		Bookmark bookmarkToDelete = null;
 		for (Bookmark bookmark : bookmarks) {
