@@ -1,14 +1,12 @@
 package ch.room4you.service;
 
 /**
- * Initializes the application and the database after startup with admin-user and ad1
+ * Initializes the application and the database after startup with users and ads
  */
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +26,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Appointment;

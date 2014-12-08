@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Appointment;
-import ch.room4you.entity.AppointmentDate;
-import ch.room4you.entity.FavCandidates;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
 import ch.room4you.repository.AppointmentRepository;
@@ -36,17 +34,6 @@ public class AppointmentService {
 		return appointmentRepository.findOne(id);
 	}
 
-	/*
-	 * public Appointment save(AppointmentDate date, AdForm adForm, Ad ad) {
-	 * Appointment appointment = new Appointment();
-	 * 
-	 * appointment.setAdPlacer(adForm.getUser());
-	 * appointment.setAppointDate(date);
-	 * appointment.setNmbrVisitors(adForm.getNmbrVisitors());
-	 * appointment.setAd(ad);
-	 * 
-	 * appointmentRepository.save(appointment); return appointment; }
-	 */
 
 	public void save(Appointment appointment) {
 		appointmentRepository.save(appointment);
@@ -88,27 +75,6 @@ public class AppointmentService {
 		}
 		return false;
 	}
-/*
-	@Transactional
-	public void compileCandidates(FavCandidates favCandidates, String userName /*
-																				 * ,
-																				 * int
-																				 * adId
-																				 ) {
-		User user = userRepository.findByName(userName);
-		// Ad ad = adRepository.findOne(adId);
-		// Ad ad = adRepository.findOne(adId);
-		// FavCandidates favCandidates = new FavCandidates();
-		// favCandidates.setVisitors(favCandidates);
-		// favCandidates.setAppointments(appointments);
-		// favCandidates.setAd(ad);
-		// favCandidates.setAd(ad);
-		user.setFavCandidates(favCandidates);
-
-		userRepository.save(user);
-		candidatesRepository.save(favCandidates);
-
-	} */
 
 	@Transactional
 	public List<Appointment> findByAd(int id) {

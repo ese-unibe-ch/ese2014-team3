@@ -1,6 +1,5 @@
 package ch.room4you.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ch.room4you.entity.Ad;
 import ch.room4you.entity.Message;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
@@ -57,8 +55,6 @@ public class MessageService {
 		List<Message> messages = messageRepository.findByUnReadTrueAndRecipient(user);
 		return messages;
 	}
-	
-	
 	
 	
 	public void delete(int id) {

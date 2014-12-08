@@ -4,15 +4,11 @@ package ch.room4you.service;
  * Database operation service for roomMateRepository interface
  */
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
@@ -120,8 +116,6 @@ public class AdService {
 			Principal principal, MultipartFile[] images, List<String> roomMate, WebRequest webRequest,
 			List<String> appointments) {
 
-	//	String roomMate = webRequest.getParameter("roomMates");
-
 		if (ad.getWeAreLookingFor().isEmpty()) {
 			ad.setWeAreLookingFor("Anyone");
 		}
@@ -147,7 +141,7 @@ public class AdService {
 				saveImages(ad, images);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			log.error("Could not load image", e);
 			e.printStackTrace();
 		}
 
@@ -219,8 +213,6 @@ public class AdService {
 		for (MultipartFile imageMPF : images) {
 			Image image = new Image();
 			if (!imageMPF.isEmpty()) {
-				//resize first
-				//bytes = resizeImageAsJPG(imageMPF.getBytes());
 				bytes =  imageMPF.getBytes();
 				byte[] encoded = Base64.encodeBase64(bytes);
 				String encodedString = new String(encoded);
@@ -250,56 +242,11 @@ public class AdService {
 		}
 	}
 
-    /* This method takes in an image as a byte array (currently supports GIF, JPG, PNG and possibly other formats) and
-     * resizes it to have a width no greater than the pMaxWidth parameter in pixels. It converts the image to a standard
-     * quality JPG and returns the byte array of that JPG image.
-     * 
-     * @param pImageData
-     *                the image data.
-     * @param pMaxWidth
-     *                the max width in pixels, 0 means do not scale.
-     * @return the resized JPG image.
-     * @throws IOException
-     *                 if the iamge could not be manipulated correctly.
-     */
-//    public byte[] resizeImageAsJPG(byte[] image) {
-//	// Create an ImageIcon from the image data
-//    BufferedImage img = createImageFromBytes(image);
-//    java.awt.Image scaledImg = img.getScaledInstance(1280, 1024, java.awt.Image.SCALE_SMOOTH);
-//    BufferedImage thumbnail = new BufferedImage(1280, 1024, BufferedImage.TYPE_INT_RGB);
-//    thumbnail.createGraphics().drawImage(scaledImg,0,0,null);
-//    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//    try {
-//		ImageIO.write(thumbnail, "jpg", baos);
-//	} catch (IOException e) {
-//		log.error("Could not write ImageIO: ", e);
-//		e.printStackTrace();
-//	}
-//    try {
-//		baos.flush();
-//	} catch (IOException e) {
-//		log.error("Could not flush ByteArrayOutputStream: ", e);
-//		e.printStackTrace();
-//	}
-//    byte[] imageBytes = baos.toByteArray();
-//	return imageBytes;
-//    }
-//    
-//    private BufferedImage createImageFromBytes(byte[] imageData) {
-//        ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
-//        try {
-//            return ImageIO.read(bais);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
 
 	@Transactional
 	public void editAd(int id, Model model, Ad ad, BindingResult result,
 			Principal principal, MultipartFile[] images, List<String> roomMate,WebRequest webRequest, List<String> appointments) {
 		
-	//	String roomMate = webRequest.getParameter("roomMates");
 
 		String name = principal.getName();
 		ad.setId(id);
@@ -324,7 +271,7 @@ public class AdService {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			log.error("Could not save Image", e);
 			e.printStackTrace();
 		} 
 	}

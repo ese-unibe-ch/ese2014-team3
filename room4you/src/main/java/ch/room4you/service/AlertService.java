@@ -94,7 +94,10 @@ public class AlertService{
 		mail.setSubject("Mail alert activated");
 		mail.setText("You just acitivated a mail alert for: \n"
 				+ alert+" \n"
-				+ "You can stop the alert in your account at room4you!");		
+				+ "You can stop the alert in your account at room4you! \n \n"
+				//+ "Link: "+ getHostNameFromProperties().getProperty("hostName")
+				+ "Link: "+ getHostProperty()
+				);		
 		return mail;
 	}
 
@@ -132,7 +135,7 @@ public class AlertService{
 				    		mail.setSubject("New interesting room for you");
 				    		mail.setText("Hi,\n"
 				    				+ "We have found a new interesting room for you. \n"
-				    				+ getHostNameFromProperties().getProperty("hostName")+"/ads/"+ad.getId()+".html \n"			    				
+				    				+ getHostProperty()+"/ads/"+ad.getId()+".html \n"
 				    				+ "Check it out!");
 				    		mails.add(mail);
 													
@@ -308,8 +311,8 @@ public class AlertService{
 			prop.load(input);
 			
 			String ret;
-			if(prop.getProperty("emailAccount")+" hostNameProp:"+prop.getProperty("hostName")!=null){
-				ret=prop.getProperty("emailAccount")+" hostNameProp:"+prop.getProperty("hostName");
+			if(prop.getProperty("hostName")!=null){
+				ret=prop.getProperty("hostName");
 			}else{
 				ret= "No host property available";
 			}

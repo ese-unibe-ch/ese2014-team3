@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ch.room4you.entity.Ad;
-import ch.room4you.entity.Message;
 import ch.room4you.entity.Role;
 import ch.room4you.entity.User;
 import ch.room4you.repository.AdRepository;
@@ -81,7 +80,6 @@ public class UserService {
 		return userRepository.findByName(username);
 	}
 
-	// added transactional
 	@Transactional
 	public User findOneById(int id) {
 		User user = findOne(id);
@@ -89,37 +87,5 @@ public class UserService {
 		user.setAds(ads);
 		return user;
 	}
-
-/*	public void bookmarkAd(User user, Ad ad) {
-		user.setBookmarkedAd(ad);
-		userRepository.save(user);
-	}
-
-	public boolean isBookmarkedAd(User user, int adId) {
-		List<Ad> bookmarkedAds = user.getBookmarkedAds();
-		for (Ad a : bookmarkedAds) {
-			if (a.getId() == adId)
-				return true;
-		}
-		return false;
-	}
-
-	public void unBookmarkAd(User user, int adId) {
-		List<Ad> bookmarkedAds = user.getBookmarkedAds();
-		List<Ad> updatedBookmarks = removeBookmarkAdById(bookmarkedAds, adId);
-		user.setBookmarkedAds(updatedBookmarks);
-		userRepository.save(user);
-	}
-
-	public List<Ad> removeBookmarkAdById(List<Ad> bookmarkedAds, int adId) {
-		int size = bookmarkedAds.size();
-		for (int i = 0; i < size; i++) {
-			Ad a = bookmarkedAds.get(i);
-			if (a.getId() == adId)
-				bookmarkedAds.remove(a);
-		}
-		return bookmarkedAds;
-	}
-*/
 	
 }

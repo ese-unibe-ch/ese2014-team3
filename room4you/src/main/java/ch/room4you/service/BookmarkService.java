@@ -41,13 +41,8 @@ public class BookmarkService {
 			userBookmarks.add(bookmark);
 			user.setBookmarkedAds(userBookmarks);
 
-		//	List<Bookmark> adBookmarks = bookmarkedAd.getBookmarks();
-		//	adBookmarks.add(bookmark);
-		//	bookmarkedAd.setBookmarks(adBookmarks);
-
 			bookmarkRepository.save(bookmark);
 			userRepository.save(user);
-		//	adRepository.save(bookmarkedAd);
 		}
 	}
 
@@ -62,9 +57,6 @@ public class BookmarkService {
 				bookmarkToDelete = bookmark;
 			}
 		}
-
-		// Bookmark bookmark = bookmarkRepository.findByAdAndUser(adId,
-		// user.getId());
 		bookmarkRepository.delete(bookmarkToDelete);
 	}
 
