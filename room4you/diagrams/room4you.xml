@@ -3,8 +3,8 @@
 		<entity-name>ch.room4you.entity.Image</entity-name>
 		<entity-width>159</entity-width>
 		<entity-height>166</entity-height>
-		<entity-X-Coordinate>1027</entity-X-Coordinate>
-		<entity-Y-Coordinate>36</entity-Y-Coordinate>
+		<entity-X-Coordinate>1020</entity-X-Coordinate>
+		<entity-Y-Coordinate>187</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -13,7 +13,7 @@
 	<entity>
 		<entity-name>ch.room4you.entity.User</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>366</entity-height>
+		<entity-height>386</entity-height>
 		<entity-X-Coordinate>210</entity-X-Coordinate>
 		<entity-Y-Coordinate>110</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
@@ -46,8 +46,8 @@
 	<entity>
 		<entity-name>ch.room4you.entity.Appointment</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>206</entity-height>
-		<entity-X-Coordinate>840</entity-X-Coordinate>
+		<entity-height>186</entity-height>
+		<entity-X-Coordinate>825</entity-X-Coordinate>
 		<entity-Y-Coordinate>574</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
@@ -57,9 +57,20 @@
 	<entity>
 		<entity-name>ch.room4you.entity.Ad</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>526</entity-height>
+		<entity-height>546</entity-height>
 		<entity-X-Coordinate>825</entity-X-Coordinate>
 		<entity-Y-Coordinate>-3</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>ch.room4you.entity.Message</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>246</entity-height>
+		<entity-X-Coordinate>382</entity-X-Coordinate>
+		<entity-Y-Coordinate>574</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -69,8 +80,8 @@
 		<entity-name>ch.room4you.entity.AppointmentDate</entity-name>
 		<entity-width>120</entity-width>
 		<entity-height>148</entity-height>
-		<entity-X-Coordinate>1012</entity-X-Coordinate>
-		<entity-Y-Coordinate>742</entity-Y-Coordinate>
+		<entity-X-Coordinate>1002</entity-X-Coordinate>
+		<entity-Y-Coordinate>593</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -88,11 +99,22 @@
 	</entity>
 
 	<entity>
-		<entity-name>ch.room4you.entity.Message</entity-name>
+		<entity-name>ch.room4you.entity.Bookmark</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>206</entity-height>
-		<entity-X-Coordinate>382</entity-X-Coordinate>
-		<entity-Y-Coordinate>574</entity-Y-Coordinate>
+		<entity-height>128</entity-height>
+		<entity-X-Coordinate>675</entity-X-Coordinate>
+		<entity-Y-Coordinate>763</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>ch.room4you.entity.FavCandidates</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>148</entity-height>
+		<entity-X-Coordinate>526</entity-X-Coordinate>
+		<entity-Y-Coordinate>744</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
