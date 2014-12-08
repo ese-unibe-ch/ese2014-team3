@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -65,12 +64,8 @@ public class User  {
 	@ManyToMany(mappedBy = "visitors", fetch = FetchType.EAGER)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 	
-//	@ManyToMany(mappedBy = "promisingCandidates",fetch = FetchType.EAGER)
-//	private List<Appointment> appointmentPromisingCandidates = new ArrayList<Appointment>();
-	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<FavCandidates> favCandidates;
-	
 
 	@ManyToMany
 	@JoinTable
@@ -84,9 +79,7 @@ public class User  {
 	
 	@OneToMany (mappedBy = "bookmarker", fetch = FetchType.EAGER)
 	private List<Bookmark> bookmarkedAds = new ArrayList<Bookmark>();
-	
-	
-	
+		
 
 	public boolean isEnabled() {
 		return enabled;
@@ -144,10 +137,6 @@ public class User  {
 		this.password = password;
 	}
 
-/*	public void setBookmarkedAd(Bookmark bookmark) {
-		bookmarkedAds.add(bookmark);
-	}
-*/
 	
 	public List<Bookmark> getBookmarkedAds(){
 		return bookmarkedAds;
@@ -217,9 +206,5 @@ public class User  {
 	public void setFavCandidates(Set<FavCandidates> favCand) {
 		this.favCandidates = favCand;
 	}
-
-	
-	
-	
 
 }

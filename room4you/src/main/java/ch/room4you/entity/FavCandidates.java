@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -28,9 +27,6 @@ public class FavCandidates {
 	
 	@ManyToMany (fetch = FetchType.EAGER)
 	private List<User> visitors = new ArrayList<User>();
-	
-	//@OneToMany
-	//private List<Appointment> appointments = new ArrayList<Appointment>();
 
 	public int getId() {
 		return id;
@@ -48,14 +44,6 @@ public class FavCandidates {
 		this.visitors = visitors;
 	}
 
-/*	public List<Appointment> getAppointments() {
-		return appointments;
-	}
-
-	public void setAppointments(List<Appointment> appointments) {
-		this.appointments = appointments;
-	}
-*/
 	public Ad getAd() {
 		return ad;
 	}
