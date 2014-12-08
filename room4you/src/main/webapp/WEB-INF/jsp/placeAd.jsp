@@ -48,7 +48,7 @@
 											<c:when test="${not empty ad.images}">
 												<img
 													src="data:image/jpeg;base64,${ad.images[0].imageAsString}"
-													class="img-responsive"></img>
+													class="img-responsive"  style="width:250px;height:200px"></img>
 											</c:when>
 											<c:otherwise>
 												<img
