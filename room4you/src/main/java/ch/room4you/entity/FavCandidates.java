@@ -3,6 +3,7 @@ package ch.room4you.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class FavCandidates {
 	@OneToOne
 	private Ad ad;
 	
-	@ManyToOne // (cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn (name = "adplacer_id")
 	private User adPlacer;
 	
