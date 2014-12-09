@@ -212,10 +212,10 @@
 								data-format="dd-MM-yyyy" type="date" name="appointments"></input>
 								
 							</a></p><p>Begin: <a id="datetimepicker2" class="input-append"> <input
-								type="time" name="appointments"></input>
+								type="time" name="appointments" id="appointmentFrom"></input>
 								
 							</a></p><p>End:  <a id="datetimepicker3" class="input-append"> <input
-								type="time" name="appointments"></input>
+								type="time" name="appointments" id="appointmentTo"></input>
 							</a></p>
 							
 						</div>
@@ -414,4 +414,16 @@
 										});
 
 					});
+</script>
+
+<!-- copy appointment starttime to endtime -->
+<script>
+var $appointmentTo = $("#appointmentTo");
+
+$("#appointmentFrom").keyup(function() {
+    $appointmentTo.val(this.value);
+});
+$("#appointmentFrom").blur(function() {
+    $appointmentTo.val(this.value);
+});
 </script>
