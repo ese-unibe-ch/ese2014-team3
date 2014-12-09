@@ -224,6 +224,14 @@
 				</div>
 			</div>
 		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-4 ">Additional information:</label>
+			<div class="col-sm-8">
+				<div class="input-group">
+					<p>${ad.additionalInformation}</p>							
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 

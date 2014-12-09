@@ -212,7 +212,7 @@ public class AppInitService {
 		 ad1.setAvailableFrom(date);
 		 ad1.setNbrRooms(4);
 		 ad1.setRentPerMonth(350);
-		 ad1.setAdditionalInformation("Some additional Info");
+		 ad1.setAdditionalInformation("Nice room (39 m²) with a nice view");
 		 ad1.setSharedApartment(true);
 		 ad1.setSmokingAllowed(false);
 		 ad1.setInstrumentsAllowed(true);
@@ -237,7 +237,7 @@ public class AppInitService {
 		 ad1.setAvailableFrom(date);
 		 ad1.setNbrRooms(4);
 		 ad1.setRentPerMonth(400);
-		 ad1.setAdditionalInformation("Some additional Info");
+		 ad1.setAdditionalInformation("Nice room (14 m²) with big window");
 		 ad1.setSharedApartment(true);
 		 ad1.setSmokingAllowed(false);
 		 ad1.setInstrumentsAllowed(true);
@@ -295,7 +295,7 @@ public class AppInitService {
 		 ad1.setNbrRoomsMates(1);
 		 ad1.setWeAreLookingFor("Blond girl");
 		 adRepository.save(ad1);
-		 log.info("Third ad created!");
+		 log.info("Fourth ad created!");
 		return ad1;
 	}
 	
@@ -320,7 +320,7 @@ public class AppInitService {
 		 ad1.setNbrRoomsMates(1);
 		 ad1.setWeAreLookingFor("For a person aged between 20 and 50 years.");
 		 adRepository.save(ad1);
-		 log.info("Third ad created!");
+		 log.info("Fifth ad created!");
 		return ad1;
 	}
 
