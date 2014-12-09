@@ -158,9 +158,14 @@
 				<sec:authorize access="isAuthenticated()"> 
 					
 					<!--  	<button type="button" class="btn-group btn-group-lg" data-toggle="modal" data-target="#myModal">  -->
-					<c:if test="${empty appointmentList}">
+					<c:choose>
+					<c:when test="${empty appointmentList}">
 					<p>No appointments scheduled</p>
-					</c:if>	
+					</c:when>
+					<c:otherwise>
+					<p>To be allowed to visit, please click on a date to get added to the visitor's list</p>
+					</c:otherwise>
+					</c:choose>	
 					<c:forEach items="${appointmentList}" var="appointment">
 				  	<c:choose> 
 					<c:when test="${appointment.nmbrVisitors > 0}">
