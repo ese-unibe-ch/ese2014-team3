@@ -172,7 +172,7 @@ public class AdService {
 					appointment.setNmbrVisitors(Integer.valueOf(appointments.get(i + 3)));
 				}
 				// Default value, in case the user does not set any value. An appointment with 0 visitors would not make sense
-				else appointment.setNmbrVisitors(20); 
+				else appointment.setNmbrVisitors(50); 
 					
 				appointmentRepository.save(appointment);
 				createdAppointments.add(appointment);
