@@ -1,6 +1,5 @@
 package ch.room4you.controller;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -28,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import pojo.SearchAdsForm;
 import ch.room4you.entity.Ad;
 import ch.room4you.entity.Appointment;
-import ch.room4you.entity.AppointmentDate;
 import ch.room4you.entity.Image;
 import ch.room4you.entity.RoomMate;
 import ch.room4you.entity.User;
@@ -298,168 +295,6 @@ public class AdController {
 
 		return "adDetail";
 	}
-
-	
-	private void saveAppointments(Ad ad, List<String> appointments) {
-		List<Appointment> adAppoints = new ArrayList<Appointment>();
-		for (int i = 0; i < appointments.size(); i += 4) {
-			AppointmentDate appointDate = new AppointmentDate();
-			appointDate.setAppointDate(appointments.get(i));
-			appointDate.setStartTime(appointments.get(i + 1));
-			appointDate.setEndTime(appointments.get(i + 2));
-//			dateService.save(appointDate);
-			Appointment appointment = new Appointment();
-			appointment.setAppointDate(appointDate);
-			appointment.setAppointmentAd(ad);
-
-			if (!appointments.get(i + 3).isEmpty()) {
-				appointment.setNmbrVisitors(Integer.valueOf(appointments
-						.get(i + 3)));
-			}
-			appointmentService.save(appointment);
-			adAppoints.add(appointment);
-		}
-		ad.setAppointments(adAppoints);
-	}
-
-	private void setModelAttributeAds(Model model,
-			org.springframework.web.context.request.WebRequest webRequest) {
-
-		// Get posted form parameters
-		String searchTextCity = getSearchedCity(webRequest);
-		String searchTextZip = getSearchedZIP(webRequest);
-		String searchSharedApartmentAsString = getSearchForSharedApartment(webRequest);
-		boolean searchSharedApartment = getSharedApartmentValue(searchSharedApartmentAsString);
-		int searchTextMaxPrice = getSearchedRentPerMonthMax(webRequest);
-		int searchTextMinPrice = getSearchedRentPerMonthMin(webRequest);
-		int searchTextNbrRoomMatesMax = getSearchedNbrRoomMatesMax(webRequest);
-		int searchTextNbrRoomMatesMin = getSearchedNbrRoomMatesMin(webRequest);
-		float searchTextNbrRoomsMax = getSearchedNbrOfRoomsMax(webRequest);
-		float searchTextNbrRoomsMin = getSearchedNbrOfRoomsMin(webRequest);
-		model.addAttribute("ads", adService.findAdsWithFormCriteria(
-				searchTextCity, searchTextZip, searchTextMinPrice,
-				searchTextMaxPrice, searchTextNbrRoomMatesMin,
-				searchTextNbrRoomMatesMax, searchTextNbrRoomsMin,
-				searchTextNbrRoomsMax, searchSharedApartment));
-	}
-
-	private float getSearchedNbrOfRoomsMin(
-			org.springframework.web.context.request.WebRequest webRequest) {
-		float searchTextNbrRoomsMin = 0;
-		if (!webRequest.getParameter("searchTextNbrRoomsMin").isEmpty()) {
-			searchTextNbrRoomsMin = Float.parseFloat(webRequest
-					.getParameter("searchTextNbrRoomsMin"));
-		}
-		return searchTextNbrRoomsMin;
-	}
-
-	private float getSearchedNbrOfRoomsMax(
-			org.springframework.web.context.request.WebRequest webRequest) {
-		// handle number of rooms
-		float searchTextNbrRoomsMax = Integer.MAX_VALUE;
-		if (!webRequest.getParameter("searchTextNbrRoomsMax").isEmpty()) {
-			searchTextNbrRoomsMax = Float.parseFloat(webRequest
-					.getParameter("searchTextNbrRoomsMax"));
-		}
-		return searchTextNbrRoomsMax;
-	}
-
-	private int getSearchedNbrRoomMatesMin(
-			org.springframework.web.context.request.WebRequest webRequest) {
-		int searchTextNbrRoomMatesMin = 0;
-		if (!webRequest.getParameter("searchTextNbrRoomMatesMin").isEmpty()) {
-			searchTextNbrRoomMatesMin = Integer.parseInt(webRequest
-					.getParameter("searchTextNbrRoomMatesMin"));
-		}
-		return searchTextNbrRoomMatesMin;
-	}
-
-	private int getSearchedNbrRoomMatesMax(
-			org.springframework.web.context.request.WebRequest webRequest) {
-		// handle number of room mates
-		int searchTextNbrRoomMatesMax = Integer.MAX_VALUE;
-		if (!webRequest.getParameter("searchTextNbrRoomMatesMax").isEmpty()) {
-			searchTextNbrRoomMatesMax = Integer.parseInt(webRequest
-					.getParameter("searchTextNbrRoomMatesMax"));
-		}
-		return searchTextNbrRoomMatesMax;
-	}
-
-	private int getSearchedRentPerMonthMin(
-			org.springframework.web.context.request.WebRequest webRequest) {
-		int searchTextMinPrice = 0;
-		if (!webRequest.getParameter("searchTextMinPrice").isEmpty()) {
-			searchTextMinPrice = Integer.parseInt(webRequest
-					.getParameter("searchTextMinPrice"));
-		}
-		return searchTextMinPrice;
-	}
-
-	private int getSearchedRentPerMonthMax(
-			org.springframework.web.context.request.WebRequest webRequest) {
-		// handle rent per month
-		int searchTextMaxPrice = Integer.MAX_VALUE;
-		if (!webRequest.getParameter("searchTextMaxPrice").isEmpty()) {
-			searchTextMaxPrice = Integer.parseInt(webRequest
-					.getParameter("searchTextMaxPrice"));
-		}
-		return searchTextMaxPrice;
-	}
-
-	private String getSearchForSharedApartment(
-			org.springframework.web.context.request.WebRequest webRequest) {
-		String searchSharedApartmentAsString = webRequest
-				.getParameter("searchSharedApartment");
-		return searchSharedApartmentAsString;
-	}
-
-	private String getSearchedZIP(
-			org.springframework.web.context.request.WebRequest webRequest) {
-		String searchTextZip = webRequest.getParameter("searchTextZip");
-		return searchTextZip;
-	}
-
-	private String getSearchedCity(
-			org.springframework.web.context.request.WebRequest webRequest) {
-		String searchTextCity = webRequest.getParameter("searchTextCity");
-		return searchTextCity;
-	}
-
-	private boolean getSharedApartmentValue(String searchSharedApartmentAsString) {
-		boolean searchSharedApartment = true;
-		if (searchSharedApartmentAsString != null
-				&& !searchSharedApartmentAsString.equals("on")) {
-			searchSharedApartment = false;
-		}
-		return searchSharedApartment;
-	}
-	
-	private void saveRoomMates(Ad ad, List<String> roomMate) {
-//		List<String> roomMates = Arrays.asList(roomMate.split(","));
-		for (String roomM : roomMate) {
-			RoomMate rm = new RoomMate();
-			rm.setUser(userService.findOne(Integer.parseInt(roomM)));
-			rm.setAd(ad);
-			roomMateService.save(rm);
-		}
-	}
-
-	private void saveImages(Ad ad, MultipartFile[] images) throws IOException {
-		byte[] bytes;
-		for (MultipartFile imageMPF : images) {
-			Image image = new Image();
-			if(!imageMPF.isEmpty()){
-				bytes = imageMPF.getBytes();
-				byte[] encoded = Base64.encodeBase64(bytes);
-				String encodedString = new String(encoded);
-				image.setImageAsString(encodedString);
-				image.setAd(ad);
-				imageService.save(image);
-			}
-
-		}
-	}
-
 
 	
 	/**

@@ -12,35 +12,35 @@
 			<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">Title:</label>
 						<div class="col-sm-10">
-							<form:input path="title" cssClass="form-control" />
+							<form:input path="title" class="form-control" />
 							<form:errors path="title" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">Description:</label>
 						<div class="col-sm-10">
-							<form:input path="description" cssClass="form-control" />
+							<form:textarea path="description" class="form-control" row="3"/>
 							<form:errors path="description" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">Street:</label>
 						<div class="col-sm-10">
-							<form:input path="street" cssClass="form-control" />
+							<form:input path="street" class="form-control" />
 							<form:errors path="street" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">ZIP:</label>
 						<div class="col-sm-10">
-							<form:input path="zip" cssClass="form-control" />
+							<form:input path="zip" class="form-control" />
 							<form:errors path="zip" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">City:</label>
 						<div class="col-sm-10">
-							<form:input path="city" cssClass="form-control" />
+							<form:input path="city" class="form-control" />
 							<form:errors path="city" />
 						</div>
 					</div>
@@ -48,7 +48,7 @@
 						<label for="name" class="col-sm-2 control-label">Number of
 							rooms:</label>
 						<div class="col-sm-10">
-							<form:select path="nbrRooms" cssClass="formControl"
+							<form:select path="nbrRooms" class="formControl"
 								style="width:100%;" tabindex="6">
 								<c:if test="${ad.nbrRooms > 0}">
 								    <option value="${ad.nbrRooms}">
@@ -87,7 +87,7 @@
 						<label for="name" class="col-sm-2 control-label">Number of
 							room mates:</label>
 						<div class="col-sm-10">
-							<form:select path="nbrRoomsMates" cssClass="formControl"
+							<form:select path="nbrRoomsMates" class="formControl"
 								style="width:100%;" tabindex="6">
 								<c:if test="${ad.nbrRoomsMates > 0}">
 								    <option value="${ad.nbrRoomsMates}">
@@ -115,7 +115,7 @@
 							from:</label>
 						<div class="col-sm-10">
 							<form:input type="date" path="availableFrom"
-								cssClass="form-control" />
+								class="form-control" />
 							<form:errors path="availableFrom" />
 						</div>
 					</div>
@@ -125,7 +125,7 @@
 						<div class="col-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon">CHF</span>
-								<form:input path="rentPerMonth" cssClass="form-control" />
+								<form:input path="rentPerMonth" class="form-control" />
 								<form:errors path="rentPerMonth" />
 								<span class="input-group-addon">.00</span>
 							</div>
@@ -136,7 +136,7 @@
 						<label for="name" class="col-sm-2 control-label">Pets
 							allowed:</label>
 						<div class="col-sm-10">
-							<form:checkbox path="petsAllowed" cssClass="form-control"
+							<form:checkbox path="petsAllowed" class="form-control"
 								style="border-style:none;" />
 							<form:errors path="petsAllowed" />
 						</div>
@@ -146,7 +146,7 @@
 						<label for="name" class="col-sm-2 control-label">Smoking
 							allowed:</label>
 						<div class="col-sm-10">
-							<form:checkbox path="smokingAllowed" cssClass="form-control"
+							<form:checkbox path="smokingAllowed" class="form-control"
 								style="border-style:none;" />
 							<form:errors path="smokingAllowed" />
 						</div>
@@ -156,7 +156,7 @@
 						<label for="name" class="col-sm-2 control-label">Instruments
 							allowed:</label>
 						<div class="col-sm-10">
-							<form:checkbox path="instrumentsAllowed" cssClass="form-control"
+							<form:checkbox path="instrumentsAllowed" class="form-control"
 								style="border-style:none;" />
 							<form:errors path="instrumentsAllowed" />
 						</div>
@@ -166,7 +166,7 @@
 						<label for="name" class="col-sm-2 control-label">We are
 							looking for:</label>
 						<div class="col-sm-10">
-							<form:input path="weAreLookingFor" cssClass="form-control" />
+							<form:input path="weAreLookingFor" class="form-control" />
 							<form:errors path="weAreLookingFor" />
 						</div>
 					</div>
@@ -175,7 +175,7 @@
 						<label for="name" class="col-sm-2 control-label">Additional
 							Information:</label>
 						<div class="col-sm-10">
-							<form:input path="additionalInformation" cssClass="form-control" />
+							<form:textarea path="additionalInformation" class="form-control" row="3"/>
 							<form:errors path="additionalInformation" />
 						</div>
 					</div>

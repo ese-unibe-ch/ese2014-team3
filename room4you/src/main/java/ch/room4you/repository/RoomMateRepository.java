@@ -2,14 +2,12 @@ package ch.room4you.repository;
 
 
 /**
- * Manages the database operations for the ad entity
+ * Manages the database operations for the room mate entity
  */
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import ch.room4you.entity.Ad;
-import ch.room4you.entity.Image;
 import ch.room4you.entity.RoomMate;
-import ch.room4you.entity.User;
 
 import java.util.List;
 

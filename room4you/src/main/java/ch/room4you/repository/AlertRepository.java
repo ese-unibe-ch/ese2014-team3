@@ -2,7 +2,7 @@ package ch.room4you.repository;
 
 
 /**
- * Manages the database operations for the ad entity
+ * Manages the database operations for the alert entity
  */
 import org.springframework.data.jpa.repository.JpaRepository;
 import ch.room4you.entity.Alert;
