@@ -55,6 +55,9 @@
 	</div>
   	<div class="right-area float-left">
   		<a class="btn btn-primary btn-lg btn-home" href="ads.html" role="button">Browse ads</a>
+  		<security:authorize access="isAuthenticated()">
+  			<a class="btn btn-primary btn-lg btn-home" href="<spring:url value="/placeNewAd.html"/>">Place new Ad</a>
+  		</security:authorize>
   		<security:authorize access="! isAuthenticated()">
   			<a class="btn btn-primary btn-lg btn-home" href="<spring:url value="/register.html" />">Register</a>
   		</security:authorize>

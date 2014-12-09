@@ -163,7 +163,7 @@
 					<p>No appointments scheduled</p>
 					</c:when>
 					<c:otherwise>
-					<p>To be allowed to visit, please click on a date to get added to the visitor's list</p>
+					<p>To be allowed to visit, please click on a date to get added to the list of visitors</p>
 					</c:otherwise>
 					</c:choose>	
 					<c:forEach items="${appointmentList}" var="appointment">

@@ -45,8 +45,7 @@ public class FavCandidatesService {
 	 * 
 	 * @param candidatesId
 	 * @param adId
-	 * @param userName
-	 *            , the adplacer's name
+	 * @param userName, the adplacer's name
 	 */
 	@Transactional
 	public void createFavList(List<Integer> candidatesId, int adId,
@@ -57,9 +56,9 @@ public class FavCandidatesService {
 
 		favCandidates.setAd(ad);
 		favCandidates.setAdPlacer(adPlacer);
-		favCandidates.setVisitors(intToUser(candidatesId));
+		favCandidates.setVisitors(idToUser(candidatesId));
 		candidateRepository.save(favCandidates);
-
+		
 		Set<FavCandidates> favCand = adPlacer.getFavCandidates();
 		favCand.add(favCandidates);
 		adPlacer.setFavCandidates(favCand);
@@ -69,6 +68,8 @@ public class FavCandidatesService {
 		adFavCand.add(favCandidates);
 		ad.setFavCandidates(adFavCand);
 		adRepository.save(ad);
+		
+		
 	}
 
 	/**
@@ -81,7 +82,7 @@ public class FavCandidatesService {
 	 */
 
 	@Transactional
-	public List<User> intToUser(List<Integer> candidatesId) {
+	public List<User> idToUser(List<Integer> candidatesId) {
 		List<User> favVisitors = new ArrayList<User>();
 		for (Integer number : candidatesId) {
 			favVisitors.add(userRepository.findOne(number));
