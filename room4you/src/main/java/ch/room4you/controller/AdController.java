@@ -288,7 +288,7 @@ public class AdController {
 		}
 		
 		appointmentService.findByAd(id);
-		if(principal.getName() !=null){
+		if(principal !=null){
 			User user = userService.findOneByName(principal.getName());
 			log.debug("user.getAppointments size: " + user.getAppointments().size());
 		}
