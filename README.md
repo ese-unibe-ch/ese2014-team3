@@ -1,22 +1,25 @@
 ese2014-team3 (Room4You)
 =============
 
-## Installation
+## Requirements
+- JDK 7
+- Tomcat 7
+- PostgreSQL Database with user: postgres password: admin
 
-Clone project and run it on localhost with Jetty or Tomcat. Expects a Postgres database with
+## Building instructions
+Clone project and run it on localhost with Tomcat. Visit application on http://localhost:8080/
 
-user: postgres
-password: admin
-
-## Test version
-
-You find a deployed version of the project on http://room4you2.herokuapp.com/
-
+## Test users
 Testuser: user1
 Password: user1
 
-##Not yet implemented:
-* Design is not final. For example User profile
+Testuser: client
+Password: client
+
+## Test version
+
+You find also a deployed version of the project on http://room4you2.herokuapp.com/
+
 
 
 
